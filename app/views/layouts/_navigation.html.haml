@@ -1,0 +1,105 @@
+%nav.navbar-default.navbar-static-side.hidden#sidenavbar{:role => "navigation"}
+  .sidebar-collapse
+    %ul#side-menu.nav.metismenu
+      %li
+        #side-nav-logo
+          .logo
+            = link_to image_tag("logo.png"), "https://corkcrm.com", :class => "brand", :target => "_blank"
+      %li.nav-header
+        .profile-element
+          %span
+            = image_tag "#{get_profile_image}", class: 'sidebar-profile-image'
+          %span.clear
+            %span.block.m-t-xs
+              %strong.font-bold= current_user.name
+        .dropdown
+          %a{ class: 'dropdown-toggle', :href => "#", data: { toggle: 'dropdown' }, aria: { expanded: 'false'} }
+            %span.text-muted.text-xs.block
+              Options
+              .caret
+          %ul.dropdown-menu.m-t-xs
+            %li
+              = link_to destroy_user_session_path, :method => :delete do
+                Logout
+        .logo-element
+          IN+
+      %li{:class => ('active' if current_page?('/leads'))}
+        - if current_page?('/leads')
+          = link_to "/leads" do
+            %i.fa.fa-bars
+            %span.nav-label Leads
+            %span.fa.arrow
+            %ul.nav.nav-second-level.collapse
+              %li= active_link_to t('nav.leads.show_all'), leads_path, :class => 'heading', :active => :exclusive
+              %li= active_link_to t('nav.leads.import'), import_leads_path
+              %li= active_link_to t('nav.leads.new'), '/contacts/new_lead'
+              %li= active_link_to t('nav.leads.sources'), lead_sources_path
+        - else
+          = link_to "/leads" do
+            %i.fa.fa-bars
+            %span.nav-label Leads
+            %span.fa.arrow
+      %li{:class => ('active' if current_page?('/appointments'))}
+        - if current_page?('/appointments')
+          = link_to "/appointments" do
+            %i.fa.fa-calendar
+            %span.nav-label Appointments
+            %span.fa.arrow
+            %ul.nav.nav-second-level.collapse
+              %li= active_link_to t('nav.appointments.show_all'), appointments_path, :class => 'heading', :active => :exclusive
+              / -if can? :manage, Appointment
+              /   %li= active_link_to t('nav.appointments.availability'), availabilities_path
+        - else
+          = link_to "/appointments", :active => :exclusive, :class => 'heading' do
+            %i.fa.fa-calendar
+            %span.nav-label Appointments
+            %span.fa.arrow
+      %li{:class => ('active' if current_page?('/proposals'))}
+        - if current_page?('/proposals')
+          = link_to "/proposals" do
+            %i.fa.fa-briefcase
+            %span.nav-label Proposals
+            %span.fa.arrow
+            %ul.nav.nav-second-level.collapse
+              %li= active_link_to t('nav.proposals.show_all'), proposals_path, :class => 'heading', :active => :exclusive
+              - if Job.leads.any? && current_user.can_manage?
+                %li= active_link_to t('nav.proposals.templates'), manage_proposal_templates_path
+        - else
+          = link_to "/proposals" do
+            %i.fa.fa-briefcase
+            %span.nav-label Proposals
+            %span.fa.arrow
+      %li{:class => ('active' if current_page?('/jobs'))}
+        - if current_page?('/jobs')
+          = link_to "/jobs" do
+            %i.fa.fa-paint-brush
+            %span.nav-label Jobs
+            %span.fa.arrow
+            %ul.nav.nav-second-level.collapse
+              %li= active_link_to t('nav.jobs.show_all'), jobs_path, :class => 'heading', :active => :exclusive
+              - if Proposal.any?
+                %li= active_link_to t('nav.jobs.schedule'), schedule_jobs_path
+                - if can? :manage, Expense
+                  %li= active_link_to t('nav.jobs.expenses'), expenses_path
+                - if can? :manage, Payment
+                  %li= active_link_to t('nav.jobs.payments'), payments_path
+                %li= active_link_to t('nav.jobs.timecards'), timecards_path
+        - else
+          = link_to "/jobs" do
+            %i.fa.fa-paint-brush
+            %span.nav-label Jobs
+            %span.fa.arrow
+      %li{:class => ('active' if current_page?('/dashboard'))}
+        = link_to "/dashboard" do
+          %i.fa.fa-tachometer
+          %span.nav-label Dashboard
+      - if current_user.can_manage?
+        %li{:class => ('active' if current_page?('/manage'))}
+          = link_to "/manage" do
+            %i.fa.fa-lock
+            %span.nav-label Manage
+      - if can? :view_all, Contact
+        %li{:class => ('active' if current_page?('/contacts'))}
+          = link_to "/contacts" do
+            %i.fa.fa-users
+            %span.nav-label Contacts

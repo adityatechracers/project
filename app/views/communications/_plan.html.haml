@@ -1,0 +1,14 @@
+= simple_form_for @communication, :html => {:class => 'form-horizontal'} do |f|
+  .modal-header
+    %button.close(data-dismiss='modal') &times;
+    %h3= t '.plan_future'
+    %h4#plan_communication_contact_name= @job.contact.name
+  .modal-body
+    = f.input :job_id, :as => :hidden, :input_html => {:value => @job.id}
+    = f.input :type, :as => :hidden, :input_html => {:value => "PlannedCommunication"}
+    = f.input :action, :collection => Communication::ACTIONS, :selected => "Call"
+    = f.input :datetime, :as => :datetime_picker, :input_html => {:id => "planned_datepicker"}
+    = f.input :datetime_exact, :input_html => {:checked => true}
+  .modal-footer
+    %a.btn(data-dismiss='modal')= t 'shared.cancel'
+    = f.submit t('shared.save'), :class => 'btn btn-success'

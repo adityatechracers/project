@@ -1,0 +1,39 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading
+  .col-xs-12
+    %h1!= current_tenant.name
+    .title!= breadcrumbs({t('nav.manage.main') => manage_root_path})
+.row
+  .col-lg-4.col-sm-6
+    = render "menu_item", item_path: manage_crews_path,
+      item_heading: t('nav.manage.crews'), item_description: t('.crews_description'),
+      icon_class: "icon-users-2"
+    = render "menu_item", item_path: manage_users_path,
+      item_heading: t('nav.manage.users'), item_description: t('.crews_description'),
+      icon_class: "icon-user-2"
+    - if current_tenant.child_organizations.any?
+      = render "menu_item", item_path: manage_managed_organizations_path,
+        item_heading: t('nav.manage.managed_organizations'), item_description: t('.managed_organizations_description'),
+        icon_class: "icon-users"
+
+    = render "menu_item", item_path: manage_edit_organization_path,
+      item_heading: t('nav.manage.organization_info'), item_description: t('.organization_info_description'),
+      icon_class: "icon-address-book"
+  .col-lg-4.col-sm-6
+    = render "menu_item", item_path: manage_email_templates_path,
+      item_heading: t('nav.manage.email_templates'), item_description: t('.email_templates_description'),
+      icon_class: "icon-mail-2"
+
+    = render "menu_item", item_path: manage_reports_path,
+      item_heading: t('nav.manage.reports'), item_description: t('.reports_description'),
+      icon_class: "icon-bars"
+  .col-lg-4.col-sm-6
+    = render "menu_item", item_path: manage_subscription_path,
+      item_heading: t('nav.manage.subscription'), item_description: t('.subscription_description'),
+      icon_class: "icon-credit"
+    = render "menu_item", item_path: manage_website_embed_path,
+      item_heading: t('nav.manage.website_embed'), item_description: t('.website_embed_description'),
+      icon_class: "icon-embed"
+    - if current_user.organization && current_user.organization.stripe_customer_token.present?
+      = render "menu_item", item_path: manage_edit_card_path,
+        item_heading: t('nav.manage.billing_info'), item_description: t('.billing_info_description'),
+        icon_class: "icon-credit"

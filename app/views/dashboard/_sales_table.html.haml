@@ -1,0 +1,28 @@
+.ibox
+  .ibox-content
+    %table.table.table
+      %thead
+        %tr
+          %th Salesperson
+          %th Timespan
+          %th Proposals Created
+          %th Jobs Booked
+          %th Sales Generated
+          %th Success Rate
+      %tbody 
+        - if @top_jobs_users
+          - @top_jobs_users.each do |u|
+            %tr
+              %td{rowspan: 2}
+                %h3= u.name
+              %td This Week
+              %td= u.proposals_added_this_week
+              %td= u.proposals_accepted(@this_week)
+              %td $#{u.jobs_sold_valuation(@this_week)}
+              %td #{u.success_rate(@this_week)}%
+            %tr
+              %td YTD
+              %td= u.proposals_created(@this_year)
+              %td= u.proposals_accepted(@this_year)
+              %td $#{u.jobs_sold_valuation(@this_year)}
+              %td #{u.success_rate(@this_year)}%

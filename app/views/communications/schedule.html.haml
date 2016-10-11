@@ -1,0 +1,28 @@
+.row-fluid
+  .widget#communication-calendar-widget
+    .widget-header
+      .title= t 'nav.leads.communications'
+      .btn-group.pull-right
+        = link_to communications_path, :class => 'btn' do
+          %i.icon-list
+          = t 'communications.index.list'
+        = link_to schedule_communications_path, :class => 'btn active' do
+          %i.icon-calendar
+          = t 'communications.index.schedule'
+      %a.btn.btn-success.pull-right#add-communication-btn{:style => "margin-right:10px;"}
+        %span.hidden-phone= t 'communications.index.schedule_communication'
+        %span.visible-phone
+          %i.icon-plus
+    .widget-body
+      .well
+        .btn-group.pull-left(data-toggle="buttons-radio")
+          = active_link_to t("communications.index.filters.all"), communications_path, :class => "btn", :active => /communications\/schedule\??$/
+          = active_link_to t("communications.index.filters.planned"), communications_path(:filter => "planned"), :class => "btn", :active => /\?filter=planned/
+          = active_link_to t("communications.index.filters.records"), communications_path(:filter => "records"), :class => "btn", :active => /\?filter=records/
+        = date_range_filter_button
+        = split_button_filter(t("communications.index.filter_by_job"), :job, Job.includes(:contact).active, :id, :full_title)
+        .clearfix
+
+      #communication-calendar.calendar
+
+      .modal.modal-overflowed.hide.fade

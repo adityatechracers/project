@@ -1,0 +1,3 @@
+- Job.includes(:contact).active.each do |job|
+  %option{:value => "#{job.id}"}
+    = job.full_title_with_address_and_phone

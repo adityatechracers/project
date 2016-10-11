@@ -1,0 +1,224 @@
+
+
+- schedule_entries = job.job_schedule_entries
+- if schedule_entries.any?
+  %h4 Schedule Entries (#{schedule_entries.count})
+  %table.table.table-striped.table-condensed.table-bordered
+    %thead
+      %tr
+        %th= t('jobs.details.table_headings.start')
+        %th= t('jobs.details.table_headings.end')
+        %th= t('jobs.details.table_headings.notes')
+        %th= t('jobs.details.table_headings.touch_up')
+        %th= t('jobs.details.table_headings.actions')
+    %tbody
+      - schedule_entries.order('start_datetime asc').each do |entry|
+        %tr
+          %td= l entry.start_datetime
+          %td= l entry.end_datetime
+          %td= entry.notes
+          %td
+            - if entry.is_touch_up
+              &#x2713;
+            - else
+              &#x2717;
+          %td
+            = link_to edit_job_schedule_entry_path(entry), :class => 'btn btn-default btn-mini' do
+              %i.icon-pencil
+  %hr
+
+- proposals = job.proposals.not_deleted
+- if proposals.any?
+  %h4.inline-btn
+    #{t('nav.proposals.main')} (#{proposals.count})
+  %table.table.table-striped.table-condensed.table-bordered
+    %thead
+      %tr
+        %th{:style => "text-align:center;"} #
+        %th= t 'owner.reports.proposals.table_headings.amount'
+        %th= t 'owner.reports.proposals.table_headings.budgeted_hours'
+        %th= t 'owner.reports.proposals.table_headings.status'
+        %th= t 'owner.reports.proposals.table_headings.date_created'
+        %th= t 'owner.reports.proposals.table_headings.attachments'
+        %th.action-cell Actions
+    %tbody
+      - proposals.each do |p|
+        %tr
+          %td{:style => "text-align:center;"}= p.proposal_number
+          %td= number_to_currency(p.amount)
+          %td{:style => "text-align:center;"}= p.budgeted_hours
+          %td= proposal_status_indicator(p)
+          %td= l p.created_at
+          %td= attachments_links(p)
+          %td.action-cell
+            .btn-group
+              = link_to proposal_path(p.guid), :class => "btn btn-default btn-mini", :data => {:toggle => "tooltip", :title => "View", :placement => "bottom"} do
+                %i.icon-eye
+              - if p.accepted?
+                %button.btn.btn-mini.disabled{:data => {:toggle => 'tooltip', :container => 'body', :title => 'Accepted proposals cannot be edited', :placement => "bottom"}}
+                  %i.icon-pencil
+              - else
+                = link_to edit_proposal_path(p.guid), :class => "btn btn-default btn-mini", :data => {:toggle => "tooltip", :title => "Edit", :placement => "bottom"} do
+                  %i.icon-pencil
+              = link_to proposal_path(p.guid), :class => "btn btn-default btn-mini", :method => :delete, :confirm => "Are you sure you want to delete this proposal?", :data => {:toggle => "tooltip", :title => "Delete", :placement => "bottom"} do
+                %i.icon-remove-2
+
+              = link_to "#upload-file-#{p.guid}", :class => 'btn btn-default btn-mini','data-target ' => "#upload-file-#{p.guid}", 'data-toggle' => 'modal', title: 'Upload Attachments for Proposals' do
+                %i.icon-upload
+
+            .modal.fade{id: "upload-file-#{p.guid}"}
+              .modal-dialog
+                .modal-content
+                  .modal-header
+                    %h3 Upload File
+                  .modal-body
+                    = render 'proposals/upload', proposal: p
+                  .modal-footer
+                    %button.btn(data-dismiss="modal") Cancel
+                    %button.btn.btn-success(id='proposal_upload_file') Upload File
+- else
+  .hero-unit
+    %h3 This job does not currently have any proposals.
+    %p
+      Proposals are an integral part of CorkCRM's job lifecycle system,
+      bridging the gap between prospective leads and contracted, scheduled
+      labor.  Adding a proposal to a job automatically generates an online
+      contract and notifies the customer via email.  Once both parties have
+      signed the contract, this job will be available for scheduling under the
+      = link_to 'Jobs Tab', schedule_jobs_path
+    - if can? :create, Proposal
+      .btn-group
+        %button.btn.btn-large.btn-rounded.btn-success.dropdown-toggle{:data => {:toggle => "dropdown"}}
+          = t('.new_proposal')
+          %span.caret
+        %ul.dropdown-menu
+          - ProposalTemplate.active.each do |pt|
+            %li= link_to pt.name, new_proposal_path(:ptid => pt.id, :job_id => job.id)
+
+%hr
+
+%table.job-details-table.table.table-striped.table-condensed.table-bordered
+  %tbody
+    / %tr
+    /   %th Estimated Amount
+    /   %td= job.estimated_amount.present? ? number_to_currency(job.estimated_amount) : "No estimated amount"
+    %tr
+      %th Payments
+      %td= number_to_currency(job.total_payments)
+    %tr
+      %th Due
+      %td= number_to_currency(job.estimated_outstanding_balance)
+    - if current_page?(controller: 'jobs', action: 'show')
+      %tr
+        %th Accepted Proposal Amount
+        %td= number_to_currency(job.approved_proposals_amount)
+
+%hr
+
+
+
+- payments = job.payments.not_deleted
+- if payments.any?
+  %h4
+    - if can? :manage, Job
+      = link_to t('.new_payment'), new_job_payment_path(job), :class => 'btn btn-success btn-small pull-right'
+    #{t 'nav.jobs.payments'} (#{payments.count})
+  %table.table.table-striped.table-condensed.table-bordered
+    %thead
+      %tr
+        %th= t('simple_form.labels.payment.date_paid')
+        %th= t('simple_form.labels.payment.amount')
+        %th= t('simple_form.labels.payment.payment_type')
+        %th= t('simple_form.labels.payment.notes')
+        %th.action-cell Actions
+    %tbody
+      - payments.order('date_paid desc').each do |p|
+        %tr
+          %td= l p.date_paid
+          %td= number_to_currency(p.amount)
+          %td= p.payment_type
+          %td= p.notes
+          %td.action-cell= render 'shared/action_buttons', resource: p
+- else
+  .hero-unit
+    %h3 This job does not currently have any payments.
+    %p To begin taking advantage of CorkCRM's powerful payment-tracking features, click the button below!
+    - if can? :manage, Job
+      = link_to "Add a Payment", new_job_payment_path(job), :class => "btn btn-success btn-large"
+
+%hr
+
+- expenses = job.expenses.not_deleted
+- if expenses.any?
+  %h4
+    - if can? :manage, Job
+      = link_to t('.new_expense'), new_job_expense_path(job), :class => 'btn btn-success btn-small pull-right'
+    #{t 'nav.jobs.expenses'} (#{expenses.count})
+  %table.table.table-striped.table-condensed.table-bordered
+    %thead
+      %tr
+        %th= t 'expenses.index.table_headings.date_of_expense'
+        %th= t 'expenses.index.table_headings.amount'
+        %th= t 'expenses.index.table_headings.category'
+        %th= t 'expenses.index.table_headings.description'
+        %th.action-cell Actions
+    %tbody
+      - expenses.order('date_of_expense desc').each do |e|
+        %tr
+          %td= l e.date_of_expense
+          %td= number_to_currency(e.amount)
+          %td= e.expense_category.try(:name)
+          %td= e.description
+          %td.action-cell= render 'shared/action_buttons', resource: e
+- else
+  .hero-unit
+    %h3 This job does not currently have any expenses.
+    %p Did you know that CorkCRM can keep track of your expenditures for this job?  Click the button below to get started!
+    - if can? :manage, Job
+      = link_to "Add an Expense", new_job_expense_path(job), :class => "btn btn-success btn-large"
+
+- timecards = job.timecards.not_deleted
+- if timecards.any?
+  %h4.inline-btn
+    - if can? :create, Timecard
+      = link_to t('.new_timecard'), new_job_timecard_path(job), :class => 'btn btn-success btn-small pull-right'
+    #{t('nav.jobs.timecards')} (#{timecards.count})
+  %table.table.table-striped.table-condensed.table-bordered.fix-valign
+    %thead
+      %tr
+        %th= t('simple_form.labels.timecard.user')
+        %th= t('owner.reports.timesheets.table_headings.in_out')
+        %th= t('owner.reports.timesheets.table_headings.duration_amount')
+        %th= t('owner.reports.timesheets.table_headings.status')
+        %th.action-cell Actions
+    %tbody
+      - timecards.each do |t|
+        %tr
+          %td= t.user.name
+          %td
+            = l t.start_datetime, format: "%l:%M%P %A, %B #{t.start_datetime.day.ordinalize} %Y"
+            %br
+            = l t.end_datetime, format: "%l:%M%P %A, %B #{t.end_datetime.day.ordinalize} %Y"
+          %td
+            #{t.duration} #{t 'shared.hours'}
+            %br
+            = number_to_currency t.amount
+          %td
+            %span{:class => "label label-#{state_label_class(t)}"}= t.state
+          %td.action-cell= render 'shared/action_buttons', resource: t
+      %tr
+        %td{:colspan => 2}
+          %strong Totals:
+        %td
+          #{timecards.sum(:duration)} #{t 'shared.hours'}
+          %br
+          = number_to_currency timecards.sum(&:amount)
+        %td{:colspan => 2}
+
+- else
+  .hero-unit
+    %h3 This job does not currently have any timecards.
+    %p CorkCRM can handle your employees' timesheets with ease! Begin adding timecards below to <b>dramatically</b> simplify your life.
+    = link_to "Add a Timecard", new_job_timecard_path(job), :class => "btn btn-success btn-large" if can? :create, Timecard
+
+%hr

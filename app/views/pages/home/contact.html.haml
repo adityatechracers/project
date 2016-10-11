@@ -1,0 +1,13 @@
+= content_for :home do
+  .container-light.container-padded
+    .container
+      = simple_form_for Inquiry.new, :html => { :class => 'form-horizontal' } do |f|
+        %h3 Contact Us
+        %h4 Have questions about CorkCRM?
+        %h5 Fill out the form below and we'll get back to you shortly.
+        %br
+        = f.input :name, :label => 'Your Name', :input_html => { :class => 'input-xlarge' }
+        = f.input :email, :label => 'Your Email', :input_html => { :class => 'input-xlarge' }
+        = f.input :message, :input_html => { :rows => 5, :class => 'input-xlarge' }
+        .form-actions
+          = f.submit 'Submit', :class => 'btn btn-info'

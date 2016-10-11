@@ -1,0 +1,19 @@
+defaults: &defaults
+  expires_in: <%= 6.months %>
+  reconnects_in: <%= 5.months %>
+  webhooks: 
+    verifier: 469be797-1cde-4208-983d-2be0529c2b6c
+  key: "qyprdLWbUeJGsatM1KpcLia87wyJrQ"
+  secret: "p0gWBaz87Zf09NMFxFPS8cicJ7JHei34xF1CkNtN"
+
+development:
+  <<: *defaults  
+
+staging:
+  <<: *defaults  
+
+theme:
+  <<: *defaults    
+
+production:
+  <<: *defaults    

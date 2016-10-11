@@ -1,0 +1,15 @@
+defaults: &defaults
+  GOOGLE_CLIENT_ID: 778050561395-7nge17acs1lhgr6976k6vekda1tdavk9.apps.googleusercontent.com
+  GOOGLE_CLIENT_SECRET: IF4-DisXi-TosRkG7ShXpcrN
+
+development:
+  <<: *defaults
+
+staging:
+  <<: *defaults
+
+theme:
+  <<: *defaults
+
+production:
+  <<: *defaults

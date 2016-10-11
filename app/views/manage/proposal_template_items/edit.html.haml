@@ -1,0 +1,13 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1!= @template.name
+    .title
+      = link_to @template.name, edit_manage_proposal_template_path(@template),
+        :class => 'breadcrumb-link'
+      %span.breadcrumb-divider /
+      = link_to @section.name, edit_manage_proposal_template_section_path(@template, @section),
+        :class => 'breadcrumb-link'
+      %span.breadcrumb-divider /
+      Edit Item
+
+= render "/manage/proposal_template_items/form"

@@ -1,0 +1,68 @@
+.proposal-header.ibox
+  .ibox-title.p-md
+    .row
+      .col-xs-4.border-right
+        .text-left
+          %h2= @proposal.sales_person.name
+          %p
+            %i.fa.fa-phone.inline-icon
+            = @proposal.contractor.phone
+          %p
+            - if @contact.company.present?
+              %br
+              = @proposal.organization.name
+          %p
+            %i.fa.fa-envelope.inline-icon
+            = @proposal.contractor.email
+          %p
+            - if @proposal.contractor.address.present?
+              %i.fa.fa-map-marker.inline-icon
+              = @proposal.contractor.full_address
+            - else
+              = @proposal.organization.full_address
+
+      .col-xs-4
+        .text-center
+          - if defined? pdf
+            = pdf_image_tag(@proposal.organization.logo(:medium), :class => "proposal-organization-logo letterhead-logo")
+          - else
+            = image_tag(@proposal.organization.logo(:medium), :class => "letterhead-logo m-t", hidden: true)
+            .logo-image.m-t-xs.m-b-sm{ style: "opacity:0.7;width:68%; margin-left: 16%; height: 110px; background-image: url(#{@proposal.organization.logo(:medium)}); background-repeat: no-repeat; background-position: center; background-size: contain" }
+            - website_url = @proposal.organization.website_url
+            - if website_url.present?
+              %p
+                %i.fa.fa-external-link.inline-icon
+                = link_to website_url, target: "_blank" do
+                  = website_url.sub(/^https?\:\/\//, '')
+            - if attachments_links(@proposal) != ''
+              %p
+                %i.fa.fa-paperclip
+                = attachments_links(@proposal)
+      .col-xs-4.proposal-title.border-left.p-w-m
+        %h2= @title
+        %p
+          %span.hidden-phone #{t '.generated'} #{@proposal.proposal_date.strftime("%m/%d/%Y")}  
+        %p
+          =@contact.name
+        %p
+          %i.fa.fa-phone.inline-icon
+          =@contact.phone
+        %p
+          %i.fa.fa-envelope.inline-icon
+          = @contact.email
+        %p
+          %i.fa.fa-map-marker.inline-icon(id="a_h_address_f")
+          - if @proposal.proposal_address?
+            = @proposal.proposal_address
+          - else
+            = @contact.condensed_address
+
+  - if @proposal.change_orders.applied.any?
+    %br
+    .ibox
+      .ibox-title
+        %h3 Changes
+      .ibox-content
+        = render 'proposals/change_orders'
+
+.clearfix

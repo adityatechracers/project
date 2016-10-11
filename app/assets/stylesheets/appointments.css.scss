@@ -1,0 +1,44 @@
+// Place all the styles related to the appointments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.fc-event {
+  &,
+  .fc-title,
+  .fc-time {
+    color: black;
+  }
+}
+
+.fc-event.slotted-event {
+  .fc-event-head.fc-event-skin {
+    background: darken(#FFDF80, 16%);
+  }
+  &,
+  .fc-event-skin,
+  .fc-event-bg {
+    background: darken(#FFDF80, 10%);
+    border-color: darken(#FFDF80, 30%);
+  }
+}
+
+.fc-event.google-event {
+  .fc-event-head.fc-event-skin {
+    background: darken(#9FE1E7, 16%);
+  }
+  &,
+  .fc-event-skin,
+  .fc-event-bg {
+    background: darken(#9FE1E7, 10%);
+    border-color: darken(#9FE1E7, 30%);
+  }
+}
+
+
+.appointment-filters {
+  text-align:center;
+  li {
+    padding:5px 0px;
+    display:inline-block;
+  }
+}

@@ -1,0 +1,18 @@
+.modal-dialog
+  .modal-content
+    %input(type="hidden" name="modal_form" value="1")
+    = simple_form_for @job_schedule_entry, html: {class: 'form-horizontal'} do |f|
+      .modal-header
+        %button.close(data-dismiss='modal') &times;
+        %h3= t '.schedule_job'
+      .modal-body
+        .messages
+        = render 'form_body', f: f
+      .modal-footer
+        - unless @job_schedule_entry.new_record?
+          %a.btn.btn-danger.pull-left#unschedule-job-btn
+            %span.visible-phone
+              %i.icon-remove-2
+            %span.hidden-phone Remove from schedule
+        %a.btn(data-dismiss='modal')= t 'shared.cancel'
+        = f.submit t('.save_job'), class: "btn btn-success"

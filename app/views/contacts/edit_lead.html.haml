@@ -1,0 +1,48 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1!=t('nav.leads.main')
+    .title!= breadcrumbs({t('nav.leads.main') => leads_path}, t('nav.leads.edit'))
+.row-fluid#new_lead
+  = hform_for @contact do |f|
+    = f.simple_fields_for :jobs do |jf|
+      .row
+        .col-md-6.tabs-container
+          %ul.nav.nav-tabs#new-contact-tabs{:style => "margin-bottom:0px;"}
+            %li#contact-details{:class => contact_tab_active(@contact)}= link_to t('contacts.new_lead.contact_details'), "#"
+          .well.well-white.overflow-content#new-contact-form-well
+            = form_group (t 'contacts.new_lead.name'), required: true do
+              = f.input_field :first_name, class: 'form-control m-b'
+              = f.input_field :last_name
+            = f.input :company
+            = f.input :phone, :placeholder => '(800) 123-4567'
+            = f.input :email
+            = f.input :address
+            = f.input :address2
+            = f.input :zip
+            = f.input :city
+            = f.input :region, :as => :select, :collection => ["Loading..."], :include_blank => false, :input_html => {:data => {:value => @contact.organization.region}}
+            = f.input :country, :priority => ["United States"], :required => true
+            %input{:type=>"hidden", :value=>"lead", :name=>:redirect_to}
+        .col-md-6.tabs-container
+          %ul.nav.nav-tabs{:style => "margin-bottom:0px;"}
+            %li.active= link_to t('contacts.new_lead.lead_details'), "#"
+          .well.well-white
+            = jf.input :lead_source_id, :collection => LeadSource.all, :label_method => :locale_name
+            = jf.input :details, label: 'Notes', :input_html => {:class => 'input-block-level form-control', :rows => 6}
+            /= jf.input :email_customer, :input_html => {checked: true}, :wrapper => :checkbox
+        - if current_tenant.show_zestimate
+          .col-md-6.tabs-container
+            %ul.nav.nav-tabs{:style => "margin-bottom:0px;"}
+              %li.active= link_to t('contacts.new_lead.zestimate_details'), "#"
+            .well.well-white
+              .control-group.form-group
+                .col-md-4.control-label
+                  %label.control-label Zestimate
+                .controls.col-md-8
+                  = f.hidden_field :zestimate
+                  %p.help-inline.help-aside(id="zetimate_val") Enter address to see zestimate
+              .control-group.form-group
+                = f.input :discard_zestimate, :wrapper => :checkbox
+                
+        .clearfix.col-xs-12
+          = submit_tag t('contacts.new_lead.save_changes'), :name => nil, :class => "btn btn-success btn-xl col-xs-12"

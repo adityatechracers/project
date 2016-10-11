@@ -1,0 +1,30 @@
+// Place all the styles related to the communications controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.communication-history-count {display:block;}
+.communication-history-list {display:none;}
+
+#communication-history-table {
+  // max-height: 200px;
+  // overflow: scroll;
+  margin-bottom: 15px;
+
+  td {
+    padding-right:10px;
+
+    .communication-history-row-details {
+      margin:5px 0px;
+      font-size:11px;
+      line-height:12px;
+    }
+  }
+}
+
+.communication-header-contact-details {
+  a {
+    margin:0px 10px;
+    &:first-child {margin-left:0px;}
+    &:last-child {margin-right:0px;}
+  }
+}

@@ -1,0 +1,24 @@
+.modal.inmodal#export-modal
+  .modal-dialog
+    .modal-content.animated.bounceInRight
+      .modal-header
+        %h3 Export Data
+      .modal-body
+        %p.hide.centered-text#success-download{style: 'color:green;'}
+          Your file has been generated successfully!
+        %p.hide#waiting-download.centered-text
+          Pleast wait while we generate your export...
+          %div.hide#spinner
+            %br
+            %br
+            %br
+        %p.hide.centered-text#failure-download{style: 'color:red;'}
+          Your request timed out, try again later.
+        %div#modal-content
+          %p
+            Would you like to export all of your data?
+          %p
+            *Note that this could take a few minutes and you must remain on this screen until the download is finished
+      .modal-footer
+        %button.btn#cancel-data-button(data-dismiss="modal") Cancel
+        %button.btn.btn-success#export-data-button Export Data

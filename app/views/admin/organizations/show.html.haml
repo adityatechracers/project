@@ -1,0 +1,225 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    .title-group
+      %h1= t 'nav.manage.organizations'
+      .title!= breadcrumbs({'Organizations' => admin_organizations_path}, @organization.name)
+    .pull-right.m-t-xl
+      - if can? :manage, Organization
+        - if @organization.active
+          = link_to disable_admin_organization_path(@organization), :method => :put, :class => "btn org-status-btn btn-danger",
+              :confirm => "Are you sure? The Stripe subscription will be cancelled and organization users will no longer be able to log in." do
+            %i.icon-switch
+            Disable
+        - else
+          = link_to enable_admin_organization_path(@organization), :method => :put, :class => "btn org-status-btn btn-success" do
+            %i.icon-switch
+            Enable
+      - if can?(:become_user, :admin) && @organization.owner.present?
+        = link_to become_admin_user_path(@organization.owner), :class => "btn btn-default become-btn" do
+          %i.icon-enter
+          Become
+.ibox
+  .ibox-title
+    %h4 Address
+  .ibox-content
+    %p
+      - if @organization.has_address?
+        = @organization.address
+        %br
+        = @organization.address_2
+        %br
+        #{@organization.city}, #{@organization.region}
+        %br
+        = @organization.zip
+      - else
+        No Address on file
+
+
+.ibox
+  .ibox-title
+    %h4 Details
+  .ibox-content
+    .row-fluid
+      .span12.scrolled
+        %table.table.table-striped
+          %tr
+            %td Created
+            %td= l @organization.created_at
+          %tr
+            %td Last Login
+            %td= l @organization.owner.try(:last_sign_in_at)
+          %tr
+            %td Plan
+            %td
+              = plan_label_for @organization.stripe_plan_id
+              - if @organization.plan == Plan.free_plan
+                .trial-update{:class => @organization.trial_active? ? '' : 'alert alert-danger'}
+                  = simple_form_for [:admin, @organization], :html => {:class => 'form-inline'} do |f|
+                    = @organization.trial_active? ? 'Expires' : 'Expired'
+                    &nbsp;
+                    = f.input_field :trial_end_date, :as => :datetime_picker, :class => 'input-medium'
+                    = f.submit 'Update', :class => 'btn btn-mini btn-success'
+          %tr
+            %td Status
+            %td
+              - if @organization.active
+                %label.label.label-success
+                  Active
+              - else
+                %label.label.label-important
+                  Inactive
+.ibox
+  .ibox-title
+    %h4 Users
+  .ibox-content
+    %table.table.table-striped
+      - @organization.users.each do |u|
+        %tr
+          %td= u.name
+          %td= u.email
+          %td
+            - if u.is_owner?
+              %label.label.label-info
+                Owner
+            - elsif u.is_manager?
+              %label.label.label-warning
+                Manager
+            - else
+              %label.label.label
+                Employee
+
+    .hr-line-dashed
+    = hform_for [:admin, @organization] do |f|
+      = f.label :num_allowed_users, label: 'User Limit'
+      .input-group.m-t-xs
+        = f.input_field :num_allowed_users, type: 'number', class: 'form-control input-sm'
+        .input-group-btn
+          = submit_tag 'Update', :class => 'btn btn-success'
+      .help-block.m-t-sm
+        - if @organization.stripe_plan_id.present?
+          By default, organizations on this plan have a user limit of #{@organization.plan.num_users}.
+        Override this organization's user limit here.
+
+.ibox
+  .ibox-title
+    %h4 Managed Organizations
+  .ibox-content
+    %p
+      When a parent organization is selected below, administrative access and
+      reporting information for this organization is provided to the owner
+      and managers of the parent organization. For organizations where this
+      type of hierarchy is not desired, leave the parent organization unselected.
+
+    %h4 Parent Organization
+
+    = hform_for [:admin, @organization], :html => {:class => 'form-inline'} do |f|
+      = f.input :parent_organization_id, as: :select, label: false,
+          collection: @organization.eligible_parent_organizations, class: 'input-mini', include_blank: true,
+          input_html: { class: 'chzn-select' }
+      = f.submit 'Update', :class => 'btn btn-success'
+
+    .hr-line-dashed
+
+    %h4 Managed Organizations
+
+    %ul
+      - @organization.child_organizations.each do |o|
+        %li= link_to o.name, [:admin, o]
+    - if @organization.child_organizations.empty?
+      This organization has no managed organizations.
+
+    %hr
+.ibox
+  .ibox-title
+    %h4 Data
+  .ibox-content
+    %table.table.table-bordered.table-striped.table-condensed
+      %tr
+        %td Users
+        %td= @organization.users.count
+      %tr
+        %td Jobs
+        %td= @organization.jobs.count
+      %tr
+        %td Appointments
+        %td= @organization.appointments.count
+      %tr
+        %td Contacts
+        %td= @organization.contacts.count
+      %tr
+        %td Proposals
+        %td= @organization.proposals.count
+      %tr
+        %td Email Templates
+        %td= @organization.email_templates.count
+      %tr
+        %td Proposal Templates
+        %td= @organization.proposal_templates.count
+    %hr
+
+
+- if can? :view_billing_history, :admin
+  .ibox
+    .ibox-title
+      %h4 Invoices
+    .ibox-content
+      - unless @invoices.empty?
+        %table.table.table-bordered.table-striped.table-condensed
+          - @invoices.each do |i|
+            %tr
+              %td= l i.created_at
+              %td= number_to_currency(i.total / 100)
+              %td= link_to 'View Details', admin_invoice_path(i.id), :class => 'btn btn-mini'
+        = link_to 'View All', admin_invoices_path(:org => @organization.id)
+      - else
+        No payments on file
+
+.ibox
+  .ibox-title
+    %h4 Stripe
+  .ibox-content
+    %h5 Manage Stripe Customer Details
+
+    %p.help-block
+      Note that this form does not change the information stored in Stripe.
+      This form allows you to update the organization's Stripe details in the
+      event that they were manually changed from the Stripe dashboard. This ensures
+      that the system can associate events Stripe sends to CorkCRM with the correct organization.
+    .hr-line-dashed
+
+    = simple_form_for [:admin, @organization], defaults: {wrapper: :simple} do |f|
+      = f.input :stripe_customer_token, label: 'Stripe Customer ID', input_html: { class: 'form-control' },
+          hint: 'This is the customer id (e.g., cus_12345abcd)  which can be found on the Stripe dashboard.'
+      = f.input :stripe_plan_id, as: :select, label: 'Stripe Plan', collection: Plan.names.push('Free'), class: 'input-mini',
+          include_blank: false, hint: "This should match the customer's Stripe subscription. Note that changing a plan this way does not adjust the user limit."
+
+      = f.submit 'Update', :class => 'btn btn-success'
+
+      %hr
+
+      - if @account_credits.any?
+        %table.table.table-bordered.table-striped.table-condensed
+          - @account_credits.each do |c|
+            %tr
+              %td= l c.created_at
+              %td= number_to_currency(c.amount)
+
+.ibox
+  - if @organization.stripe_customer_token
+    .ibox-title
+      %h4 Add Credit
+    .ibox-content
+      = simple_form_for :apply_credit, :url => apply_credit_admin_organization_path, :method => :put do |f|
+        .input-group
+          %span.input-group-addon $
+          = f.input_field :amount, :placeholder => '50', :class => 'form-control input-xs'
+          %span.input-group-addon .00
+        .help-block.m-t-sm
+          Credit is added to the organization's Stripe account and will be
+          deducted from the next invoice.
+        = f.submit 'Add Credit', :class => 'btn btn-success'
+
+  - else
+    .ibox-content
+      .help-block
+        Credit can only be applied to accounts with an active Stripe subscription

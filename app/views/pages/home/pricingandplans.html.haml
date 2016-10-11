@@ -1,0 +1,9 @@
+= content_for :home do
+  .container{:style => "padding-top:10px;padding-bottom:10px;"}
+    .row
+      .span12!= cb("Pricing & Plans", "Pricing & Plans Header")
+  .container-light.container-padded
+    .container
+      .row.row-buffered
+        .span12= render :partial => "manage/subscriptions/form"
+        .clearfix

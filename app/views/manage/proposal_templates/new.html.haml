@@ -1,0 +1,6 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md.page-heading.inline-nav-heading
+  .col-xs-12
+    %h1!= t('nav.manage.proposal_templates')
+    .title!= breadcrumbs({t('nav.manage.proposal_templates') => manage_proposal_templates_path}, t('shared.new'))
+
+= render :partial => 'manage/proposal_templates/form'

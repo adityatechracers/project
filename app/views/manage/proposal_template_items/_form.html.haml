@@ -1,0 +1,15 @@
+= hform_for @item, :url => url_for_item_form(@template, @section, @item) do |f|
+  .ibox
+    .ibox-content
+      = f.input :name
+      = f.input :default_note_text, :input_html => {:class => 'input-xlarge', :rows => 4}
+      = f.input :help_text, as: :text, :input_html => {:class => 'input-xlarge', :rows => 4}
+      - if @section.show_include_exclude_options
+        = f.input :default_include_exclude_option, :collection => t('.include_exclude_options').zip(['N/A', 'Include', 'Exclude']), :as => :radio_buttons, wrapper: :checkbox
+      .hr-line-dashed
+      .row
+        .col-md-8.col-md-offset-4
+          = submit_tag t('shared.save'), :disable_with => 'Saving...', :class => "btn btn-success m-r-xs"
+          - unless @proposal_template_item.new_record?
+            = link_to t('shared.delete'), manage_proposal_template_section_item_path(@template, @section, @item),
+              :method => "delete", :class => "btn btn-danger", :confirm => "Are you sure you want to delete this line item?"

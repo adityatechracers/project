@@ -1,0 +1,28 @@
+= hform_for @timecard, :defaults => {:input_html => {:class => "span12"}} do |f|
+  - if current_user.can_manage?
+    .alert-block
+      %h4= t '.administrator'
+      = f.association :user, :input_html => {:class => 'chzn-select'}
+
+  .row-fluid
+    .span10
+      - select_opts = {:collection => Job.with_accepted_proposal.includes(:contact).group('jobs.id').all, :label_method => :full_title_with_address_and_phone, :input_html => {:class => 'chzn-select'}}
+      - select_opts[:selected] = params[:job_id] if params.has_key? :job_id
+      = f.association :job, select_opts
+    / .span2
+    /   = link_to "#", :class => "btn btn-small geolocate-job-btn pull-right", :style => "height:19px;",
+    /     :data => {:toggle => "tooltip", :placement => "left"}, :title => "Attempt to set via current location" do
+    /     %i.icon-target
+  .help-block.geolocate-help-block
+  = f.input :start_datetime, :as => :datetime_picker, :wrapper_html => {:class => "span6"}
+  = f.input :end_datetime, :as => :datetime_picker, :wrapper_html => {:class => "span6"}
+  .clearfix
+  = f.input :notes, :input_html => {:rows => 4}
+  .hr-line-dashed
+  .form-actions.row
+    .col-md-8.col-md-offset-4
+      = f.submit t('shared.save'), :disable_with => 'Saving...', :class => "btn btn-success"
+
+  - unless @timecard.new_record?
+    = link_to "Delete", timecard_path(@timecard), :method => "delete", :class => "btn btn-danger",
+        :confirm => "Are you sure you want to delete this timecard?"

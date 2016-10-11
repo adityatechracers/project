@@ -1,0 +1,4 @@
+= simple_form_for @quote, :defaults => {:input_html => {:class => "span12"}} do |f|
+  = f.input :quote
+  = f.input :author
+  = f.submit "Save Quote", :class => "btn btn-success"

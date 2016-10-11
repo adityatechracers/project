@@ -1,0 +1,2 @@
+module ProposalTemplateItemsHelper
+end

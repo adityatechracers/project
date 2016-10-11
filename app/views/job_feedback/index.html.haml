@@ -1,0 +1,50 @@
+.row-fluid
+  .widget
+    .widget-header
+      .title= t 'nav.jobs.feedback'
+    .widget-body
+      .row-fluid
+        - if @feedback_items.any?
+          .span12.scrolled
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th= t '.table_headings.job'
+                  %th= t '.table_headings.name'
+                  %th= t '.table_headings.feedback'
+                  %th= t '.table_headings.completion_status'
+                  %th= t '.table_headings.created_at'
+                  %th= t '.table_headings.actions'
+              %tbody
+                - @feedback_items.each do |item|
+                  %tr
+                    %td= link_to item.job.full_title, job_path(item.job)
+                    %td= item.name
+                    %td(style="max-width:400px")= item.feedback
+                    %td
+                      - if item.complete
+                        %span.label.label-success Complete
+                      - else
+                        %span.label.label-warning Incomplete
+
+                      - if item.job.organization.feedback_portal_show_signature
+                        %br
+                        - if item.customer_sig.present?
+                          (Signed)
+                        - else
+                          (Not Signed)
+                    %td= l item.created_at
+                    %td
+                      = link_to 'View', job_feedback_path(item), class: 'btn btn-mini'
+          = paginate @feedback_items, :theme => "bootstrap"
+        - else
+          .hero-unit
+            %h3= t '.no_feedback.heading'
+            %br
+            %p= t '.no_feedback.feedback_portal_html'
+            = link_to t('.no_feedback.go_to_jobs'), jobs_path, :class => "btn btn-success"
+
+            %br
+            %br
+            %p= t '.no_feedback.email_templates_html'
+            = link_to t('.no_feedback.edit_email_templates'), manage_email_templates_path, :class => "btn btn-success"

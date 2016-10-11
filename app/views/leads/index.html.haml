@@ -1,0 +1,58 @@
+.row-fluid
+  .ibox.page-header
+    .ibox-title
+      %h1.title.pull-left= t '.title'
+      - if can? :create, Job, state: 'Lead'
+        = link_to t('.new'), '/contacts/new_lead', class: 'btn btn-success pull-right'
+      .clearfix
+    .ibox-content
+      .btn-group.pull-left(data-toggle="buttons-radio")
+        = active_link_to t('.active'), params.except(:filter), class: "btn btn-default", active: /^(?!.*filter=).*$/
+        = active_link_to t('.dead'), params.merge(filter: "dead"), class: "btn btn-default", active: /filter=dead/
+      %span.hidden-sm.hidden-xs
+        = date_range_filter_button
+      %span.hidden-sm.hidden-xs
+        = split_button_filter(t('.filter_by_lead_source'), :lead_source, LeadSource.where(deleted_at: nil), :id, :locale_name, {style: "margin-left:10px;"})
+      .btn-group.pull-right
+        = link_to import_leads_path, class: 'btn btn-default', data: {toggle: "tooltip", placement: "bottom"}, title: t('.import') do
+          %i.fa.fa-upload{style: "position:relative;top:-1px;"}
+          %span.visible-lg-inline-block= t '.import'
+        = link_to export_leads_path, class: 'btn btn-default', data: {toggle: "tooltip", placement: "bottom"}, title: t('.export') do
+          %i.fa.fa-download{style: "position:relative;top:-1px;"}
+          %span.visible-lg-inline-block= t '.export'
+        - if current_user.can_manage?
+          = link_to manage_website_embed_path, class: 'btn btn-default', data: {toggle: "tooltip", placement: "bottom"}, title: t('.embed') do
+            %i.fa.fa-angle-double-right{style: "position:relative;top:-1px;"}
+            %span.visible-lg-inline-block= t '.embed'
+
+      .clearfix
+
+  .row-fluid
+    .ibox
+      .ibox-title{ style: 'padding: 6px 0 0 0;'}
+        .input-group.pull-left
+          %span.input-group-addon{ :style => 'border: none;'}
+            %span
+              %i.fa.fa-search
+          %input.form-control{:id => "leads_search_field", type: 'text', :placeholder => t('.search_leads'), style: 'border: none;'}
+        .clearfix
+      .ibox-content
+        - if Job.leads.any?
+          .span12.scrolled{ style: 'padding-bottom: 8px;' }
+            %table.footable.table.toggle-arrow-tiny.default.breakpoint.footable-loaded.custom-striped#leads_table
+              %thead
+                %tr
+                  %th.footable-visible.footable-first-column= t '.table_headings.client_name'
+                  %th.footable-visible= t '.table_headings.phone'
+                  %th.footable-visible= t '.table_headings.address'
+                  %th.footable-visible= t '.table_headings.next_appointment'
+                  %th.footable-visible.footable-last-column= t '.table_headings.actions'
+              %tbody= render "table"
+          = paginate @leads, theme: "bootstrap"
+        - else
+          .hero-unit
+            %div.centered-text
+              %h3
+                %strong= t '.no_leads.heading'
+              %p= t '.no_leads.body_html', jobs_path: jobs_path
+              = link_to t('.no_leads.add_a_lead'), new_lead_path, class: "btn btn-success btn-large" if can?(:create, Job) and can?(:create, Contact)

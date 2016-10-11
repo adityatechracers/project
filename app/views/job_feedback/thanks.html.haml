@@ -1,0 +1,11 @@
+.dashboard-wrapper
+  .row-fluid
+    .widget
+      .widget-header
+        = render 'header'
+      .widget-body
+        .row-fluid
+          = image_tag(@job.organization.logo, :style => 'max-height:70px')
+          %h3= @job.organization.name
+          %h5
+          .alert.alert-success= t '.thank_you_text'

@@ -1,0 +1,26 @@
+.row-fluid
+  .widget
+    .widget-header
+      .title Proposal Template
+    .widget-body
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th Name
+            %th Status
+            %th Actions
+        %tbody
+          - @proposal_templates.each do |t|
+            %tr
+              %td= link_to t.name, edit_admin_proposal_template_path(t)
+              %td
+                - if t.active
+                  %span.label.label-success
+                    Enabled
+                - else
+                  %span.label.label-important
+                    Disabled
+              %td
+                = link_to edit_admin_proposal_template_path(t), :class => 'btn btn-mini' do
+                  %i.icon-pencil
+                  Edit

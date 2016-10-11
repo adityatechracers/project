@@ -1,0 +1,214 @@
+// Place all the styles related to the jobs controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#new-invoice-modal #invoice-description {
+  margin-top:10px
+}
+#new-invoice-modal #invoice-description-help {
+  padding-left:190px
+}
+#new-invoice-modal label,
+#new-invoice-modal dt {
+  float:left;
+  width:180px;
+  margin-right:10px;
+  padding-right:10px
+}
+.smaller {
+  font-size:11px
+}
+#jobs-page .footable .crews  {
+  margin-right:10px
+}
+#jobs-page .footable .crews .crew {
+    margin-bottom:10px;
+}
+#jobs-page .schedule-entries  {
+
+}
+
+#jobs-page .popover.index  {
+  background-color:black;
+}
+#jobs-page .popover.index .close {
+  color:white;
+  opacity:1
+}
+#jobs-page .popover.index  {
+  color:white;
+  opacity:1
+}
+#jobs-page .popover.index .popover-title,
+#jobs-page .popover.index .popover-content  {
+  background-color:rgba(0,0,0,0.2)
+}
+
+#jobs-page .footable-row-detail-inner-left.index {
+  margin-right:10px;
+  width:425px
+}
+
+#jobs-page .footable-row-detail-inner-right.index {
+  min-width:425px;
+   max-width:500px
+}
+#job-calendar-ibox {
+  .fc-event {
+    background: #ccc;
+    border-color: #bbb;
+
+    &.unscheduled-job {
+      border: 1px dashed #ccc;
+      background: rgba(200,200,200,0.1); //repeating-linear-gradient(45deg, #fff, #fff 10px, #eee 10px, #eee 20px);
+      .event-tag {
+        opacity: 0.7;
+      }
+    }
+  }
+}
+
+.event-tag {
+  float: right;
+  margin-right: 2px;
+  margin-bottom: 2px;
+}
+
+.calendar-filters {
+  li {
+    margin-right: 30px;
+  }
+
+  .filter-color {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    position: relative;
+    top: 3px;
+    border: 1px solid #666;
+    padding: 0;
+  }
+}
+
+.crew-label {
+  color: #222;
+  text-shadow: 0 1px 1px #fff;
+}
+
+th.scheduled-dates {
+  padding-bottom: 1px;
+  min-width: 170px;
+  .pull-right {
+    margin-bottom: 5px;
+  }
+}
+
+td.scheduled-dates {
+  table td {
+    &:first-child { text-align: right; }
+    border-left: none;
+    white-space: nowrap;
+  }
+
+  tr.even > td {
+    background: whitesmoke;
+    border: none;
+  }
+  tr.odd > td {
+    background: #fff;
+    border: none;
+  }
+  tr.odd.entry > td,
+  tr.even.entry > td {
+    border-top: 1px solid #d9d9d9;
+  }
+}
+
+#add-job-btn {
+  margin-right: 15px;
+}
+
+.crew-calendar {
+  min-width: 500px;
+  th {
+    text-align: center;
+  }
+  td {
+    width: 12.5%;
+    padding: 3px 0;
+
+    span.date {
+      float: right;
+      color: #999;
+      position: relative;
+      top: -2px;
+      right: 2px;
+    }
+    hr {
+      border-bottom: none;
+      border-top: 1px solid #d9d9d9;
+      margin: 8px 0;
+    }
+    &.empty {
+      text-align: center;
+      .btn {
+        margin: 10px 0;
+      }
+    }
+    &.today {
+      background: #ffc;
+    }
+    &.crew-name {
+      padding-top: 10px;
+      text-align: center;
+    }
+    .entry {
+      display: block;
+      color: #333;
+      &:nth-of-type(1) {
+        margin-top: 17px;
+      }
+      border-radius: 2px;
+      padding: 2px 5px;
+      margin-top: 3px;
+
+      &:hover {
+        color: #000;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+.job-details-table {
+  th {
+    width: 150px;
+  }
+}
+
+#job-calendar-modal {
+  .control-group {
+    margin-bottom: 15px;
+  }
+
+  .control-group.make-default-crew-wrapper {
+    margin-top: -18px;
+  }
+}
+
+.control-group.make-default-crew-wrapper {
+  margin-top: -18px;
+}
+
+.control-group.job-expected-timeframe-wrapper {
+  h5 {
+    margin-top: 6px;
+    margin-bottom: 0;
+  }
+}
+.payment-summary{
+  border-top:1px dashed #ffffff;
+  margin:5px 0px 0px 0px;
+  padding:5px 0px 0px 0px
+}
+.payment-summary span{width:100%;display:block}

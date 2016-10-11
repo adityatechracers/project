@@ -1,0 +1,29 @@
+= simple_form_for @job, :html => {:class => 'form-horizontal'} do |f|
+  .modal-header
+    %button.close(data-dismiss='modal') &times;
+    %h3 Schedule Job
+    %h4= @job.new_record? ? "Select a job below to continue..." : @job.full_title
+  .modal-body
+    .messages
+    - if @job.new_record?
+      .row-fluid
+        .control-group
+          %label.control-label Job
+          .controls= f.input_field :job_id, :collection => Job.with_accepted_proposal.not_completed.accessible_by(current_ability).includes(:contact), :label_method => :full_title, :class => 'chzn-select'
+          %span{:style => "display:block;clear:left;position:relative;top:-3px;left:136px;color:#666666;"} Only jobs with signed contracts can be scheduled.
+    - else
+      = f.simple_fields_for :job_schedule_entries do |entry|
+        = entry.input :start_datetime, :as => :datetime_picker,
+          :input_html => {class: "start_datetime", data: {iso: @job.start_date.try(:utc).try(:iso8601)}}
+        = entry.input :end_datetime, :as => :datetime_picker,
+          :input_html => {class: "end_datetime", data: {iso: @job.end_date.try(:utc).try(:iso8601)}}
+        = entry.input :notes, :as => :text, :input_html => {:rows => 4}
+  .modal-footer
+    - unless @job.new_record?
+      - unless @job.start_date.nil? || @job.end_date.nil?
+        %a.btn.btn-danger.pull-left#unschedule-job-btn
+          %span.visible-phone
+            %i.icon-remove-2
+          %span.hidden-phone Remove from schedule
+      %a.btn(data-dismiss='modal') Cancel
+      = f.submit "Save Job", :class => "btn btn-success"

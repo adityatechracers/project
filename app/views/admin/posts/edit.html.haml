@@ -1,0 +1,6 @@
+.row-fluid
+  .widget
+    .widget-header
+      .title!= breadcrumbs({'Blog' => admin_posts_path}, {@post.title => show_posts_path(@post.slug)}, 'Edit')
+    .widget-body
+      = render "/admin/posts/form"

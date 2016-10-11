@@ -1,0 +1,10 @@
+defaults: &defaults
+  key: "2J4C11B3B4A5A2B3E4D3E2A5B4A3E4G-10lvD3af=="
+staging:
+  <<: *defaults  
+development:
+  <<: *defaults  
+theme:
+  key: "VvyeszhvhuD-17reD3jfvjmriyzE4obc=="
+production:
+  key: "HfxyB15hcE-13elbI-8F1pB-22x=="

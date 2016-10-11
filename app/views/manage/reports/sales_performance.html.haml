@@ -1,0 +1,44 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1= t 'nav.manage.reports'
+    = render 'report_title', title: :sales_performance
+.ibox
+  .ibox-content.p-md
+    .pull-left= split_button_filter t('shared.filter_by_employee'), :user, User.all
+    .m-l-xs.pull-left= date_range_filter_button
+    .clearfix
+    .m-t-lg.m-b
+      %table.table.footable.table-striped
+        %thead
+          %tr
+            %th= t '.table_headings.employee'
+            %th= t '.table_headings.appointments_booked'
+            %th= t '.table_headings.proposals_created'
+            %th= t '.table_headings.proposals_accepted'
+            %th= t '.table_headings.jobs_sold'
+            %th= t '.table_headings.jobs_completed'
+        %tbody
+          - @dataset.each do |u|
+            %tr
+              %td= u[:name]
+              %td= u[:appointments_booked]
+              %td= u[:proposals_created]
+              %td= u[:proposals_accepted]
+              %td
+                = u[:jobs_sold]
+                (#{number_to_currency u[:jobs_sold_valuation]})
+              %td
+                = u[:jobs_completed]
+                (#{number_to_currency u[:jobs_completed_valuation]})
+          %tr
+            %td
+              %strong #{t '.table_headings.totals'}:
+            %td= @dataset.sum{|u| u[:appointments_booked]}
+            %td= @dataset.sum{|u| u[:proposals_created]}
+            %td= @dataset.sum{|u| u[:proposals_accepted]}
+            %td
+              = @dataset.sum{|u| u[:jobs_sold]}
+              (#{number_to_currency @dataset.sum{|u| u[:jobs_sold_valuation]}})
+            %td
+              = @dataset.sum{|u| u[:jobs_completed]}
+              (#{number_to_currency @dataset.sum{|u| u[:jobs_completed_valuation]}})

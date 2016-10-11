@@ -1,0 +1,10 @@
+%table.table.table-condensed
+  - @proposal.change_orders.applied.each do |co|
+    %tr
+      %td
+        -# Note that we're only showing restricted changes to logged in users
+        -# for proposals they can read. Otherwise you get a redacted version.
+        = simple_format co.summary(show_restricted: defined?(can?) && can?(:read, @proposal))
+        - if co.change_description.present?
+          %strong Change Description
+          %blockquote= co.change_description

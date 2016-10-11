@@ -1,0 +1,6 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1!= t('nav.manage.email_templates')
+    .title!= breadcrumbs({t('nav.manage.email_templates') => manage_email_templates_path}, @email_template.name.titleize, t('shared.edit'))
+
+= render 'manage/email_templates/form'

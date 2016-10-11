@@ -1,0 +1,27 @@
+- if user_signed_in?
+  %li{:class => li_class}
+    = link_to destroy_user_session_path, :method => :delete do
+      %i.icon-cancel-circle
+      Logout
+  %li{:class => li_class}
+    - if current_user.is_admin?
+      = link_to admin_root_path do
+        %i.icon-dashboard
+        Admin Panel
+    - else
+      = link_to dashboard_path do
+        %i.icon-dashboard
+        Dashboard
+  %li{:class => li_class}
+    = link_to user_registration_path do
+      %i.icon-user
+      = current_user.name
+- else
+  %li{:class => li_class}
+    = link_to new_user_session_path do
+      %i.icon-user
+      Login
+  %li{:class => li_class}
+    = link_to new_user_registration_path do
+      %i.icon-star-3
+      Create Account

@@ -1,0 +1,20 @@
+= hform_for [:manage, @crew], html: {class: 'form-horizontal'} do |f|
+  .ibox
+    .ibox-title
+      %h4 New crew member
+    .ibox-content
+      = f.input :name
+      = f.association :users, input_html: {class: 'chzn-select form-control'}
+      - if current_tenant.uses_crew_commissions
+        -#.well.well-small
+          -#%br
+          -#= f.input :has_wage_rate, as: :boolean, label: 'Has wage rate?', hint: "If this crew is paid a percentage of the job amount, CorkCRM can help you track labor expenses."
+          -#.crew-wage-rate{class: f.object.has_wage_rate ? '' : 'hide'}
+            -#= f.input :wage_rate, hint: "Enter the percentage as a decimal. For example, for 60% of the job amount, enter <code>0.6</code>",
+                -#input_html: { step: 0.01, min: 0, max: 1, class: 'input-small' }
+      = f.input :color, input_html: { class: "minicolors" }
+
+      .hr-line-dashed
+      .form-actions.row
+        .col-md-8.col-md-offset-4
+          = f.submit t('.save_crew'), disable_with: 'Saving...', class: "btn btn-success"

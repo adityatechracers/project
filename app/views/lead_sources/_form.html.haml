@@ -1,0 +1,9 @@
+.ibox
+  .ibox-title
+    %h4 Create new lead source
+  .ibox-content.p-lg
+    = hform_for @lead_source do |f|
+      = f.input :name
+      .row
+        .col-md-8.col-md-offset-4
+          = submit_tag t('leads.save_source'), :name => nil, :class => "btn btn-success"

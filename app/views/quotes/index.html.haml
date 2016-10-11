@@ -1,0 +1,27 @@
+.row-fluid
+  .widget
+    .widget-header
+      .title Quotes
+      %span.tools
+        = link_to("New Quote",new_quote_path,:class => "widget-tools-textlink")
+        %a.fs1{"aria-hidden" => "true", "data-icon" => "", "data-original-title" => ""}
+    .widget-body
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Quote
+            %th Author
+            %th Actions
+        %tbody
+          - @quotes.each do |q|
+            %tr
+              %td= q.quote
+              %td= q.author
+              %td
+                - if can? :manage, q
+                  = link_to edit_quote_path(q), :class => "btn btn-mini" do
+                    %i.icon-pencil
+                    Edit
+                  = link_to quote_path(q), :class => "btn btn-mini btn-danger", :method => "delete", :confirm => "Are you sure you want to delete this quote?" do
+                    %i.icon-remove-2
+                    Delete

@@ -1,0 +1,50 @@
+.widget#report-timesheets-widget
+  .widget-header
+    = render 'report_title', title: :timesheets
+  .widget-body
+    .well
+      .pull-left
+        %button{:class => "btn timecard-status-btn#{!params.has_key?(:status) || params[:status].include?('entered') ? ' active' : ''}", :type => 'button', :data => {:toggle => 'button', :status => 'entered'}}
+          = t '.filters.unapproved'
+        %button{:class => "btn timecard-status-btn#{!params.has_key?(:status) || params[:status].include?('approved') ? ' active' : ''}", :type => 'button', :data => {:toggle => 'button', :status => 'approved'}}
+          = t '.filters.approved'
+        %button{:class => "btn timecard-status-btn#{!params.has_key?(:status) || params[:status].include?('paid') ? ' active' : ''}", :type => 'button', :data => {:toggle => 'button', :status => 'paid'}}
+          = t '.filters.paid'
+      .pull-right= date_range_filter_button
+      .pull-right= split_button_filter t("shared.filter_by_employee"), :user, @users
+      .clearfix
+    = line_chart @line_chart_data, :library => chartkick_opts({})
+    %hr
+    .row-fluid
+      %table.table.table-bordered.table-striped.fix-valign
+        %thead
+          %tr
+            %th= t '.table_headings.user_job'
+            %th= t '.table_headings.in_out'
+            %th= t '.table_headings.duration_amount'
+            %th= t '.table_headings.status'
+        %tbody
+          - @results.each do |t|
+            %tr
+              %td
+                = t.user.name
+                %br
+                = link_to t.job.title, t.job
+              %td
+                = t.start_datetime.strftime("%l:%M%P %A, %B #{t.start_datetime.day.ordinalize} %Y")
+                %br
+                = t.end_datetime.strftime("%l:%M%P %A, %B #{t.end_datetime.day.ordinalize} %Y")
+              %td
+                #{t.duration} #{t 'shared.hours'}
+                %br
+                = number_to_currency t.amount
+              %td
+                %span{:class => "label label-#{state_label_class(t)}"}= t.state
+          %tr
+            %td{:colspan => 2}
+              %strong #{t '.table_headings.totals'}:
+            %td
+              #{@results.sum(&:duration)} #{t 'shared.hours'}
+              %br
+              = number_to_currency @results.sum(&:amount)
+            %td

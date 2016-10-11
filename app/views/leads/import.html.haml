@@ -1,0 +1,13 @@
+.row-fluid
+  .ibox
+    .ibox-title
+      %h4= t '.title'
+    .ibox-content
+      .well= t '.directions'
+      = simple_form_for :leads_file,
+        :html => {:method => :post, :class => 'form-horizontal', :id => 'leads_file_form', :multipart => true} do |f|
+        = label_tag :csv, 'CSV*', class: 'col-md-3 control-label'
+        = file_input_group f, :csv, 'csv'
+
+        -# temporary field info for dev reference
+        -# = f.input :csv, :as => :file, :label => 'CSV', :label_class => 'btn btn-primary'

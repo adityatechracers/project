@@ -1,0 +1,50 @@
+.ibox
+  .ibox-title
+    %h3.inline-btn.m-b-sm
+      - if @org.present?
+        != breadcrumbs({@org.name => admin_organization_path(@org)}, 'Invoices')
+      - else
+        Invoices
+      .pull-right
+        = date_range_filter_button
+  .ibox-content
+    %table.billing-table.table.table-striped.footable
+      %thead
+        %tr
+          %th Organization
+          %th Account Owner
+          %th Plan
+          %th Total
+          %th Status
+          %th Attempts
+          %th Timestamp
+          %th Actions
+      %tbody
+        - @invoices.each do |i|
+          %tr
+            %td= link_to i.organization.name, admin_organization_path(i.organization) if i.organization.id
+            %td
+              - if i.organization.owner
+                = link_to i.organization.owner.name, admin_user_path(i.organization.owner)
+            %td= plan_label_for(i.organization.plan.name)
+            %td= number_to_currency(i.total / 100)
+            %td
+              - if i.paid
+                %span.label.label-success
+                  Paid
+              - else
+                %span.label.label-warning
+                  Not Paid
+            %td= i.attempt_count
+            %td= l i.created_at
+            %td= link_to 'View Details', admin_invoice_path(i.id), :class => 'btn btn-sm btn-default'
+
+    %div{:style => "text-align:center;"}
+      - unless params[:offset].nil? || params[:offset].to_i == 0
+        = link_to params.merge(:offset => 0), :class => 'btn btn-sm btn-default' do
+          &laquo; First
+        = link_to params.merge(:offset => params[:offset].to_i - @per_page), :class => 'btn btn-sm btn-default' do
+          &lsaquo; Previous
+      - if @invoices.count == @per_page
+        = link_to params.merge(:offset => (params[:offset].to_i || 0) + @per_page), :class => 'btn btn-sm btn-default' do
+          Next &rsaquo;

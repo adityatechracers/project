@@ -1,0 +1,9 @@
+.blog-post
+  %h3= link_to post.title, show_posts_path(post.slug)
+  .blog-published= post.published_date.strftime("%A, %B %e, %Y") if post.published_date.present?
+  %p= raw(truncate(strip_tags(post.summary), :length => 350))
+  %p
+    - if can? :manage_cms, :admin
+      = link_to 'Edit', edit_admin_post_path(post)
+      &nbsp; | &nbsp;
+    = link_to 'Read More »', show_posts_path(post.slug)

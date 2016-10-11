@@ -1,0 +1,36 @@
+.dashboard-wrapper.proposal-style-corkcrm
+  .container-fluid
+    .row-fluid
+      .span12= render :partial => 'proposals/print_header.html.haml', handlers: [:haml], formats: [:html], locals: {pdf: true}
+    .row-fluid
+      .proposal-report.span12
+        %ul.proposal-section-list.row
+          - @proposal.section_responses.sort{|a,b| a.template_section.position <=> b.template_section.position}.each do |s|
+            %li.col-xs-12{:data => {:section => s.id}}
+              .widget-head-color-box.col-xs-12{:style => "color: #{s.template_section.foreground_color}; background: #{s.template_section.background_color};"}
+                %h3
+                  .black-heading-title= "##{s.template_section.position} #{s.template_section.name}"
+                  .clearfix
+              .widget-text-box.col-xs-12.m-b
+                .fr-view
+                  %p= s.description.html_safe
+                - if s.item_responses.any? { |ir| ir.include_exclude_option != 'N/A' && (ir.name.present? || ir.notes.present?) }
+                  %table.table.table-condensed
+                    %thead
+                      %tr
+                        - if s.template_section.show_include_exclude_options
+                          %th.include_exclude_cell
+                        %th Description
+                        %th Notes
+                    %tbody
+                      - s.item_responses.each do |i|
+                        - unless i.include_exclude_option == 'N/A'
+                          %tr
+                            - if s.template_section.show_include_exclude_options
+                              %td.include_exclude_cell
+                                - if i.include_exclude_option.present?
+                                  = t("manage.proposal_template_items.options.#{i.include_exclude_option.downcase}")
+                            %td= i.name
+                            %td= simple_format i.notes
+        - if @proposal.template.is_upload_your_own? && @primary_file
+          %iframe{ src: @primary_file.file_url, style: 'width: 100%; height: 500px;'}

@@ -1,0 +1,1194 @@
+# Localization file for French (Canadian)
+---
+fr-CA:
+  activerecord:
+    attributes:
+      proposal:
+        job: "Client potentiel actif"
+  appointments:
+    index:
+      add_an_appointment: Ajouter un rendez-vous
+      export_calendar:
+        download_ics: Télécharger (.ics)
+        instructions:
+          add_google_html: Dans le Calendrier Google, ajouter ceci sous <strong>Autres Calendriers &rarr; Ajouter par l'URL</strong>
+          add_mac_calendar_html: Dans l'application Calendrier sur un Mac, ajouter ce fichier sous <strong>Fichier &rarr; Nouvelle abonnement Calendrier...</strong>
+          copy_url: Copier et coller l'adresse URL suivante dans votre calendrier&#58;
+          download_ics: Ou télécharger le fichier .ics
+        title: Exporter le calendrier
+      filters:
+        everyone: Tous
+        owner: Propriétaire
+        specific_employees: Employés spécifiques
+      schedule_appointments: Rendez-vous
+    modal_form:
+      edit_appointment: Mofifier rendez-vous
+      new_appointment: Nouveau rendez-vous
+  communications:
+    dropdown_menu:
+      plan_future: Planifier futur
+      start_new: Créer nouveau
+      start_next: Créer prochain
+      title: Communiquer
+    index:
+      actions:
+        delete_communication: Supprimer communication
+        edit_communication: Modifier communication
+        edit_contact: Modifier contact
+        edit_job: Modifier projet
+        start_communication: Débuter communication
+        view_contact: Voir contact
+        view_job: Voir projet
+      edit_communication: Modifier communication
+      filter_by_job: Filtrer par projet
+      filters:
+        all: Tous
+        planned: Planifiés
+        records: Rapports
+      list: Liste
+      schedule: Planifier
+      schedule_communication: Planifier une communication
+      table_headings:
+        actions: Actions
+        contact_details: Informations du contact
+        employee: Employé
+        next_step: Prochaines étapes
+        note: Note
+        outcome: Résultat
+    plan:
+      plan_future: Plan futur
+    start:
+      actions:
+        call: Appeler
+        email: Courriel
+      next_step: Prochaine étape
+      next_steps:
+        call_back_around: Rappeler autour du…
+        call_back_on: Rappeler le…
+        dead_lead: Client potentiel nul
+        schedule_appointment: Planifier un rendez-vous
+        schedule_job: Planifier un projet
+      outcome: Résultat
+      outcomes:
+        answered: Répondu
+        left_message: Message laissé
+        no_answer: Aucune réponse
+      start_communication: Commencer communication
+    start_modal:
+      communication_history: Historique de communication
+      details: Détails
+      no_past_communications: Aucune communication antérieure avec ce client potentiel
+  contacts:
+    index:
+      actions:
+        confirm_delete_contact: This will remove the contact and any leads,
+          jobs, proposals, payments, expenses and feedback belonging to it.
+      new_contact: Nouveau contact
+      search_contacts: Rechercher contact par nom / adresse ...
+      table_headings:
+        actions: Actions
+        address: Adresse
+        email: Adresse courriel
+        name: Nom
+        phone: Numéro de téléphone
+    new_lead:
+      contact_details: Informations du contact
+      lead_details: Information du client potentiel
+      name: Nom
+      plan_next_comm: Planifier prochaine communication ?
+      save_lead: Sauvegarder client potentiel
+      use_existing_contact: Utiliser contact existant
+    show:
+      edit_contact: Modifier contact
+  dashboard:
+    index:
+      average: Moyen
+      calls_made_this_week: Appels complétés cette semaine
+      days_left_on_your_free_trial: "%{days} jours restants à votre essai gratuit"
+      estimates_scheduled_this_week: Estimations planifiées cette semaine
+      get_started:
+        add_your_first_lead: Ajouter votre premier client potentiel
+        body_html: "Dans CorkCRM, tous les contacts peuvent avoir plusieurs
+          projets, qui à son tour peut se voir assignés plusieurs soumissions,
+          rendez-vous, feuilles de temps, et plus encore. Les projets
+          nouvellement créés sont reconnus dans le système comme des projets
+          potentiels, et le reste jusqu’à ce qu’une soumission soit ajoutée.
+          Lorsque le contrat de la soumission a été signé par les deux partis,
+          le projet peut être ajouté à la <a href='%{jobs_path}'>liste des projets</a>."
+        heading: Prêt à commencer ?
+      jobs_created_this_week: Projets créés cette semaine
+      last_week: Semaine dernière
+      leads_added_this_week: Clients potentiels ajoutés cette semaine
+      org_profile_incomplete:
+        body: Pour profiter de la meilleure expérience possible avec CorkCRM,
+          nous vous recommandons de compléter le profile de votre organisation.
+        edit_profile: Modifier profile
+        heading: Le profile de votre organisation est incomplet!
+      proposals_made_this_week: Soumissions complétées cette semaine
+      set_up_appt_availability:
+        add_availability: Ajouter des disponibilités
+        body_html: "Nous vous permettons de déterminer lorsque vous êtes libre
+          pour rencontrer des clients potentiels et faire un suivi de leurs
+          projets.  Configurer vos disponibilités dans votre
+          <a href='%{appointments_path}'>calendrier des rendez-vous</a>."
+        heading: Déterminer vos disponibilités de rendez-vous
+      subscribe_now: Inscrivez-vous maintenant
+      this_week: Semaine cette
+  date:
+    formats:
+      default: "%-m/%-d/%Y"
+  devise:
+    passwords:
+      new:
+        forgot_password: Avez-vous oublié votre mot de passe ?
+    registrations:
+      new:
+        create_account: Créer un compte
+        forgot_password: Avez-vous oublié votre mot de passe ?
+        start_free_trial: Commencer votre période d'essai gratuit
+        terms_of_service:
+          affirmation: J'accepte les
+          link_name: conditions d'utilisation
+    sessions:
+      new:
+        forgot_password: Avez-vous oublié votre mot de passe ?
+        instructions: Remplissez le formulaire ci-dessous pour vous connecter
+        login: Connexion
+        remember_me: Se rappeler de moi
+  expense_categories:
+    categories: Catégories
+    index:
+      table_headings:
+        actions: Actions
+        expenses: Dépenses
+        name: Nom
+  expenses:
+    form:
+      save_expense: Sauvegarder dépense
+    index:
+      expense_categories: Catégories de dépenses
+      filters:
+        all: Tous
+        this_week: Cette semaine
+        this_year: Cette année
+        today: Aujourd'hui
+      new_expense: Nouvelle dépense
+      no_expenses:
+        add_an_expense: Ajouter une dépense
+        body: Saviez-vous que CorkCRM peut garder le fil de vos dépenses par projet? Appuyez sur le boutton ci-dessous pour commencer.
+        heading: Votre organisation ne cumule pas ses dépenses actuellement.
+      table_headings:
+        actions: Actions
+        amount: Montant
+        category: Catégorie
+        date_of_expense: Date de la dépense
+        description: Description
+        employee: Employé
+        job: Projet
+  vendor_categories:
+    categories: Catégories
+    index:
+      table_headings:
+        actions: Actions
+        vendors: Vendeurs
+        name: Nom
+  job_feedback:
+    index:
+      no_feedback:
+        edit_email_templates: Modifier les modèles de courriel
+        email_templates_html: CorkCRM peut aussi envoyer un courriel au contact
+          du projet qui inclut ce lien. Pour utiliser cette option, activez et
+          personnalisez le modèle de courriel Demande de suivi des clients et
+          appuyer Demander un suivi de client sur n’importe quel projet.
+        feedback_portal_html: CorkCRM peut vous aider à récolter des
+          informations sur l’achèvement d’un projet et la satisfaction de vos
+          clients. Pour commencer, visiter le portail des réactions pour un
+          projet en appuyant sur Portail des réactions sous la descente des
+          « actions » des projets.
+        go_to_jobs: Aller aux projets
+        heading: Votre organisation n'a toujours pas de suivi de projet jusqu'à maintenant.
+      table_headings:
+        completion_status: Statut d'achèvement
+        created_at: Créé à
+        feedback: Suivi
+        job: Projet
+        name: Nom
+    new:
+      instructions: Nous apprécions vos suivis. Dans le champ ci-dessous,
+        entrez votre nom, n’importe quel commentaire/crainte, et le statut du
+        projet.
+      submit_feedback: Soumettre suivi
+    thanks:
+      thank_you_text: Merci de votre suivi!
+  job_schedule_entries:
+    edit:
+      remove_from_schedule: Enlever du calendrier
+    modal_form:
+      save_job: Sauvegarder projet
+      schedule_job: Planifier un projet
+  jobs:
+    calendar_filters:
+      expected_dates_for_unscheduled: Dates prévues pour projets non planifiés
+    crew_calendar:
+      today: Aujourd'hui
+    form:
+      save_job: Sauvegarder projet
+    index:
+      actions:
+        feedback_portal: Portail des suivis
+        mark_as_completed: Marqué comme complété
+        request_customer_feedback: Sondage de satisfaction
+        unmark_as_completed: Ne pas marqué comme complété
+        view_proposal: Voir la soumission
+        view_proposals: Voir la soumission
+      filters:
+        all: Tous
+        completed: Complété
+        scheduled: Planifié
+        unscheduled: Non planifié
+      no_jobs:
+        add_a_lead: Ajouter un client potentiel
+        body_html: "Dans CorkCRM, tous les contacts peuvent avoir plusieurs
+          projets, qui à son tour peut se voir assignés plusieurs soumissions,
+          rendez-vous, feuilles de temps, et plus encore. Les projets
+          nouvellement créés sont reconnus dans le système comme des projets
+          potentiels, et le reste jusqu’à ce qu’une soumission soit ajoutée.
+          Lorsque le contrat de la soumission a été signé par les deux partis,
+          le projet peut être ajouté à la
+          <a href='%{schedule_jobs_path}'>liste des projets</a>."
+        heading: Votre organisation n'a présentement aucun projet.
+      table_headings:
+        actions: Actions
+        budget: Budget
+        crew: Équipe
+        end: Fin
+        expected: Attendu
+        job_contact: Projet/Contact
+        next_communication: Prochaine communication
+        proposal_count: Compte de la soumission
+        schedule_entries: Ajouter d'événements au calendrier
+        start: Début
+    job_details:
+      new_expense: Nouvelle dépense
+      new_payment: Nouveau paiement
+      new_proposal: Nouvelle soumission
+      new_timecard: Nouvelle feuille de temps
+    misc:
+      no_crew_assigned: Aucun équipe d'assignée
+    right_nav:
+      crew_calendar: Calendrier d'équipe
+      list: Liste
+      schedule: Planifier
+    schedule:
+      schedule_a_job: Planifier un projet
+    states:
+      accepted: Acceptées
+      completed: Complété
+      lead: Client potentiel
+      proposed: Distribuées
+      scheduled: Planifiées
+  lead_sources:
+    index:
+      search_leads: (FR)search_leads
+      actions: Actions
+      add_lead_source: Ajouter la source du client potentiel
+      leads: Clients potentiels
+      name: Nom
+      title: Sources
+    web_form: Marketing passif
+  leads:
+    embed_ask_questions:
+      details: Détails du projets, questions ou commentaires
+      preferred_contact_date: Date / heure préférable pour prendre contact
+      submit_inquiry_to: Soumettre un problème à %{organization}
+      verify_humanity: Test de vérification humaine
+    embed_schedule:
+      appointment_calendar: Calendrier des rendez-vous
+    embed_tab_nav:
+      have_a_question: Vous avez des questions ou vous désirez qu’on vous appelle ?
+      schedule_appointment_time: Planifier l'heure du rendez-vous
+    import:
+      directions: L’importation accepte seulement les fichiers .csv. Si vous
+        utilisez Excel, sauvegardez votre fichier comme un fichier CSV pour
+        l’importer dans le système. La première rangée dans votre CSV doit être
+        une rangée d’en-tête avec les noms des colonnes qui décrivent les
+        données.
+      title: Télécharger une liste de clients potentiels
+    index:
+      actions:
+        add_proposal: Ajouter une soumission
+        confirm_delete_lead: Êtes-vous certain?
+        delete_lead: Supprimer client potentiel
+        edit_lead: Modifier client potentiel
+        mark_as_active_lead: Marquer comme client potentiel actif
+        mark_as_dead_lead: Marquer comme client potentiel nul
+        schedule_appointment: Planifier un rendez-vous
+        start_communication: Commencer communication
+        view_lead: Voir client potentiel
+      active: Actif
+      dead: Nul
+      embed: Intégré
+      export: Exporter
+      filter_by_lead_source: Filtrer par source
+      import: Importer
+      new: Nouveau
+      no_leads:
+        add_a_lead: Ajouter un client potentiel
+        body_html: "Dans CorkCRM, tous les contacts peuvent avoir plusieurs
+          projets, qui à son tour peut se voir assignés plusieurs soumissions,
+          rendez-vous, feuilles de temps, et plus encore. Les projets
+          nouvellement créés sont reconnus dans le système comme des projets
+          potentiels, et le reste jusqu’à ce qu’une soumission soit ajoutée.
+          Lorsque le contrat de la soumission a été signé par les deux partis,
+          le projet peut être ajouté à la
+          <a href='%{jobs_path}'>liste des projets</a>."
+        heading: Ajouter un client potentiel
+      print: Imprimer
+      table_headings:
+        actions: Actions
+        contact: Contact
+        history: Historique
+        lead_details: Détails du client potentiel
+        next_appointment: Prochain rendez-vous
+        next_communication: Prochaine communication
+      title: Clients potentiels
+  manage:
+    base:
+      index:
+        crews_description: Gérer les équipes de l’organisation
+        email_templates_description: Personnaliser les adresses courriels de votre organisation
+        managed_organizations_description: Administer your organization's
+          managed organizations.
+        organization_info_description: Modifier les informations de votre organisation
+        proposal_templates_description: Personnaliser les soumissions de votre organisation
+        reports_description: Voir les rapports et les statistiques sur les
+          clients potentiels, les soumissions et les projets
+        subscription_description: Mettre à jour de l’abonnement de votre organisation
+        users_description: Gérer les utilisateurs de l’organisation
+        website_embed_description: Intégrer le calendrier des rendez-vous et le
+          formulaire de contact dans votre site web
+      website_embed:
+        embed_html_instructions: Demander à votre concepteur web d’inclure le
+          code HTML suivant dans votre site internet afin de permettre aux
+          visiteurs de soumettre un problème ou de planifier un rendez-vous en
+          ligne
+        embed_html_options: Intégré HTML & les options
+        help_text: Texte d’aide
+        help_text_description: Ce texte va s’afficher au dessus du formulaire
+          d’horaire des rendez-vous. Nous recommandons d’inclure de
+          l’information à propos de la région désservie par vos services ou
+          toute autre information spécifique dont vous aimeriez que la personne
+          concernée inclue dans les détails de son projet.
+        include_appointment_form: Montrer le calendrier afin de permette aux clients potentiels de prendre rendez-vous.
+        include_lead_form: Montrez un formulaire pour recevoir l’information du client potentiel
+        preview: Prévisualiser
+        save_customizations: Sauvegarder les personnalisations
+        thank_you_message: Message de remerciement
+        thank_you_message_description: Ce message va s’afficher à l’utilisateur
+          après qu’il ait planifié un rendez-vous ou qu’il ait rempli un
+          formulaire de contact en ligne
+    crews:
+      form:
+        save_crew: Sauvegarder une équipe
+      index:
+        new_crew: Nouvelle équipe
+        new_user: Nouvel utilisateur
+        table_headings:
+          actions: Actions
+          crew: Équipes
+          number_of_members: Nombre de membres
+          wage_rate: Taux horaire
+    email_templates:
+      descriptions:
+        appointment_2_day_follow_up: Envoyer au vendeur 2 jours après qu'un
+          client soit créé si aucun rendez-vous n'a été planifié
+        appointment_7_day_follow_up: Envoyer au vendeur 7 jours après qu'un
+          client soit créé si aucun rendez-vous n'a été planifié
+        appointment_confirmation: Envoyer à la personne en charge des horaires
+          de votre organisation lorsque un rendez-vous est planifié
+        appointment_reminder: Envoyer au client 48 heures avant un rendez-vous
+          à l’horaire
+        job_client_feedback_request: Envoyer au client lorsque l'option
+          "Requête de suivi pour ce client" est sélectionné
+        job_complete: Envoyer au client lorsqu’un projet est marqué comme
+          complété
+        job_complete_1_month_follow_up: Envoyer au client 1 mois après qu’un
+          projet soit marqué comme complété
+        job_scheduled_1_day_reminder: Sent to client 1 day before the scheduled
+          start time. Note that this is sent for each schedule entry.
+        job_scheduled_3_day_reminder: Sent to client 3 days before the
+          scheduled start time. Note that this is sent for each schedule entry.
+        job_scheduled_7_day_reminder: Sent to client 7 days before the
+          scheduled start time. Note that this is sent for each schedule entry.
+        job_scheduled_notification: Sent to client when a schedule entry is
+          added or the dates are changed. This email is delayed and sent at
+          most once per hour.
+        lead_added_via_embed: Envoyer au propriétaire de l'organisation après
+          que le client potentiel ait été ajouté par intégration
+        lead_welcome: Envoyer au client potentiel après l'avoir ajouté à notre
+          base de donnée
+        proposal_accepted: Envoyer au client, contracteur et vendeur avec les
+          fichiers PDF lorsqu’une soumission est acceptée
+        proposal_change_order_notification: Sent to client and sales person
+          after a change order is applied to a proposal
+        proposal_contract_signed_confirmation: Envoyer au client après qu'il ou
+          elle ait signé la soumission
+        proposal_contract_signed_notification: Envoyer à l'entrepreneur après
+          qu'un client ait signé une soumission
+        proposal_issued: Envoyer au client, contracteur et vendeur avec les
+          fichiers PDF lorsqu’une soumission est envoyée
+        proposal_issued_1_month_reminder: Envoyer au client 1 mois après qu’une
+          soumission ait été envoyée, si elle est toujours active
+        proposal_issued_1_week_reminder: Envoyer au client 1 semaine après
+          qu’une soumission ait été envoyée, si elle est toujours active
+        proposal_issued_2_day_reminder: Envoyer au client 2 jours après qu’une
+          soumission ait été envoyée, si elle est toujours active
+        proposal_issued_2_month_reminder: Envoyer au client 2 mois après qu’une
+          soumission ait été envoyée, si elle est toujours active
+        proposal_issued_3_month_reminder: Envoyer au client 3 mois après qu’une
+          soumission ait été envoyée, si elle est toujours active
+      form:
+        available_tokens: Crédits disponibles
+      index:
+        edit_this_template: Modifier ce modèle
+        table_headings:
+          action: Action
+          description: Description
+          email_name: Nom du type de courriel
+          status: Statut
+        test_this_template: Tester ce modèle
+      names:
+        appointment_2_day_follow_up: Suivi pour rendez vous - 2 jours
+        appointment_7_day_follow_up: Suivi pour rendez vous - 7 jours
+        appointment_confirmation: Confirmation de rendez-vous
+        appointment_reminder: Rappel de rendez-vous
+        job_client_feedback_request: Requête de sondage de satisfaction
+        job_complete: Projet complété
+        job_complete_1_month_follow_up: Projet complété - suivi dans 1 mois
+        lead_added_via_embed: Client potentiel ajouté par intégration
+        lead_welcome: Accueil du client potentiel
+        proposal_accepted: Soumission acceptée
+        proposal_contract_signed_confirmation: Confirmation de la signature du contrat
+        proposal_contract_signed_notification: Notification lorsqu'un contrat est signé
+        proposal_issued: Soumission envoyée
+        proposal_issued_1_month_reminder: Soumission envoyée - Rappel dans 1 mois
+        proposal_issued_1_week_reminder: Soumission envoyée - Rappel dans 1 semaine
+        proposal_issued_2_day_reminder: Soumission envoyée - Rappel dans 2 jours
+        proposal_issued_2_month_reminder: Soumission envoyée - Rappel dans 2 mois
+        proposal_issued_3_month_reminder: Soumission envoyée - Rappel dans 3 mois
+      tokens:
+        appointment_end_time: Appointment's end time.
+        appointment_holder: The user in your organization holding the appointment.
+        appointment_start_time: Appointment's start time.
+        charge_total: Total charge amount in dollars.
+        contract_portal_url: Adresse URL du contrat
+        contractor_name: Nom du contracteur
+        contractor_phone_number: Téléphone du contracteur
+        feedback_portal_url: The feedback portal url for this job
+        organization_name: Nom de l'organisation
+        owner_first_name: Organization owner's first name
+        owner_last_name: Organization owner's last name
+        plan_name: Organization's Stripe plan name
+        proposal_number: Proposal's number (e.g., 12345)
+        proposal_url: Adresse URL de la soumission
+        prospect_first_name: Prénom du client
+        prospect_last_name: Nom du client
+        user_first_name: User's first name
+        user_last_name: User's last name
+        your_billing_address: L'adresse de facturation de votre organisation
+        your_billing_city: La ville de facturation de votre organisation
+        your_billing_state: La province de facturation de votre organisation
+    organizations:
+      edit:
+        edit_organization: Modifier l'organisation
+      form:
+        clear_signature: Effacer la signature
+        crew_settings: Paramètres de l'équipe
+        feedback_settings: Paramètres de suivi
+        proposal_settings: Paramètres de la soumission
+        save_organization: Sauvegarder l'organisation
+        timecard_lock_period_help: Lorsque la période de fermeture des feuilles de
+          temps hebdomadaires est active, les feuilles de temps relatives aux
+          semaines concernées ne peuvent pas être entrées ni modifiées après
+          11:59 PM du dimanche suivant
+        timecard_lock_period_options:
+          never: Jamais
+          weekly: Hebdomadaire
+        timecard_settings: Paramètres de la feuille de temps
+    proposal_template_items:
+      edit:
+        edit_item: Modifier l'article
+      form:
+        include_exclude_options: ['N/D', 'Inclus', 'Exclus']
+      new:
+        new_item: Nouvel article
+      options:
+        exclude: Exclus
+        include: Inclus
+        n_a: N/D
+    proposal_template_sections:
+      edit:
+        edit_section: Modifier section
+      new:
+        new_section: Nouvelle section
+    proposal_templates:
+      edit:
+        delete_template: Supprimer le modèle
+        edit_contract: Modifier contrat
+      edit_contract:
+        available_tokens: Crédits disponibles
+        edit_contract: Modifier contrat
+        save_contract: Sauvegarder contrat
+        token_instructions: Lorsqu’une soumission est produite, les crédits
+          ci-dessous sont remplacés par leurs valeurs correspondantes. Par
+          exemple, si le total de la soumission est égal à 500$, ce montant va
+          être remplacé pour chaque
+        tokens:
+          contractor_first_name: Prénom de l'entrepreneur
+          contractor_last_name: Nom de l'entrepreneur
+          contractor_phone_number: Numéro de téléphone de l'entrepreneur
+          customer_address: Adresse du client
+          customer_first_name: Prénom du client
+          customer_last_name: Nom du client
+          customer_phone_number: Numéro de téléphone du client
+          expected_end_date: Date de fin prévue
+          expected_start_date: Date de commencement prévue
+          proposal_notes: Notes de la soumission
+          proposal_total: Total de la soumission
+          your_billing_address: Adresse de facturation
+          your_billing_city: Ville de facturation
+          your_billing_state: Province de facturation
+        view_pdf:
+          Voir PDF
+      form:
+        add_section: Ajouter une section
+        proposal_template_options: Options du modèle de soumission
+        proposal_template_sections: Sections des modèles de proposition
+        update_template: Mettre à jour le modèle
+      index:
+        new_proposal_template: Nouveau modèle de soumission
+        table_headings:
+          actions: Actions
+          name: Nom
+          status: Statut
+      new:
+        save_and_continue: Sauvegarder
+      template_section:
+        add_item: Ajouter un article
+        edit_section: Modifier section
+    reports:
+      appointments:
+        appointments_by_employee: Classement des rendez-vous par employé
+        appointments_by_month: Classement des rendez-vous par mois
+        employee: Employé
+        number_of_appointments: Nombre de rendez-vous
+        salesperson_assigned_to_customer: Vendeur assigné au client
+      communications:
+        communication_by_day: Communication par jour
+        communication_by_employee: Communication par employé
+        communication_by_job: Communication par projet
+      deposit_payment_tracking:
+        table_headings:
+          amount_received: Montant reçu
+          job: Projet
+          job_amount: Montant du projet
+          outstanding_balance: Balance à payer
+          totals: Totaux
+      estimates:
+        estimates_by_contact: Estimations par contact
+        estimates_by_employee: Estimations par employé
+        table_headings:
+          contact: Contact
+          employee: Employé
+          when: Quand
+      expenses:
+        expenses_by_category: Dépenses par catégorie
+        expenses_by_employee: Dépenses par employé
+        expenses_by_job: Dépenses par projet
+        expenses_vs_profit: Dépenses vs Profits
+        generated_expenses_info: "* Les dépenses générés (ex. Main d'œuvre) n'ont pas d'employés."
+        major_expenses_info_html: "Les <a href='%{expense_categories_path}'>catégories de dépenses</a> \"majeures\" sont présentées séparément."
+        profit_absence_info: Si aucun profit n'apparaisse, le profit net pour
+          les projets correspondant aux éléments du filtre est plus petit ou
+          égal à 0.
+        profit_calculation_info_html: "Le profit est déterminé en soustrayant les <a href='%{expenses_path}'>dépenses</a>
+          et les coûts de main d'œuvre aux <a href='%{payments_path}'>paiements</a>."
+        table_headings:
+          amount: Montant
+          category: Catégorie
+          date_of_expense: Date de la dépense
+          description: Description
+          employee: Employé
+          job: Projet
+      index:
+        appointments: Rendez-vous
+        communications: Communications
+        estimates: Estimations
+        expenses: Dépenses
+        jobs: Projets
+        leads: Clients potentiels
+        managed_organizations: Managed Orgs
+        payment_tracking: Suivis des paiements
+        payroll: Comptabilité des salaires
+        profit: Profit
+        proposals: Soumissions
+        report_list: Liste de rapports
+        sales_performance: Performance des ventes
+        account_receivable: (FR)Account Receivable
+        weekly_booking: (FR)Weekly Booking
+        scheduled_estimates: Calendrier des estimations
+        timesheets: Feuilles de temps
+      jobs:
+        average_time_spent_in_lifecycle: Temps moyen passé dans un cercle de vie
+        job_geographical_distribution: Distribution géographique des projets
+        job_state_distribution: Distribution de l’état d’avancement d’un projet
+        table_headings:
+          contact: Contact
+          title: Titre
+      leads:
+        active_leads: Client potentiel actif
+        dead_leads: Client potentiel nul
+        lead_geographical_distribution: Distribution géographique des clients potentiels
+        lead_source_distribution: Distribution des sources des clients potentiels
+        lead_status_distribution: Distribution des statuts des clients potentiels
+        number_of_leads_created_by_day: Nombre de clients potentiels créés par jour
+        transcended_leads: Client potentiel devenu client
+      misc:
+        no_data: Il n'y au aucune donnée à afficher
+        no_data_for_time_range: Il n'y au aucune donnée à afficher pour l'
+          intervalle de temps sélectionné
+      payroll:
+        number_of_hours_paid_out_by_day: Nombre d’heures payées par jour
+        payroll_distribution_by_employee: Distribution des salaires par employé
+        payroll_distribution_by_job: Distribution des salaires par projet
+      profit:
+        filters:
+          active: Actif
+          all: Tous
+          completed: Complété
+          dollar_amount: Montant $
+          percent_of_collected: "% Collecté"
+        table_headings:
+          collected: Collecté
+          expenses: Dépenses
+          job_estimate: Estimation du projet
+          job_name: Nom du projet
+          job_total: Total du projet
+          profit: Profit
+          total_payout: Total des versements
+          totals: Totaux
+      proposals:
+        filter_by_salesperson: Filtrer par vendeur
+        proposal_geographical_distribution: Distribution géographique des soumissions
+        proposal_status_distribution: Distribution des statuts de soumission
+        proposal_template_distribution: Distribution des modèles de soumission
+        table_headings:
+          amount: Montant
+          budgeted_hours: Heures budgétées
+          customer: Client
+          date_created: Date créée
+          date_updated: Date updated
+          signatures: Signatures
+          status: Statut
+          template: Modèle
+          totals: Totaux
+      sales_performance:
+        table_headings:
+          appointments_booked: Rendez-vous planifiés
+          employee: Employé
+          jobs_completed: Projets complétés
+          jobs_sold: Projets vendus
+          proposals_accepted: Soumissions acceptées
+          proposals_created: Soumissions créées
+      timesheets:
+        filters:
+          approved: Approuvé
+          paid: Payé
+          unapproved: Non approuvé
+        table_headings:
+          duration_amount: Durée/Montant
+          in_out: Entrée/Sortie
+          status: Statut
+          totals: Totaux
+          user_job: Utilisateur/Projet
+    subscriptions:
+      edit:
+        edit_subscription: Modifier l'inscription
+    users:
+      form:
+        all_permissions: Tous
+        details: Détails
+        no_permissions: Aucune autorisation
+        painter: Peintre
+        permission_profiles: Profils d'autorisation
+        permissions: Autorisations
+        sales: Ventes
+        save_user: Sauvegarder utilisateur
+      index:
+        add_an_employee: Ajouter un employé
+        employee: Employé
+        manager: Directeur
+        organization_users: Utilisateurs de l'organisation
+        owner: Propriétaire
+        table_headings:
+          actions: Actions
+          address: Adresse
+          name: Nom
+          phone_number: Numéro de téléphone
+          role: Poste
+          status: Statut
+  nav:
+    appointments:
+      main: Rendez-vous
+    contacts:
+      main: Contacts
+    dashboard:
+      main: Tableau de bord
+      my_subscription: Mon abonnement
+    jobs:
+      expenses: Dépenses
+      feedback: Suivi
+      main: Projets
+      payments: Paiements
+      schedule: Planifier
+      timecards: Feuilles de temps
+    leads:
+      communication: Communication
+      import: Importer
+      main: Clients potentiels
+      new: Nouveau
+      sources: Sources
+    manage:
+      crews: Équipes
+      email_templates: Modèles de courriel
+      main: Propriétaire
+      managed_organizations: Managed Organizations
+      organization_info: Information de l'organisation
+      proposal_templates: Modèles de soumission
+      reports: Rapports
+      subscription: Abonnement
+      users: Utilisateurs
+      website_embed: Site internet intégré
+    proposals:
+      main: Soumissions
+      proposal_templates: Modèles de soumission
+  payments:
+    payment_types: [
+      'Chèque', 'Carte de crédit', 'Argent comptant',
+      'Mandat postal', 'Transfert bancaire', 'Autre'
+    ]
+    form:
+      save_payment: Sauvegarder paiement
+    index:
+      filters:
+        all: Tous
+        this_week: Cette semaine
+        this_year: Cette année
+        today: Aujourd'hui
+      new_payment: Nouveau paiement
+      no_payments:
+        add_a_payment: Ajouter un paiement
+        body: Pour commencer à prendre avantage du puissant outil de gestion des paiments reçus de CorkCRM, appuyez sur le boutton ci-dessous.
+        heading: Votre organisation ne cumule pas ses paiements reçus actuellement.
+      table_headings:
+        actions: Actions
+        amount: Montant
+        date_paid: Payé le
+        job: Projet
+        notes: Notes
+        payment_type: Type de paiement
+  proposals:
+    agreement:
+      agreement: Entente
+      proposal_notes: Notes de la soumission
+      proposal_total: Total de la soumission
+    contract:
+      contract: Contrat
+      portal: Portail
+    contractor: Entrepreneur
+    customer: Client
+    form:
+      save_proposal: Sauvegarder soumission
+    header_table:
+      contact_address: Adresse du client
+      contact_details: Détails du contact
+      contact_phone: Numéro de téléphone du client
+      contractor_address: Adresse de l'entrepreneur
+      contractor_details: Détails du contracteur
+      contractor_phone: Numéro de téléphone de l'entrepreneur
+      expected_timeframe: Date de production prévue
+      generated: Généré le
+      proposal_details: Détails de la soumission
+    index:
+      action: Action
+      actions:
+        confirm_delete_proposal: Êtes-vous certain?
+        confirm_email_proposal: "Cela va envoyer un fichier PFD de la soumission to %{to}"
+        delete_proposal: Supprimer soumission
+        email_proposal: Envoyer la soumission par courriel
+        issue_proposal: Émettre soumission
+        mark_as_active: Marquer comme actif
+        mark_as_declined: Marquer comme refusée
+        change_order: Change Order
+        update_contact_details: Mettre à jour les informations du client
+        view_contract: Voir contrat
+        view_contract_portal: Voir portail du contrat
+        void_contract: Annulé contrat
+      filters:
+        accepted: Acceptée
+        all: Tous
+        declined: Refusée
+      new_proposal: Nouvelle soumission
+      no_proposals:
+        add_a_proposal: Ajouter une soumission
+        body_html: "Les soumissions sont une partie intégrale du cycle de vie
+          d’un projet avec CorkCRM, fermant l’écart entre les clients
+          potentiels et les projets contractés. Ajouter une soumission à un
+          projet génère automatiquement un contact en ligne et averti le client
+          par courriel. Une fois que tous les partis ont signé le contrat, le
+          projet correspondant sera disponible afin d’être mis à l’horaire dans
+          la <a href='%{schedule_jobs_path}'>liste des projets</a>."
+        heading: Votre organisation n'a présentement pas de soumissions.
+      states:
+        accepted: Accepté
+        active: Actif
+        declined: Refusé
+        issued: Distribué
+      table_headings:
+        actions: Actions
+        assigned_to: Assigné à
+        budget: Budget
+        contact: Contact
+        end: Fin
+        expected: Attendu
+        next_communication: Prochaines communications
+        proposal: Soumission
+        start: Début
+    print_header:
+      contact_details: Détails du client
+      contractor_details: Détails de l'entrepreneur
+      proposal_details: Détails de la soumission
+    salesperson: Vendeur
+    show:
+      contract: Contrat
+      proposal: Soumission
+      proposal_with_contract: Soumission et contrat
+    signature_form:
+      clear: Effacer
+      clear_signature: Effacer la signature
+      terms_acceptance: J'accepte les termes de ce contrat
+    signature_form:
+      i_accept_the_terms:
+    widget_header:
+      return_to_site: Retourner au site
+      view_pdf: Voir PDF
+  shared:
+    active: Actif
+    become: Devenir
+    cancel: Annuler
+    choose_file: Choisir fichier
+    close: Fermer
+    collapse: Effacer
+    collapse_all: Tout effacer
+    complete: Compléter
+    confirm: Êtes-vous certain?
+    confirm_delete_resource: "Are you sure you want to delete this %{resource}?"
+    delete: Supprimer
+    details: Détails
+    disable: Invalide
+    disabled: Invalidé
+    drag: Traîner
+    edit: Modifier
+    enable: Valide
+    enabled: Validé
+    expand_all: Tout aggrandir
+    filter_by_date: Filtrer par date...
+    filter_by_employee: Filtrer par employé
+    filter_by_job: Filtrer par projet
+    hour: Heure
+    hours: Heures
+    inactive: Inactif
+    move_down: Descendre
+    move_up: Monter
+    new: Nouveau
+    ok: OK
+    print: Imprimer
+    revisions:
+      no_revisions: Aucune révision
+      restore_this_version: Rétablir cette version
+      revision_history: Réviser historique
+    save: Sauvegarder
+    update: Mettre
+  simple_form:
+    hints:
+      appointment:
+        email_before_appointment: Envoyer courriel au client 48 heures avant le
+          rendez-vous
+        job: Laisser vide pour créer une disponibilité
+      communication:
+        datetime_exact: Montrer comme un temps exact plutôt qu'un temps approximatif
+      contact:
+        jobs:
+          email_customer: Lorsque vérifié, un courriel est envoyé au contact
+            après la sauvegarde du client potentiel
+      crew:
+        users: Chaque employé que vous voulez ajouter à une équipe de travail
+          doit avoir un compte utilisateur existant dans votre organisation
+      expense_category:
+        major_expense: This affects how the expense category is displayed in
+          certain reports.
+      job:
+        crew: Jobs can be assigned a default crew that will be pre-selected
+          when creating new schedule entries. Users in the default crew can
+          view all schedule entries for the job.
+        users: Grant access to users not in the default crew.
+      job_schedule_entry:
+        job_id: Seulement les projets avec un contrat signé peuvent être planifiés
+      organization:
+        auto_sign_proposals: Lorsque sélectionnés, les nouvelles soumission
+          seront automatiquement signées par votre organisation lorsqu'elle
+          seront créées.
+        feedback_portal_text: Texte personnalisé à afficher au haut du sondage
+          de satisfaction. Laissez cette section vide si vous souhaitez qu'on y
+          voit les instructions par défault.
+        logo: Votre logo est utilisé dans les soumissions et les courriels.
+          Pour de meilleurs résultats, choisissez s’en un avec un fond blanc ou
+          transparent.
+        proposal_style: Change l'aspect de la soumission et du contrat PDF
+        uses_crew_commissions: Si vos équipes sont payées à commissions plutôt
+          qu'à l'heure, CorkCRM peut vous aider à faire suivre les commissions.
+      planned_communication:
+        datetime_exact: Montrer comme un temps exact plutôt qu'un temps approximatif
+      proposal:
+        notes:
+      timecard:
+        user: Avis &#58; Vos employés seront avisés par courriel de tous les
+          changements que vous ferez sur leur feuille de temps.
+      user:
+        active: L’utilisateur peut se connecter et est actif dans votre système. Une fois créé, l’utilisateur recevra un mot de passe par courriel lui permettant de se connecter.
+    labels:
+      appointment:
+        email_before_appointment: Envoyer rappel ?
+        end_datetime: Fin des travaux
+        job: Projet
+        notes: Notes
+        start_datetime: Début des travaux
+        user: Utilisateur
+      communication:
+        action: Méthode de communication
+        datetime: Date et heure
+        datetime_exact: Heure exacte ?
+        details: Détails
+      contact:
+        address: Adresse
+        address2: Adresse secondaire
+        city: Ville
+        company: Compagnie
+        country: Pays
+        email: Courriel
+        first_name: Prénom
+        jobs:
+          communications:
+            action: Méthode
+            datetime: Date et heure
+            datetime_exact: Heure exacte ?
+            note: Note
+          details: Détails
+          email_customer: Envoyer courriel de Bienvenue
+          lead_source_id: Source du client potentiel
+        last_name: Nom de famille
+        phone: Numéro de téléphone
+        region: Province/Région
+        which: Lequel ?
+        zip: Code postal
+      crew:
+        name: Nom
+        users: Utilisateurs
+      email_template:
+        enabled: Valide ?
+      expense:
+        amount: Montant
+        date_of_expense: Date de la dépense
+        expense_category: Catégorie
+        job: Projet
+      expense_category:
+        major_expense: Major expense?
+        name: Nom
+      job:
+        contact: Contact
+        crew: Équipe
+        details: Détails
+        end_date: Date de fin
+        estimated_amount: Montant estimé
+        expected_end_date: Date de fin prévue
+        expected_start_date: Date de commencement prévue
+        lead_source: Source du client potentiel
+        start_date: Date de début
+        title: Titre
+        users: Équipe additionnelle
+      job_feedback:
+        complete: Est-ce que le travail a été complété ?
+        feedback: Suivi
+        name: Votre nom
+      job_schedule_entry:
+        crew_id: Équipe
+        end_datetime: Fin des travaux
+        is_touch_up: Touch Up?
+        job_id: Projet
+        notes: Notes
+        start_datetime: Début des travaux
+        users: Équipe additionnelle
+      lead_source:
+        name: Nom
+      organization:
+        address: Adresse
+        address_2: Adresse secondaire
+        auto_sign_proposals: Signer automatiquement ?
+        city: Ville
+        country: Pays
+        email: Courriel
+        fax: Numéro de fax
+        feedback_portal_show_signature: Inclure un espace de signature?
+        feedback_portal_text: Portail d'un texte de suivi
+        license_number: Numéro de licence
+        name: Nom
+        phone: Téléphone
+        proposal_banner_text: Proposal banner text
+        proposal_paper_size: Format du papier de la soumission
+        proposal_style: Style de soumission
+        region: Province/Région
+        timecard_lock_period: Période de fermeture de la feuille de temps
+        uses_crew_commissions: Utilise des commissions d'équipe ?
+        zip: Code postal
+      payment:
+        amount: Montant
+        date_paid: Payé le
+        job: Projet
+        payment_type: Type de paiement
+      planned_communication:
+        action: Méthode de communication
+        datetime: Date et heure
+        datetime_exact: Heure exacte ?
+        details: Notes
+        job: Projet
+      proposal:
+        address: Adresse
+        address2: Adresse secondaire
+        amount: Montant
+        budgeted_hours: Heures budgétées
+        city: Ville
+        contractor: Entrepreneur
+        contractor_sig_printed_name: Écrivez votre nom complet, puis signez ci-dessous
+        country: Pays
+        customer_sig_printed_name: Écrivez votre nom complet, puis signez ci-dessous
+        expected_end_date: Date de fin prévue
+        expected_start_date: Date de commencement prévue
+        job: Projet
+        license_number: Numéro de licence
+        proposal_class: Type de soumission
+        region: Province/Région
+        sales_person: Vendeur
+        speciality: Spécialité
+        title: Titre
+        zip: Code postal
+      proposal_template:
+        active: Les soumissions peuvent être créées à partir de ce modèle
+        agreement: Entente du contrat
+        name: Nom du modèle
+        proposal_class: Type de soumission
+        speciality: Spécialité
+      proposal_template_item:
+        default_include_exclude_option: Option par défaut
+        default_note_text: Le texte par défault doit être inclut dans la banque de notes
+        help_text: Texte d'aide
+        name: Description de l'article de travail
+      proposal_template_section:
+        background_color: Couleur de fond
+        default_description: Description par défaut
+        foreground_color: Couleur du texte
+        name: Nom
+        position: Position
+        show_include_exclude_options: Est-ce que cette section devrait contenir l’option d’inclure ou d’exclure des articles spécifiques ?
+      timecard:
+        end_datetime: Date et heure de fin
+        job: Projet
+        start_datetime: Date et heure de début
+        user: Utilisateur
+      user:
+        active: Actif
+        address: Adresse
+        address2: Adresse secondaire
+        can_be_assigned_appointments: Rendez-vous pouvant être assignés
+        can_be_assigned_jobs: Projets pouvant être assignés
+        can_make_timecards: Peut créer des feuilles de temps
+        can_manage_all_contacts: Administrer tous les contacts
+        can_manage_appointments: Gérer les rendez-vous
+        can_manage_jobs: Gérer les projets
+        can_manage_leads: Administrer les clients potentiels
+        can_manage_proposals: Gérer les soumissions
+        can_view_all_contacts: Voir tous les contacts
+        can_view_all_jobs: Voir tous les projets
+        can_view_all_proposals: Voir toutes les soumissions
+        can_view_appointments: Voir les rendez-vous
+        can_view_assigned_proposals: Voir les soumissions assignées
+        can_view_leads: Voir clients potentiels
+        can_view_own_jobs: Voir les projets assignés
+        city: Ville
+        country: Pays
+        created_at: Membre depuis
+        email: Courriel
+        first_name: Prénom
+        language: Langue
+        last_name: Nom
+        name: Nom
+        organization: Organisation
+        organization_name: Nom de l'organisation
+        password: Mot de passe
+        password_confirmation: Confirmation du mot de passe
+        pay_rate: Taux horaire
+        permissions: Autorisations
+        phone: Téléphone
+        region: Province/Région
+        role: Poste
+        zip: Code postal
+    "no": Non
+    placeholders:
+      contact:
+        first_name: Prénom
+        last_name: Nom
+        phone:
+    "yes": Oui
+  time:
+    formats:
+      default: "%-m/%-d/%Y %l:%M %P"
+      ondate: "%l:%M %P on %-m/%-d/%Y"
+  timecards:
+    form:
+      administrator: Administrateur
+    index:
+      filter_by_staff_member: Filtrer par membre du personnel
+      filters:
+        all: Tous
+        approved: Approuvé
+        paid: Payé
+        unapproved: Non approuvé
+      nav:
+        list: Liste
+        schedule: Planifier
+      new_timecard: Nouvelle feuille de temps
+      table_headings:
+        actions: Actions
+        duration_amount: Durée/montant
+        in_out: Entrée/Sortie
+        job: Projet
+        status: Statut
+        user: Utilisateur
+      total: Total
+    modal_form:
+      edit_timecard: Modifier feuille de temps
+      new_timecard: Nouvelle feuille de temps
+  users:
+    edit:
+      edit_profile: Modifier profile
+    index:
+      your_account: Votre compte

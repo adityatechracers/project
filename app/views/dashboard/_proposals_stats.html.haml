@@ -1,0 +1,17 @@
+.dashboard-card
+  = render 'stat_card', name: 'Accepted', ytd: number_to_currency(@jobs_ytd_rev,:precision => 0),
+    this_week: number_to_currency(@jobs_this_week_rev, :precision => 0),
+    appended_ytd: @proposals_accepted_ytd,
+    appended_this_week: @proposals_accepted_this_week,
+    icon_class: 'fa fa-thumbs-o-up'
+.dashboard-card
+  = render 'stat_card', name: 'Success Rate', ytd: @proposals_success_ytd,
+    this_week: @proposals_success_this_week,
+    units: '%',
+    icon_class: 'fa fa-briefcase'
+.dashboard-card
+  = render 'stat_card', name: 'Created', ytd: @proposals_created_ytd_rev,
+    this_week: @proposals_created_this_week_rev,
+    appended_this_week: @proposals_created_this_week,
+    appended_ytd: @proposals_created_ytd,
+    icon_class: 'fa fa-file-text-o'

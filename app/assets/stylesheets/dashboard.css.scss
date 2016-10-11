@@ -1,0 +1,29 @@
+.dashboard-wrapper {
+  color:#333333;
+
+  .row-fluid :not(.thumbnails) > [class*="span"] {
+    margin-left:0px;
+  }
+}
+
+.goal-charts {
+  .span3 {
+    text-align:center;
+    .goal-chart {
+      margin:0px auto;
+    }
+    p {
+      margin-top:10px;
+    }
+  }
+}
+
+.quote-widget {
+  p {
+    font-size: 16px;
+
+    &.quote-attribution {
+      color: #999999;
+    }
+  }
+}

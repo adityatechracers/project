@@ -1,0 +1,13 @@
+%div.col-md-1
+  %div.btn.btn-success.btn-circle.btn-outline.btn-spaced.availability-arrow{"data-link" => availabilities_move_days_path(one_week_back(@current_date)), 'id'=>'availability-arrow-left'}
+    %i.fa.fa-chevron-left
+%span.col-md-10#days-buttons
+  - @dates.each do |d|
+    %div.btn.btn-success.btn-circle.btn-lg.btn-outline.availability-day-button{'data-link' => availabilities_available_employees_path(d)}
+      %div{class: 'day-name-in-button'}
+        = d.strftime('%a')
+      %div{class: 'date-short-in-button'}
+        = d.strftime('%b %d')
+%div.col-md-1
+  %div.col-md-1.btn.btn-success.btn-circle.btn-outline.btn-spaced.availability-arrow{"data-link" => availabilities_move_days_path(one_week_forward(@current_date)), 'id'=>'availability-arrow-right'}
+    %i.fa.fa-chevron-right

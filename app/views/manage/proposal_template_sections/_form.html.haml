@@ -1,0 +1,19 @@
+.row.p-sm
+  .col-xs-12
+    = hform_for @section, :url => url_for_section_form(@template, @section), :html => {:class => 'form form-horizontal'} do |f|
+      = f.input :name
+      = f.input :background_color, input_html: { class: 'minicolors', value: @background_color }
+      = f.input :foreground_color, input_html: { class: 'minicolors', value: @foreground_color }
+      .hr-line-dashed
+      .p-w-sm
+        = f.input :default_description, input_html: { class:'froala' }, wrapper: :simple
+      .hr-line-dashed.clearfix
+      = f.input :show_include_exclude_options
+      = f.input :position, :input_html => {:class => 'input-small form-control', :min => 1, :max => @template.section_templates.not_deleted.count + 1}
+      .form-actions.row
+        .hr-line-dashed
+        .col-md-8.col-md-offset-4.m-t-sm
+          = submit_tag "Save Section", :disable_with => 'Saving...', :class => 'btn btn-success'
+          - unless @section.new_record?
+            = link_to t('shared.delete'), manage_proposal_template_section_path(@template, @section),
+              :method => "delete", :class => "btn btn-danger", :confirm => "Are you sure you want to delete this section?"

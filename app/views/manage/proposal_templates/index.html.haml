@@ -1,0 +1,28 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md.page-heading.inline-nav-heading
+  .col-xs-12.m-t.m-b-xs
+    .title-group
+      %h1.title= t 'nav.manage.proposal_templates'
+    = link_to t('.new_proposal_template'), new_manage_proposal_template_path, :class => 'btn btn-success pull-right'
+.ibox
+  .ibox-content
+    %table.table.table-striped.footable
+      %thead
+        %tr
+          %th= t '.table_headings.name'
+          %th= t '.table_headings.status'
+          %th= t '.table_headings.actions'
+      %tbody
+        - @proposal_templates.each do |t|
+          %tr
+            %td= t.name
+            %td
+              - if t.active
+                %span.label.label-success
+                  = t 'shared.enabled'
+              - else
+                %span.label.label-important
+                  = t 'shared.disabled'
+            %td
+              = link_to edit_manage_proposal_template_path(t), :class => 'btn btn-default btn-mini' do
+                %i.icon-pencil
+                = t 'shared.edit'

@@ -1,0 +1,32 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    .title-group
+      %h1!= t('nav.jobs.expenses')
+      .title
+        != breadcrumbs({t('nav.jobs.expenses') => expenses_path}, {t('vendor_categories.categories') => vendor_categories_path})
+    = link_to("New Vendor", new_vendor_category_path, :class => "btn btn-success m-t-xl pull-right")
+
+
+
+.ibox
+  .ibox-content
+    - if @vendor_categories.any?
+      %table.table.table-striped.table-bordered
+        %thead
+          %tr
+            %th= t '.table_headings.name'
+            %th= t '.table_headings.expenses'
+            %th= t '.table_headings.actions'
+        %tbody
+          - @vendor_categories.each do |v|
+            %tr
+              %td= v.name
+              %td= v.expenses.count
+              %td= render 'shared/action_buttons', resource: v
+    - else
+      .hero-unit
+        %h3 Your organization does not currently have any vendors set up.
+        %p
+          CorkCRM allows you to create vendors to organize and provide better insight into expenses. For example, add a "ACME Paint Store" vendor to
+          start tracking expenses for that vendor. Click the button below to get started!
+        = link_to "Add a Vendor", new_vendor_category_path, :class => "btn btn-success btn-large" if can? :create, VendorCategory

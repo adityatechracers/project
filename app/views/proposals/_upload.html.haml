@@ -1,0 +1,14 @@
+= form_for proposal.proposal_files.build, :url => {:controller => 'proposals', :action => 'upload_files', id: proposal.guid},html: {multipart: true} do |f|
+  - if proposal.template.is_upload_your_own?
+    .help-block
+      Choose the primary proposal file that you want to upload
+    = file_field_tag :primary_proposal_file, class: 'native-file-input', accept: 'application/pdf'
+    .help-block
+      Choose the supporting secondary files that you want to upload for the proposal
+    = file_field_tag :secondary_proposal_files, multiple: true, class: 'native-file-input'
+
+  .help-block
+    Choose the private file attachment(s) that you want to upload for the proposal
+  = file_field_tag :attachment_proposal_files, multiple: true, class: 'native-file-input', name: "attachment_proposal_files[]"
+  .help-block
+    *Note you can now upload <strong>multiple</strong> files in one pass!

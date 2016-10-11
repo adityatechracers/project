@@ -1,0 +1,48 @@
+= simple_form_for [:admin, @user], :html => {:class => 'form-horizontal'} do |f|
+  .row-fluid
+    .span6
+      = f.hidden_field :role, :value => 'Admin'
+      = f.input :first_name
+      = f.input :last_name
+      = f.input :email
+      - if @user.new_record?
+        = f.input :password
+        = f.input :password_confirmation
+      -# Non-super admin users cannot deactivate other admin accounts
+
+      = f.input :role, :collection => ["Admin", "Owner", "Employee"], :include_blank => false
+      - if current_user.super || !@user.is_admin?
+        = f.input :active, :as => :boolean, :label => "Account is enabled", :input_html => {:class => ''}
+    .span1
+    .span5
+      - if current_user.super && (@user.is_admin? || @user.new_record?)
+        %table.table.table-striped.table-condensed#permission_table
+          %tr.heading
+            %td{:colspan => 2}
+              %h5 Permissions
+          %tr
+            %td= f.label :admin_can_view_failing_credit_cards, 'Can view failing credit cards'
+            %td= f.input_field :admin_can_view_failing_credit_cards
+          %tr
+            %td= f.label :admin_can_view_billing_history, 'Can view billing history'
+            %td= f.input_field :admin_can_view_billing_history
+          %tr
+            %td= f.label :admin_can_manage_accounts, 'Can manage accounts'
+            %td= f.input_field :admin_can_manage_accounts
+          %tr
+            %td= f.label :admin_can_manage_trials, 'Can manage trials'
+            %td= f.input_field :admin_can_manage_trials
+          %tr
+            %td= f.label :admin_can_manage_cms, 'Can manage cms'
+            %td= f.input_field :admin_can_manage_cms
+          %tr
+            %td= f.label :admin_can_become_user, 'Can become user'
+            %td= f.input_field :admin_can_become_user
+          %tr
+            %td= f.label :admin_receives_notifications, 'Receives notifications (billing, system)'
+            %td= f.input_field :admin_receives_notifications
+
+  %hr
+  .form-actions.row
+    .col-md-8.col-md-offset-4
+      = submit_tag "Save User", :disable_with => 'Saving...', :class => "btn btn-success"

@@ -1,0 +1,7 @@
+.proposal-signatures.span12
+  .span6.well
+    %h4= "#{@proposal.job.contact.name} (#{t 'proposals.customer'})"
+    .signature-readonly{:data => {:svg => @proposal.customer_sig}}
+  .span6.well
+    %h4= "#{@proposal.signed_for_contractor.name} (#{t 'proposals.contractor'})"
+    .signature-readonly{:data => {:svg => @proposal.contractor_sig}}

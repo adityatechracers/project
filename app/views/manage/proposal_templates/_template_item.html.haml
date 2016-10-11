@@ -1,0 +1,19 @@
+%tr.proposal-template-item{:data => {:section => section.id, :item => item.id}}
+  - if section.show_include_exclude_options
+    - ['N/A', 'Include', 'Exclude'].each do |opt|
+      %td{:style => "text-align:center;"}
+        %input{:type => 'radio', :checked => item.default_include_exclude_option == opt, :disabled => true, :name => item.name}
+
+  %td= item.name
+  %td
+    %textarea{:type => 'text', :disabled => true, :style => "box-sizing:border-box;margin-bottom:0px;width:100%;"} #{item.default_note_text}
+    - unless item.help_text.blank?
+      %span.help-block{:style => "margin-bottom:0px;"}= item.help_text
+  %td
+    .proposal-item-controls.btn-group{:style => "margin-top:1px;"}
+      = link_to edit_manage_proposal_template_section_item_path(@proposal_template, section, item), :class => 'btn btn-default btn-small', :data => {:toggle => "tooltip", :placement => "bottom"}, :title => "Edit Item" do
+        %i.icon-pencil
+      %button.btn.btn-default.btn-small{:data => {:action => 'move-up', :toggle => "tooltip", :placement => "bottom"}, :title => t('shared.move_up')}
+        %i.icon-arrow-up
+      %button.btn.btn-default.btn-small{:data => {:action => 'move-down', :toggle => "tooltip", :placement => "bottom"}, :title => t('shared.move_down')}
+        %i.icon-arrow-down

@@ -1,0 +1,14 @@
+.proposal-header
+  .span2.proposal-header-logo
+    = pdf_image_tag(current_tenant.logo(:medium), :width => 150, :class => "proposal-organization-logo")
+  .span10.proposal-header-info.pull-right
+    %h2 Contract (#{@proposal_template.name})
+    %table
+      %tr
+        %td= current_tenant.name
+      %tr
+        %td Date: #{l @proposal_template.updated_at}
+  .clearfix
+.proposal-contract
+  .fr-view
+    != @agreement

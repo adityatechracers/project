@@ -1,0 +1,15 @@
+- @contacts.each do |c|
+  %tr
+    %td= c.backwards_name
+    %td= c.email
+    %td= c.phone
+    %td= link_to c.full_address, "https://maps.google.com/?q=#{c.full_address}"
+    %td
+      = link_to contact_path(c), class: 'btn btn-small btn-default' do
+        %i.icon-eye
+      - if can?(:edit, c)
+        = link_to edit_contact_path(c), class: 'btn btn-small btn-default' do
+          %i.icon-pencil
+      - if can?(:destroy, c)
+        = destroy_link_to contact_path(c), confirm: t('contacts.index.actions.confirm_delete_contact'), class: 'btn btn-small btn-default' do
+          %i.icon-remove-2

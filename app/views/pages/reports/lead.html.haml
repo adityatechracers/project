@@ -1,0 +1,26 @@
+.widget
+  .widget-header
+    .title Leads Report
+    = link_to '/pages/reports/report_list', :class => 'btn btn-success pull-right' do
+      %i.icon-arrow-left
+      Back to Reports
+  .widget-body
+    .chart#leads-report-chart
+    %p Leads to date to this year's goals.
+
+    %table.table.table-striped.table-bordered
+      %thead
+        %tr
+          %th Date
+          %th Time
+          %th Name
+          %th Source
+          %th Status
+          %th Last Note
+        %tr
+          %td 11:12am
+          %td 3/5/2012
+          %td John Doe
+          %td Web
+          %td Call back
+          %td Need to call them back, got voicemail

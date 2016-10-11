@@ -1,0 +1,4 @@
+.dashboard-wrapper
+  .row-fluid= render :partial => 'proposals/print_header', :formats => [:html], :locals => {:pdf => true}
+  .row-fluid= render :partial => 'proposals/agreement', :formats => [:html]
+  .row-fluid{:style => 'page-break-before: always'}= render :partial => 'proposals/signatures', :formats => [:html]

@@ -1,0 +1,5 @@
+.widget
+  .widget-header
+    .title!= breadcrumbs({t('nav.proposals.main') => proposals_path}, {"##{@proposal.proposal_number}" => proposal_path(@proposal.guid)}, "New Change Order")
+  .widget-body
+    = render 'change_orders/form', include_submit: true

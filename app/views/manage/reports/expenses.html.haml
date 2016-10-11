@@ -1,0 +1,63 @@
+.widget
+  .widget-header
+    = render 'report_title', title: :expenses
+  .widget-body
+    .well
+      = date_range_filter_button
+      = split_button_filter t('shared.filter_by_employee'), :user, @users
+      = split_button_filter t('shared.filter_by_job'), :job, @jobs, :id, :full_title
+    .row-fluid
+      - if @users.count == 1 || @jobs.count == 1
+        - if @users.count == 1 && @jobs.count == 1
+          %h3 #{@users.first.name}'s Expenses for #{@jobs.first.full_title}
+        - elsif @users.count == 1
+          %h3 #{@users.first.name}'s Expenses
+        - elsif @jobs.count == 1
+          %h3 Expenses for #{@jobs.first.full_title}
+        %hr
+
+      .row-fluid
+        .span6
+          = render 'pie_chart', title: t('.expenses_by_job'), data: @expenses_by_job
+        .span6
+          = render layout: 'pie_chart', locals: { title: t('.expenses_by_employee'), data: @expenses_by_employee } do
+            = t 'manage.reports.expenses.generated_expenses_info'
+      .row-fluid
+        .span6
+          = render 'pie_chart', title: t('.expenses_by_category'), data: @expenses_by_category
+        - unless params.has_key?(:user)
+          .span6
+            = render layout: 'pie_chart', locals: { title: t('.expenses_vs_profit'), data: @expenses_vs_profit } do
+              = t 'manage.reports.expenses.major_expenses_info_html', expense_categories_path: expense_categories_path
+              %br
+              = t 'manage.reports.expenses.profit_calculation_info_html', expenses_path: expenses_path, payments_path: payments_path
+              %br
+              = t 'manage.reports.expenses.profit_absence_info'
+
+    - if @results.any?
+      %hr
+      .row-fluid
+        %table.table.table-bordered.table-striped
+          %thead
+            %tr
+              %th= t '.table_headings.job'
+              %th= t '.table_headings.employee'
+              %th= t '.table_headings.category'
+              %th= t '.table_headings.vendor'
+              %th= t '.table_headings.description'
+              %th= t '.table_headings.date of Expense'
+              %th= t '.table_headings.amount'
+          %tbody
+            - @results.each do |e|
+              %tr
+                %td= link_to e.job.full_title, e.job
+                %td= e.user.try(:name)
+                %td= e.expense_category.try(:name)
+                %td= e.vendor_category.try(:name)
+                %td= e.description
+                %td= l e.date_of_expense
+                %td= number_to_currency(e.amount)
+            %tr
+              %td{:colspan => 5}
+                %strong Total:
+              %td= number_to_currency(@total_expenses)

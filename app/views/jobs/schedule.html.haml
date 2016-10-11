@@ -1,0 +1,22 @@
+.row-fluid
+  .ibox#job-calendar-ibox
+    .ibox-title
+      %h1.title.pull-left!= breadcrumbs({t('nav.proposals.main') => jobs_path}, t('nav.proposals.schedule'))
+      .pull-right
+        - if current_user.can_manage_jobs
+          %a.btn.btn-success#add-job-btn
+            %span.visible-phone
+              %i.icon-plus
+            %span.hidden-phone= t '.schedule_a_job'
+        .btn-group(data-toggle="buttons-radio")
+          = render 'right_nav'
+      .clearfix
+    .ibox-content
+      = render 'calendar_filters', crews: @crews, unscheduled_filter: true
+
+      #job-calendar.calendar
+      - if can? :manage, Job
+        #job-calendar-modal.modal.modal-overflowed.fade
+
+- if params[:j_id] 
+  %input{:type=>"hidden", :value=>params[:j_id], :id=>'j_p_i'}

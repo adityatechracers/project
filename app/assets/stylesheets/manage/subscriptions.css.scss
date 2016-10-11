@@ -1,0 +1,29 @@
+.plan-list {
+  .caption > .description {
+    line-height: 14px;
+    padding: 10px;
+    min-height: 40px;
+  }
+  .thumbnail {
+    .description {
+      @media (min-width: 1200px){
+        height: 62px;
+      }
+      @media (min-width: 992px){
+        height: 48px;
+      }
+    }
+  }
+}
+
+#subscription_form_wrapper,
+#inquiry_form_wrapper,
+#invalid_subscription {
+  display:none;
+  margin-top:10px;
+}
+
+.subscription-button.active,
+.contact-us-button.active {
+  box-shadow:inset 0px 0px 5px rgba(0,0,0,0.3);
+}

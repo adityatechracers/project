@@ -1,0 +1,10 @@
+= simple_form_for @communication do |f|
+  = f.input :job_id, :as => :hidden
+  = f.input :type, :collection => [["Planned Communication","PlannedCommunication"],["Communication Record","CommunicationRecord"]], :selected => "PlannedCommunication", :include_blank => false
+  = f.input :action, :collection => Communication::ACTIONS, :label => 'Communication Method', :selected => "Call", :include_blank => false
+  = f.input :datetime, :as => :datetime_picker
+  = f.input :datetime_exact
+
+  %br
+  %br
+  %button.btn.btn-success Update

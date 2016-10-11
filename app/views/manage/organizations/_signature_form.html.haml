@@ -1,0 +1,14 @@
+.control-group.form-group.signature-wrapper
+  .row
+    .col-md-4.control-label
+      %label Signature
+    .controls.col-md-8
+      #signature.proposal-default-signature{data: { svg: @signature_of_user } }
+      %p.help-block
+        Sign your name (#{@user_name}) above using your mouse
+        or touchpad. If <strong>Sign automatically?</strong> is checked
+        above, this is the signature that will be used when new proposals are
+        created.
+      %br
+      %a.btn.btn-primary#save-signature-btn= t '.save_signature'
+      %a.btn.btn-default.clear-signature-org-tab= t '.clear_signature'

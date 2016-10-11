@@ -1,0 +1,13 @@
+= simple_form_for @item, :url => url_for_item_form(@template, @section, @item) do |f|
+  = f.input :name, :label => "Work Item Description"
+  = f.input :default_note_text, :label => "Default text to be included in the notes text box",
+      :input_html => {:class => 'input-xlarge'}
+  = f.input :help_text, :input_html => {:class => 'input-xlarge'}
+  - if @section.show_include_exclude_options
+    = f.input :default_include_exclude_option, :label => 'Default Option',
+        :collection => ['N/A', 'Include', 'Exclude'], :as => :radio_buttons
+  %hr
+  = f.submit "Save", :disable_with => 'Saving...', :class => "btn btn-success"
+  - unless @proposal_template_item.new_record?
+    = link_to "Delete", admin_proposal_template_section_item_path(@template, @section, @item),
+      :method => "delete", :class => "btn btn-danger", :confirm => "Are you sure you want to delete this line item?"

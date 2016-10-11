@@ -1,0 +1,17 @@
+Rake::Task["deploy:assets:precompile"].clear 
+Rake::Task["deploy:cleanup_assets"].clear 
+namespace :deploy do 
+  namespace :assets do
+    desc "Precompile assets locally and then rsync to web servers"
+    task :precompile do
+      on roles(:web) do
+        rsync_host = host.to_s 
+        run_locally do
+          %x{bundle exec rake assets:clean_expired}
+          %x{bundle exec rake assets:precompile}
+          execute "rsync -av --delete ./public/assets/ #{fetch(:user)}@#{rsync_host}:#{shared_path}/public/assets/"
+        end
+      end
+    end
+  end
+end 

@@ -1,0 +1,121 @@
+.top-nav
+  - if current_user.is_admin?
+    %ul
+      %li{"data-tab" => "admin"}
+        = active_link_to(admin_root_path, :active => on_tab?(/admin/), :class_active => 'selected') do
+          %i.icon-lightning
+          Admin
+  - else
+    %ul
+      - if can? :read, Job, :state => 'Lead'
+        %li{"data-tab" => "leads"}
+          = active_link_to(leads_path, :active => on_tab?(/leads|communications/), :class_active => 'selected') do
+            %i.icon-menu-2
+            %span= t 'nav.leads.main'
+      - if can? :read, Appointment
+        %li{"data-tab" => "appointments"}
+          = active_link_to(appointments_path, :active => on_tab?(/appointments/), :class_active => 'selected') do
+            %i.icon-alarm
+            %span= t 'nav.appointments.main'
+      - if can? :read, Proposal
+        %li{"data-tab" => "proposals"}
+          = active_link_to(proposals_path, :active => on_tab?(/proposals/), :class_active => 'selected') do
+            %i.icon-briefcase
+            %span= t 'nav.proposals.main'
+      - if can? :read, Job
+        %li{"data-tab" => "jobs"}
+          = active_link_to(jobs_path, :active => on_tab?(/jobs|job_schedule_entries/), :class_active => 'selected') do
+            %i.icon-paint-format
+            %span= t 'nav.jobs.main'
+    %ul.pull-right
+      %li{"data-tab" => "dashboard"}
+        = active_link_to(dashboard_path, :active => on_tab?(/dashboard/), :class_active => 'selected') do
+          %i.icon-dashboard
+          %span= t 'nav.dashboard.main'
+      - if current_user.can_manage?
+        %li{"data-tab" => "manage"}
+          = active_link_to(manage_root_path, :active => on_tab?(/(manage)/), :class_active => 'selected') do
+            %i.icon-lock
+            %span= t 'nav.manage.main'
+      - if can? :view_all, Contact
+        %li{"data-tab" => "contacts", :style => "margin-right:0px;"}
+          = active_link_to(contacts_path, :active => on_tab?(/contacts/), :class_active => 'selected') do
+            %i.icon-users-2
+            %span= t 'nav.contacts.main'
+  .clearfix
+
+.sub-nav
+  - unless current_user.is_admin?
+    - if on_tab?(/dashboard/)
+      %ul.subnav_list#subnav_list_dashboard.active
+        %li= active_link_to t('nav.dashboard.main'), dashboard_path, :class => 'heading'
+        - if current_user.can_manage? && !current_user.organization.nil?
+          %li= active_link_to t('nav.dashboard.my_subscription'), manage_subscription_path
+    - elsif on_tab?(/jobs|job_schedule_entries|job_feedback/) && can?(:read, Job)
+      %ul.subnav_list#subnav_list_jobs.active
+        %li= active_link_to t('nav.jobs.main'), jobs_path, :class => 'heading', :active => :exclusive
+        - if Proposal.any?
+          %li= active_link_to t('nav.jobs.schedule'), schedule_jobs_path
+          - if can? :manage, Expense
+            %li= active_link_to t('nav.jobs.expenses'), expenses_path
+          - if can? :manage, Payment
+            %li= active_link_to t('nav.jobs.payments'), payments_path
+          %li= active_link_to t('nav.jobs.timecards'), timecards_path
+          %li= active_link_to t('nav.jobs.feedback'), job_feedback_index_path
+    - elsif on_tab?(/(leads|communications)/) && can?(:read, Job, :state => 'Lead')
+      %ul.subnav_list#subnav_list_leads.active
+        %li= active_link_to t('nav.leads.main'), leads_path, :class => 'heading', :active => :exclusive
+        %li= active_link_to t('nav.leads.import'), import_leads_path
+        %li= active_link_to t('nav.leads.new'), '/contacts/new_lead'
+        %li= active_link_to t('nav.leads.sources'), lead_sources_path
+        %li= active_link_to t('nav.leads.communication'), communications_path
+    - elsif on_tab?(/contacts/)
+      %ul.subnav_list#subnav_list_contacts.active
+        %li= active_link_to t('nav.contacts.main'), contacts_path, :class => 'heading', :active => :exclusive
+    - elsif on_tab?(/appointments/) && can?(:read, Appointment)
+      %ul.subnav_list#subnav_list_appointments.active
+        %li= active_link_to t('nav.appointments.main'), appointments_path, :class => 'heading', :active => :exclusive
+    - elsif on_tab?(/proposals/) && can?(:read, Proposal)
+      %ul.subnav_list#subnav_list_proposals.active
+        %li= active_link_to t('nav.proposals.main'), proposals_path, :class => 'heading', :active => :exclusive
+        - if Job.any? && current_user.can_manage?
+          %li= active_link_to t('nav.proposals.proposal_templates'), manage_proposal_templates_path
+    - elsif current_user.can_manage? and on_tab?(/manage/)
+      %ul.subnav_list#subnav_list_manage.active
+        %li= active_link_to t('nav.manage.main'), manage_root_path, :class => 'heading', :active => :exclusive
+        %li= active_link_to t('nav.manage.crews'), manage_crews_path
+        %li= active_link_to t('nav.manage.users'), manage_users_path
+        %li= active_link_to t('nav.manage.organization_info'), manage_edit_organization_path
+        %li= active_link_to t('nav.manage.proposal_templates'), manage_proposal_templates_path
+        %li= active_link_to t('nav.manage.email_templates'), manage_email_templates_path
+        %li= active_link_to t('nav.manage.reports'), manage_reports_path
+        %li= active_link_to t('nav.manage.website_embed'), manage_website_embed_path
+        %li= active_link_to t('nav.manage.subscription'), manage_subscription_path
+        - if current_user.organization && current_user.organization.stripe_customer_token.present?
+          %li= active_link_to t('nav.manage.billing_info'), manage_edit_card_path
+  - else
+    %ul.subnav_list#subnav_list_admin.active
+      %li= active_link_to 'Admin', admin_root_path, :class => 'heading', :active => :exclusive
+      - if can? :manage, Organization
+        %li= active_link_to 'Organizations', admin_organizations_path
+      - if can? :manage, User
+        %li= active_link_to 'Users', admin_users_path
+      - if can? :view_billing_history, :admin
+        %li= active_link_to 'Invoices', admin_invoices_path
+      - if can? :view_failing_credit_cards, :admin
+        %li= active_link_to 'Failing Credit Cards', admin_failing_cards_path
+      - if can? :manage_cms, :admin
+        %li= active_link_to 'Blog', admin_posts_path
+        %li= active_link_to 'CMS', root_path
+      - if can? :manage, :proposal_templates, :organization_id => 0
+        %li= active_link_to 'Proposal Templates', admin_proposal_templates_path
+      %li= active_link_to 'Inquiries', admin_inquiries_path
+      %li= active_link_to 'Email Templates', admin_email_templates_path
+      %li= active_link_to 'Activity Logs', admin_activity_path
+
+  .btn-group.pull-right
+    = link_to dashboard_path, :class => 'btn btn-warning2', :id => "dashboard-subnav-btn", :style => "z-index:3;" do
+      %i.icon-spinner-2
+    %button.btn.btn-warning2.dropdown-toggle{"data-toggle" => "dropdown"}
+      %span.caret
+    %ul.dropdown-menu.pull-right#dashboard-subnav-dropdown

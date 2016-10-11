@@ -1,0 +1,17 @@
+.row-fluid
+  %ul.nav.nav-tabs
+    - unless params[:appointment_form] == '0'
+      %li{:class => active_link_to_class(embed_leads_path, :active => :exclusive)}
+        = link_to t('.schedule_appointment_time'), embed_leads_path(params.merge(:org => params[:org]))
+    - unless params[:lead_form] == '0'
+      %li{:class => active_link_to_class(embed_ask_questions_leads_path, :active => :exclusive)}
+        = link_to t('.have_a_question'), embed_ask_questions_leads_path(params.except(:action).merge(:org => params[:org]))
+
+- if flash[:notice]
+  .alert.alert-success
+    %button.close{"data-dismiss" => "alert"} ×
+    =flash[:notice]
+- if flash[:error]
+  .alert.alert-danger
+    %button.close{"data-dismiss" => "alert"} ×
+    =flash[:error]

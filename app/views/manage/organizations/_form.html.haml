@@ -1,0 +1,110 @@
+
+= hform_for @organization, url: manage_update_organization_path, html: {class: 'form-horizontal'} do |f|
+  = f.error_notification
+  .ibox
+    .ibox-title
+      %h4 General Information
+    .ibox-content
+      = f.input :name, required: true
+      = f.input :address
+      = f.input :address_2
+      = f.input :zip
+      = f.input :city
+      = f.input :region, as: :select, collection: ["Loading..."],
+          include_blank: false, input_html: {data: {value: @organization.region}}
+      = f.input :country, priority: ["United States"]
+      = form_group "Time Zone" do
+        = f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, {}, {class: "form-control"}
+      = f.input :email
+      = f.input :phone
+      = f.input :fax
+      = f.input :license_number
+      = f.input :website_url, label: 'Website URL', input_html: { class: 'input-xlarge' },
+          hint: "If you'd like a link to your company's website to display on proposals, enter it above."
+  .ibox
+    .ibox-title
+      %h4 Logo
+    .ibox-content
+      .form-group.row.m-t.m-b-xl
+        .col-md-4.control-label
+          %label Current Logo
+        .col-md-8.controls
+          - if @organization.logo
+            .control-group
+              .controls= image_tag @organization.logo, width: 200
+      .hr-line-dashed.m-b-xl
+      = form_group "Update logo" do
+        = file_input_group f, :logo, 'png'
+
+
+
+
+
+  .ibox
+    .ibox-title
+      %h4= t '.timecard_settings'
+    .ibox-content
+      = form_group "Timecard lock period" do
+        = button_radio("organization[timecard_lock_period]", ["Never", "Weekly"])
+
+  .ibox
+    .ibox-title
+      %h4= t '.quickbooks_settings'
+    .ibox-content
+      #qb-action.form-group.row
+        - qb_session = @organization.quick_books_session
+        - connect_style = ""
+        - connect_style = "display:none" if qb_session.present?
+        #connect{style:"#{connect_style}"}
+          .col-md-4.control-label
+            %label Connect to QuickBooks
+          .col-md-8
+            %ipp:connectToIntuit
+        - if qb_session.present?
+          %button.btn.btn-success#disconnect-from-qb= t '.disconnect_from_quick_books'
+  .ibox
+    .ibox-title
+      %h4= t '.zestimate_settings'
+    .ibox-content
+      /= f.input :show_zestimate, wrapper: :checkbox
+      = f.input :show_zestimate, :wrapper => :checkbox, :label => 'SHOW ZESTIMATE'
+  
+  .ibox
+    .ibox-title
+      %h4= t '.customer_rating_settings'
+    .ibox-content
+      = f.input :show_customer_rating, :wrapper => :checkbox, :label => 'SHOW CUSTOMER RATING'
+       
+  .ibox
+    .ibox-title
+      %h4= t '.proposal_settings'
+    .ibox-content
+      = f.input :proposal_style, as: :select, collection: Organization::ProposalStyle.collection, include_blank: false
+      = f.input :proposal_banner_text, hint: "Displayed below your organization's logo in the 'Simple' proposal style", input_html: { rows: 2 }
+      = f.input :proposal_paper_size, as: :select, collection: Organization::ProposalPaperSize.collection, include_blank: false
+      = f.input :auto_sign_proposals, wrapper: :checkbox
+      = f.input :signature_for do
+        = f.select :user_signatures, User.all.map { |r| [r.name, r.id, { class: r.id.to_s + " " + r.class.to_s }] }, { include_blank: true, class: "form-control" }
+
+
+      %div#signature_view
+        = render 'signature_form'
+        = f.hidden_field :default_signature
+
+  .ibox
+    .ibox-title
+      %h4= t '.feedback_settings'
+    .ibox-content
+      = f.input :feedback_portal_text, input_html: { rows: 3 }
+      = f.input :feedback_portal_show_signature, wrapper: :checkbox
+
+  .control-group
+    .controls= f.submit t('.save_organization'), disable_with: 'Saving...', class: 'btn btn-success'
+
+  = content_for :additional_javascript do
+    %script{:src => "https://appcenter.intuit.com/Content/IA/intuit.ipp.anywhere.js"}
+    :javascript
+      intuit.ipp.anywhere.setup({
+        menuProxy: '#{bluedot_quick_books_url}',
+        grantUrl: '#{authenticate_quick_books_url}'
+      });

@@ -1,0 +1,47 @@
+.modal-dialog
+  .modal-content
+    = simple_form_for @appointment, :html => {:class => 'form-horizontal', id: 'appointment_form'} do |f|
+      .modal-header
+        %button.close(data-dismiss='modal') &times;
+        - if @appointment.new_record?
+          %h3= t '.new_appointment'
+        - else
+          %h3= t '.edit_appointment'
+
+      .modal-body
+        .messages
+        %div{style: "text-align: left;"}
+          = f.association :job, collection: @active_leads, label_method: :title_only, input_html: {class: 'chzn-select search-select-lg appointment_job', id: 'appointment_job_id'}
+          = f.select :job_id, @active_leads.all.map{ |j| [j.title_only, j.contact_id, {'id'=>"#{j.id}_hidden_contact", 'data-contact'=>j.contact_id} ]},{}, {:style => "display:none", :name => "whatever", :id => ""}
+
+          - if !@appointment.new_record? && @appointment.job.try(:contact)
+            %div{style:"padding-left:200px"}
+              = link_to "View Contact - "+@appointment.job.contact.name,contact_path(@appointment.job.contact)
+          - if current_user.can_manage? || current_user.can_manage_appointments
+            = f.association :user, collection: @appointmentable_users,
+                input_html: {class: 'chzn-select form-control', required: true}, selected: @appointment.user_id || @employee.id
+        = f.input :start_datetime, as: :datetime_picker, input_html: {class: "start_datetime form-control", data: {iso: @appointment.start_datetime.try(:utc).try(:iso8601)}}
+        = f.input :end_datetime, as: :datetime_picker, input_html: {class:"end_datetime form-control", data: {iso: @appointment.end_datetime.try(:utc).try(:iso8601)}}
+        /= f.input :notes, as: :text, input_html: {rows: 3}
+        /= f.input :email_before_appointment, :wrapper => :checkbox
+
+        - if current_tenant.show_customer_rating
+          .customer_rating{ :style => "display:none" }
+            .control-group.form-group.clearfix.select.optional.appointment_job(id = "appointment_job_select")
+              .col-md-4.control-label
+                %label.select.optional.control-label
+                  %abbr{:title => "required"}*
+                  Contact Rating
+              .controls.col-md-8
+                = fields_for @contact_rating do |r|
+                  = r.select :rating_id, Rating.all.map{ |rating| [rating.rating, rating.id]},input_html: {class:"input-small form-control"}, :selected => 1
+                  = r.hidden_field :stage, value: 'Appointment'
+                  = r.hidden_field :contact_id, value: ''
+      .modal-footer
+        - unless @appointment.new_record?
+          %a.btn.btn-danger.pull-left#delete-appointment-btn
+            %span.visible-phone
+              %i.icon-remove-2
+            %span.hidden-phone Delete Appointment
+        %a.btn(data-dismiss='modal')= t 'shared.cancel'
+        = f.submit t('shared.save'), :class => 'btn btn-success'

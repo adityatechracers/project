@@ -1,0 +1,47 @@
+.widget
+  .widget-header
+    .title
+      != breadcrumbs({'Proposal Templates' => admin_proposal_templates_path},
+          {@proposal_template.name => edit_admin_proposal_template_path(@proposal_template)},
+          'Edit Contract')
+= simple_form_for [:admin, @proposal_template], defaults: { wrapper: :simple } do |f|
+
+  .ibox
+    .ibox-content
+      .row
+        .col-md-8
+          = f.input :agreement, input_html: { class:'froala' }
+          = f.submit 'Save Contract', :disable_with => 'Saving...', :class => 'btn btn-success'
+        .col-md-4
+          %label.m-t Available Tokens
+          .help-block
+            When a proposal is generated, the tokens below are replaced with
+            their corresponding values. For example, if the proposal's total is
+            $500, that amount will be filled in for each
+            %div{:style => 'font-family: monospace'} {{proposal_total}}
+          .well
+            %code {{customer_first_name}}
+            %br
+            %code {{customer_last_name}}
+            %br
+            %code {{customer_address}}
+            %br
+            %code {{customer_phone_number}}
+            %br
+            %code {{contractor_first_name}}
+            %br
+            %code {{contractor_last_name}}
+            %br
+            %code {{contractor_phone_number}}
+            %br
+            %code {{proposal_total}}
+            %br
+            %code {{proposal_notes}}
+            %br
+            %code {{your_billing_address}}
+            %br
+            %code {{your_billing_state}}
+
+          = link_to contract_admin_proposal_template_path(@proposal_template, :format => :pdf), :class => 'btn btn-default' do
+            %i.icon-file-pdf
+            View PDF

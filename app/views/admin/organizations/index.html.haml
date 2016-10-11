@@ -1,0 +1,29 @@
+.ibox
+  .ibox-title
+    %h3.title Organizations
+  .ibox-content
+
+    .input-group.pull-right
+      %input.form-control{:type => "search", :id => "superadmin_org_search_field", :placeholder => "Search organizations by name/address..."}
+      %div.input-group-addon.btn.gray-bg{:type => "button"}
+        %i.icon-search
+
+    .btn-group
+      = active_filter_for 'All', admin_organizations_path, :root => true, :class => 'btn btn-default'
+      = active_filter_for 'Active', :active, :class => 'btn btn-default'
+      = active_filter_for 'Inactive', :inactive, :class => 'btn btn-default'
+      = active_filter_for 'Trial', :trial, :class => 'btn btn-default'
+
+.ibox
+  .ibox-content.p-md
+    %table.table.table-striped.footable#organizations_table
+      %thead
+        %tr
+          %th Organization
+          %th Account Owner
+          %th Users
+          %th Plan
+          %th Created
+          %th Actions
+      %tbody= render "table"
+      = paginate @organizations, :theme => 'bootstrap'

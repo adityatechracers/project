@@ -1,0 +1,19 @@
+.row-fluid
+  .ibox.page-header
+    .ibox-title
+      %h1.title.pull-left= t '.title'
+      = link_to t('.add_lead_source'), new_lead_source_path, :class => "btn btn-success pull-right"
+      .clearfix
+    .ibox-content
+      %table.table.table-striped
+        %thead
+          %tr
+            %th= t '.name'
+            %th= t '.leads'
+            %th= t '.actions'
+        %tbody
+          - @lead_sources.each do |ls|
+            %tr
+              %td= ls.name
+              %td= ls.jobs.count
+              %td= render 'shared/action_buttons', resource: ls

@@ -1,0 +1,42 @@
+%ul.proposal-section-list
+  - @template.section_templates.not_deleted.order("position ASC").each_with_index do |section, section_index|
+    %li.proposal-section-wrapper.m-t-lg
+      .widget-head-color-box{:style => "background-color:#{section.background_color};color:#{section.foreground_color};"}
+        %h3.black-heading.user-color
+          %span.black-heading-title
+            %span.section-position= "##{section.position}"
+            = section.name
+          .clearfix
+      .widget-text-box
+        .proposal-section-form-wrapper
+          %input{:name => "proposal[section_responses_attributes][#{section_index}][proposal_template_section_id]", :type => "hidden", :value => section.id}
+          .control-group
+            %label.control-label{:for => "proposal[section_responses_attributes][#{section_index}][description]"} Description
+            .controls
+              %textarea.froala{name: "proposal[section_responses_attributes][#{section_index}][description]"}
+                = section.default_description
+          - if section.item_templates.not_deleted.any?
+            %table.table.footable.default.footable-loaded
+              %thead
+                - if section.show_include_exclude_options
+                  %th.include_exclude_cell= t 'owner.proposal_template_items.options.n_a'
+                  %th.include_exclude_cell= t 'owner.proposal_template_items.options.include'
+                  %th.include_exclude_cell= t 'owner.proposal_template_items.options.exclude'
+                %th Description
+                %th Notes
+              %tbody
+                - section.item_templates.not_deleted.each_with_index do |item, item_index|
+                  %tr
+                    - if section.show_include_exclude_options
+                      - ["N/A","Include","Exclude"].each do |opt|
+                        %td.include_exclude_cell
+                          %input{:type => "radio", :name => "proposal[section_responses_attributes][#{section_index}][item_responses_attributes][#{item_index}][include_exclude_option]", :value => opt, :checked => ((item.default_include_exclude_option == opt)?"checked":nil)}
+                    %td
+                      %input.input-medium.span12{:name => "proposal[section_responses_attributes][#{section_index}][item_responses_attributes][#{item_index}][name]",
+                        :type => 'text', :maxlength => 255, :value => item.name}
+                      %input.form-control{:name => "proposal[section_responses_attributes][#{section_index}][item_responses_attributes][#{item_index}][proposal_template_item_id]", :type => 'hidden', :value => item.id}
+
+                    %td
+                      %textarea.form-control{:name => "proposal[section_responses_attributes][#{section_index}][item_responses_attributes][#{item_index}][notes]", :type => 'text'}
+                        = item.notes.blank? ? item.default_note_text : item.notes
+                      %p= item.help_text

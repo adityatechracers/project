@@ -1,0 +1,84 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1!= t('nav.manage.proposal_templates')
+    .title!= breadcrumbs({t('nav.manage.proposal_templates') => manage_proposal_templates_path},
+        {@proposal_template.name => edit_manage_proposal_template_path(@proposal_template)},
+        t('.edit_contract'))
+
+= simple_form_for [:manage, @proposal_template],
+  defaults: { wrapper: :simple } do |f|
+  .ibox
+    .ibox-title
+      %h3!= f.label :agreement
+    .ibox-content
+      .row
+        .col-md-8
+          = f.input :agreement, :input_html => {class:'froala'}, label: false
+          = f.submit t('.save_contract'), :disable_with => 'Saving...', :class => 'btn btn-success'
+        .col-md-4
+          %label= t '.available_tokens'
+          .help-block
+            = t '.token_instructions'
+            %div{:style => 'font-family: monospace'} &#123;&#123;proposal_total&#125;&#125;
+          .well
+            %dl
+              %dt
+                %code &#123;&#123;customer_first_name&#125;&#125;
+              %dd= t '.tokens.customer_first_name'
+
+              %dt
+                %code &#123;&#123;customer_last_name&#125;&#125;
+              %dd= t '.tokens.customer_last_name'
+
+              %dt
+                %code &#123;&#123;customer_address&#125;&#125;
+              %dd= t '.tokens.customer_address'
+
+              %dt
+                %code &#123;&#123;customer_phone_number&#125;&#125;
+              %dd= t '.tokens.customer_phone_number'
+
+              %dt
+                %code &#123;&#123;contractor_first_name&#125;&#125;
+              %dd= t '.tokens.contractor_first_name'
+
+              %dt
+                %code &#123;&#123;contractor_last_name&#125;&#125;
+              %dd= t '.tokens.contractor_last_name'
+
+              %dt
+                %code &#123;&#123;contractor_phone_number&#125;&#125;
+              %dd= t '.tokens.contractor_phone_number'
+
+              %dt
+                %code &#123;&#123;proposal_total&#125;&#125;
+              %dd= t '.tokens.proposal_total'
+
+              %dt
+                %code &#123;&#123;proposal_notes&#125;&#125;
+              %dd= t '.tokens.proposal_notes'
+
+              %dt
+                %code &#123;&#123;expected_start_date&#125;&#125;
+              %dd= t '.tokens.expected_start_date'
+
+              %dt
+                %code &#123;&#123;expected_end_date&#125;&#125;
+              %dd= t '.tokens.expected_end_date'
+
+              %dt
+                %code &#123;&#123;your_billing_address&#125;&#125;
+              %dd= t '.tokens.your_billing_address'
+
+              %dt
+                %code &#123;&#123;your_billing_city&#125;&#125;
+              %dd= t '.tokens.your_billing_city'
+
+              %dt
+                %code &#123;&#123;your_billing_state&#125;&#125;
+              %dd= t '.tokens.your_billing_state'
+
+
+          = link_to contract_manage_proposal_template_path(@proposal_template, :format => :pdf), :class => 'btn btn-default' do
+            %i.icon-file-pdf
+            = t '.view_pdf'

@@ -1,0 +1,58 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1= t 'nav.manage.reports'
+    = render 'report_title', title: :accounts_receivable
+.ibox
+  .ibox-content
+    .row
+      .col-xs-12.m-b-lg
+        = #split_button_filter t('shared.filter_by_employee'), :user, User.all
+        .pull-left= left_date_range_filter_button
+        %span.hidden-phone.pull-left
+          = split_button_filter(t('.filter_by_sales_person'), :sales_person, User.where('id in (?)',Proposal.where('job_id in (?)', Job.pluck(:id)).pluck(:sales_person_id)), :id, {})
+        
+        .clearfix
+    .row-fluid
+      - if @jobs
+        - accepted = 0
+        - received = 0
+        - balance = 0
+        %table.table.footable.table-striped
+          %thead
+            %tr
+              %th Job
+              %th Accepted Proposals
+              %th Received
+              %th Balance
+              %th Notes
+          %tbody
+            - @jobs.each do |job|
+              - accepted += job.approved_proposals_amount
+              - received += job.total_payments
+              - balance += job.approved_proposals_amount - job.total_payments
+              %tr
+                %td
+                  %strong= job.full_title
+                  %br
+                  = job.contact.name_and_address
+                %td= number_to_currency job.approved_proposals_amount
+                %td= number_to_currency job.total_payments
+                %td= number_to_currency job.approved_proposals_amount - job.total_payments
+                %td
+                  Starts:
+                  = job.date_of_first_job_schedule_entry
+                  %br
+                  = job.details
+            %tr
+              %td
+                %strong Totals:
+              %td
+                %strong= number_to_currency accepted
+              %td
+                %strong= number_to_currency received
+              %td
+                %strong= number_to_currency balance
+              %td
+
+    .row-fluid
+      %p This report shows accepted proposals. The date range filters by the first day the job is scheduled to start.

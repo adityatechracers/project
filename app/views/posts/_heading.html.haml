@@ -1,0 +1,5 @@
+%h1
+  Blog
+  - if can? :manage_cms, :admin
+    = link_to 'New Post', new_admin_post_path, :class => 'btn btn-success pull-right'
+    = link_to 'Manage Posts', admin_posts_path, :class => 'btn btn-spaced pull-right'

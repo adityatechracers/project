@@ -1,0 +1,6 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1!=t('nav.manage.crews')
+    .title!= breadcrumbs({t('nav.manage.crews') => manage_crews_path}, t('shared.new'))
+
+= render "manage/crews/form"

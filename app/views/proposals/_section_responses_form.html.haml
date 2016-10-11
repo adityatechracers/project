@@ -1,0 +1,41 @@
+%ul.proposal-section-list
+  - @proposal.section_responses.sort{|a,b| a.template_section.position <=> b.template_section.position}.each_with_index do |section, sindex|
+    %li.proposal-section-wrapper.m-t-lg
+      .widget-head-color-box{:style => "background-color:#{section.template_section.background_color};color:#{section.template_section.foreground_color};"}
+        %h3.black-heading.user-color
+          %span.black-heading-title
+            %span.section-position= "##{section.template_section.position}"
+            = section.template_section.name
+          .clearfix
+      .widget-text-box
+        .proposal-section-form-wrapper
+          = form.simple_fields_for :section_responses, section do |psf|
+            = psf.input :description, :input_html => {:class =>'froala', :rows => 4}
+            - if section.item_responses.any?
+              %table.table.footable.default.footable-loaded
+                %thead
+                  - if section.template_section.show_include_exclude_options
+                    %th.include_exclude_cell N/A
+                    %th.include_exclude_cell Include
+                    %th.include_exclude_cell Exclude
+                  %th Description
+                  %th Notes
+                %tbody
+                  - section.item_responses.each_with_index do |item, iindex|
+                    = psf.simple_fields_for :item_responses, item, :defaults => {:input_html => {:style => "margin-bottom:0px;"}} do |pif|
+                      %tr
+                        - if section.template_section.show_include_exclude_options
+                          - ["N/A","Include","Exclude"].each do |opt|
+                            %td.include_exclude_cell
+                              %input{:type => "radio",
+                                :name => "proposal[section_responses_attributes][#{sindex}][item_responses_attributes][#{iindex}][include_exclude_option]",
+                                :value => opt,
+                                :checked => item.include_exclude_option == opt ? "checked" : nil}
+                        %td
+                          = pif.input_field :name, :class => "input-medium span12"
+                          = pif.error :name
+                          = pif.input :proposal_template_item_id, :as => :hidden, :input_html => {:value => item.id} if @proposal.new_record?
+                        %td
+                          = pif.input_field :notes, :class => "span12",
+                              :value => item.notes ,:rows => 3
+                          %p= item.template_item.help_text

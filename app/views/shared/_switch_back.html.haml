@@ -1,0 +1,7 @@
+- if session[:become_last_id].present?
+  .alert.alert-warning
+    %p
+      %h5
+        You're working as <strong>#{current_user.name} (#{current_user.email})</strong>
+        of <strong>#{current_user.organization.name}</strong>.
+      = link_to 'Switch Back', switch_back_manage_user_path(session[:become_last_id]), class: 'btn btn-success'

@@ -1,0 +1,43 @@
+= content_for :home do
+  .container{:style => "padding-top:10px;padding-bottom:10px;"}
+    .row
+      .span12
+        != cb("Features", "Features Header")
+        %p= link_to "Get Started Today", new_user_registration_path, :class => "btn btn-large btn-success"
+  .feature-list.container-light.container-padded
+    .container
+      .row.row-buffered
+        .span3= image_tag('feature-leads.png', :class => 'feature-thumb')
+        .span9.feature-alt!= cb("Features", "Feature 1")
+      %hr
+      .row.row-buffered
+        .span9!= cb("Features", "Feature 2")
+        .span3= image_tag('feature-appointments.png', :class => 'feature-thumb')
+      %hr
+      .row.row-buffered
+        .span3= image_tag('feature-proposals.png', :class => 'feature-thumb')
+        .span9.feature-alt!= cb("Features", "Feature 3")
+      %hr
+      .row.row-buffered
+        .span9!= cb("Features", "Feature 4")
+        .span3= image_tag('feature-contract.png', :class => 'feature-thumb')
+      %hr
+      .row.row-buffered
+        .span3= image_tag('feature-jobs.png', :class => 'feature-thumb')
+        .span9.feature-alt!= cb("Features", "Feature 5")
+      %hr
+      .row.row-buffered
+        .span9!= cb("Features", "Feature 6")
+        .span3= image_tag('feature-timecards.png', :class => 'feature-thumb')
+      %hr
+      .row.row-buffered
+        .span3= image_tag('feature-expenses.png', :class => 'feature-thumb')
+        .span9.feature-alt!= cb("Features", "Feature 7")
+      %hr
+      .row.row-buffered
+        .span9!= cb("Features", "Feature 8")
+        .span3= image_tag('feature-reporting.png', :class => 'feature-thumb')
+      %hr
+      .row.row-buffered
+        .span3= image_tag('feature-mobile.png', :class => 'feature-thumb')
+        .span9.feature-alt!= cb("Features", "Feature 9")

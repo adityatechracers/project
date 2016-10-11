@@ -1,0 +1,15 @@
+= hform_for [:admin, @post] do |f|
+  = f.input :title
+  = f.input :meta_title, :input_html => {:class => "span6"}
+  = f.input :meta_description, :input_html => {:rows => "4", :class => "span6"}
+  .hr-line-dashed
+  = f.input :summary, input_html: { class:'froala' }, wrapper: :simple
+  = f.input :description, input_html: { class:'froala' }, wrapper: :simple
+  .hr-line-dashed
+  = f.input :slug, :disabled => true
+  = f.input :published_date, :as => :datetime_picker
+  .hr-line-dashed
+  .form-actions.row
+    .col-md-8.col-md-offset-4
+      = submit_tag 'Save', :disable_with => 'Saving...', :class => "btn btn-success m-r-xs"
+      = link_to 'Cancel', admin_posts_path, :class => 'btn btn-default'

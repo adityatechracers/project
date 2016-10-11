@@ -1,0 +1,14 @@
+development:
+  api_key: your_key_here
+  
+test:
+  api_key: your_key_here
+
+production:
+  api_key: your_key_here
+
+staging:
+  api_key: your_key_here
+
+theme:
+  api_key: your_key_here

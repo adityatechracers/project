@@ -1,0 +1,45 @@
+.row-fluid
+  .ibox.page-header
+    .ibox-title
+      %h1.title.pull-left= t 'nav.jobs.payments'
+      = link_to t('.new_payment'), new_payment_path, :class => 'btn btn-success pull-right'
+      .clearfix
+    .ibox-content
+      = left_date_range_filter_button
+      .btn-group.pull-left
+        = active_filter_for t('.filters.all'), payments_path, :root => true, :class => 'btn btn-default'
+        = active_filter_for t('.filters.today'), :today, :class => 'btn btn-default'
+        = active_filter_for t('.filters.this_week'), :current_week, :class => 'btn btn-default'
+        = active_filter_for t('.filters.this_year'), :current_year, :class => 'btn btn-default'
+
+      .clearfix
+
+  .row-fluid
+    .ibox
+      .ibox-content
+        - if @payments.any?
+          .span12.scrolled
+            %table.table.table-striped.footable
+              %thead
+                %tr.footable
+                  %th= t '.table_headings.job'
+                  %th= t '.table_headings.notes'
+                  %th= t '.table_headings.payment_type'
+                  %th= t '.table_headings.amount'
+                  %th= t '.table_headings.date_paid'
+                  %th= t '.table_headings.actions'
+              %tbody
+                - @payments.each do |p|
+                  %tr
+                    %td= link_to p.job.full_title, contact_path(p.job.contact)
+                    %td= p.notes
+                    %td= p.payment_type
+                    %td= number_to_currency(p.amount)
+                    %td= l p.date_paid
+                    %td.action-cell= render 'shared/action_buttons', resource: p
+          = paginate @payments, :theme => "bootstrap"
+        - else
+          .hero-unit
+            %h3= t '.no_payments.heading'
+            %p= t '.no_payments.body'
+            = link_to t('.no_payments.add_a_payment'), new_payment_path, :class => "btn btn-success btn-large" if can? :create, Payment

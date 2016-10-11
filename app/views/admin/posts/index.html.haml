@@ -1,0 +1,21 @@
+.ibox
+  .ibox-title
+    %h3.inline-btn.m-b-sm
+      Blog
+      - if can? :manage_cms, :admin
+        = link_to "New Post", new_admin_post_path, :class => "btn btn-success pull-right"
+  .ibox-content
+    %table.table.table-striped.footable
+      %thead
+        %tr
+          %th Name
+          %th Published Date
+          %th Last Updated
+          %th Actions
+      %tbody
+        - @posts.each do |p|
+          %tr
+            %td= link_to p.title, show_posts_path(p.slug)
+            %td= l p.published_date
+            %td= l p.updated_at
+            %td= ac_buttons(p)

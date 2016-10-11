@@ -1,0 +1,10 @@
+%td
+  %strong #{t '.table_headings.totals'}:
+%td= number_to_currency @totals[:estimated_amount]
+%td= number_to_currency @totals[:payments]
+%td{ 'data-alt-value' => percent_of_job_estimate(@totals[:payout], @totals[:estimated_amount]) }
+  = number_to_currency @totals[:payout]
+%td{ 'data-alt-value' => percent_of_job_estimate(@totals[:expenses], @totals[:estimated_amount]) }
+  = number_to_currency @totals[:expenses]
+%td{ 'data-alt-value' => percent_of_job_estimate(@totals[:profit], @totals[:estimated_amount]) }
+  = number_to_currency @totals[:profit]

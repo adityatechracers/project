@@ -1,0 +1,42 @@
+.widget
+  .widget-header
+    = render 'report_title', title: :job_cost
+
+    %ul.nav.nav-tabs.pull-right
+
+      %li{ class: @view == 'crew' ? 'active' : '' }
+        = link_to 'By Crew', params.merge(view: 'crew')
+
+      %li{ class: @view == 'job' ? 'active' : '' }
+        = link_to 'By Job', params.merge(view: 'job')
+
+      %li{ class: @view == 'totals' ? 'active' : '' }
+        = link_to 'Totals', params.merge(view: 'totals')
+
+    %form#year-form.form.form-inline.pull-right{ method: "GET" }
+      %input(type="hidden" name="view" value="#{@view}")
+      %label
+        Year
+        %select.input-small(name="year")= options_for_select(@years, @year)
+
+  .widget-body
+    .row-fluid
+      - @report_data.each do |data_table|
+        %h4= data_table[:label]
+        %table.table.table-condensed.table-striped
+          %tr
+            %th Month
+            - data_table[:total].each do |k, v|
+              %th= k
+
+          - data_table[:months].each do |month_name, month_data|
+            %tr
+              %td= month_name
+              - month_data.each do |k, v|
+                %td= number_to_currency(v)
+
+          %tr
+            %th Total
+            - data_table[:total].each do |k, v|
+              %th= number_to_currency(v)
+        %hr

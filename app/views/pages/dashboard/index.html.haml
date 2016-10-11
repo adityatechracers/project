@@ -1,0 +1,177 @@
+.row-fluid
+  .alert.alert-block
+    %button.close{"data-dismiss" => "alert", :type => "button"} ×
+    .row-fluid
+      %h4 13 days left on your free trial
+      %br
+      %a.btn.btn-success(href='subscription') Subscribe Now
+.row-fluid
+  .span6
+    %h3 Ready to get started?
+    %p
+      Some text filler here to explain the lead process.  Donec eget velit sed
+      tellus venenatis hendrerit. Maecenas vitae varius dolor. Fusce id sapien
+      ipsum. Nunc vel libero sem.
+    %a.btn.btn-success Add your first Lead
+  .span6.pull-right
+    %h3 Set up your appointment availability
+    %p
+      We allow you to configure when you are free to see prospective
+      customers and review their jobs.  Configure your availability in your
+      appointment
+      %a{:href=>"#"}calendar.
+    %a.btn.btn-success Add Availability
+  .clearfix
+  %hr
+
+.row-fluid.row-buffered
+  .span6
+    %h2 Leads Called This Week
+    .wrapper
+      %p.lead Michael Henry
+      %ul.progress-statistics
+        %li
+          .details
+            %span
+              This Week
+            %span.pull-right
+              47%
+          .progress.progress-solid
+            .bar{:style => "width: 47%;"}
+        %li
+          .details
+            %span
+              Last Week
+            %span.pull-right
+              97%
+          .progress.progress-solid
+            .bar{:style => "width: 97%;"}
+        %li
+          .details
+            %span
+              Average
+            %span.pull-right
+              72%
+          .progress.progress-solid.progress-success
+            .bar{:style => "width: 72%;"}
+      .wrapper
+      %p.lead Buster Bluth
+      %ul.progress-statistics
+        %li
+          .details
+            %span
+              This Week
+            %span.pull-right
+              47%
+          .progress.progress-solid
+            .bar{:style => "width: 47%;"}
+        %li
+          .details
+            %span
+              Last Week
+            %span.pull-right
+              97%
+          .progress.progress-solid
+            .bar{:style => "width: 97%;"}
+        %li
+          .details
+            %span
+              Average
+            %span.pull-right
+              72%
+          .progress.progress-solid.progress-success
+            .bar{:style => "width: 72%;"}
+  .span6.pull-right
+    %h2 Scheduled Estimates
+    .wrapper
+      %p.lead Michael Henry
+      %ul.progress-statistics
+        %li
+          .details
+            %span
+              This Week
+            %span.pull-right
+              47%
+          .progress.progress-solid
+            .bar{:style => "width: 47%;"}
+        %li
+          .details
+            %span
+              Last Week
+            %span.pull-right
+              97%
+          .progress.progress-solid
+            .bar{:style => "width: 97%;"}
+        %li
+          .details
+            %span
+              Average
+            %span.pull-right
+              72%
+          .progress.progress-solid.progress-success
+            .bar{:style => "width: 72%;"}
+    .wrapper
+      %p.lead Michael Henry
+      %ul.progress-statistics
+        %li
+          .details
+            %span
+              This Week
+            %span.pull-right
+              47%
+          .progress.progress-solid
+            .bar{:style => "width: 47%;"}
+        %li
+          .details
+            %span
+              Last Week
+            %span.pull-right
+              97%
+          .progress.progress-solid
+            .bar{:style => "width: 97%;"}
+        %li
+          .details
+            %span
+              Average
+            %span.pull-right
+              72%
+          .progress.progress-solid.progress-success
+            .bar{:style => "width: 72%;"}
+.row-fluid
+  .span12
+    .widget.goal-charts
+      .widget-header
+        .title Goals
+        %span.tools
+          = link_to("Manage Goals","#",:class => "widget-tools-textlink")
+          %a.fs1{"aria-hidden" => "true", "data-icon" => "", "data-original-title" => ""}
+      .widget-body{:style => "overflow:hidden;"}
+        .span3
+          %h4 Leads/Goal
+          .goal-chart#leads-chart{"data-percent" => 61} 61%
+          %p Leads to date to this year's goals.
+        .span3
+          %h4 Estimates/Goal
+          .goal-chart#estimates-chart{"data-percent" => 47} 47%
+          %p Completed estimates to goals.
+        .span3
+          %h4 Sales/Goal
+          .goal-chart#sales-chart{"data-percent" => 87} 87%
+          %p Sold jobs to goal.
+        .span3
+          %h4 Production/Goal
+          .goal-chart#production-chart{"data-percent" => 22} 22%
+          %p Completed jobs to goal.
+.row-fluid
+  .span12
+    .widget.quote-widget
+      .widget-header
+        .title Quote of the Day
+      .widget-body
+        %p
+          %i.icon-left-quote
+          The greater danger for most of us lies not in setting our aim too
+          high and falling short; but in setting our aim too low, and achieving
+          our mark.
+          %i.icon-right-quote
+        %p.quote-attribution - Michelangelo

@@ -1,0 +1,7 @@
+.row-fluid
+  .widget
+    .widget-header
+      .title
+        != breadcrumbs({t('nav.jobs.main') => jobs_path}, {t('nav.jobs.schedule') => schedule_jobs_path}, t('shared.new'))
+    .widget-body
+      = render 'form'

@@ -1,0 +1,8 @@
+- if flash[:notice]
+  .alert{:style => "margin-top:20px;margin-bottom:-25px;"}
+    %button.close{"data-dismiss" => "alert"} ×
+    =flash[:notice]
+- if flash[:error]
+  .alert.alert-danger{:style => "margin-top:20px;margin-bottom:-25px;"}
+    %button.close{"data-dismiss" => "alert"} ×
+    =flash[:error]

@@ -1,0 +1,2 @@
+module ProposalSectionResponsesHelper
+end

@@ -1,0 +1,80 @@
+.row-fluid
+  .widget#communication-list-widget
+    .widget-header
+      .title Communications
+      .btn-group.pull-right
+        = link_to communications_path, :class => 'btn active' do
+          %i.icon-list
+          %span.hidden-phone= t '.list'
+        = link_to schedule_communications_path, :class => 'btn' do
+          %i.icon-calendar
+          %span.hidden-phone= t '.schedule'
+      = link_to schedule_communications_path(:open_modal => true), :class => "btn btn-success pull-right", :style => "margin-right:10px;" do
+        %span.hidden-phone= t '.schedule_communication'
+        %span.visible-phone
+          %i.icon-plus
+    .widget-body
+      .well
+        .btn-group.pull-left(data-toggle="buttons-radio")
+          = active_link_to t(".filters.all"), params.except(:filter), :class => "btn", :active => /^(?!.*filter=).*$/
+          = active_link_to t(".filters.planned"), params.merge(:filter => "planned"), :class => "btn", :active => /filter=planned/
+          = active_link_to t(".filters.records"), params.merge(:filter => "records"), :class => "btn", :active => /filter=records/
+        = date_range_filter_button
+        = split_button_filter(t('.filter_by_job'), :job, @communications.map{ |c| c.job }, :id, :full_title)
+        .clearfix
+      - if Communication.any?
+        .span12.scrolled
+          %table.table.table-striped.table-bordered
+            %thead
+              %tr
+                %th= t '.table_headings.contact_details'
+                %th= t '.table_headings.employee'
+                %th= t '.table_headings.note'
+                %th= t '.table_headings.outcome'
+                %th= t '.table_headings.next_step'
+                %th= t '.table_headings.actions'
+            %tbody
+              - @communications.each do |c|
+                %tr
+                  %td
+                    %span{:style => "white-space:nowrap;display:block;"}!= c.action_icon+" "+link_to(c.job.contact.name, contact_path(c.job.contact))
+                    - unless c.datetime.nil?
+                      %span.label(data-livestamp="#{c.datetime.to_i}")
+
+                  %td= c.user.present? ? c.user.name : 'N/A'
+                  %td= c.details
+                  %td= c.outcome
+                  %td!= c.next_step_indicator
+                  %td
+                    .btn-group
+                      %button.btn.btn-mini.dropdown-toggle(data-toggle='dropdown')
+                        Action
+                        %span.caret
+                      %ul.dropdown-menu.pull-right
+                        %li= link_to(t('.actions.start_communication'), "#",{:class => "start-planned-communication-link", "data-commid" => c.id})
+                        %li= link_to(t('.actions.edit_communication'), edit_communication_path(c), :class => "edit-communication-link", :data => {:commid => c.id})
+                        %li= link_to(t('.actions.delete_communication'), communication_path(c), :method => "delete", :confirm => "Are you sure you want to delete this communication?")
+                        - unless c.job.nil? or c.job.contact.nil?
+                          %li= link_to(t('.actions.view_contact'), contact_path(c.job.contact))
+                          %li= link_to(t('.actions.edit_contact'), edit_contact_path(c.job.contact))
+                        - unless c.job.nil?
+                          %li= link_to(t('.actions.view_job'), job_path(c.job))
+                          %li= link_to(t('.actions.edit_job'), edit_job_path(c.job))
+
+          = paginate @communications, :theme => "bootstrap"
+        .clearfix
+      - else
+        .hero-unit
+          %h3 Your organization is not currently tracking any communications.
+          %p Did you know that CorkCRM can manage all communications between your organization and its business contacts?  Future conversations, known as <b>Planned Communications</b>, can be added at any time via the <a href='#{schedule_communications_path}'>Schedule View</a>, <a href='#{import_leads_path}'>imported</a> in tandem with leads inside a spreadsheet, or even scheduled in the middle of a call with a client.  When the predefined date and time rolls around, Cork will gently remind you by launching a window in which notes and details of the conversation can be optionally stored.  After this process has taken place, the Planned Communication becomes a <b>Communication Record</b> and is archived so that its contents can be called upon at a later date.
+          = link_to "Plan a Communication", schedule_communications_path(:open_modal => true), :class => "btn btn-success btn-large" if can? :create, Communication
+
+- if params.has_key? :start
+  :javascript
+    window.start_param = #{params[:start]}
+- if params.has_key? :start_new
+  :javascript
+    window.start_new_param = #{params[:job_id]}
+- if params.has_key? :plan
+  :javascript
+    window.plan_param = #{params[:job_id]}

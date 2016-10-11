@@ -1,0 +1,26 @@
+%li.col-xs-12{:data => {:section => section.id}}
+  .widget-head-color-box.col-xs-12{:style => "color: #{section.template_section.foreground_color}; background: #{section.template_section.background_color};"}
+    %h3
+      .black-heading-title= "##{section.template_section.position} #{section.template_section.name}"
+      .clearfix
+  .widget-text-box.col-xs-12.m-b
+    .fr-view
+      %p= section.description.html_safe
+    - if section.item_responses.any? { |ir| ir.include_exclude_option != 'N/A' && (ir.name.present? || ir.notes.present?) }
+      %table.table.table-condensed
+        %thead
+          %tr
+            - if section.template_section.show_include_exclude_options
+              %th.include_exclude_cell
+            %th Description
+            %th Notes
+        %tbody
+          - section.item_responses.each do |i|
+            - unless i.include_exclude_option == 'N/A'
+              %tr
+                - if section.template_section.show_include_exclude_options
+                  %td.include_exclude_cell
+                    - if i.include_exclude_option.present?
+                      = t("manage.proposal_template_items.options.#{i.include_exclude_option.downcase}")
+                %td= i.name
+                %td= simple_format i.notes

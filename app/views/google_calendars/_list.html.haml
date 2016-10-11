@@ -1,0 +1,14 @@
+.modal-dialog
+  .modal-content
+    =form_tag choose_google_calendars_path, :id => 'google_settings_form' do
+      .modal-header
+        %button.close(data-dismiss='modal') &times;
+        %h3= 'Share Google Calendars'
+
+      .modal-body
+        #error_message
+        =render "google_calendars/table"
+        =hidden_field_tag "user_id", current_user.id
+
+      .modal-footer
+        =submit_tag t('shared.save'), :class => 'btn btn-success'

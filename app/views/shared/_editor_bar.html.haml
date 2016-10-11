@@ -1,0 +1,8 @@
+#cms_bar.navbar.navbar-fixed-bottom.hide
+  .navbar-inner{:style => "padding:5px 10px;"}
+    %span.brand{:style => "margin-top:0px;opacity:0.75;"}
+      %i.icon-quill.cms-change-indicator{:style => "margin-right:8px;"}
+      %span.cms-change-text Inline Editing Enabled
+    .pull-right
+      = link_to "Revert", "#", :class => "btn btn-danger", :id => "cms_bar_revert"
+      = link_to "Save Changes", "#", :class => "btn btn-success", :style => "margin-left:8px;", :id => "cms_bar_save"

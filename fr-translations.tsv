@@ -1,0 +1,825 @@
+URL	English	French
+http://corkcrm.com/users/sign_in	Login	Connexion
+http://corkcrm.com/users/sign_in	Fill out the form below to login	Remplissez le formulaire ci-dessous pour vous connecter 
+http://corkcrm.com/users/sign_in	Email	Courriel
+http://corkcrm.com/users/sign_in	Password	Mot de passe
+http://corkcrm.com/users/sign_in	Remember me	Se rappeler de moi
+http://corkcrm.com/users/sign_in	Forgot password?	Avez-vous oublié votre mot de passe ?
+http://corkcrm.com/users/sign_in		
+http://corkcrm.com/users/sign_up	first name	Prénom
+http://corkcrm.com/users/sign_up	last name	Nom
+http://corkcrm.com/users/sign_up	email	Courriel
+http://corkcrm.com/users/sign_up	phone	Téléphone
+http://corkcrm.com/users/sign_up	password	Mot de passe
+http://corkcrm.com/users/sign_up	password confirmation 	Confirmation du mot de passe
+http://corkcrm.com/users/sign_up	organization name	Nom de l'organisation
+http://corkcrm.com/users/sign_up	I agree to the terms of service	J'accepte les conditions d'utilisation
+http://corkcrm.com/users/sign_up	start your free trial	Commencer votre période d'essai gratuit
+http://corkcrm.com/users/sign_up	sign in	Inscription
+http://corkcrm.com/users/sign_up	forgot your password?	Avez-vous oublié votre mot de passe ?
+		
+http://corkcrm.com/dashboard	Leads	Clients potentiels
+http://corkcrm.com/dashboard	Appointments	Rendez-vous
+http://corkcrm.com/dashboard	Proposals	Soumissions  
+http://corkcrm.com/dashboard	Jobs	Projets
+http://corkcrm.com/dashboard	Dashboard	Tableau de bord
+http://corkcrm.com/dashboard	Owner	Propriétaire
+http://corkcrm.com/dashboard	Contacts	Contacts
+http://corkcrm.com/dashboard	Jobs created this week	Projets créés cette semaine
+http://corkcrm.com/dashboard	Leads added this week	Clients potentiels ajoutés cette semaine
+http://corkcrm.com/dashboard	Proposals made this week	Soumissions complétées cette semaine
+http://corkcrm.com/dashboard	Estimates scheduled this week	Estimations planifiées cette semaine
+http://corkcrm.com/dashboard	My subscription	Mon abonnement
+		
+http://corkcrm.com/leads	Import	Importer
+http://corkcrm.com/leads	New	Nouveau
+http://corkcrm.com/leads	Sources	Sources
+http://corkcrm.com/leads	Communication	Communication
+http://corkcrm.com/leads	Active	Actif
+http://corkcrm.com/leads	Dead	Nul
+http://corkcrm.com/leads	Filter by date	Filtrer par date
+http://corkcrm.com/leads	Today	        Aujourd'hui
+http://corkcrm.com/leads	Yesterday	    Hier
+http://corkcrm.com/leads	Last 7 Days	    Les 7 derniers jours
+http://corkcrm.com/leads	Last 30 Days	Les 30 derniers jours
+http://corkcrm.com/leads	This month	    Ce mois-ci
+http://corkcrm.com/leads	Last month	    Le mois dernier
+http://corkcrm.com/leads	Custom range	Éventail personnalisé
+http://corkcrm.com/leads	From	De
+http://corkcrm.com/leads	To	À
+http://corkcrm.com/leads	Apply	Soumettre
+http://corkcrm.com/leads	Clear	Effacer
+http://corkcrm.com/leads	Filter by Lead Source	Filtrer par source
+http://corkcrm.com/leads	Import	Importer
+http://corkcrm.com/leads	Export	Exporter
+http://corkcrm.com/leads	Embed	Intégré
+http://corkcrm.com/leads	Print	Imprimer
+http://corkcrm.com/leads	Contact	Contact
+http://corkcrm.com/leads	Lead Details	Détails du client potentiel
+http://corkcrm.com/leads	Next Communication	Prochaine communication
+http://corkcrm.com/leads	Next appointment	Prochain rendez-vous
+http://corkcrm.com/leads	History	Historique
+http://corkcrm.com/leads	Actions	Actions
+http://corkcrm.com/leads	 “N/A” (this means not applicable)	N/A (Non applicable)
+http://corkcrm.com/leads	Schedule Appointment	Planifier un rendez-vous
+http://corkcrm.com/leads	Communicate	Communiquer
+http://corkcrm.com/leads	Add Proposal	Ajouter une soumission
+http://corkcrm.com/leads	View Lead	Voir client potentiel
+http://corkcrm.com/leads	Edit Lead	Modifier client potentiel
+http://corkcrm.com/leads	Mark as Dead Lead	Marquer comme client potentiel nul
+http://corkcrm.com/leads	Communicate	Communiquer
+http://corkcrm.com/leads	Start New	Créer nouveau
+http://corkcrm.com/leads	Plan Future	Plan futur
+http://corkcrm.com/leads	Details	Détails 
+http://corkcrm.com/leads	Action	Action 
+http://corkcrm.com/leads	Call	Appeler
+http://corkcrm.com/leads	Email	Courriel
+http://corkcrm.com/leads	Communication history	Historique de communication
+http://corkcrm.com/leads	No past communications on this lead	Aucune communication antérieure avec ce client potentiel
+http://corkcrm.com/leads	Notes	Notes
+http://corkcrm.com/leads	Outcome	Résultat
+http://corkcrm.com/leads	Answered	Répondu
+http://corkcrm.com/leads	No answer	Aucune réponse
+http://corkcrm.com/leads	Left Message	Message laissé
+http://corkcrm.com/leads	Next Step	Prochaine étape
+http://corkcrm.com/leads	Dead Lead	Client potentiel nul
+http://corkcrm.com/leads	Call back on…	Rappeler le…
+http://corkcrm.com/leads	Call back around…	Rappeler autour du…
+http://corkcrm.com/leads	Schedule Appointment	Planifier un rendez-vous
+http://corkcrm.com/leads	Schedule Job	Planifier un projet
+http://corkcrm.com/leads	Cancel	Annuler
+http://corkcrm.com/leads	Complete	Compléter
+http://corkcrm.com/leads	Today	Aujourd'hui
+http://corkcrm.com/leads	Monday	Lundi
+http://corkcrm.com/leads	Tuesday	Mardi
+http://corkcrm.com/leads	Wednesday	Mercredi
+http://corkcrm.com/leads	Thursday	Jeudi
+http://corkcrm.com/leads	Friday	Vendredi
+http://corkcrm.com/leads	Saturday	Samedi
+http://corkcrm.com/leads	Sunday	Dimanche
+		
+http://corkcrm.com/appointments	Appointments	Rendez-vous
+http://corkcrm.com/appointments	add an appointment	Ajouter un rendez-vous
+http://corkcrm.com/appointments	everyone	Tous
+http://corkcrm.com/appointments	owner	Propriétaire
+http://corkcrm.com/appointments	specific employees	Employés spécifiques
+http://corkcrm.com/appointments	today	Aujourd'hui
+http://corkcrm.com/appointments	september	Septembre
+http://corkcrm.com/appointments	october	Octobre
+http://corkcrm.com/appointments	november	Novembre
+http://corkcrm.com/appointments	december	Décembre
+http://corkcrm.com/appointments	january	Janvier
+http://corkcrm.com/appointments	february	Février
+http://corkcrm.com/appointments	march	Mars
+http://corkcrm.com/appointments	april	Avril
+http://corkcrm.com/appointments	may	Mai
+http://corkcrm.com/appointments	june	Juin
+http://corkcrm.com/appointments	july	Juillet
+http://corkcrm.com/appointments	august	Août
+http://corkcrm.com/appointments	export calendar	Exporter le calendrier
+http://corkcrm.com/appointments	abbreviation for september (i.e. "Sep")	Sept.
+http://corkcrm.com/appointments	abbreviation for october (i.e. "Oct")	Oct.
+http://corkcrm.com/appointments	abbreviation for november	Nov.
+http://corkcrm.com/appointments	abbreviation for december	Déc.
+http://corkcrm.com/appointments	abbreviation for january	Jan.
+http://corkcrm.com/appointments	abbreviation for february	Fév.
+http://corkcrm.com/appointments	abbreviation for march	Mar.
+http://corkcrm.com/appointments	abbreviation for april	Avr.
+http://corkcrm.com/appointments	abbreviation for may	Mai
+http://corkcrm.com/appointments	abbreviation for june	Juin
+http://corkcrm.com/appointments	abbreviation for july	Jui.
+http://corkcrm.com/appointments	abbreviation for august	Août
+http://corkcrm.com/appointments	month	Mois
+http://corkcrm.com/appointments	week	Semaine
+http://corkcrm.com/appointments	day	Jour
+http://corkcrm.com/appointments	all-day	Toute la journée
+http://corkcrm.com/appointments	job	Projet
+http://corkcrm.com/appointments	user	Utilisateur
+http://corkcrm.com/appointments	start time	Début des travaux
+http://corkcrm.com/appointments	end time	Fin des travaux
+http://corkcrm.com/appointments	notes	Notes
+http://corkcrm.com/appointments	send reminder	Envoyer rappel
+http://corkcrm.com/appointments	email customer 48 hours before the appointment	Envoyer courriel au client 48 heures avant le rendez-vous
+http://corkcrm.com/appointments	cancel	Annuler
+http://corkcrm.com/appointments	save	Sauvegarder
+http://corkcrm.com/appointments	Copy and paste the following url into your calendar application:	Copier et coller l'adresse URL suivante dans votre calendrier
+http://corkcrm.com/appointments	In Google Calendar, add this under Other calendars → Add by URL 	Dans le Calendrier Google, ajouter ceci sous Autres Calendriers --> Ajouter par l'URL
+http://corkcrm.com/appointments	In Calendar.app on a Mac, add this under File → New Calendar Subscription...	Dans l'application Calendrier sur un Mac, ajouter ce fichier sous --> Nouvelle inscription au Calendrier
+http://corkcrm.com/appointments	Or download the .ics file: 	Ou télécharger le fichier .ics
+http://corkcrm.com/appointments	close	Fermer
+http://corkcrm.com/appointments	Leave blank to create an availability	Laisser vide pour créer une disponibilité
+http://corkcrm.com/appointments	time	Temps
+http://corkcrm.com/appointments	hour 	Heure
+http://corkcrm.com/appointments	minute 	Minute
+http://corkcrm.com/appointments	now	Maintenant
+http://corkcrm.com/appointments	done	Terminé
+		
+http://corkcrm.com/proposals	Proposals	Soumissions
+http://corkcrm.com/proposals	accepted	Acceptée
+http://corkcrm.com/proposals	declined	Refusée
+http://corkcrm.com/proposals	new proposal	Nouvelle soumission
+http://corkcrm.com/proposals	#	# (numéro)
+http://corkcrm.com/proposals	Proposal	Soumission 
+http://corkcrm.com/proposals	Contact	Contact
+http://corkcrm.com/proposals	Budget	Budget
+http://corkcrm.com/proposals	Assigned to	Assigné à
+http://corkcrm.com/proposals	Next communications	Prochaines communications
+http://corkcrm.com/proposals	Actions	Actions
+http://corkcrm.com/proposals	view contract	Voir contrat
+http://corkcrm.com/proposals	email proposal	Envoyer la soumission par courriel
+http://corkcrm.com/proposals	view contract portal	Voir portail du contrat
+http://corkcrm.com/proposals	update contact details	Mettre à jour les informations du client
+http://corkcrm.com/proposals	communicate	Communiquer
+http://corkcrm.com/proposals	start new	Commencer nouvelle
+http://corkcrm.com/proposals	plan future	Plan futur
+http://corkcrm.com/proposals	issue proposal	Émettre soumission
+http://corkcrm.com/proposals	mark as declined	Marquer comme refusée
+http://corkcrm.com/proposals	start communication	Commencer communication
+http://corkcrm.com/proposals	details	Détails
+http://corkcrm.com/proposals	communication history	Historique des communications
+http://corkcrm.com/proposals	no past communication on this lead	Aucune communication antérieure pour ce client potentiel
+http://corkcrm.com/proposals	action	Action 
+http://corkcrm.com/proposals	call	Appeler
+http://corkcrm.com/proposals	email	Envoyer courriel
+http://corkcrm.com/proposals	notes	Notes
+http://corkcrm.com/proposals	outcome	Résultat
+http://corkcrm.com/proposals	answered	Répondu
+http://corkcrm.com/proposals	no answer	Aucune réponse
+http://corkcrm.com/proposals	left message	Message laissé
+http://corkcrm.com/proposals	next step	Prochaine étape
+http://corkcrm.com/proposals	dead lead	Client potentiel nul
+http://corkcrm.com/proposals	call back on…	Rappeler le…
+http://corkcrm.com/proposals	call back around…	Rappeler autour du…
+http://corkcrm.com/proposals	schedule appointment 	Planifier un rendez-vous
+http://corkcrm.com/proposals	schedule job	Planifier un projet
+http://corkcrm.com/proposals	cancel	Annuler
+http://corkcrm.com/proposals	complete	Compléter
+http://corkcrm.com/proposals	future communication	Communication à venir
+http://corkcrm.com/proposals	communication method	Méthode de communication
+http://corkcrm.com/proposals	date & time	Date et heure
+http://corkcrm.com/proposals	exact time	Heure exacte
+http://corkcrm.com/proposals	show this as an exact time rather than an approximate time.	Montrer comme un temps exact plutôt qu'un temps approximatif
+http://corkcrm.com/proposals	cancel	Annuler
+http://corkcrm.com/proposals	save	Sauvegarder
+http://corkcrm.com/proposals	untitled job	Projet sans titre
+http://corkcrm.com/proposals	next 	Suivant
+http://corkcrm.com/proposals	last	Précédent
+http://corkcrm.com/proposals	exterior painting proposal	Soumission de peinture extérieure
+http://corkcrm.com/proposals	interior painting proposal	Soumission de peinture intérieure
+http://corkcrm.com/proposals	deck staining proposal	Soumission de teinture de patio
+http://corkcrm.com/proposals	change order	Changer la commande
+		
+http://corkcrm.com/leads/import	upload a leads spreadsheet	Télécharger une liste de clients potentiels
+http://corkcrm.com/leads/import	The import only accepts .csv files. If you are using Excel, just save your file as a CSV file to import it into the system. The first row in your CSV must be a header row with the column names describing the data.	L’importation accepte seulement les fichiers .csv. Si vous utilisez Excel, sauvegardez votre fichier comme un fichier CSV pour l’importer dans le système. La première rangée dans votre CSV doit être une rangée d’en-tête avec les noms des colonnes qui décrivent les données.
+http://corkcrm.com/leads/import	choose file	Choisir un fichier
+		
+http://corkcrm.com/contacts/new_lead	name	Nom
+http://corkcrm.com/contacts/new_lead	company	Compagnie
+http://corkcrm.com/contacts/new_lead	phone number	Numéro de téléphone
+http://corkcrm.com/contacts/new_lead	email	Courriel
+http://corkcrm.com/contacts/new_lead	street address	Adresse
+http://corkcrm.com/contacts/new_lead	street address 2	Adresse secondaire
+http://corkcrm.com/contacts/new_lead	Postal code	Code postal
+http://corkcrm.com/contacts/new_lead	City	Ville
+http://corkcrm.com/contacts/new_lead	State/ Region	Province/Région
+http://corkcrm.com/contacts/new_lead	Country	Pays
+http://corkcrm.com/contacts/new_lead	lead details 	Information du client potentiel
+http://corkcrm.com/contacts/new_lead	lead source	Source du client potentiel
+http://corkcrm.com/contacts/new_lead	details 	Détails
+http://corkcrm.com/contacts/new_lead	send welcome email	Envoyer courriel de Bienvenue
+http://corkcrm.com/contacts/new_lead	When checked, an email is sent to contact after saving lead	Lorsque vérifié, un courriel est envoyé au contact après la sauvegarde du client potentiel
+http://corkcrm.com/contacts/new_lead	save lead	Sauvegarder client potentiel
+http://corkcrm.com/contacts/new_lead	plan next communication?	Planifier prochaine communication ?
+http://corkcrm.com/contacts/new_lead	on 	Ouvert
+http://corkcrm.com/contacts/new_lead	off	Fermé
+		
+http://corkcrm.com/leads/sources	Web form	Formulaire en ligne
+http://corkcrm.com/leads/sources	cold call	Appel à froid
+http://corkcrm.com/leads/sources	referral	Référence
+http://corkcrm.com/leads/sources	name	Nom
+http://corkcrm.com/leads/sources	leads 	Clients potentiels
+http://corkcrm.com/leads/sources	actions	Actions
+http://corkcrm.com/leads/sources	edit	Modifier
+http://corkcrm.com/leads/sources	delete	Supprimer
+http://corkcrm.com/leads/sources	add lead source	Ajouter la source du client potentiel
+http://corkcrm.com/leads/sources	name	Nom
+http://corkcrm.com/leads/sources	save	Sauvegarder
+http://corkcrm.com/leads/sources	your lead source was successfully added.	La source de votre client potentiel a été ajoutée avec succès
+http://corkcrm.com/leads/sources	your lead source was successfully deleted.	La source de votre client potentiel a été supprimée avec succès
+		
+http://corkcrm.com/communications	schedule a communication 	Planifier une communication
+http://corkcrm.com/communications	communications	Communications
+http://corkcrm.com/communications	list 	Liste
+http://corkcrm.com/communications	schedule	Planifier  
+http://corkcrm.com/communications	all 	Tous
+http://corkcrm.com/communications	planned	Planifiés
+http://corkcrm.com/communications	records	Rapports
+http://corkcrm.com/communications	filter by date	Filtrer par date
+http://corkcrm.com/communications	filter by job	Filtrer par projet
+http://corkcrm.com/communications	contact details	Informations du contact
+http://corkcrm.com/communications	employee	Employé
+http://corkcrm.com/communications	note	Note
+http://corkcrm.com/communications	outcome	    Résultat
+http://corkcrm.com/communications	next steps	Prochaines étapes
+http://corkcrm.com/communications	actions	    Actions
+http://corkcrm.com/communications	start communication	Débuter communication
+http://corkcrm.com/communications	edit communication	    Modifier communication
+http://corkcrm.com/communications	delete communication	Supprimer communication
+http://corkcrm.com/communications	view contact	        Voir contact
+http://corkcrm.com/communications	edit contact	        Modifier contact
+http://corkcrm.com/communications	view job	            Voir projet
+http://corkcrm.com/communications	edit job	            Modifier projet
+		
+http://corkcrm.com/jobs/4/edit	title	Titre
+http://corkcrm.com/jobs/4/edit	contact	Contact
+http://corkcrm.com/jobs/4/edit	start date	Date de début
+http://corkcrm.com/jobs/4/edit	end date	Date de fin
+http://corkcrm.com/jobs/4/edit	crew	Équipe
+http://corkcrm.com/jobs/4/edit	additional crew	Équipe additionnelle
+http://corkcrm.com/jobs/4/edit	details	Détails
+http://corkcrm.com/jobs/4/edit	estimated amount	Montant estimé
+http://corkcrm.com/jobs/4/edit	save job	Sauvegarder projet
+		
+http://corkcrm.com/owner/proposal_templates	Proposal Templates	Modèles de soumission
+http://corkcrm.com/owner/proposal_templates	Name	Nom
+http://corkcrm.com/owner/proposal_templates	Status	Statut
+http://corkcrm.com/owner/proposal_templates	Actions	Actions
+http://corkcrm.com/owner/proposal_templates	Edit	Modifier
+http://corkcrm.com/owner/proposal_templates	Enabled	Validé
+http://corkcrm.com/owner/proposal_templates	Disabled	Invalidé
+		
+http://corkcrm.com/owner/proposal_templates/19/edit	Edit	Modifier
+http://corkcrm.com/owner/proposal_templates/19/edit	edit contract	Modifier contrat
+http://corkcrm.com/owner/proposal_templates/19/edit	delete template	Supprimer le modèle
+http://corkcrm.com/owner/proposal_templates/19/edit	Proposal template options	Options du modèle de soumission
+http://corkcrm.com/owner/proposal_templates/19/edit	template name	Nom du modèle
+http://corkcrm.com/owner/proposal_templates/19/edit	proposal class	Type de soumission
+http://corkcrm.com/owner/proposal_templates/19/edit	specialty	Spécialité
+http://corkcrm.com/owner/proposal_templates/19/edit	proposals can be created from this template	Les soumissions peuvent être créées à partir de ce modèle
+http://corkcrm.com/owner/proposal_templates/19/edit	on 	Ouvert
+http://corkcrm.com/owner/proposal_templates/19/edit	off	Fermé
+http://corkcrm.com/owner/proposal_templates/19/edit	revision history	Réviser historique
+http://corkcrm.com/owner/proposal_templates/19/edit	restore this version	Rétablir cette version
+http://corkcrm.com/owner/proposal_templates/19/edit	update template	Mettre à jour le modèle
+http://corkcrm.com/owner/proposal_templates/19/edit	add section	Ajouter une section
+http://corkcrm.com/owner/proposal_templates/19/edit	collapse all	Tout effacer
+http://corkcrm.com/owner/proposal_templates/19/edit	expand all	Tout aggrandir
+http://corkcrm.com/owner/proposal_templates/19/edit	add item	Ajouter un article
+http://corkcrm.com/owner/proposal_templates/19/edit	edit section	Modifier section
+http://corkcrm.com/owner/proposal_templates/19/edit	collapse	Effacer
+http://corkcrm.com/owner/proposal_templates/19/edit	move up	Monter
+http://corkcrm.com/owner/proposal_templates/19/edit	move down	Descendre
+http://corkcrm.com/owner/proposal_templates/19/edit	drag	Traîner
+http://corkcrm.com/owner/proposal_templates/19/edit	name	Nom  
+http://corkcrm.com/owner/proposal_templates/19/edit	proposal template sections	Sections des modèles de proposition
+
+http://corkcrm.com/owner/proposal_templates/19/sections/new	new section	Nouvelle section
+http://corkcrm.com/owner/proposal_templates/19/sections/new	background color	Couleur de fond
+http://corkcrm.com/owner/proposal_templates/19/sections/new	text color	Couleur du texte
+http://corkcrm.com/owner/proposal_templates/19/sections/new	default description	Description par défaut
+http://corkcrm.com/owner/proposal_templates/19/sections/new	should this section contain an option to include or exclude specific items?	Est-ce que cette section devrait contenir l’option d’inclure ou d’exclure des articles spécifiques ?
+http://corkcrm.com/owner/proposal_templates/19/sections/new	position	Position
+http://corkcrm.com/owner/proposal_templates/19/sections/new	save	Sauvegarder
+		
+http://corkcrm.com/owner/proposal_templates/19/sections/26/items/new	work item description	Description de l'article de travail
+http://corkcrm.com/owner/proposal_templates/19/sections/26/items/new	default text to be included in the notes text box	Le texte par défault doit être inclut dans la banque de notes
+http://corkcrm.com/owner/proposal_templates/19/sections/26/items/new	help text	Texte d'aide
+http://corkcrm.com/owner/proposal_templates/19/sections/26/items/new	default option	Option par défaut
+http://corkcrm.com/owner/proposal_templates/19/sections/26/items/new	N/A	N/D
+http://corkcrm.com/owner/proposal_templates/19/sections/26/items/new	include 	Inclus
+http://corkcrm.com/owner/proposal_templates/19/sections/26/items/new	exclude	Exclus
+		
+http://corkcrm.com/owner/proposal_templates/19/edit_contract	edit contract	Modifier contrat
+http://corkcrm.com/owner/proposal_templates/19/edit_contract	contract agreement	Entente du contrat 
+http://corkcrm.com/owner/proposal_templates/19/edit_contract	save contract	Sauvegarder contrat
+http://corkcrm.com/owner/proposal_templates/19/edit_contract	Available Tokens	Crédits disponibles
+http://corkcrm.com/owner/proposal_templates/19/edit_contract	When a proposal is generated, the tokens below are replaced with their corresponding values. For example, if the proposal's total is $500, that amount will be filled in for each {{proposal_total}}	Lorsqu’une soumission est produite, les crédits ci-dessous sont remplacés par leurs valeurs correspondantes. Par exemple, si le total de la soumission est égal à 500$, ce montant va être remplacé pour chaque {{proposal_total}}
+http://corkcrm.com/owner/proposal_templates/19/edit_contract	{{customer_first_name}} 	Prénom du client
+http://corkcrm.com/owner/proposal_templates/19/edit_contract	{{customer_last_name}} 	Nom du client
+http://corkcrm.com/owner/proposal_templates/19/edit_contract	{{customer_address}} 	Adresse du client
+http://corkcrm.com/owner/proposal_templates/19/edit_contract	{{customer_phone_number}} 	Numéro de téléphone du client
+http://corkcrm.com/owner/proposal_templates/19/edit_contract	{{contractor_first_name}} 	Prénom de l'entrepreneur
+http://corkcrm.com/owner/proposal_templates/19/edit_contract	{{contractor_last_name}} 	Nom de l'entrepreneur
+http://corkcrm.com/owner/proposal_templates/19/edit_contract	{{contractor_phone_number}} 	Numéro de téléphone de l'entrepreneur
+http://corkcrm.com/owner/proposal_templates/19/edit_contract	{{proposal_total}} 	Total de la soumission
+http://corkcrm.com/owner/proposal_templates/19/edit_contract	{{proposal_notes}} 	Notes de la soumission
+http://corkcrm.com/owner/proposal_templates/19/edit_contract	{{your_billing_address}} 	Adresse de facturation
+http://corkcrm.com/owner/proposal_templates/19/edit_contract	{{your_billing_city}} 	Ville de facturation
+http://corkcrm.com/owner/proposal_templates/19/edit_contract	{{your_billing_state}}	Province de facturation
+http://corkcrm.com/owner/proposal_templates/19/edit_contract	view pdf	Voir pdf
+		
+http://corkcrm.com/jobs	jobs	Projets
+http://corkcrm.com/jobs	unscheduled	Non planifié
+http://corkcrm.com/jobs	scheduled	Planifié
+http://corkcrm.com/jobs	completed	Complété
+http://corkcrm.com/jobs	list	Liste
+http://corkcrm.com/jobs	schedule	Calendrier
+http://corkcrm.com/jobs	job/ contact	Projet/Contact
+http://corkcrm.com/jobs	proposal count	Compte de la soumission
+http://corkcrm.com/jobs	budget	Budget
+http://corkcrm.com/jobs	crew	Équipe
+http://corkcrm.com/jobs	start/end	Début/Fin
+http://corkcrm.com/jobs	next communication	Prochaine communication
+http://corkcrm.com/jobs	actions	Actions
+http://corkcrm.com/jobs	untitled job	Projet sans titre
+http://corkcrm.com/jobs	hours	Heures
+http://corkcrm.com/jobs	N/A	N/D
+http://corkcrm.com/jobs	communicate	Communiquer
+http://corkcrm.com/jobs	view proposals	Voir soumissions
+http://corkcrm.com/jobs	mark as completed	Marquer comme complété
+http://corkcrm.com/jobs	unmark as completed	Enlever comme complété
+http://corkcrm.com/jobs	job schedule	Horaire du projet
+		
+http://corkcrm.com/jobs/schedule	manage job	Gérer le projet
+http://corkcrm.com/jobs/schedule	select a job below to continue	Sélectionner un projet ci-dessous pour continuer
+http://corkcrm.com/jobs/schedule	job	Projet
+http://corkcrm.com/jobs/schedule	select an option	Sélectionner une option
+http://corkcrm.com/jobs/schedule	only jobs with signed contracts can be scheduled.	Seulement les projets avec un contrat signé peuvent être planifiés
+http://corkcrm.com/jobs/schedule	budgeted hours	Heures budgétées
+http://corkcrm.com/jobs/schedule	start date	Date de début
+http://corkcrm.com/jobs/schedule	end date	Date de fin
+http://corkcrm.com/jobs/schedule	crew	Équipe
+http://corkcrm.com/jobs/schedule	additional crew	Équipe additionnelle
+http://corkcrm.com/jobs/schedule	details	Détails
+http://corkcrm.com/jobs/schedule	estimated amount	Montant estimé
+http://corkcrm.com/jobs/schedule	remove from schedule	Enlever du calendrier
+http://corkcrm.com/jobs/schedule	cancel	Annuler
+http://corkcrm.com/jobs/schedule	save job	Sauvegarder projet
+		
+http://corkcrm.com/jobs/expenses	all	Tous
+http://corkcrm.com/jobs/expenses	today	Aujourd'hui
+http://corkcrm.com/jobs/expenses	this week	Cette semaine
+http://corkcrm.com/jobs/expenses	this year	Cette année
+http://corkcrm.com/jobs/expenses	filter by date	Filtrer par date
+http://corkcrm.com/jobs/expenses	employee	Employé
+http://corkcrm.com/jobs/expenses	job	Projet
+http://corkcrm.com/jobs/expenses	description	Description
+http://corkcrm.com/jobs/expenses	date of expense	Date de la dépense
+http://corkcrm.com/jobs/expenses	amount	Montant
+http://corkcrm.com/jobs/expenses	actions	Actions
+http://corkcrm.com/jobs/expenses	edit	Modifier
+http://corkcrm.com/jobs/expenses	delete	Supprimer
+http://corkcrm.com/jobs/expenses	new expense	Nouvelle dépense
+		
+http://corkcrm.com/jobs/expenses/new	job	Projet
+http://corkcrm.com/jobs/expenses/new	amount	Montant
+http://corkcrm.com/jobs/expenses/new	date of expense	Date de la dépense
+http://corkcrm.com/jobs/expenses/new	description	Description
+http://corkcrm.com/jobs/expenses/new	save expense	Sauvegarder dépense
+		
+http://corkcrm.com/jobs/payments	all	Tous
+http://corkcrm.com/jobs/payments	today	Aujourd'hui
+http://corkcrm.com/jobs/payments	this week	Cette semaine
+http://corkcrm.com/jobs/payments	this year	Cette année
+http://corkcrm.com/jobs/payments	filter by date	Filtrer par date
+http://corkcrm.com/jobs/payments	job notes	Notes de projet
+http://corkcrm.com/jobs/payments	payment type	Type de paiement
+http://corkcrm.com/jobs/payments	amount	Montant
+http://corkcrm.com/jobs/payments	date	Date
+http://corkcrm.com/jobs/payments	actions	Actions
+http://corkcrm.com/jobs/payments	new payment	Nouveau paiement
+http://corkcrm.com/jobs/payments	job 	Projet
+http://corkcrm.com/jobs/payments	amount	Montant
+http://corkcrm.com/jobs/payments	date paid	Payé le
+http://corkcrm.com/jobs/payments	notes	Notes  
+http://corkcrm.com/jobs/payments	payment type	Type de paiement
+http://corkcrm.com/jobs/payments	check	Chèque
+http://corkcrm.com/jobs/payments	credit card	Carte de crédit
+http://corkcrm.com/jobs/payments	cash	Argent comptant
+http://corkcrm.com/jobs/payments	money order 	Mandat postal
+http://corkcrm.com/jobs/payments	wire transfer	Transfert bancaire
+http://corkcrm.com/jobs/payments	other	Autre
+http://corkcrm.com/jobs/payments	save payment	Sauvegarder paiement
+		
+http://corkcrm.com/jobs/timecards	all	Tous
+http://corkcrm.com/jobs/timecards	unapproved	Non approuvé
+http://corkcrm.com/jobs/timecards	approved	Approuvé
+http://corkcrm.com/jobs/timecards	paid	Payé
+http://corkcrm.com/jobs/timecards	filter by staff member	Filtrer par membre du personnel
+http://corkcrm.com/jobs/timecards	add time entry	Ajout d'une entrée de temps
+http://corkcrm.com/jobs/timecards	list	Liste
+http://corkcrm.com/jobs/timecards	schedule	Calendrier
+http://corkcrm.com/jobs/timecards	month	Mois
+http://corkcrm.com/jobs/timecards	week	Semaine
+http://corkcrm.com/jobs/timecards	day	Jour
+http://corkcrm.com/jobs/timecards	timecards	Feuille de temps
+http://corkcrm.com/jobs/timecards	new timecard	Nouvelle feuille de temps
+http://corkcrm.com/jobs/timecards	user	Utilisateur
+http://corkcrm.com/jobs/timecards	Notice: your employees will be notified via email of any changes you make to their timecards.	Avis : Vos employés seront avisés par courriel de tous les changements que vous ferez sur leur feuille de temps.
+http://corkcrm.com/jobs/timecards	start date & time 	Date et heure de début
+http://corkcrm.com/jobs/timecards	end date and time	Date et heure de fin
+http://corkcrm.com/jobs/timecards	notes	Notes
+http://corkcrm.com/jobs/timecards	cancel 	Annuler
+http://corkcrm.com/jobs/timecards	save	Sauvegarder
+		
+http://corkcrm.com/jobs/timecards?custom_date_range=1407286107000%2C1407890907572.8208&view=list	in/out	Entrée/Sortie
+http://corkcrm.com/jobs/timecards?custom_date_range=1407286107000%2C1407890907572.8208&view=list	duration/ amount	Durée/montant
+http://corkcrm.com/jobs/timecards?custom_date_range=1407286107000%2C1407890907572.8208&view=list	status	Statut
+http://corkcrm.com/jobs/timecards?custom_date_range=1407286107000%2C1407890907572.8208&view=list	actions	Actions
+http://corkcrm.com/jobs/timecards?custom_date_range=1407286107000%2C1407890907572.8208&view=list	unapprove	Non approuver
+http://corkcrm.com/jobs/timecards?custom_date_range=1407286107000%2C1407890907572.8208&view=list	mark as paid	Marquer comme payé
+http://corkcrm.com/jobs/timecards?custom_date_range=1407286107000%2C1407890907572.8208&view=list	unmark as paid	Enlever comme payé
+http://corkcrm.com/jobs/timecards?custom_date_range=1407286107000%2C1407890907572.8208&view=list	approve	Approuver
+http://corkcrm.com/jobs/timecards?custom_date_range=1407286107000%2C1407890907572.8208&view=list	unapprove 	Non approuver
+http://corkcrm.com/jobs/timecards?custom_date_range=1407286107000%2C1407890907572.8208&view=list	approved	Approuvé
+http://corkcrm.com/jobs/timecards?custom_date_range=1407286107000%2C1407890907572.8208&view=list	entered	Entré 
+http://corkcrm.com/jobs/timecards?custom_date_range=1407286107000%2C1407890907572.8208&view=list	hour	Heure
+http://corkcrm.com/jobs/timecards?custom_date_range=1407286107000%2C1407890907572.8208&view=list	hours	Heures
+http://corkcrm.com/jobs/timecards?custom_date_range=1407286107000%2C1407890907572.8208&view=list	delete	Supprimer
+		
+http://corkcrm.com/owner	owner	Propriétaire
+http://corkcrm.com/owner	crews	Équipes
+http://corkcrm.com/owner	users	Utilisateurs
+http://corkcrm.com/owner	organization info	Information de l'organisation
+http://corkcrm.com/owner	proposal templates	Modèles de soumission
+http://corkcrm.com/owner	email templates	Modèles de courriel
+http://corkcrm.com/owner	reports	Rapports
+http://corkcrm.com/owner	website embed	Site internet intégré
+http://corkcrm.com/owner	website embed	Site internet intégré
+http://corkcrm.com/owner	subscription	Abonnement
+http://corkcrm.com/owner	my subscription	Mon abonnement
+http://corkcrm.com/owner	manage your organization's crews	Gérer les équipes de l’organisation
+http://corkcrm.com/owner	manage your organization's users	Gérer les utilisateurs de l’organisation
+http://corkcrm.com/owner	edit your organization's information	Modifier les informations de votre organisation
+http://corkcrm.com/owner	customize your organization's emails	Personnaliser les adresses courriels de votre organisation
+http://corkcrm.com/owner	customize your organization's proposals	Personnaliser les soumissions de votre organisation
+http://corkcrm.com/owner	reports	Rapports
+http://corkcrm.com/owner	view reports and statistics on leads, proposals, and jobs	Voir les rapports et les statistiques sur les clients potentiels, les soumissions et les projets
+http://corkcrm.com/owner	embed the appointment calendar and contact form into your website	Intégrer le calendrier des rendez-vous et le formulaire de contact dans votre site web
+http://corkcrm.com/owner	update your organizations subscription	Mettre à jour de l’abonnement de votre organisation
+		
+http://corkcrm.com/owner/crews	crews	Équipes
+http://corkcrm.com/owner/crews	crew	Équipe
+http://corkcrm.com/owner/crews	number of members	Nombre de membres
+http://corkcrm.com/owner/crews	action	Action
+http://corkcrm.com/owner/crews	new crew	Nouvelle équipe
+http://corkcrm.com/owner/crews	new user	Nouvel utilisateur
+		
+http://corkcrm.com/owner/crews/new	new	Nouveau
+http://corkcrm.com/owner/crews/new	name	Nom
+http://corkcrm.com/owner/crews/new	users	Utilisateurs
+http://corkcrm.com/owner/crews/new	Each employee you wish to add to a crew	Chaque employé que vous voulez ajouter à une équipe de travail
+http://corkcrm.com/owner/crews/new	must have a user account existing within	Doit avoir un compte utilisateur existant dans
+http://corkcrm.com/owner/crews/new	your organization.	Votre organisation
+http://corkcrm.com/owner/crews/new	select some options	Sélectionnez des options
+http://corkcrm.com/owner/crews/new	save crew	Sauvegarder une équipe
+http://corkcrm.com/owner/crews/new	your crew has been deleted.	Votre équipe a été effacée
+http://corkcrm.com/owner/crews/new	your crew has been added.	Votre équipe a été ajoutée
+		
+http://corkcrm.com/owner/users/new	details	Détails
+http://corkcrm.com/owner/users/new	first name	Prénom
+http://corkcrm.com/owner/users/new	last name	Nom de famille
+http://corkcrm.com/owner/users/new	email	Adresse courriel
+http://corkcrm.com/owner/users/new	phone	Téléphone
+http://corkcrm.com/owner/users/new	address	Adresse
+http://corkcrm.com/owner/users/new	address 2	Adresse secondaire
+http://corkcrm.com/owner/users/new	zip	Code postal
+http://corkcrm.com/owner/users/new	city	Ville
+http://corkcrm.com/owner/users/new	state/ region	Province / Région
+http://corkcrm.com/owner/users/new	country	Pays
+http://corkcrm.com/owner/users/new	hourly pay rate	Taux horaire
+http://corkcrm.com/owner/users/new	active	Actif
+http://corkcrm.com/owner/users/new	User can login and is active in your system. Once created, the user will be emailed a password to log in with.	L’utilisateur peut se connecter et est actif dans votre système. Une fois créé, l’utilisateur recevra un mot de passe par courriel lui permettant de se connecter.
+http://corkcrm.com/owner/users/new	save user	Sauvegarder utilisateur
+http://corkcrm.com/owner/users/new	permissions	Autorisations
+http://corkcrm.com/owner/users/new	permission profiles	Profils d'autorisation
+http://corkcrm.com/owner/users/new	administrator	Administrateur
+http://corkcrm.com/owner/users/new	sales	Ventes
+http://corkcrm.com/owner/users/new	painter	Peintre
+http://corkcrm.com/owner/users/new	no permissions	Aucune autorisation
+http://corkcrm.com/owner/users/new	leads	Clients potentiels
+http://corkcrm.com/owner/users/new	view leads	Voir clients potentiels
+http://corkcrm.com/owner/users/new	manage leads	Administrer les clients potentiels
+http://corkcrm.com/owner/users/new	appointments	Rendez-vous
+http://corkcrm.com/owner/users/new	can be assigned appointments	Rendez-vous pouvant être assignés
+http://corkcrm.com/owner/users/new	view appointments 	Voir les rendez-vous
+http://corkcrm.com/owner/users/new	manage appointments	Gérer les rendez-vous
+http://corkcrm.com/owner/users/new	proposals	Soumissions
+http://corkcrm.com/owner/users/new	view assigned proposals	Voir les soumissions assignées
+http://corkcrm.com/owner/users/new	view all proposals	Voir toutes les soumissions
+http://corkcrm.com/owner/users/new	manage proposals	Gérer les soumissions
+http://corkcrm.com/owner/users/new	jobs	Projets
+http://corkcrm.com/owner/users/new	can be assigned jobs	Projets pouvant être assignés
+http://corkcrm.com/owner/users/new	view assigned jobs	Voir les projets assignés
+http://corkcrm.com/owner/users/new	view all jobs	Voir tous les projets
+http://corkcrm.com/owner/users/new	manage jobs	Gérer les projets
+http://corkcrm.com/owner/users/new	can make timecard entries	Peut créer des feuilles de temps
+		
+http://corkcrm.com/owner/users	organization users	Utilisateurs de l'organisation
+http://corkcrm.com/owner/users	name	Nom
+http://corkcrm.com/owner/users	phone number	Numéro de téléphone
+http://corkcrm.com/owner/users	address	        Adresse
+http://corkcrm.com/owner/users	role	        Poste
+http://corkcrm.com/owner/users	status	        Statut
+http://corkcrm.com/owner/users	actions	        Actions
+http://corkcrm.com/owner/users	add an employee	Ajouter un employé
+http://corkcrm.com/owner/users	role	Poste
+http://corkcrm.com/owner/users	status	Statut
+http://corkcrm.com/owner/users	actions	Actions
+http://corkcrm.com/owner/users	edit 	Modifier
+http://corkcrm.com/owner/users	become	Devenir
+http://corkcrm.com/owner/users	employee	Employé
+http://corkcrm.com/owner/users	owner	Propriétaire
+http://corkcrm.com/owner/users	active	Actif
+		
+http://corkcrm.com/owner/organization/edit	edit organization	Modifier l'organisation
+http://corkcrm.com/owner/organization/edit	name	Nom
+http://corkcrm.com/owner/organization/edit	address	Adresse
+http://corkcrm.com/owner/organization/edit	address 2	Adresse secondaire
+http://corkcrm.com/owner/organization/edit	zip 	Code postal
+http://corkcrm.com/owner/organization/edit	city	Ville
+http://corkcrm.com/owner/organization/edit	state/region	Province / Région
+http://corkcrm.com/owner/organization/edit	country	Pays
+http://corkcrm.com/owner/organization/edit	email	Adresse courriel
+http://corkcrm.com/owner/organization/edit	phone	Numéro de téléphone
+http://corkcrm.com/owner/organization/edit	fax	Numéro de fax
+http://corkcrm.com/owner/organization/edit	license number	Numéro de licence
+http://corkcrm.com/owner/organization/edit	time zone	Fuseau horaire
+http://corkcrm.com/owner/organization/edit	timecard lock period	Période de fermeture de la feuille de temps
+http://corkcrm.com/owner/organization/edit	never	Jamais
+http://corkcrm.com/owner/organization/edit	weekly	Hebdomadaire
+http://corkcrm.com/owner/organization/edit	When weekly timecard locks are enabled, timecards for a given week cannot be entered or edited after the following Sunday at 11:59 pm.	Lorsque la période de fermeture des feuilles de temps hebdomadaires est active, les feuilles de temps relatives aux semaines concernées ne peuvent pas être entrées ni modifiées après 11:59 PM du dimanche suivant
+http://corkcrm.com/owner/organization/edit	logo	Logo
+http://corkcrm.com/owner/organization/edit	choose file	Choisir un fichier
+http://corkcrm.com/owner/organization/edit	Your logo is used in proposals and emails. For best results, choose one with a white or transparent background.	Votre logo est utilisé dans les soumissions et les courriels. Pour de meilleurs résultats, choisissez s’en un avec un fond blanc ou transparent.
+http://corkcrm.com/owner/organization/edit	save organization	Sauvegarder l'organisation 
+		
+http://corkcrm.com/owner/email_templates	appointment 2 day follow up	Rendez-vous - suivi dans 2 jours
+http://corkcrm.com/owner/email_templates	http://corkcrm.com/owner/email_templates/108/edit	Rendez-vous - suivi dans 7 jours
+http://corkcrm.com/owner/email_templates	http://corkcrm.com/owner/email_templates/108/edit	Confirmation de rendez-vous
+http://corkcrm.com/owner/email_templates	appointment reminder	Rappel de rendez-vous
+http://corkcrm.com/owner/email_templates	job complete	Projet complété
+http://corkcrm.com/owner/email_templates	job complete 1 monthfollowup	Projet complété - suivi dans 1 mois
+http://corkcrm.com/owner/email_templates	lead added via embed	Client potentiel ajouté par intégration
+http://corkcrm.com/owner/email_templates	lead welcome	Accueil du client potentiel
+http://corkcrm.com/owner/email_templates	proposal accepted	Soumission acceptée
+http://corkcrm.com/owner/email_templates	proposal issued	Soumission délivrée
+http://corkcrm.com/owner/email_templates	proposal issued 1 month reminder	Soumission délivrée - Rappel dans 1 mois
+http://corkcrm.com/owner/email_templates	proposal issued 1 week reminder	Soumission délivrée - Rappel dans 1 semaine
+http://corkcrm.com/owner/email_templates	proposal issued 2 day reminder	Soumission délivrée - Rappel dans 2 jours
+http://corkcrm.com/owner/email_templates	proposal issued 2 month reminder	Soumission délivrée - Rappel dans 2 mois
+http://corkcrm.com/owner/email_templates	proposal issued 3 month reminder	Soumission délivrée - Rappel dans 3 mois
+http://corkcrm.com/owner/email_templates	email name	Nom de l'adresse courriel
+http://corkcrm.com/owner/email_templates	description	Description
+http://corkcrm.com/owner/email_templates	status	Statut
+http://corkcrm.com/owner/email_templates	action	Action
+http://corkcrm.com/owner/email_templates	enabled 	Validé
+http://corkcrm.com/owner/email_templates	disabled	Invalidé 
+http://corkcrm.com/owner/email_templates	action	Action
+http://corkcrm.com/owner/email_templates	edit this template	Modifier ce modèle
+http://corkcrm.com/owner/email_templates	test this template	Tester ce modèle
+http://corkcrm.com/owner/email_templates	enable	Valide
+http://corkcrm.com/owner/email_templates	disable	Invalide
+http://corkcrm.com/owner/email_templates	Sent to client 2 days after they are added to the system if no appointment has been scheduled	Envoyer au client 2 jours après qu’ils soient ajoutés au système si aucun rendez-vous n’a été planifié
+http://corkcrm.com/owner/email_templates	Sent to client 7 days after they are added to the system if no appointment has been scheduled	Envoyer au client 7 jours après qu’ils soient ajoutés au système si aucun rendez-vous n’a été planifié
+http://corkcrm.com/owner/email_templates	Sent to your organization's appointment holder when an appointment is scheduled (or rescheduled)	Envoyer à la personne en charge des horaires de votre organisation lorsque un rendez-vous est planifié
+http://corkcrm.com/owner/email_templates	Sent to client 48 hours before a scheduled appointment	Envoyer au client 48 heures avant un rendez-vous à l’horaire
+http://corkcrm.com/owner/email_templates	Sent to client when a job is marked as completed	Envoyer au client lorsqu’un projet est marqué comme complété
+http://corkcrm.com/owner/email_templates	Sent to client 1 month after a job is marked as completed	Envoyer au client 1 mois après qu’un projet soit marqué comme complété
+http://corkcrm.com/owner/email_templates	Sent to organization owner after a lead is added via the embeddable form	Envoyer au propriétaire de l'organisation après que le client potentiel ait été ajouté par intégration
+http://corkcrm.com/owner/email_templates	Sent to lead contact after a lead is created	Envoyer au contact principal après qu’un client potentiel soit créé
+http://corkcrm.com/owner/email_templates	Sent to client, contractor and salesperson with PDF attachment after a proposal is accepted	Envoyer au client, contracteur et vendeur avec les fichiers PDF lorsqu’une soumission est acceptée
+http://corkcrm.com/owner/email_templates	Sent to client, contractor and salesperson with PDF attachment when a proposal is issued	Envoyer au client, contracteur et vendeur avec les fichiers PDF lorsqu’une soumission est envoyée
+http://corkcrm.com/owner/email_templates	Sent to client 1 month after a proposal is issued, if it is still active	Envoyer au client 1 mois après qu’une soumission ait été envoyée, si elle est toujours active
+http://corkcrm.com/owner/email_templates	Sent to client 1 week after a proposal is issued, if it is still active	Envoyer au client 1 semaine après qu’une soumission ait été envoyée, si elle est toujours active 
+http://corkcrm.com/owner/email_templates	Sent to client 2 days after a proposal is created, if it is still active	Envoyer au client 2 jours après qu’une soumission ait été envoyée, si elle est toujours active
+http://corkcrm.com/owner/email_templates	Sent to client 2 months after a proposal is issued, if it is still active	Envoyer au client 2 mois après qu’une soumission ait été envoyée, si elle est toujours active
+http://corkcrm.com/owner/email_templates	Sent to client 3 months after a proposal is issued, if it is still active	Envoyer au client 3 mois après qu’une soumission ait été envoyée, si elle est toujours active
+		
+http://corkcrm.com/owner/reports	leads	Clients potentiels
+http://corkcrm.com/owner/reports	appointments	Rendez-vous
+http://corkcrm.com/owner/reports	proposals	Soumissions
+http://corkcrm.com/owner/reports	jobs	Projets
+http://corkcrm.com/owner/reports	timesheets	Feuilles de temps
+http://corkcrm.com/owner/reports	payroll	Comptabilité des salaires
+http://corkcrm.com/owner/reports	expenses	Dépenses
+http://corkcrm.com/owner/reports	profit	Profit
+http://corkcrm.com/owner/reports	payment tracking	Suivis des paiements
+http://corkcrm.com/owner/reports	sales performance	Performance des ventes
+http://corkcrm.com/owner/reports	communications	Communications
+http://corkcrm.com/owner/reports	scheduled estimates	Calendrier des estimations
+http://corkcrm.com/owner/reports	report list	Liste de rapports
+		
+http://corkcrm.com/owner/reports/leads	leads report	Rapport des clients potentiels
+http://corkcrm.com/owner/reports/leads	lead status distribution 	distribution des statuts des clients potentiels
+http://corkcrm.com/owner/reports/leads	lead source distribution	distribution des sources des clients potentiels
+http://corkcrm.com/owner/reports/leads	active leads	Clients potentiels actifs
+http://corkcrm.com/owner/reports/leads	transcended leads	Clients potentiels expirés
+http://corkcrm.com/owner/reports/leads	dead leads	Clients potentiels nuls
+http://corkcrm.com/owner/reports/leads	number of leads created by day	Nombre de clients potentiels créés par jour
+http://corkcrm.com/owner/reports/leads	lead geographical distribution	Distribution géographique des clients potentiels
+http://corkcrm.com/owner/reports/leads	filter by date	Filtrer par date
+http://corkcrm.com/owner/reports/leads	back to reports	Retour aux rapports
+		
+http://corkcrm.com/owner/reports/appointments	appointments report	Rapport des rendez-vous
+http://corkcrm.com/owner/reports/appointments	filter by date	Filtrer par date
+http://corkcrm.com/owner/reports/appointments	filter by employee	Filtrer par employé
+http://corkcrm.com/owner/reports/appointments	filter by job	Filtrer par projet
+http://corkcrm.com/owner/reports/appointments	appointments by month	Classement des rendez-vous par mois
+http://corkcrm.com/owner/reports/appointments	number of appointments	Nombre de rendez-vous
+http://corkcrm.com/owner/reports/appointments	appointments by employee	Classement des rendez-vous par employé
+http://corkcrm.com/owner/reports/appointments	employee	Employé
+http://corkcrm.com/owner/reports/appointments	salesperson assigned to customer	Vendeur assigné au client
+		
+http://corkcrm.com/owner/reports/proposals	proposals report	Rapport des soumissions
+http://corkcrm.com/owner/reports/proposals	proposal status distribution	Distribution des statuts de soumission
+http://corkcrm.com/owner/reports/proposals	proposal template distribution	Distribution des modèles de soumission
+http://corkcrm.com/owner/reports/proposals	active	Actif
+http://corkcrm.com/owner/reports/proposals	issued 	Distribué
+http://corkcrm.com/owner/reports/proposals	accepted	Accepté
+http://corkcrm.com/owner/reports/proposals	declined	Refusé
+http://corkcrm.com/owner/reports/proposals	customer	Client
+http://corkcrm.com/owner/reports/proposals	status	Statut
+http://corkcrm.com/owner/reports/proposals	template	Modèle
+http://corkcrm.com/owner/reports/proposals	signatures	Signatures
+http://corkcrm.com/owner/reports/proposals	date created	Date créée
+http://corkcrm.com/owner/reports/proposals	amount	Montant
+http://corkcrm.com/owner/reports/proposals	budgeted hours	Heures budgétées
+http://corkcrm.com/owner/reports/proposals	hours	Heures
+http://corkcrm.com/owner/reports/proposals	signatures	Signatures
+http://corkcrm.com/owner/reports/proposals	customer has not yet signed	Le client n’a pas encore signé
+http://corkcrm.com/owner/reports/proposals	customer signed 1 month ago	Le client a signé il y a 1 mois
+http://corkcrm.com/owner/reports/proposals	customer signed 2 months ago	Le client a signé il y a 2 mois
+http://corkcrm.com/owner/reports/proposals	filter by salesperson 	Filtrer par vendeur
+http://corkcrm.com/owner/reports/proposals	filter by date	Filtrer par date
+http://corkcrm.com/owner/reports/proposals	proposal geographical distribution	Distribution géographique des soumissions
+http://corkcrm.com/owner/reports/proposals	totals	Totaux
+		
+http://corkcrm.com/owner/reports/jobs	jobs report	Rapport de projets
+http://corkcrm.com/owner/reports/jobs	job state distribution	Distribution de l’état d’avancement d’un projet
+http://corkcrm.com/owner/reports/jobs	accepted	Accepté
+http://corkcrm.com/owner/reports/jobs	scheduled	Planifié
+http://corkcrm.com/owner/reports/jobs	average time spent in lifecycle	Temps moyen passé dans un cercle de vie
+http://corkcrm.com/owner/reports/jobs	lead	Client potentiel
+http://corkcrm.com/owner/reports/jobs	proposed	Proposé
+http://corkcrm.com/owner/reports/jobs	accepted scheduled	Horaire accepté
+http://corkcrm.com/owner/reports/jobs	job geographical distribution	Distribution géographique des projets
+http://corkcrm.com/owner/reports/jobs	job title	Titre du projet
+http://corkcrm.com/owner/reports/jobs	contact	Contact
+		
+http://corkcrm.com/owner/reports/timesheets	timesheets report	Rapport des feuilles de temps
+http://corkcrm.com/owner/reports/timesheets	unapproved	Non approuvé
+http://corkcrm.com/owner/reports/timesheets	approved	Approuvé
+http://corkcrm.com/owner/reports/timesheets	paid	Payé
+http://corkcrm.com/owner/reports/timesheets	filter by employee	Filtrer par employé
+http://corkcrm.com/owner/reports/timesheets	filter by date	Filtrer par date
+http://corkcrm.com/owner/reports/timesheets	back to reports	Retour aux rapports
+http://corkcrm.com/owner/reports/timesheets	value	Valeur
+http://corkcrm.com/owner/reports/timesheets	user	Utilisateur
+http://corkcrm.com/owner/reports/timesheets	job	Projet
+http://corkcrm.com/owner/reports/timesheets	in	Entrée
+http://corkcrm.com/owner/reports/timesheets	out	Sortie
+http://corkcrm.com/owner/reports/timesheets	duration 	Durée
+http://corkcrm.com/owner/reports/timesheets	amount	Montant
+http://corkcrm.com/owner/reports/timesheets	status	Statut
+http://corkcrm.com/owner/reports/timesheets	entered 	Entré
+http://corkcrm.com/owner/reports/timesheets	approved 	Approuvé
+http://corkcrm.com/owner/reports/timesheets	paid	Payé
+http://corkcrm.com/owner/reports/timesheets	totals	Totaux
+		
+http://corkcrm.com/owner/reports/payroll	payroll report	Rapport de la comptabilité des salaires
+http://corkcrm.com/owner/reports/payroll	filter by date	Filtrer par date
+http://corkcrm.com/owner/reports/payroll	filter by employee	Filtrer par employé
+http://corkcrm.com/owner/reports/payroll	payroll distribution by employee	Distribution des salaires par employé
+http://corkcrm.com/owner/reports/payroll	payroll distribution by job	Distribution des salaires par projet
+http://corkcrm.com/owner/reports/payroll	number of hours paid out by day	Nombre d’heures payées par jour
+		
+http://corkcrm.com/owner/reports/expenses	expenses report	Rapport des dépenses
+http://corkcrm.com/owner/reports/expenses	filter by job	Filtrer par projet
+http://corkcrm.com/owner/reports/expenses	expenses by job	Dépenses par projet
+http://corkcrm.com/owner/reports/expenses	expenses by employee	Dépenses par employé
+http://corkcrm.com/owner/reports/expenses	employee	Employé
+http://corkcrm.com/owner/reports/expenses	job	Projet
+http://corkcrm.com/owner/reports/expenses	description	Description
+http://corkcrm.com/owner/reports/expenses	date of expense	Date de la dépense
+http://corkcrm.com/owner/reports/expenses	amount	Montant
+http://corkcrm.com/owner/reports/expenses	total	Total
+		
+http://corkcrm.com/owner/reports/profit	profit report	Rapport des profits
+http://corkcrm.com/owner/reports/profit	all 	Tous
+http://corkcrm.com/owner/reports/profit	active	Actif
+http://corkcrm.com/owner/reports/profit	completed	Complété
+http://corkcrm.com/owner/reports/profit	job name	    Nom du projet
+http://corkcrm.com/owner/reports/profit	job estimate	Estimation du projet
+http://corkcrm.com/owner/reports/profit	job total	    Total du projet
+http://corkcrm.com/owner/reports/profit	collected	    Collecté
+http://corkcrm.com/owner/reports/profit	total payout 	Total des versements
+http://corkcrm.com/owner/reports/profit	expenses 	    Dépenses
+http://corkcrm.com/owner/reports/profit	profit	        Profit
+		
+http://corkcrm.com/owner/reports/deposit_payment_tracking	deposit/ payment tracking report	Suivis des rapports de dépôts / paiements
+http://corkcrm.com/owner/reports/deposit_payment_tracking	job	Projet
+http://corkcrm.com/owner/reports/deposit_payment_tracking	amount received	Montant reçu
+http://corkcrm.com/owner/reports/deposit_payment_tracking	job amount 	Montant du projet
+http://corkcrm.com/owner/reports/deposit_payment_tracking	outstanding balance	Balance à payer
+		
+http://corkcrm.com/owner/reports/sales_performance	sales performance report	Rapport de performance des ventes
+http://corkcrm.com/owner/reports/sales_performance	employee	                Employé
+http://corkcrm.com/owner/reports/sales_performance	appointments booked	        Rendez-vous planifiés
+http://corkcrm.com/owner/reports/sales_performance	proposals created	        Soumissions créées
+http://corkcrm.com/owner/reports/sales_performance	proposals accepted	        Soumissions acceptées
+http://corkcrm.com/owner/reports/sales_performance	jobs sold	                Projets vendus
+http://corkcrm.com/owner/reports/sales_performance	jobs completed	            Projets complétés
+http://corkcrm.com/owner/reports/sales_performance	communications report	    Rapport des communications
+http://corkcrm.com/owner/reports/sales_performance	communication by employee	Communication par employé
+http://corkcrm.com/owner/reports/sales_performance	communication by job	Communication par projet
+http://corkcrm.com/owner/reports/sales_performance	communication by day	Communication par jour
+		
+http://corkcrm.com/owner/reports/estimates	estimates report	Rapport des estimations
+http://corkcrm.com/owner/reports/estimates	estimates by employee	Estimations par employé
+http://corkcrm.com/owner/reports/estimates	estimates by contact	Estimations par contact
+http://corkcrm.com/owner/reports/estimates	employee	Employé
+http://corkcrm.com/owner/reports/estimates	contact	Contact
+http://corkcrm.com/owner/reports/estimates	when	Quand
+		
+http://corkcrm.com/owner/website_embed	website embed	Site internet intégré
+http://corkcrm.com/owner/website_embed	help text	Texte d’aide
+http://corkcrm.com/owner/website_embed	This text will show above the appointment scheduling form. We recommend you include information about your service area or any specific information you would like the prospect to include in their project details.	Ce texte va s’afficher au dessus du formulaire d’horaire des rendez-vous. Nous recommandons d’inclure de l’information à propos de la région désservie par vos services ou toute autre information spécifique dont vous aimeriez que la personne concernée inclue dans les détails de son projet.
+http://corkcrm.com/owner/website_embed	Thank You Message	Message de remerciement
+http://corkcrm.com/owner/website_embed	This message will be shown to the user after they have scheduled an appointment or filled in an online contact form.	Ce message va s’afficher à l’utilisateur après qu’il ait planifié un rendez-vous ou qu’il ait rempli un formulaire de contact en ligne
+http://corkcrm.com/owner/website_embed	save customizations	Sauvegarder les personnalisations
+http://corkcrm.com/owner/website_embed	embed HTML & options	Intégré HTML & les options
+http://corkcrm.com/owner/website_embed	Have your webmaster include the following HTML code on your website to allow visitors to submit a lead inquiry or schedule appointments online.	Demander à votre concepteur web d’inclure le code HTML suivant dans votre site internet afin de permettre aux visiteurs de soumettre un problème ou de planifier un rendez-vous en ligne
+http://corkcrm.com/owner/website_embed	 Show a form to collect lead information.	Montrez un formulaire pour recevoir l’information du client potentiel
+http://corkcrm.com/owner/website_embed	 Show a form to collect lead information.	Montrez un formulaire pour recevoir l’information du client potentiel
+http://corkcrm.com/owner/website_embed	Preview	Prévisualiser
+http://corkcrm.com/owner/website_embed	Have a question or want us to call you?	Vous avez des questions ou vous désirez qu’on vous appelle ?
+http://corkcrm.com/owner/website_embed	schedule appointment time	Planifier l'heure du rendez-vous
+http://corkcrm.com/owner/website_embed	appointment calendar	Calendrier des rendez-vous
+http://corkcrm.com/owner/website_embed	preferred contact date/ time	Date / heure préférable pour prendre contact
+http://corkcrm.com/owner/website_embed	project details, questions, or comments	Détails du projets, questions ou commentaires
+http://corkcrm.com/owner/website_embed	verify humanity	Test de vérification humaine
+http://corkcrm.com/owner/website_embed	submit inquiry to… {{company_name}}	Soumettre un problème à… ( Nom de la compagnie )
+		
+http://corkcrm.com/contacts	contacts	Contacts
+http://corkcrm.com/contacts	name	Nom
+http://corkcrm.com/contacts	email	Adresse courriel
+http://corkcrm.com/contacts	phone	Numéro de téléphone
+http://corkcrm.com/contacts	address	Adresse
+http://corkcrm.com/contacts	actions	Actions
+http://corkcrm.com/contacts	edit 	Modifier
+http://corkcrm.com/contacts	delete	Supprimer
+http://corkcrm.com/contacts	search contact by name/ address	Rechercher contact par nom / adresse
+http://corkcrm.com/contacts	new contact	Nouveau contact
+		
+http://corkcrm.com/contacts/new	first name	Prénom
+http://corkcrm.com/contacts/new	last name	Nom de famille
+http://corkcrm.com/contacts/new	company	Compagnie
+http://corkcrm.com/contacts/new	phone	Numéro de téléhone
+http://corkcrm.com/contacts/new	email	Courriel
+http://corkcrm.com/contacts/new	address	Adresse
+http://corkcrm.com/contacts/new	address 2	Adresse secondaire
+http://corkcrm.com/contacts/new	zip	Code postal
+http://corkcrm.com/contacts/new	city	Ville
+http://corkcrm.com/contacts/new	state/ region	Province / Région
+http://corkcrm.com/contacts/new	country	Pays
+http://corkcrm.com/contacts/new	save	Sauvegarder
+http://corkcrm.com/contacts/new	are you sure you want to delete this contact?	Êtes-vous sûr de vouloir supprimer ce contact?
+http://corkcrm.com/contacts/new	cancel	Annuler
+http://corkcrm.com/contacts/new	ok	Ok
+http://corkcrm.com/contacts/new	your contact was successfully deleted	Votre contact a été supprimé avec succès
+http://corkcrm.com/contacts/new	your contact was successfully added	Votre contact a été ajouté avec succès
+http://corkcrm.com/contacts/new	next	Suivant
+http://corkcrm.com/contacts/new	last	Précédent
+http://corkcrm.com/contacts/new	login	Connexion
+http://corkcrm.com/contacts/new	logout	Déconnexion

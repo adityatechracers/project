@@ -1,0 +1,23 @@
+.modal-dialog
+  .modal-content
+    = form_tag 'contact_rating',:class => 'simple_form form-horizontal', :method => :post do
+      .modal-header
+        %button.close(data-dismiss='modal') &times;
+        %h3= t '.contact_rating_at_proposal_stage'
+        
+      .modal-body
+        .customer_rating{ :style => "" }
+          .control-group.form-group.clearfix.select.optional.appointment_job(id = "appointment_job_select")
+            .col-md-4.control-label
+              %label.select.optional.control-label Contact Rating
+            .controls.col-md-8
+              = fields_for ContactRating.new do |r|
+                - @selected = Rating.joins(:contact_ratings).where("contact_ratings.contact_id = #{params[:id]} and contact_ratings.stage = 'Proposal'").first.id
+                = r.select :rating_id, Rating.all.map{ |rating| [rating.rating, rating.id]},:selected => @selected,input_html: {class:"input-small form-control"}
+                = r.hidden_field :stage, value: 'Proposal'
+                = r.hidden_field :contact_id, value: params[:id]
+              
+      .modal-footer
+        %a.btn(data-dismiss='modal')= t 'shared.cancel'
+        = submit_tag "Submit", :class => 'btn btn-success'
+        /%submit t('shared.save'), :class => 'btn btn-success'

@@ -1,0 +1,10 @@
+:javascript
+  window.RAILS_LOCALE = '#{I18n.locale}';
+  window.RAILS_CURRENCY = '#{I18n.locale == :'fr-CA' ? 'CAD' : 'USD'}';
+
+  window.CORK_I18N = {
+    confirm: '#{t('shared.confirm')}',
+    cancel: '#{t('shared.cancel')}',
+    ok: '#{t('shared.ok')}',
+    chooseFile: '#{t('shared.choose_file')}'
+  };

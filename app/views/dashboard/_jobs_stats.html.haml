@@ -1,0 +1,20 @@
+.dashboard-card
+  = render 'stat_card', name: 'Profit',
+    ytd: @profit_this_year, this_week: @profit_this_week,
+    icon_class: 'fa fa-area-chart'
+.dashboard-card
+  = render 'stat_card', name: 'In Progress',
+    ytd: @jobs_pending_ytd_rev, this_week: @jobs_pending_this_week_rev,
+    appended_this_week: @jobs_pending_this_week,
+    appended_ytd: @jobs_pending_ytd,
+    icon_class: 'fa fa-clock-o'
+.dashboard-card
+  = render 'stat_card', name: 'Completed',
+    ytd: @jobs_completed_ytd_rev, this_week: @jobs_completed_this_week_rev,
+    appended_this_week: @jobs_completed_this_week,
+    appended_ytd: @jobs_completed_ytd,
+    icon_class: 'fa fa-check'
+.dashboard-card
+  = render 'stat_card', name: 'Average Job Size',
+    ytd: @jobs_ytd_avg_size, this_week: @jobs_this_week_avg_size,
+    icon_class: 'fa fa-bar-chart'

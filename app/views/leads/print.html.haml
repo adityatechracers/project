@@ -1,0 +1,21 @@
+.dashboard-wrapper
+  .row-fluid
+    %h1 Print Leads
+    %hr
+
+    %table.table.table-striped.table-bordered
+      %thead
+        %tr
+          %th Contact Name
+          %th Phone Number
+          %th Address
+          %th Next Contact
+          %th Last Contact Outcome
+      %tbody
+        - @leads.each do |l|
+          %tr
+            %td= link_to l.contact.backwards_name, contact_path(l.contact)
+            %td= link_to l.contact.phone, "tel:"+l.contact.phone
+            %td= link_to l.contact.full_address, "https://maps.google.com/?q="+l.contact.full_address
+            %td= (l.last_communication.nil?) ? "N/A" : "#{l.last_communication.outcome} - #{l.contact.first_name}"
+            %td!= l.next_communication_indicator_cell

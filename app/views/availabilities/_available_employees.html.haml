@@ -1,0 +1,24 @@
+%h3= t '.available_employees'
+%br
+%div
+  %div.col-md-1
+    %div.btn.btn-success.btn-circle.btn-outline.btn-spaced.availability-arrow{"data-link" => availabilities_available_employees_path(date: @selected_date, direction: "back", current_employees_ids: @current_employees.map(&:id)), 'id'=>'availability-employees-back'}
+      %i.fa.fa-chevron-left
+  %span.col-md-10#available_employees
+    - @current_employees.each do |e|
+      %div.available-employee
+        %button{class: 'btn btn-success btn-circle btn-lg btn-outline availability-employee-button', type: 'button'}
+          = image_tag get_employee_photo(e), class: 'availability-employee-photo'
+        %div.availability-employee-name
+          = e.name
+        %div.scheduled-events
+          = raw event_boxes(e, @selected_date)
+        %div.add_appointment
+          %div.btn.btn-success.btn-circle.btn-outline.btn-spaced.availability-arrow{"data-link" => availabilities_appointment_modal_path(date: @selected_date, appointment: nil, employee: e.id), 'id'=>'new-appointment-btn'}
+            %i.fa.fa-plus
+  %div.col-md-1
+    %div.btn.btn-success.btn-circle.btn-outline.btn-spaced.availability-arrow{"data-link" => availabilities_available_employees_path(date: @selected_date, direction: "forward", current_employees_ids: @current_employees.map(&:id)), 'id'=>'availability-employees-forward'}
+      %i.fa.fa-chevron-right
+
+- if can? :manage, Appointment
+  #appointment-modal.modal.modal-overflowed.fade

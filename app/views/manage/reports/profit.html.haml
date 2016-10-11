@@ -1,0 +1,59 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1= t 'nav.manage.reports'
+    = render 'report_title', title: :profit
+#profit-report
+  .ibox
+    .ibox-title
+      .row
+        .col-xs-12
+          %span.hidden-phone
+            = split_button_filter(t('.filter_by_crew'), :crew, Crew.all, :id)
+          %span.hidden-phone
+            = split_button_filter(t('.filter_by_sales_person'), :sales_person, User.where('id in (?)',Proposal.where('job_id in (?)', Job.pluck(:id)).pluck(:sales_person_id)), :id, {style: "margin-left:10px;"})
+          %span.hidden-phone
+            = split_button_filter(t('.filter_by_lead_source'), :lead_source, LeadSource.all, :id, :locale_name, {style: "margin-left:10px;"})
+          %span.pull-right= date_range_filter_button
+        .col-xs-12.m-t.m-b
+          .btn-group.pull-left
+            = active_filter_for t('.filters.all'), profit_manage_reports_path, root: true, class: 'btn btn-default'
+            = active_filter_for t('.filters.active'), :active, class: 'btn btn-default'
+            = active_filter_for t('.filters.completed'), :completed, class: 'btn btn-default'
+          .btn-group.pull-left{style: 'margin-left:10px;', :data => {:toggle => 'buttons-radio'}}
+            %button.amount-format-toggle.btn.btn-default.active= t '.filters.dollar_amount'
+            %button.amount-format-toggle.btn.btn-default= t '.filters.percent_of_job_estimate'
+
+.ibox
+  .ibox-content
+    %table.table.footable.table-striped(id="report_details")
+      %thead
+        %tr
+          %th= t '.table_headings.job_name'
+          %th= t '.table_headings.job_estimate'
+          %th= t '.table_headings.collected'
+          %th= t '.table_headings.total_payout'
+          %th= t '.table_headings.expenses'
+          %th= t '.table_headings.profit'
+      %tbody
+        - @results.each do |j|
+          %tr
+            - timecard_expense = Timecard.get_total_expense j.id
+            %td
+              = link_to j.contact_name + ' - ', '/contacts/'+j.contact_id.to_s
+              - proposal = Proposal.where("job_id = #{j.id}").first
+              = link_to "Proposal #" +proposal.proposal_number.to_s+' - '+proposal.title.to_s,proposal_path(proposal.guid)
+              / = link_to j.title, j
+            %td= number_to_currency j.approved_proposals_amount
+            %td= number_to_currency j.total_payments
+            %td{ 'data-alt-value' => percent_of_job_estimate(j.expected_payout+timecard_expense, j.approved_proposals_amount) }
+              = number_to_currency j.expected_payout+timecard_expense
+            %td{ 'data-alt-value' => percent_of_job_estimate(j.total_expenses, j.approved_proposals_amount) }
+              = number_to_currency j.total_expenses
+            %td{ 'data-alt-value' => percent_of_job_estimate(j.expected_profit-timecard_expense, j.approved_proposals_amount) }
+              = number_to_currency j.expected_profit_profit_report timecard_expense
+        %tr{id: 'profit-report-totals'}
+          %td
+            %strong #{t '.table_headings.totals'}:
+          %td{colspan: 6} Loading...
+
+    = paginate @results, :theme => "bootstrap"

@@ -1,0 +1,43 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    .title-group
+      %h1!= t 'nav.manage.crews'
+      .title!= breadcrumbs({t('nav.manage.main') => manage_root_path}, t('nav.manage.crews'))
+    = link_to t('.new_user'), new_manage_user_path, :class => "btn btn-success pull-right m-t-xl"
+    = link_to t('.new_crew'), new_manage_crew_path, :class => "btn btn-spaced btn-success pull-right m-t-xl"
+.ibox
+  .ibox-content.p-md
+    - if @crews.any?
+      .span12.scrolled
+        %table.table.table-striped.footable
+          %thead
+            %tr
+              %th= t '.table_headings.crew'
+              %th= t '.table_headings.number_of_members'
+              %th= t '.table_headings.wage_rate'
+              %th= t '.table_headings.actions'
+          %tbody
+            - @crews.each do |c|
+              %tr
+                %td= c.name
+                %td= c.users.count
+                %td
+                  - if c.wage_rate.present?
+                    = number_to_percentage(c.wage_rate * 100, precision: 2)
+                  - else
+                    N/A
+                %td
+                  .btn-group
+                    = link_to edit_manage_crew_path(c), :class => 'btn btn-small btn-default' do
+                      %i.icon-pencil
+                    = link_to manage_crew_path(c), :method => :delete, :class => 'btn btn-small btn-default', :data => {:confirm => 'Are you sure?'} do
+                      %i.icon-remove-2
+    - else
+      .hero-unit
+        %h3 Your organization does not currently have any crews.
+        %p
+          Organize your employees into crews to divide and conquer the
+          workplace!  Jobs can be assigned to crews as well as individual
+          employees, so if you're finding yourself adding the same group of
+          employees to your projects over and over, pay a visit to this page.
+        = link_to "Add a Crew", new_manage_crew_path, :class => "btn btn-success btn-large" if can? :create, Crew

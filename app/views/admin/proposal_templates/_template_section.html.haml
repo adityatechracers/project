@@ -1,0 +1,42 @@
+%li.proposal-template-section.well{:style => "padding-bottom:9px;", :data => {:section => section.id}}
+  %h3.black-heading{:style => "color: #{section.foreground_color}; background: #{section.background_color}; margin:-19px -19px 10px;box-shadow:0px 10px 10px -10px rgba(0,0,0,0.5);border-radius:3px;"}
+    %span.black-heading-title
+      %span.section-position= "##{section.position}"
+      = section.name
+    .proposal-section-header-controls.btn-group.pull-right
+      = link_to new_admin_proposal_template_section_item_path(@proposal_template, section),
+          :class => 'btn btn-small add-item-btn', :data => {:toggle => "tooltip", :placement => "bottom"}, :title => "Add Item" do
+        %i.icon-plus
+      = link_to edit_admin_proposal_template_section_path(@proposal_template, section),
+        :class => 'btn btn-small edit-section-btn', :data => {:toggle => "tooltip", :placement => "bottom"}, :title => "Edit Section" do
+        %i.icon-pencil
+      %button.btn.btn-small.toggle-section-btn{:data => {:toggle => "tooltip", :placement => "bottom"}, :title => "Collapse"}
+        %i.icon-contract-2{:style => "transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);"}
+      %button.btn.btn-small{:data => {:toggle => "tooltip", :placement => "bottom"}, :title => "Move Up"}
+        %i.icon-arrow-up
+      %button.btn.btn-small{:data => {:toggle => "tooltip", :placement => "bottom"}, :title => "Move Down"}
+        %i.icon-arrow-down
+      %button.btn.btn-small.section-drag-handle{:data => {:toggle => "tooltip", :placement => "bottom"}, :title => "Drag"}
+        %i.icon-menu
+    .clearfix
+
+  .proposal-section-form-wrapper
+    - if section.default_description.present?
+      %label{:style => "font-weight:900;margin:20px 0px 0px;"} Description
+      %p.proposal-template-section-description{:style => "margin-bottom:0px;"}= section.default_description
+      != "<hr />" unless section.items.empty?
+
+    - unless section.items.not_deleted.empty?
+      %table.table.table-striped.table-condensed.proposal-item-table
+        %thead
+          %tr
+            - if section.show_include_exclude_options
+              %th{:style => "text-align:center;"} N/A
+              %th{:style => "text-align:center;"} Include
+              %th{:style => "text-align:center;"} Exclude
+            %th Description
+            %th Notes
+            %th Actions
+        %tbody
+          - section.item_templates.each do |i|
+            = render :partial => 'admin/proposal_templates/template_item', :locals => {:item => i, :section => section} unless i.deleted?

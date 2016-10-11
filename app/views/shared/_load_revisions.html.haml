@@ -1,0 +1,7 @@
+.ibox
+  .ibox-title
+    %h4= t '.revision_history'
+  = render :partial => 'shared/revisions', :locals => {:template_id => "", :section_id => "", :record => proposal_template, :restore_path => :restore_manage_proposal_template_path}
+  - if sections.present?
+    - sections.each do |section|
+      = render :partial => 'shared/revisions', :locals => {:template_id => proposal_template.id, :section_id => "", :record => section, :restore_path => :restore_manage_proposal_template_section_path }

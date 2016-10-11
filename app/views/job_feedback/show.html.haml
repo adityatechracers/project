@@ -1,0 +1,37 @@
+.row-fluid
+  .widget
+    .widget-header
+      .title
+        != breadcrumbs({t('nav.jobs.feedback') => job_feedback_index_path}, "Submission for #{@job_feedback.job.full_title}")
+      = link_to job_feedback_path(@job_feedback), method: :delete, class: 'btn btn-danger pull-right', confirm: 'Are you sure you want to delete this feedback?' do
+        %i.icon-remove-2.visible-phone
+        %span.hidden-phone
+          %i.icon-remove-2
+          Delete
+    .widget-body
+      .row-fluid
+        .span8
+          %table.table.table-bordered.table-striped
+            %tr
+              %th Submitter's Name
+              %td= @job_feedback.name
+            %tr
+              %th Submitted At
+              %td= l @job_feedback.created_at
+            %tr
+              %th Instructions Displayed
+              %td= @job_feedback.instructions_displayed
+            %tr
+              %th Feedback
+              %td= @job_feedback.feedback
+            %tr
+              %th Work is completed?
+              %td= @job_feedback.complete ? "Yes" : "No"
+            - if @job_feedback.job.organization.feedback_portal_show_signature
+              %tr
+                %th Signature
+                %td
+                  - if @job_feedback.customer_sig.present?
+                    .signature-readonly{:data => {:svg => @job_feedback.customer_sig}}
+                  - else
+                    (Not Signed)

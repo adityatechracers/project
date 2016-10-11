@@ -1,0 +1,11 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1!= t('nav.jobs.expenses')
+    .title
+      != breadcrumbs({t('nav.jobs.expenses') => expenses_path}, {t('vendor_categories.categories') => vendor_categories_path}, t('shared.edit'))
+
+.ibox
+  .ibox-title
+    %h3 Edit Vendor
+  .ibox-content.p-md
+    = render "vendor_categories/form"

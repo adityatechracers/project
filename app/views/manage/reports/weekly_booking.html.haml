@@ -1,0 +1,125 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1= t 'nav.manage.reports'
+    = render 'report_title', title: :weekly_booking
+
+.ibox
+  .ibox-content
+    .row
+      .col-xs-12.m-b-lg
+        = #split_button_filter t('shared.filter_by_employee'), :user, User.all
+        .pull-left= left_date_range_filter_button
+        %span.hidden-phone.pull-left
+          = split_button_filter(t('.filter_by_sales_person'), :sales_person, User.where('id in (?)',Proposal.where('job_id in (?)', Job.pluck(:id)).pluck(:sales_person_id)), :id, {})
+        
+        
+        
+        - if current_tenant.show_zestimate
+          .btn-group.pull-left{style: 'margin-left:10px;', :data => {:toggle => 'buttons-radio'}}
+            - class_1="amount-format-toggle btn btn-default filters"
+            - class_2="amount-format-toggle btn btn-default filters"
+            - if params[:type] == 'zestimate'
+              - class_2 = class_2 + ' active'
+            - else
+              - class_1 = class_1 + ' active'
+            = link_to weekly_booking_manage_reports_path(:custom_date_range => "#{(Time.now - 7.days).to_i * 1000},#{(Time.now).to_i * 1000}")+'&type=numeric', :class =>class_1 do
+              Numerical Amount
+            = link_to weekly_booking_manage_reports_path(:custom_date_range => "#{(Time.now - 7.days).to_i * 1000},#{(Time.now).to_i * 1000}")+'&type=zestimate', :class =>class_2 do
+              Zestimate Amount
+    .row-fluid
+      - if @results
+        - accepted = 0
+        - received = 0
+        - balance = 0
+        %table.table.table-bordered.table-striped
+          %thead
+            %tr
+              %th Lead Source
+              %th Total Estimates
+              %th Estimates Booked
+              %th Dollars Proposed
+              %th Dollars Booked
+              %th % Leads Booked
+              %th % Dollars Booked
+              %th Ave. Proposal ($)
+              %th Ave. Booking ($)
+          %tbody
+            - total_medians = []
+            - total_signed_medians = []
+            - @results.each do |lead_source|
+              %tr
+                %td
+                  %strong= lead_source[:name]
+                - if params[:type] == 'zestimate'
+                  - total = lead_source[:total_zestimates].count 
+                  - if total%2 == 0
+                    - lead_source[:total_zestimates].each do |zestimate|
+                      - total_medians.push(zestimate)
+                    - value = ( (lead_source[:total_zestimates][(total/2)]).to_i + (lead_source[:total_zestimates][(total/2)-1]).to_i) / 2
+                    
+                    %td= '$'+number_with_delimiter(value, :delimiter => ',')
+                  - else
+                    - lead_source[:total_zestimates].each do |zestimate|
+                      - total_medians.push(zestimate)
+                    - value = lead_source[:total_zestimates][(total/2)]
+                    %td=  '$'+number_with_delimiter(value, :delimiter => ',')
+                - else
+                  %td= lead_source[:all_proposals]
+                - if params[:type] == 'zestimate'
+                  - total = lead_source[:signed_zestimates].count 
+                  - if total%2 == 0
+                    - lead_source[:signed_zestimates].each do |zestimate|
+                      - total_signed_medians.push(zestimate)
+                    - value = ( (lead_source[:signed_zestimates][(total/2)]).to_i + (lead_source[:signed_zestimates][(total/2)-1]).to_i) / 2
+                    %td= '$'+number_with_delimiter(value, :delimiter => ',')
+                  - else
+                    - lead_source[:signed_zestimates].each do |zestimate|
+                      - total_signed_medians.push(zestimate)
+                    - value = lead_source[:signed_zestimates][(total/2)]
+                    
+                    %td= '$'+number_with_delimiter(value, :delimiter => ',')
+                - else
+                  %td= lead_source[:signed_proposals]
+                %td= number_to_currency lead_source[:dollars_proposed]
+                %td= number_to_currency lead_source[:dollars_booked]
+                %td= lead_source[:proposals_percentage]
+                %td= lead_source[:dollars_percentage]
+                %td= number_to_currency lead_source[:average_proposal]
+                %td= number_to_currency lead_source[:average_booking]
+
+            %tr
+              %td
+                %strong Total
+              - if params[:type] == 'zestimate'
+                - total = total_medians.count
+                - if total%2 == 0
+                  - value = ( (total_medians[(total/2)]).to_i + (total_medians[(total/2)-1]).to_i) / 2
+                  %td= '$'+number_with_delimiter(value, :delimiter => ',')
+                - else
+                  - value = total_medians[(total/2)]
+                  %td=  '$'+number_with_delimiter(value, :delimiter => ',')
+              - else
+                %td= @totals[:all_proposals]
+              - if params[:type] == 'zestimate'
+                - total = total_signed_medians.count
+                - if total%2 == 0
+                  - value = ( (total_signed_medians[(total/2)]).to_i + (total_signed_medians[(total/2)-1]).to_i) / 2
+                  %td= '$'+number_with_delimiter(value, :delimiter => ',')
+                - else
+                  - value = total_signed_medians[(total/2)]
+                  %td=  '$'+number_with_delimiter(value, :delimiter => ',')
+              - else
+                %td= @totals[:signed_proposals]
+              
+              %td
+                %strong= number_to_currency @totals[:dollars_proposed]
+              %td
+                %strong= number_to_currency @totals[:dollars_booked]
+              %td
+                %strong= @totals[:proposals_percentage]
+              %td
+                %strong= @totals[:dollars_percentage]
+              %td
+                %strong= number_to_currency @totals[:average_proposal]
+              %td
+                %strong= number_to_currency @totals[:average_booking]

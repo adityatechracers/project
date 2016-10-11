@@ -1,0 +1,58 @@
+.row-fluid
+  .proposal-header.center
+    - if @proposal_options[:logo] != false
+      - if defined? pdf
+        = pdf_image_tag(@proposal.organization.logo(:medium), :class => "proposal-organization-logo", :style => 'max-width: 250px; max-height: 150px;')
+      - else
+        = image_tag(@proposal.organization.logo(:medium), :class => "proposal-organization-logo")
+    - else
+      .spacer
+
+    - if @proposal.organization.proposal_banner_text.present?
+      .proposal-header-box= @proposal.organization.proposal_banner_text
+%br
+%br
+%br
+.row-fluid
+  .proposal-header-info
+    .row-fluid
+      .col-md-6
+        = @proposal.organization.name
+        %br
+        = @proposal.organization.address
+        %br
+        #{@proposal.organization.city}, #{@proposal.organization.region} #{@proposal.organization.zip}
+        %br
+        #{t 'simple_form.labels.user.phone'}: #{@proposal.organization.phone}
+        %br
+        #{t 'simple_form.labels.user.fax'}: #{@proposal.organization.fax}
+        %br
+        - unless @proposal.organization.website_url.blank?
+          Or visit us online at #{link_to url_without_protocol(@proposal.organization.website_url), url_with_protocol(@proposal.organization.website_url)}
+          %br
+        #{@proposal.contractor.name}
+        - if @proposal.contractor.phone.present?
+          &mdash; #{@proposal.contractor.phone}
+      .col-md-4.col-md-offset-2
+        %strong= @proposal.updated_at.strftime('%B %-d, %Y')
+        %br
+        \##{@proposal.proposal_number}
+        %br
+        = @proposal.job.contact.name
+        %br
+        - if @proposal.proposal_address?
+          = @proposal.proposal_address  
+        - else
+          = @proposal.job.contact.address
+          %br
+          #{@proposal.job.contact.city}, #{@proposal.job.contact.region} #{@proposal.job.contact.zip}
+          %br
+          #{@proposal.job.contact.phone}
+  .clearfix
+  %br
+  %br
+
+  - if @proposal.change_orders.applied.any?
+    %br
+    %h4 Changes
+    = render partial: 'proposals/change_orders', formats: [:html]

@@ -1,0 +1,7 @@
+- if !@top_jobs_users.any? && !@top_leads_users.any? && !@top_calls_users.any? && !@top_proposals_users.any? && !@top_estimates_users.any?
+  .ibox
+    .ibox-title
+      %h3= t 'leads.index.no_leads.add_a_lead'
+    .ibox-content
+      %p= t 'leads.index.no_leads.body_html', jobs_path: jobs_path
+      = link_to t('leads.index.no_leads.add_a_lead'), new_lead_path, :class => "btn btn-success btn-large" if can? :create, Job and can? :create, Contact

@@ -1,0 +1,73 @@
+- if !Job.any?
+  .row-fluid.vertical-align.text-center
+    = render partial: 'shared/sign_up_dependency', locals: { pre: 'Lead', post: 'Appointment' }
+- else
+  .row-fluid
+    .ibox.float-e-margins#appointments-calendar-ibox
+      .ibox-title
+        %h1.title= t '.schedule_appointments'
+        .pull-right
+          - if can? :manage, Appointment
+            .dropdown
+              %a.btn.btn-success.btn-spaced#add-appointment-btn
+                %span.visible-phone
+                  %i.icon-plus
+                %span.hidden-phone= t '.add_an_appointment'
+
+              .btn.btn-default.dropdown-toggle{href: '#', data: { toggle: 'dropdown' }, aria: { expanded: 'false', haspopup: 'true'} }
+                %i.icon-cog
+                %span.caret
+              %ul.dropdown-menu
+                %li
+                  %a{target:'#export-modal', id:'open-export-modal'}= t '.export_calendar.title'
+                / %li
+                /   %a{:href => manage_calendar_options_path}= "Calendar Options"
+                / %li
+                /   - if current_user.connected_to_google?
+                /     %a{target:'#google-calendars-modal', id:'open-google-calendars-modal'}= t 'Google Calendar Settings'
+                /     %a{:href => google_disconnect_appointments_path}= "Disconnect from Google Calendar"
+                /   -else
+                /     %a{:href => user_omniauth_authorize_path(:google_oauth2)}= "Connect to Google Calendar"
+
+      .ibox-content
+        - unless @appointment_holders.empty?
+          .m-b.m-t
+            .btn-group{:data => {:toggle => "buttons-radio"}, :class => "appt-who-filter"}
+              = active_link_to t('.filters.everyone'), params.except(:who), :class => "btn btn-default", :data => {:value => "everyone"}, :active => /^(?!.*who=).*$/
+              = active_link_to t('.filters.owner'), params.merge(:who => "owner"), :class => "btn btn-default", :data => {:value => "owner"}, :active => /\?who=owner/
+              = active_link_to t('.filters.specific_employees'), params.merge(:who => "employees"),
+                  :class => "btn btn-default", :data => {:value => "employees"}, :active => /\?who=employees/
+            %ul.calendar-filters.appointment-filters{:class => (params[:who]=="employees" ? "":"hide"), :style => "margin-top:10px;"}
+              - @appointment_holders.each do |h|
+                %li
+                  %button{:type => "button", :class => "btn btn-default appointment-employee-filter", :data => {:toggle => "button", :id => h.id}}= h.name
+            .clearfix
+
+        #appointments-calendar.calendar
+        - if can? :manage, Appointment
+          #appointments-modal.modal.modal-overflowed.fade
+
+  #export-modal.modal.inmodal.fade{tabindex: "-1", role: "dialog", aria: {hidden: "true"}}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %h4= t '.export_calendar.title'
+        .modal-body
+          = t '.export_calendar.instructions.copy_url'
+          %pre
+            = feed_appointments_url(:org => current_tenant.guid, :user => current_user.id, :format => :ics)
+
+          = t '.export_calendar.instructions.add_google_html'
+          %br
+          = t '.export_calendar.instructions.add_mac_calendar_html'
+          %hr
+          = t '.export_calendar.instructions.download_ics'
+          %br
+          = link_to feed_appointments_url(:org => current_tenant.guid, :user => current_user.id, :format => :ics) do
+            %i.icon-download-2
+            = t '.export_calendar.download_ics'
+        .modal-footer
+          %button.btn{:data => {:dismiss => 'modal'}}= t 'shared.close'
+
+  #google-calendars-modal.modal.inmodal.fade{tabindex: "-1", role: "dialog", aria: {hidden: "true"}}
+    =render "google_calendars/list"

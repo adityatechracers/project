@@ -1,0 +1,49 @@
+- if current_user.can_manage? and (current_user.organization.present? and current_user.organization.missing_stuff?)
+  .alert.alert-block.alert-info
+    %button.close{"data-dismiss" => "alert", :type => "button"} ×
+    %h4= t '.org_profile_incomplete.heading'
+    %p= t '.org_profile_incomplete.body'
+    = link_to t('.org_profile_incomplete.edit_profile'), manage_edit_organization_path, :class => 'btn btn-success'
+
+.row-fluid
+  - if current_user.can_manage? and (current_user.organization.present? and current_user.organization.is_trial_account?)
+    .alert.alert-block.alert-info
+      %button.close{"data-dismiss" => "alert", :type => "button"} ×
+      %h4= t '.days_left_on_your_free_trial', days: current_user.organization.trial_days_remaining
+      - if current_user.can_manage?
+        %br
+        = link_to t('.subscribe_now'), manage_subscription_path, :class => 'btn btn-success'
+.row.reports-widget
+  .col-xs-12.reports-group
+    .pull-left
+      %a.btn.btn-toggle{data: { toggle: 'collapse', target: '#salesTable' } } Sales
+    .prompt
+      %p
+        %strong Click on an option
+        to show additional data
+  .col-xs-12.collapse#salesTable
+    .sales_stats.stats
+      %img(src="/assets/loading.gif")
+
+.row.dashboard-columns
+  .col-lg-4.col-md-6
+    %section.status-section
+      %h2.group-heading Leads
+      .leads_stats.stats
+        %img(src="/assets/loading.gif")
+
+  .col-lg-4.col-md-6
+    %section.status-section
+      %h2.group-heading Proposals
+      .prposals_stats.stats
+        %img(src="/assets/loading.gif")
+
+
+  .col-lg-4.col-md-12
+    %section.status-section
+      %h2.group-heading Jobs
+      .jobs_stats.stats
+        %img(src="/assets/loading.gif")
+
+.dashboard_footer.stats
+  %img(src="/assets/loading.gif")

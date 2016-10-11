@@ -1,0 +1,2 @@
+module ProposalTemplateSectionsHelper
+end

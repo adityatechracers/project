@@ -1,0 +1,66 @@
+.row.border-bottom.hidden#topnavbar
+  .navbar.navbar-static-top{role: "navigation"}
+    .navbar-header#topnavbar-header
+      %button.navbar-toggle.collapsed{type: 'button', aria:{controls: 'navbar', expanded: 'false'}, data:{target: '#topnavbar-collapse', toggle: 'collapse'}}
+        %i.fa.fa-reorder
+      = link_to image_tag("logo.png"), "https://corkcrm.com", :class => "navbar-brand", :target => "_blank"
+    .navbar-collapse.collapse#topnavbar-collapse{style: 'height: 1px;', aria:{expanded: 'false'}}
+      %ul.nav.navbar-nav
+        %li{:class => ('active' if current_page?('/admin'))}
+          = link_to admin_root_path do
+            %i.icon-lock
+            %span.nav-label Admin
+
+        - if can? :manage, Organization
+          %li{:class => ('active' if current_page?('/admin/organizations'))}
+            = link_to admin_organizations_path do
+              %i.icon-users-2
+              %span.nav-label Organizations
+
+        - if can? :manage, User
+          %li{:class => ('active' if current_page?('/admin/users'))}
+            = link_to admin_users_path do
+              %i.icon-user-2
+              %span.nav-label Users
+
+        - if can? :view_billing_history, :admin
+          %li{:class => ('active' if current_page?('/admin/invoices'))}
+            = link_to admin_invoices_path do
+              %i.icon-drawer-3
+              %span.nav-label Invoices
+
+        - if can? :view_failing_credit_cards, :admin
+          %li{:class => ('active' if current_page?('/admin/failing_cards'))}
+            = link_to admin_failing_cards_path do
+              %i.icon-credit
+              %span.nav-label Failing Credit Cards
+
+        - if can? :manage_cms, :admin
+          %li{:class => ('active' if current_page?('/admin/posts'))}
+            = link_to admin_posts_path do
+              %i.icon-bullhorn
+              %span.nav-label Blog
+          %li{:class => ('active' if current_page?('/'))}
+            = link_to root_path do
+              %i.icon-pencil
+              %span.nav-label CMS
+
+        %li{:class => ('active' if current_page?('/admin/inquiries'))}
+          = link_to admin_inquiries_path do
+            %i.icon-bubbles
+            %span.nav-label Inquiries
+
+        %li{:class => ('active' if current_page?('/admin/email_templates'))}
+          = link_to admin_email_templates_path do
+            %i.icon-mail-2
+            %span.nav-label Email Templates
+
+        %li{:class => ('active' if current_page?('/admin/activity'))}
+          = link_to admin_activity_path do
+            %i.icon-globe
+            %span.nav-label Activity Logs
+
+      %ul.nav.navbar-top-links.navbar-right
+        %li
+          = link_to destroy_user_session_path, :method => :delete do
+            Logout

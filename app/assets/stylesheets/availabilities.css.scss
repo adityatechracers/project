@@ -1,0 +1,75 @@
+.availabilities-row {
+  margin-bottom: 30px;
+}
+
+.availability-day-button {
+  width: 80px !important;
+  height: 80px !important;
+  margin-left: 15px;
+  margin-right: 15px;
+  border-radius: 40px !important;
+}
+
+.availability-arrow {
+  margin-top: 25px;
+}
+
+.day-name-in-button {
+  width: 46px;
+  height: 23px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.date-short-in-button {
+  width: 46px;
+  height: 20px;
+  font-size: small;
+  font-weight: 300;
+}
+
+.availability-employee-button {
+  width: 80px !important;
+  height: 80px !important;
+  margin-left: 15px;
+  margin-right: 15px;
+  border-radius: 40px !important;
+}
+
+.availability-employee-photo {
+  height: 70px;
+  padding: 1px;
+  border-radius: 35px;
+  margin-left: -12px;
+  margin-top: -6px;
+}
+
+.availability-employee-name {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.available-employee {
+  display: inline-block;
+  width: 30%;
+  margin-left: 5px;
+  margin-right: 5px;
+  vertical-align: top;
+}
+
+.appointment-box {
+  min-height: 68px;
+}
+
+.active-day {
+  background-color: #1ab394 !important;
+  color: white !important;
+}
+
+.google_event_name {
+  white-space: normal;
+  overflow: hidden;
+  line-height: 1.4em;
+  max-height: 2.8em;
+}

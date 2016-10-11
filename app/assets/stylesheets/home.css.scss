@@ -1,0 +1,115 @@
+.home-feature-list {
+  text-align:center;
+
+  .span3 {
+      padding:20px;
+      border-right:1px solid rgba(255,255,255,0.05);
+      -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  &:last-child {border-right:none;}
+  }
+  img {
+
+  }
+  h3 {
+      margin:0px;
+  }
+  p {
+      text-align:left;
+  }
+
+  @media (max-width: 979px) {
+    h3 {
+      line-height: 25px;
+      margin: 10px 0px;
+    }
+    p {
+      text-align:center;
+    }
+  }
+}
+
+.feature-list {
+  hr {
+    border-top: 0;
+    border-color: #ccc;
+  }
+
+  .feature-thumb {
+    border: 7px solid #ddd;
+    outline: 1px solid #bbb;
+  }
+
+  .feature-alt {
+    .cms-block {
+      margin-left: 30px;
+    }
+  }
+}
+
+.js-video {
+  height: 0;
+  padding-top: 25px;
+  padding-bottom: 67.5%;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+  @media (max-width: 767px) {
+    margin:15px;
+  }
+}
+
+.js-video.widescreen {
+  padding-bottom: 57.25%;
+}
+
+.js-video.vimeo {
+  padding-top: 0;
+}
+
+.js-video embed, .js-video iframe, .js-video object, .js-video video {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.rotator {
+  background: url(rotator-bg.jpg) repeat-x 90%;
+  background-position: 0% 0%;
+  background-size: cover;
+  color:#fff;
+
+  h3 {
+    font-size:23px;
+    font-weight:normal;
+  }
+  .laptop {
+    margin:20px 0 20px 0;
+  }
+  .message {
+    margin: 260px 0 0 0;
+    text-align: center;
+  }
+
+  @media (max-width: 979px) {
+    h3 {
+      font-size: 21px;
+    }
+    .btn-large {
+      font-size: 17px;
+    }
+    .message {
+      margin-top: 120px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .message {
+      margin: 50px 0px;
+    }
+  }
+}

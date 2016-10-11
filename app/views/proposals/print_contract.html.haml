@@ -1,0 +1,9 @@
+.dashboard-wrapper
+  .row-fluid
+    = render 'print_header'
+    = render 'agreement'
+    %div{:style => 'page-break-before: always'}
+    .row-fluid= render :partial => 'proposals/signatures'
+
+:javascript
+  window.onload = function() {window.print()};

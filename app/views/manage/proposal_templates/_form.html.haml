@@ -1,0 +1,44 @@
+= hform_for [:manage, @proposal_template], :html => {:id => "edit_proposal_template"} do |f|
+  %p{id: "proposal_id" ,data: { proposal_template_id: "#{@proposal_template.id}" }}
+  %ul.nav.nav-tabs.tabs-white
+    %li.active
+      %a{href:'#options', role: "tab", data: { toggle: "tab" } }= t '.proposal_template_options'
+    - unless @proposal_template.new_record?
+      %li
+        %a{href:'#revisions', role: "tab", class: "load-version", data: { toggle: "tab" } } Revision History
+  .tab-content.well.well-white
+    .tab-pane.active#options
+
+      - showable = @proposal_template.is_upload_your_own?
+      = f.input :name, input_html: { disabled: showable }
+      = f.input :active
+    .tab-pane#revisions
+      - unless @proposal_template.new_record?
+        .revision-section
+          = render :partial => 'shared/load_revisions', :locals => {:proposal_template => @proposal_template, :sections => @sections}
+  .row
+    - if @proposal_template.new_record?
+      .col-xs-12
+        = f.submit t('manage.proposal_templates.new.save_and_continue'), :disable_with => 'Saving...', :class => 'btn btn-success'
+    - else
+      .col-md-12
+        .ibox
+          .ibox-content
+            .row
+              .col-md-6.m-t-xs
+                %h3
+                  = t '.proposal_template_sections'
+              .col-md-6.m-t-xs
+                .pull-right
+                  = link_to new_manage_proposal_template_section_path(@proposal_template), :class => 'btn btn-success', :id => 'add-proposal-section-btn' do
+                    %i.icon-plus{:style => "margin:1px 10px 0px 0px;"}
+                    = t '.add_section'
+                  %button.btn#toggle-proposal-sections-btn{:style => "margin-right:10px;", :data => {:toggle => "tooltip", :placement => "bottom"}, :title => t('shared.collapse_all')}
+                    %i.icon-contract-2{:style => "transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);"}
+
+          - if @sections.present? && @sections.not_deleted.any?
+            %ul.proposal-section-list
+              - @sections.not_deleted.each do |s|
+                = render :partial => 'manage/proposal_templates/template_section', :locals => { :section => s }
+          .m-l-xs
+            = f.submit t('.update_template'), :disable_with => 'Updating...', :class => 'btn btn-success'

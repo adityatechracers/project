@@ -1,0 +1,12 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1= t('nav.jobs.payments')
+    .title
+      - if @job
+        != breadcrumbs({t('nav.jobs.payments') => payments_path}, {@job.full_title => job_path(@job)}, t('shared.new'))
+      - else
+        != breadcrumbs({t('nav.jobs.payments') => payments_path}, t('shared.new'))
+
+.ibox
+  .ibox-content
+    = render "payments/form"

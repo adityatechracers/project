@@ -1,0 +1,18 @@
+.row-fluid
+  .span6
+    %h2 Manage Subscription
+    %h4 Select the subscription that best fits your business.
+    .well
+      %label.radio
+        %input{:checked => "", :name => "subscriptionOptions", :type => "radio", :value => "25"}
+          $25/mo - 1 user access to all features
+      %label.radio
+        %input{:name => "subscriptionOptions", :type => "radio", :value => "50"}
+          $50/mo - up to 3 users access to all features
+      %label.radio
+        %input{:name => "subscriptionOptions", :type => "radio", :value => "100"}
+          $100/mo - up to 10 users access to all features
+      %label.radio
+        %input{:name => "subscriptionOptions", :type => "radio", :value => "150"}
+          $150/mo - unlimited user access
+    %button.btn.btn-success Subscribe &raquo;

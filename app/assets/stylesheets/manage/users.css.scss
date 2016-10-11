@@ -1,0 +1,22 @@
+#permission_table {
+  label {
+    font-size: 12px;
+    margin-bottom: 0;
+  }
+  tr.heading td {
+    background: inherit;
+    h5 {
+      font-weight: 600;
+      margin: 5px 0;
+    }
+  }
+  td {
+    padding: 2px 4px;
+  }
+}
+
+.new-user-form {
+  .form-actions {
+    padding-left: 155px;
+  }
+}

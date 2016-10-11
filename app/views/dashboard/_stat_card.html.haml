@@ -1,0 +1,20 @@
+
+%h3
+  %table
+    %tr
+      %td
+        %i{class: icon_class}
+      %td
+        #{name}
+.stat.col-xs-6
+  .label-row
+    %span.label.label-default #{t '.this_week'}
+  %h4
+    #{this_week}
+    %small #{units if defined? units} #{ '(' + appended_this_week.to_s + ')' if defined? appended_this_week}
+.stat.col-xs-6
+  .label-row
+    %span.label.label-default YTD
+  %h4
+    #{ytd}
+    %small #{units if defined? units} #{ '(' + appended_ytd.to_s + ')' if defined? appended_ytd}

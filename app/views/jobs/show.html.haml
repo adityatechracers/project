@@ -1,0 +1,9 @@
+.widget
+  .widget-header
+    .title!= breadcrumbs({t('nav.jobs.main') => jobs_path}, @job.full_title)
+    - if can? :manage, @job
+      = link_to edit_job_path(@job), :class => 'btn pull-right' do
+        %i.icon-pencil
+        %span.hidden-phone= t('shared.edit')
+  .widget-body
+    = render :partial => 'jobs/job_details', :locals => {:job => @job}

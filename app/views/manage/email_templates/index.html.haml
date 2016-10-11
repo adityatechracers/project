@@ -1,0 +1,41 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1!=t('nav.manage.email_templates')
+    .title!= breadcrumbs({t('nav.manage.main') => manage_root_path}, t('nav.manage.email_templates'))
+    .clearfix
+
+
+- @email_templates.each do |template|
+  - if template[1].present?
+    .ibox
+      .ibox-title
+        %h3= template[0] == "lead" ? "Leads & Appointments" : template[0].capitalize.pluralize
+      .ibox-content
+        %table.table.table-striped.footable.default
+          %thead
+            %tr
+              %th.footable-first-column= t '.table_headings.email_name'
+              %th= t '.table_headings.description'
+              %th= t '.table_headings.status'
+              %th.footable-last-column.action-cell= t '.table_headings.action'
+          %tbody
+            - template[1].each do |t|
+              %tr
+                %td.no-wrap= link_to t("manage.email_templates.names.#{t.name.underscore}"), edit_manage_email_template_path(t)
+                %td= t "manage.email_templates.descriptions.#{t.name.underscore}"
+                %td
+                  - if t.enabled
+                    %label.label.label-success= t 'shared.enabled'
+                  - else
+                    %label.label.label-danger= t 'shared.disabled'
+                %td{style: "min-width:132px;"}
+                  .btn-group
+                    = link_to edit_manage_email_template_path(t), :class => 'btn btn-small btn-default',
+                        :data => {:toggle => 'tooltip', :title => t('.edit_this_template')} do
+                      %i.icon-pencil
+                    = link_to test_manage_email_template_path(t), :class => 'btn btn-small btn-default',
+                        :method => :post, :data => {:toggle => 'tooltip', :title => t('.test_this_template')} do
+                      %i.icon-key
+                    = link_to toggle_manage_email_template_path(t), :class => "btn btn-small btn-default",
+                        :method => :post, :data => {:toggle => 'tooltip', :title => t.enabled ? t('shared.disable') : t('shared.enable')} do
+                      %i.icon-switch

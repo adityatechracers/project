@@ -1,0 +1,14 @@
+- @organizations.each do |o|
+  %tr
+    %td= link_to o.name, admin_organization_path(o)
+    %td
+      - if o.owner.present?
+        = link_to o.owner.name, admin_user_path(o.owner)
+    %td= o.users.count
+    %td= plan_label_for(o.plan_name)
+    %td= l o.created_at
+    %td
+      - if can?(:become_user, :admin) && o.owner.present?
+        = link_to become_admin_user_path(o.owner), :class => "btn btn-sm btn-default become-btn" do
+          %i.icon-enter
+          Become

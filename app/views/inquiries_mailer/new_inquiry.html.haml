@@ -1,0 +1,15 @@
+%h4 From
+
+#{@inquiry.name} (#{@inquiry.email})
+
+%h4 Message
+
+%p= @inquiry.message
+
+%br
+%hr
+
+%p
+  You can also view this message on CorkCRM:
+  %br
+  = link_to admin_inquiry_url(@inquiry), admin_inquiry_url(@inquiry)

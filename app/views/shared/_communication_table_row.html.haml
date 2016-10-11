@@ -1,0 +1,6 @@
+%tr
+  %td
+    %span= c.datetime.strftime("%B #{c.datetime.day.ordinalize}, %Y at %l:%M%P")
+    %span= ' - ' + current_user.name + ' - '
+    - if c.details.present?
+      %span= c.details

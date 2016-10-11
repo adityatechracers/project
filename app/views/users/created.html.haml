@@ -1,0 +1,24 @@
+.dashboard-wrapper{:style => "background:transparent;padding-top:25px;"}
+  .row-fluid
+    .well(large)
+      %h2.centered-text Welcome to CorkCRM!
+      %h3.centered-text Thank you for beginning your FREE 14-day trial! Click below to get started.
+      %div.centered-text
+        = link_to dashboard_path do
+          %button.btn.btn-default.btn-lg: Continue to Dashboard
+#user_signup_first_name{:style=> "display:none;"}= current_user.first_name
+#user_signup_last_name{:style=> "display:none;"}= current_user.last_name
+#user_signup_email{:style=> "display:none;"}= current_user.email
+#user_signup_phone{:style=> "display:none;"}= current_user.phone
+:javascript
+  var google_conversion_id = 977010812;
+  var google_custom_params = window.google_tag_params;
+  var google_remarketing_only = true;
+:css
+  .footer-container{display:none;}
+
+= javascript_include_tag '//www.googleadservices.com/pagead/conversion.js'
+
+%noscript
+  %div{:style => "display:inline;"}
+    %img{:alt => "", :height => "1", :src => "//googleads.g.doubleclick.net/pagead/viewthroughconversion/977010812/?value=0&amp;guid=ON&amp;script=0", :style => "border-style:none;", :width => "1"}

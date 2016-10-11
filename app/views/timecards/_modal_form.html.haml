@@ -1,0 +1,28 @@
+.modal-dialog
+  .modal-content
+    = hform_for @timecard, :defaults => {:input_html => {:class => "span12"}} do |f|
+      .modal-header
+        %button.close(data-dismiss='modal') &times;
+        %h3= @timecard.new_record? ? t('.new_timecard') : t('.edit_timecard')
+      .modal-body
+        .messages
+        - if current_user.can_manage?
+          = f.association :user, :input_html => {:class => 'chzn-select'}
+          - select_opts = {:collection => Job.with_accepted_proposal.includes(:contact).all, :label_method => :full_title, :include_blank => false, :input_html => {:class => 'chzn-select'}}
+          - select_opts[:selected] = params[:job_id] if params.has_key? :job_id
+          #job_error_notification
+          = f.association :job, select_opts
+
+        .clearfix
+        = f.input :start_datetime, as: :datetime_picker, input_html: {class: "start_datetime form-control", data: {iso: @timecard.start_datetime.try(:utc).try(:iso8601)}}
+        = f.input :end_datetime, as: :datetime_picker, input_html: {class:"end_datetime form-control", data: {iso: @timecard.end_datetime.try(:utc).try(:iso8601)}}
+        = f.input :notes, :input_html => {:rows => 3}
+
+      .modal-footer
+        - unless @timecard.new_record? || @timecard.locked?
+          %a.btn.btn-danger.pull-left#delete-timecard-btn
+            %span.visible-phone
+              %i.icon-remove-2
+            %span.hidden-phone= t('shared.delete')
+        = submit_tag t('shared.save'), :class => 'btn btn-success pull-right m-r m-l'
+        %a.btn.btn-default.pull-right(data-dismiss='modal')= t('shared.cancel')

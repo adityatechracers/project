@@ -1,0 +1,25 @@
+/*
+.proposal-template-section {
+  h3 {
+    padding: 5px;
+    .btn {
+      margin-top: 8px;
+    }
+  }
+}
+*/
+
+.proposal-template-actions .btn {
+  margin-left: 10px;
+}
+
+.proposal-section-header-controls button{
+  background: white none repeat scroll 0 0;
+  border: 1px solid #e7eaec;
+}
+.proposal-section-header-controls button:hover{
+  background-color: #e6e6e6;
+}
+.proposal-section-header-controls button i {
+  color: #666;
+}

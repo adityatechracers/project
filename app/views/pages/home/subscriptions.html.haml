@@ -1,0 +1,7 @@
+=simple_form_for "search", :method => :get, :class => 'form-search' do |f|
+  .row
+    .span5
+      %h5 Keywords
+      = f.input :query,  :class => 'search-query span4', :placeholder => 'Project Title, Contact, Organization, Grant #', :label => false, :input_html => {:class => "span4", :value => params[:search].present? ? params[:search][:query] : ""}
+      %h5 Project Name
+      = f.input :project_id, :collection => [],  :label => false, :input_html => {:class => "chzn-select span4", :data => { :placeholder => 'Select Project...' }}, :selected => params[:search].present? ? params[:search][:project_id] : nil, :include_blank => true

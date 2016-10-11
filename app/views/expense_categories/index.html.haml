@@ -1,0 +1,31 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    .title-group
+      %h1!= t('nav.jobs.expenses')
+      .title!= breadcrumbs({t('nav.jobs.expenses') => expenses_path}, {t('expense_categories.categories') => expense_categories_path})
+    = link_to("New Expense Category", new_expense_category_path, :class => "btn btn-success pull-right m-t-xl")
+
+    = link_to("New Vendor", new_vendor_category_path, :class => "btn btn-success pull-right m-t-xl", :style => "margin-right:10px")
+
+.ibox
+  .ibox-content.p-md
+    - if @expense_categories.any?
+      %table.table.table-striped.footable
+        %thead
+          %tr
+            %th= t '.table_headings.name'
+            %th= t '.table_headings.expenses'
+            %th= t '.table_headings.actions'
+        %tbody
+          - @expense_categories.each do |ec|
+            %tr
+              %td= ec.name
+              %td= ec.expenses.count
+              %td= render 'shared/action_buttons', resource: ec
+    - else
+      .hero-unit
+        %h3 Your organization does not currently have any expense categories set up.
+        %p
+          CorkCRM allows you to create expense categories to organize and provide better insight into expenses. For example, add a "Paint" category to
+          start tracking paint-related expenses. Click the button below to get started!
+        = link_to "Add an Expense Category", new_expense_category_path, :class => "btn btn-success btn-large" if can? :create, ExpenseCategory

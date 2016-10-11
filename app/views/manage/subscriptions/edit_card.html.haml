@@ -1,0 +1,52 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    .title-group
+      %h1= 'Update billing information'
+      .title!= breadcrumbs({t('nav.manage.main') => manage_root_path}, t('nav.manage.billing_info'))
+.ibox
+  .ibox-content#card_form_wrapper
+
+    - if @organization.blank? || @organization.is_trial_account?
+      .alert.alert-block.alert-warning
+        %h4
+          You must subscribe to a paid plan before you can update your billing info.  Please follow this #{link_to "link", manage_subscription_path} to upgrade your subscription.
+
+    - else
+      = simple_form_for @organization, :url => manage_update_card_path, :html => { class: 'form-horizontal' } do |f|
+
+        #stripe-error.alert.alert-danger.hide
+        .form-group
+          = label_tag :name_on_credit_card, "Name on the card", :class => 'col-md-2 control-label'
+          .col-md-10
+            = text_field_tag :name_on_credit_card, nil, name: "organization[name_on_credit_card]", class: "form-control",
+                :id => "organization_name_on_credit_card",
+                :value => @organization.name_on_credit_card
+        .form-group
+          = label_tag :card_number, "Credit Card", :class => 'col-md-2 control-label'
+          .col-md-10
+            - if @organization.last_four_digits
+              Active card ends in
+              = @organization.last_four_digits
+              %br
+            = text_field_tag :card_number, nil, :name => nil, :class => "form-control", :placeholder => 'Card Number',
+                :type => 'tel', :pattern => '[\d ]*'
+            = text_field_tag :card_code, nil, name: nil, :cols => 4, :class => 'form-control input-mini', :placeholder => 'CVV',
+                :inputmode => 'numeric', :pattern => '\d*'
+        .form-group
+          = label_tag :card_month, "Card Expiration", :class => 'col-md-2 control-label'
+          .col-md-10
+            = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month", class: 'form-control input-medium', style: "display: inline-block;"}
+            = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15},
+                {name: nil, id: "card_year", class: "form-control input-mini", style: "display: inline-block;" }
+
+        = f.hidden_field :stripe_card_token
+
+        %br
+        .form-group
+          .col-md-offset-2.col-md-10
+            =f.submit "Update Your Billing Information", :class => "btn btn-success"
+
+
+        = content_for :additional_javascript do
+          :javascript
+            $(StripeCards.init);

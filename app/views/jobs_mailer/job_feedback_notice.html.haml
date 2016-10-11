@@ -1,0 +1,11 @@
+The following feedback was submitted for #{@job.full_title} at #{l @job_feedback.created_at}:
+
+%dl
+  %dt Submitter's Name
+  %dd= @job_feedback.name
+
+  %dt Feedback
+  %dd= @job_feedback.feedback
+
+  %dt Work is completed?
+  %dd= @job_feedback.complete ? "Yes" : "No"

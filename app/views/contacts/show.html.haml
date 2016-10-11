@@ -1,0 +1,148 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    .title-group
+      %h1 Contacts
+      .title
+        = link_to 'Contacts', contacts_path, :class => 'breadcrumb-link'
+        %span.breadcrumb-divider &raquo;
+        = @contact.name
+    = link_to edit_contact_path(@contact), :class => "btn btn-primary pull-right m-t-xl" do
+      %i.icon-pencil
+      = t '.edit_contact'
+
+.ibox
+  .ibox-title
+    .row
+      .col-md-6
+        %table.m-b
+          %tr.icon-group
+            %td
+              %i.icon.icon-user-2{:style => "font-size:58px;margin-left:10px;"}
+            %td
+              %h3{:style => ""}= @contact.name
+              %p{:style => "margin: 3px 0;"}
+                %i.fa.fa-map-marker.m-r-xs
+                = link_to @contact.full_address, "https://maps.google.com/?q="+@contact.full_address
+              %p{:style => "margin: 3px 0;"}
+                %i.fa.fa-phone.m-r-xs
+                = @contact.phone
+              %p{:style => "margin: 3px 0;"}
+                %i.fa.fa-clock-o.m-r-xs
+                = @contact.active_support_time_zone.to_s
+              - if @contact.has_lead_source? and @contact.lead_source.present?
+                %p.m-t-sm
+                  %label Lead Source
+                  %span.lead-source.m-l-xs= @contact.lead_source.name
+                  %br
+                  - if !@contact.discard_zestimate && @contact.zestimate
+                    %label Zestimate
+                    %span.lead-source.m-l-xs= number_with_delimiter(@contact.zestimate, :delimiter => ',')+' USD'
+              - if current_tenant.show_customer_rating
+                %p.m-t-sm
+                  %label Contact Ratings
+                  %table.contact_rating
+                    %tbody
+                      - @appointment_rating = Rating.joins(:contact_ratings).where("contact_ratings.contact_id = #{params[:id]} and contact_ratings.stage = 'Appointment'").first
+                      - if @appointment_rating
+                        %tr
+                          %td Rating at appointment stage
+                          %td
+                            = @appointment_rating.rating
+                            = link_to t('.edit'), '#contact-rating-edit-appointment', :class => '', data: { toggle: 'modal', target: "#contact-rating-edit-appointment" }, title: 'Edit rating'
+                      - @proposal_rating = Rating.joins(:contact_ratings).where("contact_ratings.contact_id = #{params[:id]} and contact_ratings.stage = 'Proposal'").first
+                      - if @proposal_rating
+                        %tr
+                          %td Rating at proposal stage
+                          %td
+                            = @proposal_rating.rating
+                            = link_to t('.edit'), '#contact-rating-edit-proposal', :class => '', data: { toggle: 'modal', target: "#contact-rating-edit-proposal" }, title: 'Edit rating'
+                      - @completion_rating = Rating.joins(:contact_ratings).where("contact_ratings.contact_id = #{params[:id]} and contact_ratings.stage = 'Completion'").first
+                      - if @completion_rating
+                        %tr
+                          %td Rating at job completion stage
+                          %td
+                            = @completion_rating.rating
+                            = link_to t('.edit'), '#contact-rating-edit-completion', :class => '', data: { toggle: 'modal', target: "#contact-rating-edit-completion" }, title: 'Edit rating'
+      / Notes functionality in contacts removed.
+      /   = simple_form_for @communication, remote:true, class:"form-inline", html: { type: 'json' },
+      /     defaults: {wrapper: :simple} do |form|
+      /     = form.input :job_id, value: @job.id, as: :hidden
+      /     = form.input :action, as: :hidden, input_html: {value: 'Call'}
+      /     = form.input :type, as: :hidden, input_html: {value: 'CommunicationRecord'}
+      /     .form-group.m-t-xl
+      /       %h3.font-normal Add Note
+      /       = form.input :details, label: false, minlength:1,
+      /         input_html: { rows: 2, class:'form-control note_text' }
+      /     .form-group.padding-top.m-b-lg
+      /       %button.btn.btn-default.save_btn{type: 'submit'} Save note 
+      / .col-md-6 
+      /   %h3.font-normal= t '.communications.notes'
+      /   #communication-history-table
+      /     = render partial: "shared/communications_table", locals: {communications: @communication.job.communications.past}                           
+
+
+- if @jobs.any?
+  - if @jobs.count > 1
+    .ibox
+      .ibox-title.action-heading
+        %h3 #{t('nav.jobs.main')} (#{@jobs.count})
+        / - if can?(:create, Job) && can?(:create, Contact)
+        /   = link_to "Add a Lead", new_with_contact_leads_path(@contact), :class => "btn btn-success pull-right"
+  - @jobs.each do |j|
+    - if Proposal.where("job_id = ?", j.id).any?
+      .ibox
+        .ibox-title
+          %table.table
+            %tr.centered-text
+              %td.pull-left
+                %h3 Proposal # #{Proposal.where("job_id = #{j.id}").select(:proposal_number).first.proposal_number}
+              %td= j.has_crew? ? j.crew.name : t('jobs.misc.no_crew_assigned')
+              / %td= j.estimated_amount.present? ? "Estimated amount: #{number_to_currency(j.estimated_amount)}" : "No estimated amount"
+              / %td= "Calculated amount: #{number_to_currency(j.calculated_amount)}"
+              / %td= "Budgeted Hours: #{j.budgeted_hours.present? ? j.budgeted_hours : 0} hrs"
+
+      .ibox-content
+        = render :partial => 'jobs/job_details', :locals => {:job => j}
+- else
+  .ibox
+    .ibox-content
+      .hero-unit
+        %h3 This contact does not currently have any jobs.
+        %p In CorkCRM, each contact can have multiple jobs, which in turn can be assigned multiple proposals, appointments, timecards, and more.  Newly created jobs are referred to throughout the system as <b>leads</b>, and stay in this phase until a proposal is added.  When the proposal's contract has been signed by both parties, the job can be scheduled on the <a href='#{schedule_jobs_path}'>Jobs Tab</a>.
+      - if can?(:create, Job) && can?(:create, Contact)
+        = link_to "Add a Lead", new_lead_path(:contact_id => @contact.id), :class => "btn btn-success btn-large"
+
+
+- if @appointments.any?
+  .ibox
+    .ibox-title
+      %h3 #{t('nav.appointments.main')} (#{@appointments.count})
+    .ibox-content
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Date
+            %th Appointment Holder
+        %tbody
+          - @appointments.each do |a|
+            %tr
+              %td #{l a.start_datetime} &mdash; #{l a.end_datetime}
+              %td= a.user.name
+- else
+  .ibox
+    .ibox-content
+      .hero-unit
+        %h3 This contact does not currently have any appointments scheduled.
+        %p CorkCRM's <a href="#{appointments_path}">Appointments Tab</a> contains an intuitive calendar-based scheduler featuring HTML5 drag-and-drop integration, availability slots, and even an embeddable scheduling form that can be displayed on any website with ease!  Click the button below to get started today.
+        = link_to "Add an Appointment", appointments_path, :class => "btn btn-success btn-large" if can? :create, Appointment
+
+- if current_tenant.show_customer_rating
+  - if @appointment_rating
+    #contact-rating-edit-appointment.modal.fade{tabindex: "-1", role: "dialog", aria: {hidden: "false"}}
+      = render "contact_rating_appointment"
+  - if @proposal_rating
+    #contact-rating-edit-proposal.modal.fade{tabindex: "-1", role: "dialog", aria: {hidden: "false"}}
+      = render "contact_rating_proposal"
+  - if @completion_rating
+    #contact-rating-edit-completion.modal.fade{tabindex: "-1", role: "dialog", aria: {hidden: "false"}}
+      = render "contact_rating_completion"

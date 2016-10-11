@@ -1,0 +1,46 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md.p-sm
+  .col-xs-12
+    .title-group
+      %h1= t '.organization_users'
+    = link_to t('.add_an_employee'), new_manage_user_path, :class => "btn btn-success pull-right m-t"
+
+.ibox
+  .ibox-content.p-md
+    %table.table.table-striped.footable
+      %thead
+        %tr
+          %th= t '.table_headings.name'
+          %th= t '.table_headings.phone_number'
+          %th= t '.table_headings.address'
+          %th= t '.table_headings.role'
+          %th= t '.table_headings.status'
+          %th= t '.table_headings.actions'
+      %tbody
+        - @users.each do |u|
+          %tr{:class => u.is_owner? ? "info" : ""}
+            %td= u.backwards_name
+            %td= u.phone
+            %td= u.condensed_address
+            %td
+              - if u.is_owner?
+                %label.label.label-info= t '.owner'
+              - elsif u.is_manager?
+                %label.label.label-warning= t '.manager'
+              - else
+                %label.label.label= t '.employee'
+            %td
+              - if u.active
+                %label.label.label-success= t 'shared.active'
+              - else
+                %label.label.label-important= t 'shared.inactive'
+            %td
+              - if can?(:edit, u)
+                = link_to edit_manage_user_path(u), :class => 'btn btn-small btn-default' do
+                  %i.icon-pencil
+                  = t 'shared.edit'
+              - if can?(:become, u)
+                - unless u.is_owner?
+                  = link_to become_manage_user_path(u), :class => 'btn btn-small btn-default become-btn' do
+                    %i.icon-enter
+                    = t 'shared.become'
+    = paginate @users, :theme => 'bootstrap'

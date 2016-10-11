@@ -1,0 +1,15 @@
+.dashboard-wrapper
+  .row-fluid= render 'print_header'
+
+  .row-fluid.proposal-report
+    - @proposal.section_responses.sort{|a,b| a.template_section.position <=> b.template_section.position}.each do |s|
+      = render :partial => 'proposals/section', :locals => {:section => s}
+
+  - if params[:contract]
+    .row-fluid
+      = render 'agreement'
+      %div{:style => 'page-break-before: always'}
+      .row-fluid= render :partial => 'proposals/signatures'
+
+:javascript
+  window.onload = function() {setTimeout(function(){window.print()}, 1000);};

@@ -1,0 +1,37 @@
+- if cookies.has_key? "become_last_email"
+  :javascript
+    window.location = "/users/sign_in"
+
+= content_for :home do
+  .rotator
+    .container
+      .row
+        .span8
+          .laptop
+            .js-video.vimeo.widescreen
+              %iframe{allowfullscreen: "", frameborder: "0", height: "360", mozallowfullscreen: "", src: "//player.vimeo.com/video/76700783", webkitallowfullscreen: "", width: "600"}
+        .span4
+          .message
+            %h3 Getting started is easy...
+            = link_to "Start your free trial today", new_user_registration_path, :class => "btn btn-success btn-large"
+        .clearfix
+      .row.home-feature-list
+        .span3!= cb("Home","Feature 1")
+        .span3!= cb("Home","Feature 2")
+        .span3!= cb("Home","Feature 3")
+        .span3!= cb("Home","Feature 4")
+        .clearfix
+  .container-light.container-padded
+    .container
+      .row.row-buffered
+        .span8!= cb("Home","Why CorkCRM is Different")
+        .span4
+          != cb("Home","What CorkCRM Provides")
+          = link_to "Start your free trial today!", new_user_registration_path, :class => "btn btn-inverse", :style => "width:100%;padding:12px 0px;margin-top:10px;"
+      - if Post.active.any?
+        .row.row-buffered
+          .span8
+            %h2 CorkCRM Blog
+            = render :partial => 'posts/post', :locals => {:post => Post.most_recent }
+          .span4
+            = render 'posts/menu'

@@ -1,0 +1,9 @@
+.btn-group.pull-right
+  %a.btn.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+    = params[:per_page]!="all" ? "#{params[:per_page]} results per page" : "Showing all results"
+    %span.caret
+  %ul.dropdown-menu
+    %li= link_to "10", params.merge(:per_page => 10)
+    %li= link_to "25", params.merge(:per_page => 25)
+    %li= link_to "50", params.merge(:per_page => 50)
+    %li= link_to "All", params.merge(:per_page => "all")

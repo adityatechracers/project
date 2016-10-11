@@ -1,0 +1,76 @@
+.widget
+  .widget-header
+    = render 'report_title', title: :managed_organizations
+    .pull-right.hidden-phone
+      = date_range_filter_button
+    .org-selection.pull-right.hidden-phone
+      = form_tag params, method: :get do
+        %select.multiselect.hide(multiple name="ids[]")
+          - @managed_organizations.each do |org|
+            %option{value: org.id, selected: params[:ids].nil? || params[:ids].include?(org.id.to_s)}= org.name
+        - if params[:custom_date_range].present?
+          %input{type: 'hidden', name: 'custom_date_range', value: params[:custom_date_range]}
+
+  .widget-body
+    .row-fluid
+      %h3
+        Overview &nbsp;
+        %small= @cdr_value.present? ? @cdr_value : 'All Time'
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th Name
+            %th Profit
+            %th Revenue
+            %th Expenses
+            %th # of Jobs
+            %th # of Leads
+        %tbody
+          - @managed_organizations_data[:overview].each do |name, data|
+            %tr
+              %td= name
+              %td= number_to_currency(data[:profit])
+              %td= number_to_currency(data[:revenue])
+              %td= number_to_currency(data[:expenses])
+              %td= data[:job_count]
+              %td= data[:lead_count]
+
+      %hr
+
+    .row-fluid
+      .span6
+        %h4
+          Profit by Organization &nbsp;
+          %small= @cdr_value.present? ? @cdr_value : 'All Time'
+        = column_chart @managed_organizations_data[:profit], library: chartkick_opts(vAxis: { title: 'Profit ($)' }, hAxis: { title: 'Managed Organization' })
+      .span6
+        %h4
+          Revenue by Organization &nbsp;
+          %small= @cdr_value.present? ? @cdr_value : 'All Time'
+        = column_chart @managed_organizations_data[:revenue], library: chartkick_opts(vAxis: { title: 'Revenue ($)' }, hAxis: { title: 'Managed Organization' })
+    %hr
+    .row-fluid
+      .span6
+        %h4
+          Expenses by Organization &nbsp;
+          %small= @cdr_value.present? ? @cdr_value : 'All Time'
+        = column_chart @managed_organizations_data[:expenses], library: chartkick_opts(vAxis: { title: 'Expenses ($)' }, hAxis: { title: 'Managed Organization' })
+      .span6
+        %h4
+          Jobs by Organization &nbsp;
+          %small= @cdr_value.present? ? @cdr_value : 'All Time'
+        = column_chart @managed_organizations_data[:job_count], library: chartkick_opts(vAxis: { title: '# of Jobs' }, hAxis: { title: 'Managed Organization' })
+
+    %hr
+    %h4 About this Report
+    .help-block
+      <strong>Revenue</strong> is determined by taking the sum of payments
+      entered into the system.
+      <strong>Expenses</strong> include both entered timecards and entered
+      expenses.
+      %br
+      When a date range is selected, only revenue and expenses for <strong>leads and
+      jobs created during that timeframe</strong> are shown. Note that the actual
+      date of the payment or expense is not considered, as it may be unavailable.
+      For a more fine-grained view of this information, see the Expenses, Payments
+      and Profit reports for each organization.

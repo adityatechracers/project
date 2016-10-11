@@ -1,0 +1,6 @@
+%h3.chart-heading
+  = title
+  - unless local_assigns[:subtitle].nil?
+    %small= subtitle
+= pie_chart data, :library => chartkick_opts({:theme => "maximized", :is3D => true})
+.help-block= yield

@@ -1,0 +1,8 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1= t('nav.jobs.Timecards')
+    .title!= breadcrumbs({t('nav.jobs.timecards') => timecards_path}, t('shared.new'))
+
+.ibox
+  .ibox-content
+    = render "form"

@@ -1,0 +1,5 @@
+.row-fluid.proposal-footer.center
+  - if @proposal_options[:logo] != false
+    = pdf_image_tag(@proposal.organization.logo(:medium), :class => "proposal-organization-logo", :style => 'max-width: 250px; max-height: 150px;')
+    - if @proposal.organization.website_url.present?
+      %h4.proposal-footer-website= url_without_protocol(@proposal.organization.website_url)

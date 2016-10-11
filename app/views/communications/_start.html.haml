@@ -1,0 +1,30 @@
+.row-fluid
+  = simple_form_for @communication, defaults: {input_html: {class: "span12"}}, url: (@communication.new_record? ? "/communications" : communication_path(@communication)) do |f|
+    = f.input :job_id, as: :hidden
+    = f.input :datetime, as: :hidden, input_html: {value: Time.zone.now.to_datetime}
+    = f.input :type, as: :hidden, input_html: {value: "CommunicationRecord"}
+    = f.input :action, include_blank: false,
+        collection: Communication::ACTIONS.map { |action| [t(".actions.#{action.parameterize('_')}"), action] }
+    = f.input :details, input_html: {rows: 3}
+
+    %label= t '.outcome'
+    .btn-group(data-toggle="buttons-radio" class="outcome-buttons")
+      - Communication::OUTCOMES.each do |outcome|
+        %button{:type => 'button', :class => 'btn btn-small', 'data-value' => outcome}
+          = t ".outcomes.#{outcome.parameterize('_')}"
+
+    %label= t '.next_step'
+    .btn-group(data-toggle="buttons-radio" class="next-step-buttons")
+      %button(type='button' class='btn btn-small' data-value='dead_lead')= t '.next_steps.dead_lead'
+      %button(type='button' class='btn btn-small' data-value='call_back_on')= t '.next_steps.call_back_on'
+      %button(type='button' class='btn btn-small' data-value='call_back_around')= t '.next_steps.call_back_around'
+      %button(type='button' class='btn btn-small' data-value='schedule_appointment')= t '.next_steps.schedule_appointment'
+      %button(type='button' class='btn btn-small' data-value='schedule_job')= t '.next_steps.schedule_job'
+
+    %input(type='text' name='call_back_on_datetime' class='datetime_picker' placeholder="Time to call back...")
+    %input(type='text' name='call_back_around_datetime' class='datetime_picker' placeholder="Time to call back around...")
+
+    .hidden-communication-inputs
+      = f.input :outcome, :collection => Communication::OUTCOMES, :as => :radio_buttons
+      - Communication::NEXT_STEPS.each do |step|
+        %input{:type => 'radio', :name => 'next_step', :value => step}

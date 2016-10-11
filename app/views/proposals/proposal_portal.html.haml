@@ -1,0 +1,10 @@
+.dashboard-wrapper
+  .gray-bg.row.proposal-portal-spacing
+    = render "widget_proposal_header", :personal => @proposal.template.is_upload_your_own?
+
+    - if @proposal.template.is_upload_your_own?
+      = render "personal_proposal_template"
+    - else
+      = render "normal_proposal_template"
+.sign_contract_alert
+  = link_to "View and Sign the contract", contract_portal_path, :class => "btn btn-success btn-xl"

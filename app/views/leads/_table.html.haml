@@ -1,0 +1,63 @@
+- @leads.each do |l|
+  %tr.footable
+    %td.footable{style: "line-height:14px;"}
+      %span.caret-right
+      = l.contact.name
+    %td.footable
+      = l.contact.phone
+    %td.footable
+      = l.contact.minimum_address
+    != l.next_appointment_indicator_cell
+    %td
+      %div.dropdown
+        %button.btn.btn-default.dropdown-toggle(data-toggle='dropdown'){ style: 'margin-left: 8px;', type: 'button' }
+          %i.fa.fa-ellipsis-h
+        %ul.dropdown-menu.pull-right
+          %li= link_to t('.actions.edit_lead'), "/contacts/edit_lead/#{l.contact.id}"
+          %li= link_to t('.actions.add_an_appointment'), "appointments"
+         
+          %li= link_to t('.actions.delete_lead'), lead_path(l), method: :delete, confirm: t('.actions.confirm_delete_lead')
+          - if l.is_dead?
+            %li= link_to t('.actions.mark_as_active_lead'), mark_undead_job_path(l)
+          - else
+            %li= link_to t('.actions.mark_as_dead_lead'), mark_dead_job_path(l)
+  %tr.footable-row-detail
+    %td.footable-row-detail-cell{colspan: '5'}
+      .row
+        .col-md-5
+          %div
+            %strong Email:
+            = l.contact.email
+          %div
+            %strong Request Entered:
+            = l.created_at.strftime("%B #{l.created_at.day.ordinalize}, %Y at %l:%M%P")
+          %div
+            %strong Entered by:
+            = current_user.name
+          %div
+            %strong Lead Source:
+            = l.source_name
+          - if !l.contact.discard_zestimate && l.contact.zestimate
+            %div
+              %strong Zestimate:
+              = number_with_delimiter(l.contact.zestimate, :delimiter => ',')+' USD'
+
+          -@job = Job.find l.id
+          -@communication = Communication.new(:job_id => @job.id, :user_id => current_user.id)
+
+          = simple_form_for @communication, remote:true, class:"form-inline", html: { type: 'json' },
+            defaults: {wrapper: :simple} do |form|
+            = form.input :job_id, value: @job.id, as: :hidden
+            = form.input :action, as: :hidden, input_html: {value: 'Call'}
+            = form.input :type, as: :hidden, input_html: {value: 'CommunicationRecord'}
+            .form-group.m-t-xl
+              %h3.font-normal Add Note
+              = form.input :details, label: false, minlength:1,
+                input_html: { rows: 2, class:'form-control note_text' }
+            .form-group.padding-top.m-b-lg
+              %button.btn.btn-default.save_btn{type: 'submit'} Save note
+
+        .col-md-7
+          %h3.font-normal= t '.communications.notes'
+          #communication-history-table
+            = render partial: "shared/communications_table", locals: {communications: @communication.job.communications.past}

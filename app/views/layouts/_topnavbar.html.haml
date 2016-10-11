@@ -1,0 +1,73 @@
+.row.border-bottom.hidden#topnavbar
+  .navbar.navbar-static-top{role: "navigation"}
+    .navbar-header#topnavbar-header
+      %button.navbar-toggle.collapsed{type: 'button', aria:{controls: 'navbar', expanded: 'false'}, data:{target: '#topnavbar-collapse', toggle: 'collapse'}}
+        %i.fa.fa-reorder
+      = link_to image_tag("logo.png"), "https://corkcrm.com", :class => "navbar-brand", :target => "_blank"
+    .navbar-collapse.collapse#topnavbar-collapse{style: 'height: 1px;', aria:{expanded: 'false'}}
+      %ul.nav.navbar-nav
+        %li.dropdown{:class => ('active' if current_page?('/leads'))}
+          = link_to "/leads", {class:'dropdown-toggle', role: 'button', aria:{expanded: 'false'}, data:{toggle: 'dropdown'}} do
+            %i.fa.fa-bars
+            %span.nav-label Leads
+            %span.fa.arrow
+          %ul.dropdown-menu{role:'menu'}
+            %li= active_link_to t('nav.leads.show_all'), leads_path, class: 'topnavbar-dropdown-item'
+            %li= active_link_to t('nav.leads.import'), import_leads_path, class: 'topnavbar-dropdown-item'
+            %li= active_link_to t('nav.leads.new'), '/contacts/new_lead', class: 'topnavbar-dropdown-item'
+            %li= active_link_to t('nav.leads.sources'), lead_sources_path, class: 'topnavbar-dropdown-item'
+
+        %li{:class => ('active' if current_page?('/appointments'))}
+          = link_to "/appointments", {class:'dropdown-toggle', role: 'button', aria:{expanded: 'false'}, data:{toggle: 'dropdown'}} do
+            %i.fa.fa-calendar
+            %span.nav-label Appointments
+            %span.fa.arrow
+          %ul.dropdown-menu{role:'menu'}
+            %li= active_link_to t('nav.appointments.show_all'), appointments_path, class: 'topnavbar-dropdown-item'
+            / -if can? :manage, Appointment
+            /   %li= active_link_to t('nav.appointments.availability'), availabilities_path, class: 'topnavbar-dropdown-item'
+
+        %li{:class => ('active' if current_page?('/proposals'))}
+          = link_to "/proposals", {class:'dropdown-toggle', role: 'button', aria:{expanded: 'false'}, data:{toggle: 'dropdown'}} do
+            %i.fa.fa-briefcase
+            %span.nav-label Proposals
+            %span.fa.arrow
+          %ul.dropdown-menu{role:'menu'}
+            %li= active_link_to t('nav.proposals.show_all'), proposals_path, class: 'topnavbar-dropdown-item'
+            - if Job.leads.any? && current_user.can_manage?
+              %li= active_link_to t('nav.proposals.templates'), manage_proposal_templates_path, class: 'topnavbar-dropdown-item'
+
+        %li{:class => ('active' if current_page?('/jobs'))}
+          = link_to "/jobs", {class:'dropdown-toggle', role: 'button', aria:{expanded: 'false'}, data:{toggle: 'dropdown'}} do
+            %i.fa.fa-paint-brush
+            %span.nav-label Jobs
+            %span.fa.arrow
+          %ul.dropdown-menu{role:'menu'}
+            %li= active_link_to t('nav.jobs.show_all'), jobs_path, class: 'topnavbar-dropdown-item'
+            - if Proposal.any?
+              %li= active_link_to t('nav.jobs.schedule'), schedule_jobs_path, class: 'topnavbar-dropdown-item'
+              - if can? :manage, Expense
+                %li= active_link_to t('nav.jobs.expenses'), expenses_path, class: 'topnavbar-dropdown-item'
+              - if can? :manage, Payment
+                %li= active_link_to t('nav.jobs.payments'), payments_path, class: 'topnavbar-dropdown-item'
+              %li= active_link_to t('nav.jobs.timecards'), timecards_path, class: 'topnavbar-dropdown-item'
+
+        %li{:class => ('active' if current_page?('/dashboard'))}
+          = link_to "/dashboard" do
+            %i.fa.fa-tachometer
+            %span.nav-label Dashboard
+        - if current_user.can_manage?
+          %li{:class => ('active' if current_page?('/manage'))}
+            = link_to "/manage" do
+              %i.fa.fa-lock
+              %span.nav-label Manage
+        - if can? :view_all, Contact
+          %li{:class => ('active' if current_page?('/contacts'))}
+            = link_to "/contacts" do
+              %i.fa.fa-users
+              %span.nav-label Contacts
+
+      %ul.nav.navbar-top-links.navbar-right
+        %li
+          = link_to destroy_user_session_path, :method => :delete do
+            Logout

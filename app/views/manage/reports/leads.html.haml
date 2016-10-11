@@ -1,0 +1,37 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    .title-group
+      %h1= t 'nav.manage.reports'
+      = render 'report_title', title: :leads
+    %span.hidden-phone.pull-right.m-t-xl= date_range_filter_button
+.row
+  .col-md-6
+    .ibox
+      .ibox-title
+        %h3.chart-heading= t '.lead_status_distribution'
+      .ibox-content
+        = pie_chart @lead_status_distribution, :library => chartkick_opts({:is3D => true, :theme => "maximized"}), :height => "300px"
+  .col-md-6
+    .ibox
+      .ibox-title
+        %h3.chart-heading= t '.lead_source_distribution'
+      .ibox-content
+        = pie_chart @lead_source_distribution, :library => chartkick_opts({:is3D => true, :theme => "maximized"}), :height => "300px"
+.ibox
+  .ibox-title
+    %h3= t(".number_of_leads_created_by_day")
+  .ibox-content
+    = line_chart @line_chart_data, :height => "200px"
+
+
+- if @contact_coordinate_data.size > 2
+  .ibox
+    .ibox-title
+      %h3= t '.lead_geographical_distribution'
+    .ibox-content
+      #contact-distribution-map.google-map{:style => 'height:500px', :data => {:contact_coordinates => @contact_coordinate_data}}
+- else
+  .ibox
+    .ibox-content
+      %p.lead{:style => "text-align:center;"}
+        = t "manage.reports.misc.#{params.has_key?(:custom_date_range) ? 'no_data_for_time_range' : 'no_data'}"

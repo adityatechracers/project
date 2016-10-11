@@ -1,0 +1,28 @@
+.ibox
+  .ibox-title
+    %h3 Inquiries
+  .ibox-content
+    %table.table.footable.table-striped
+      %thead
+        %tr
+          %th Name
+          %th Email
+          %th Date
+          %th Actions
+      %tbody
+        - @inquiries.each do |i|
+          %tr
+            %td= i.name
+            %td= link_to i.email, "mailto:#{i.email}"
+            %td= l i.created_at
+            %td
+              = link_to admin_inquiry_path(i), :class => 'btn btn-mini' do
+                %i.icon-radio-checked
+                View
+              = link_to "mailto:#{i.email}", :class => "btn btn-mini" do
+                %i.icon-reply
+                Reply
+              = link_to admin_inquiry_path(i), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini' do
+                %i.icon-remove
+                Delete
+  = paginate @inquiries

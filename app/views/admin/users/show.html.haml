@@ -1,0 +1,107 @@
+.ibox
+  .ibox-title
+    %h3.inline-btn{style: 'margin-bottom: 10px;'}
+      .title= link_to 'Users', admin_users_path, :class => 'breadcrumb-link'
+      %span.breadcrumb-divider /
+      = @user.name
+      .pull-right
+        = link_to become_admin_user_path(@user), :class => "btn btn-default become-btn" do
+          %i.icon-enter
+          Become
+        = link_to edit_admin_user_path(@user), :class => "btn btn-default btn-spaced" do
+          %i.icon-pencil
+          Edit
+  .ibox-content
+    %table.table.table-bordered.table-striped
+      %tbody
+        %tr
+          %td.key Name
+          %td= @user.name
+        %tr
+          %td.key Email
+          %td= link_to @user.email, "mailto:#{@user.email}"
+        %tr
+          %td.key Phone
+          %td= @user.phone
+        %tr
+          %td.key Address
+          %td= @user.address
+        %tr
+          %td.key Address 2
+          %td= @user.address2
+        %tr
+          %td.key City
+          %td= @user.city
+        %tr
+          %td.key State/Region
+          %td= @user.region
+        %tr
+          %td.key Country
+          %td= @user.country
+        %tr
+          %td.key Zip Code
+          %td= @user.zip
+        %tr
+          %td.key Pay Rate
+          %td= "#{number_to_currency(@user.pay_rate)}/hour"
+        %tr
+          %td.key Organization
+          %td
+            - if @user.organization_id.present?
+              = @user.organization.name
+            - else
+              No Organization
+        %tr
+          %td.key Member since:
+          %td= "#{time_ago_in_words(@user.created_at)} ago"
+        - if @user.current_sign_in_at.present?
+          %tr
+            %td.key Online since:
+            %td= "#{time_ago_in_words(@user.current_sign_in_at)} ago"
+        - if @user.current_sign_in_ip.present?
+          %tr
+            %td.key Current IP Address:
+            %td= @user.current_sign_in_ip
+        %tr
+          %td.key Role:
+          %td= @user.role
+        %tr
+          %td.key Permissions:
+          %td
+            %ul
+              %li.permissions-item
+                Can view leads
+                = bool_label(@user.can_view_leads)
+              %li.permissions-item
+                Can manage leads:
+                = bool_label(@user.can_manage_leads)
+              %li.permissions-item
+                Can view appointments:
+                = bool_label(@user.can_view_appointments)
+              %li.permissions-item
+                Can manage appointments:
+                = bool_label(@user.can_manage_appointments)
+              %li.permissions-item
+                Can view all jobs:
+                = bool_label(@user.can_view_all_jobs)
+              %li.permissions-item
+                Can view own jobs:
+                = bool_label(@user.can_view_own_jobs)
+              %li.permissions-item
+                Can manage jobs:
+                = bool_label(@user.can_manage_jobs)
+              %li.permissions-item
+                Can view all proposals:
+                = bool_label(@user.can_view_all_proposals)
+              %li.permissions-item
+                Can view assigned proposals:
+                = bool_label(@user.can_view_assigned_proposals)
+              %li.permissions-item
+                Can manage proposals:
+                = bool_label(@user.can_manage_proposals)
+              %li.permissions-item
+                Can be assigned appointments:
+                = bool_label(@user.can_be_assigned_appointments)
+              %li.permissions-item
+                Can be assigned jobs:
+                = bool_label(@user.can_be_assigned_jobs)

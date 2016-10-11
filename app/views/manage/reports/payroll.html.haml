@@ -1,0 +1,17 @@
+.widget
+  .widget-header
+    = render 'report_title', title: :payroll
+  .widget-body
+    .well
+      = date_range_filter_button
+      = split_button_filter t('shared.filter_by_employee'), :user, @users
+      .clearfix
+    .row-fluid
+      .span6
+        %h3.chart-heading= t '.payroll_distribution_by_employee'
+        = pie_chart @payroll_by_employee, :library => chartkick_opts({:theme => "maximized", :is3D => true})
+      .span6.pull-right
+        %h3.chart-heading= t '.payroll_distribution_by_job'
+        = pie_chart @payroll_by_job, :library => chartkick_opts({:theme => "maximized", :is3D => true})
+    %hr
+    = line_chart @line_chart_data, :library => chartkick_opts({:title => t('.number_of_hours_paid_out_by_day')})

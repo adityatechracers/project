@@ -1,0 +1,8 @@
+= simple_form_for "poop" do |f|
+  = f.input :name, :label => "Work Item Description"
+  = f.input :default_note_text, :label => "Default text to be include in the notes text box"
+  = f.input :note_message, :label => "Include a message under the notes box with some instructions on what to put in the textbox."
+  = f.input :default_options, :collection => [["N/A","n/a"],["Include","include"],["Exclude","exclude"]], :as => :radio
+  %hr
+  = f.submit "Save", :class => "btn btn-success"
+  = link_to "Delete", "#", :method => "delete", :class => "btn btn-danger", :confirm => "Are you sure you want to delete this line item?"

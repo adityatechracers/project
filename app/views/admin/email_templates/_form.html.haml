@@ -1,0 +1,25 @@
+= hform_for [:admin, @email_template] do |f|
+  = f.input :subject, :as => :string, :input_html => {:class => 'form-control'},
+      :hint => @email_template.description  
+  .p-sm
+    = f.input :body, input_html: { class:'froala' }, wrapper: :simple
+  - unless @email_template.email_template_token_set.try(:available_tokens).nil?
+    .control-group
+      .controls
+        .well
+          %h4 Available Tokens
+          %p
+            - @email_template.email_template_token_set.available_tokens.each do |t|
+              %code {{#{t}}}
+              &nbsp;
+  .hr-line-dashed
+  = f.input :enabled, wrapper: :checkbox
+  .hr-line-dashed
+  .form-actions.row
+    .col-md-8.col-md-offset-4
+      = submit_tag 'Save Template', :disable_with => 'Saving...', :class => 'btn btn-success'
+
+  - unless @email_template.new_record?
+    %hr
+    = render :partial => 'shared/revisions',
+        :locals => {:record => @email_template, :template_id => "", :section_id => "", :restore_path => :restore_admin_email_template_path}

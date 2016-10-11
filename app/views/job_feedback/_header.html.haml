@@ -1,0 +1,8 @@
+- if current_user.present?
+  .title!= breadcrumbs({'Jobs' => proposals_path}, {@job.full_title => job_path(@job.id)}, 'Customer Feedback')
+- else
+  .title Customer Feedback
+- if current_user.present?
+  = link_to job_path(@job.id), :class => "btn pull-right" do
+    %i.icon-home
+    %span.hidden-phone Return to Site

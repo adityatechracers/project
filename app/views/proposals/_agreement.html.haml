@@ -1,0 +1,9 @@
+.proposal-agreement
+  %p!= @proposal.render_contract_agreement
+  %label #{t '.proposal_total'}:
+  %h4= number_to_currency @proposal.amount
+  %hr
+  - unless @proposal.notes.blank?
+    %label #{t '.proposal_notes'}:
+    %p= simple_format(@proposal.notes)
+    %hr

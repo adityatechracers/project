@@ -1,0 +1,50 @@
+.modal-header
+  %button.close(data-dismiss='modal') &times;
+  .row
+    .span6
+      %h3= t 'communications.start.start_communication'
+      %h4= @communication.job.contact.name
+
+      /.communication-header-contact-details
+      = link_to "tel:#{@communication.job.contact.phone}" do
+        %i.icon-phone
+        = @communication.job.contact.phone
+      = link_to "mailto:#{@communication.job.contact.email}" do
+        %i.icon-mail-2
+        = @communication.job.contact.email
+      = link_to @communication.job.contact.map_url do
+        %i.icon-location
+        = @communication.job.contact.condensed_address
+      = link_to lead_sources_path do
+        %i.icon-feed
+        = @communication.job.source_name
+    .span6
+      %strong #{t '.details'}:
+      = @communication.job.details if @communication.job.present?
+
+
+.modal-body{:style => 'overflow:visible'}
+  .row-fluid
+    .span6= render :partial => 'communications/start'
+    .span6
+      %label= t '.communication_history'
+      - if @communication.job.communications.past.records.any?
+        #communication-history-table
+          %table.table.table-striped.table-condensed
+            - @communication.job.communications.past.each do |c|
+              %tr
+                %td
+                  = communication_history_item_with_popover(c, 'left')
+                  %span.pull-right= l c.datetime
+                  - if c.details.present?
+                    %hr{:style => "margin:5px 0px;"}
+                    %p.communication-history-row-details= c.details
+      - else
+        = t '.no_past_communications'
+
+.modal-footer
+  %a.btn(data-dismiss='modal')= t 'shared.cancel'
+  %button.btn.btn-success= t 'shared.complete'
+
+:javascript
+  $('[data-toggle=popover]').popover();

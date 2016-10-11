@@ -1,0 +1,7 @@
+.row-fluid
+  .col-xs-12
+    = render "header_table"
+.proposal-report.span12
+  %ul.proposal-section-list
+    - @proposal.section_responses.sort{|a,b| a.template_section.position <=> b.template_section.position}.each do |s|
+      = render :partial => 'proposals/section', :locals => {:section => s}

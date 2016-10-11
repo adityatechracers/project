@@ -1,0 +1,13 @@
+.dashboard-wrapper.proposal-style-simple
+  .row-fluid= render :partial => 'proposals/print_header_simple', :formats => [:html], :locals => {:pdf => true}
+  .row-fluid= render :partial => 'proposals/agreement', :formats => [:html]
+  .row-fluid.proposal-signature-text{:style => 'page-break-before: always'}
+    .span6
+      I/We have read the terms stated herein.
+      #{@proposal.organization.name} representative has explained all
+      above items to my/our satisfaction. I/We hereby accept them.
+    .span6
+      I/We have examined the job stated herein and I/We find the job to
+      be satisfactory. I/We hereby accept the job as complete.
+  .row-fluid= render :partial => 'proposals/signatures', :formats => [:html]
+  = render 'proposals/proposal_footer_simple'

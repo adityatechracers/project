@@ -1,0 +1,15 @@
+development:
+  secret_key: sk_test_KDkodCOYM2Jgv1fsg1zNysHs
+  publishable_key: pk_test_05ZFewmM1ENvWjDpKxg9UOvG
+  
+test:
+  secret_key: sk_test_KDkodCOYM2Jgv1fsg1zNysHs
+  publishable_key: pk_test_05ZFewmM1ENvWjDpKxg9UOvG
+
+production:
+  secret_key: sk_live_jmriH0RHUnfoxHFnx3uTGf42
+  publishable_key: pk_live_gAicf8WoY5lK77Ma2A2ryCTi
+
+staging:
+  secret_key: sk_test_qMrxfxqRMzyeNn5WkZ5JQEkf
+  publishable_key: pk_test_TiOT2xLguwFzf0xG37z22qCz

@@ -1,0 +1,11 @@
+.nested-row.p-md.wrapper.border-bottom.page-heading.inline-nav-heading.white-bg.m-b-md.m-t-md.overflow-content
+  .title-group
+    %h1!= @template.name
+    .title
+      = link_to @template.name, edit_manage_proposal_template_path(@template),
+        :class => 'breadcrumb-link'
+      %span.breadcrumb-divider /
+      = t '.new_section'
+.ibox
+  .ibox-content
+    = render 'manage/proposal_template_sections/form'

@@ -1,0 +1,34 @@
+.ibox
+  .ibox-title
+    %h3 Failing Credit Cards
+  .ibox-content
+    %table.table.table-striped.footable
+      %thead
+        %tr
+          %th Organization
+          %th Account Owner
+          %th Plan
+          %th
+            %i.icon-phone
+            Phone Number
+          %th
+            %i.icon-mail-2
+            Email
+          %th
+            %i.icon-credit
+            Credit Card
+          %th Actions
+      %tbody
+        - @organizations.each do |o|
+          %tr
+            %td= link_to o.name, admin_organization_path(o)
+            %td= link_to o.owner.name, admin_user_path(o.owner)
+            %td= plan_label_for o.plan.name
+            %td= o.phone
+            %td= link_to o.owner.email, "mailto:#{o.owner.email}"
+            %td **** **** **** #{o.last_four_digits}
+            %td
+              = link_to become_admin_user_path(o.owner), :class => "btn btn-mini become-btn" do
+                %i.icon-enter
+                Become
+              = link_to 'Invoices', admin_invoices_path(:org => o.id), :class => 'btn btn-mini'

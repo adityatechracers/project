@@ -1,0 +1,134 @@
+= hform_for [:manage, @user], :html => {:class => 'form-horizontal new-user-form'} do |f|
+  .row
+    %div{class: "#{@user.new_record? || !@user.is_owner? ? 'col-md-12' : 'col-md-6'}"}
+      .ibox
+        .ibox-title
+          %h4.form-horizontal-heading= t('.contact')
+        .ibox-content
+          = f.input :first_name
+          = f.input :last_name
+          = f.input :email
+          = f.input :phone
+          = f.input :address
+          = f.input :address2
+          = f.input :zip
+          = f.input :city
+          = f.input :region, :as => :select, :collection => ["Loading..."], :include_blank => false, :input_html => {:data => {:value => @user.region}}
+          = f.input :country, :priority => ["United States"]
+
+    - if @user.new_record? || !@user.is_owner?
+      .col-md-6.pull-right
+        .ibox
+          .ibox-content
+            %h4
+              = t '.permissions'
+              .btn-group.pull-right
+                = link_to "#", :class => "btn btn-small dropdown-toggle permission-profiles", :data => {:toggle => "dropdown"} do
+                  = t '.permission_profiles'
+                  %span.caret
+                %ul.dropdown-menu
+                  %li= link_to t('.all_permissions'), "#", class: "permission-profile-item", data: { name: 'all-permissions' }
+                  %li= link_to t('.sales'), "#", class: "permission-profile-item", data: { name: 'sales' }
+                  %li= link_to t('.painter'), "#", class: "permission-profile-item", data: { name: 'painter' }
+                  %li= link_to t('.no_permissions'), "#", class: "permission-profile-item", data: { name: 'no-permissions' }
+
+            %table.table.table-striped.table-condensed#permission_table
+              %tr.heading
+                %td{:colspan => 2}
+                  %h5= t 'nav.leads.main'
+              %tr
+                %td= f.label :can_view_leads
+                %td= f.input_field :can_view_leads, :as => :boolean
+              %tr
+                %td= f.label :can_manage_leads
+                %td= f.input_field :can_manage_leads, :as => :boolean, :data => {:dependency => :can_view_leads}
+              %tr.heading
+                %td{:colspan => 2}
+                  %h5= t 'nav.appointments.main'
+              %tr
+                %td= f.label :can_be_assigned_appointments
+                %td= f.input_field :can_be_assigned_appointments, :as => :boolean
+              %tr
+                %td= f.label :can_view_appointments
+                %td= f.input_field :can_view_appointments, :as => :boolean
+              %tr
+                %td= f.label :can_manage_appointments
+                %td= f.input_field :can_manage_appointments, :as => :boolean, :data => {:dependency => :can_view_appointments}
+              %tr.heading
+                %td{:colspan => 2}
+                  %h5= t 'nav.proposals.main'
+              %tr
+                %td= f.label :can_view_assigned_proposals
+                %td= f.input_field :can_view_assigned_proposals, :as => :boolean
+              %tr
+                %td= f.label :can_view_all_proposals
+                %td= f.input_field :can_view_all_proposals, :as => :boolean, :data => {:dependency => :can_view_assigned_proposals}
+              %tr
+                %td= f.label :can_manage_proposals
+                %td= f.input_field :can_manage_proposals, :as => :boolean, :data => {:dependency => :can_view_assigned_proposals}
+              %tr.heading
+                %td{:colspan => 2}
+                  %h5= t 'nav.jobs.main'
+              %tr
+                %td= f.label :can_be_assigned_jobs
+                %td= f.input_field :can_be_assigned_jobs, :as => :boolean
+              %tr
+                %td= f.label :can_view_own_jobs
+                %td= f.input_field :can_view_own_jobs, :as => :boolean, :data => {:dependency => :can_be_assigned_jobs}
+              %tr
+                %td= f.label :can_view_all_jobs
+                %td= f.input_field :can_view_all_jobs, :as => :boolean, :data => {:dependency => :can_view_own_jobs}
+              %tr
+                %td= f.label :can_manage_jobs
+                %td= f.input_field :can_manage_jobs, :as => :boolean, :data => {:dependency => :can_view_own_jobs}
+              %tr
+                %td= f.label :can_make_timecards
+                %td= f.input_field :can_make_timecards, :as => :boolean
+              %tr.heading
+                %td{:colspan => 2}
+                  %h5= t 'nav.contacts.main'
+              %tr
+                %td= f.label :can_view_all_contacts
+                %td= f.input_field :can_view_all_contacts, :as => :boolean
+              %tr
+                %td= f.label :can_manage_all_contacts
+                %td= f.input_field :can_manage_all_contacts, :as => :boolean, :data => {:dependency => :can_view_all_contacts}
+
+    .col-md-6
+      .ibox
+        .ibox-title
+          %h4.form-horizontal-heading Upload profile image
+        .ibox-content
+          .row
+            .col-md-4.control-label
+              %label Image
+            .col-md-8
+              = file_input_group f, :image, "png"
+              - if @user.errors.messages[:image].present?
+                %p
+                  = @user.errors.messages[:image][0]
+      .ibox
+        .ibox-title
+          %h4.form-horizontal-heading Classification and pay rate
+        .ibox-content
+          - if @user.is_owner? && !@user.new_record?
+            .control-group.form-group.row
+              .col-md-4.control-label
+                = f.label :role
+              .controls.col-md-8
+                %select(disabled="disabled")
+                  %option= t('manage.users.index.owner')
+          - else
+            = f.input :role, collection: [[t('manage.users.index.employee'), 'Employee'], [t('manage.users.index.manager'), 'Manager']], include_blank: false
+          = f.input :pay_rate, wrapper: :prepend do
+            %span.input-group-addon $
+            = f.input_field :pay_rate, :class => 'input-small form-control', :type => "number", :min => 0, :step => 0.01, :pattern => '\d*'
+
+
+          = f.input :appointments_color, input_html: { class: "minicolors" }
+          - if @user.new_record? || !@user.is_owner? # Owners can't deactivate themselves
+            = f.input :active, :as => :boolean
+          .hr-line-dashed
+          .form-actions.row
+            .col-md-8.col-md-offset-4
+              = f.submit t('.save_user'), :disable_with => 'Saving...', :class => "btn btn-success"

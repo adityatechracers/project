@@ -1,0 +1,1165 @@
+# Localization file for English
+---
+en:
+  activerecord:
+    attributes:
+      proposal:
+        job: "Active Lead"
+  appointments:
+    index:
+      add_an_appointment: Add an Appointment
+      export_calendar:
+        download_ics: Download (.ics)
+        instructions:
+          add_google_html: In Google Calendar, add this under <strong>Other calendars
+            &rarr; Add By URL</strong>
+          add_mac_calendar_html: In Calendar.app on a Mac, add this under <strong>File
+            &rarr; New Calendar Subscription...</strong>
+          copy_url: Copy and paste the following url into your calendar application&#58;
+          download_ics: Or download the .ics file&#58;
+        title: Export Calendar
+      filters:
+        everyone: Everyone
+        owner: Owner
+        specific_employees: Specific Employees
+      schedule_appointments: Schedule Appointments
+    modal_form:
+      edit_appointment: Edit Appointment
+      new_appointment: New Appointment
+  availabilities:
+    index:
+      availability: Availability
+      select_a_day: Select a Day
+      available_employees: Available Employees
+  communications:
+    notes: Notes
+    previous_notes: Previous Notes
+    no_previous_notes: No Previous Notes
+    dropdown_menu:
+      plan_future: Plan Future
+      start_new: Start New
+      start_next: Start Next
+      title: Communicate
+    index:
+      actions:
+        delete_communication: Delete Communication
+        edit_communication: Edit Communication
+        edit_contact: Edit Contact
+        edit_job: Edit Job
+        start_communication: Start Communication
+        view_contact: View Contact
+        view_job: View Job
+      edit_communication: Edit Communication
+      filter_by_job: Filter by job
+      filters:
+        all: All
+        planned: Planned
+        records: Records
+      list: List
+      schedule: Schedule
+      schedule_communication: Schedule a Communication
+      table_headings:
+        actions: Actions
+        contact_details: Contact Details
+        employee: Employee
+        next_step: Next Step
+        note: Note
+        outcome: Outcome
+    plan:
+      plan_future: Plan Future Communication
+    start:
+      actions:
+        call: Call
+        email: Email
+      next_step: Next Step
+      next_steps:
+        call_back_around: Call back around...
+        call_back_on: Call back on...
+        dead_lead: Dead Lead
+        schedule_appointment: Schedule Appointment
+        schedule_job: Schedule Job
+      outcome: Outcome
+      outcomes:
+        answered: Answered
+        left_message: Left Message
+        no_answer: No Answer
+      start_communication: Start Communication
+    start_modal:
+      communication_history: Communication History
+      details: Details
+      notes: Notes
+      no_past_communications: No past communications on this lead
+  contacts:
+    index:
+      actions:
+        confirm_delete_contact: This will remove the contact and any leads,
+          jobs, proposals, payments, expenses and feedback belonging to it.
+      new_contact: New Contact
+      search_contacts: Search contacts
+      table_headings:
+        actions: Actions
+        address: Address
+        email: Email
+        name: Name
+        phone: Phone
+    new_lead:
+      contact_details: Contact Details
+      lead_details: Lead Details
+      name: Name
+      plan_next_comm: Plan next communication?
+      save_lead: Save Lead
+      use_existing_contact: Use Existing Contact
+    show:
+      add_lead:
+      edit_contact: Edit Contact
+  dashboard:
+    index:
+      average:  Average
+      calls_made_this_week: Calls Made This Week
+      days_left_on_your_free_trial: "%{days} days left on your free trial"
+      estimates_scheduled_this_week: Estimates Scheduled This Week
+      get_started:
+        add_your_first_lead: Add your first Lead
+        body_html: "In CorkCRM, each contact can have multiple jobs, which in turn
+          can be assigned multiple proposals, appointments, timecards, and
+          more.  Newly created jobs are referred to throughout the system as
+          <b>leads</b>, and stay in this phase until a proposal is added.  When
+          the proposal's contract has been signed by both parties, the job can
+          be scheduled on the <a href='%{jobs_path}'>Jobs Tab</a>."
+        heading: Ready to get started?
+      jobs_created_this_week: Jobs Created This Week
+      last_week: Last Week
+      leads_added_this_week: Leads Added This Week
+      org_profile_incomplete:
+        body: For the best possible experience with CorkCRM, we strongly
+          recommend that you complete your organization profile.
+        edit_profile: Edit Profile
+        heading: Your Organization profile is incomplete!
+      proposals_made_this_week: Proposals Made This Week
+      set_up_appt_availability:
+        add_availability: Add Availability
+        body_html: "We allow you to configure when you are free to see
+          prospective customers and review their jobs.  Configure your
+          availability on your
+          <a href='%{appointments_path}'>Appointment Calendar</a>."
+        heading: Set up your appointment availability
+      subscribe_now: Subscribe Now
+      this_week: This Week
+  date:
+    formats:
+      default: ! '%-m/%-d/%Y'
+  devise:
+    passwords:
+      new:
+        forgot_password: Forgot your password?
+    registrations:
+      new:
+        create_account: Create Account
+        forgot_password: Forgot your password?
+        start_free_trial: Start Your Free Trial
+        terms_of_service:
+          affirmation: I agree to the
+          link_name: Terms of Service
+    sessions:
+      new:
+        instructions: Fill out the form below to login.
+        login: Login
+        remember_me: Remember me
+  expense_categories:
+    categories: Categories
+    index:
+      table_headings:
+        actions: Actions
+        expenses: Expenses
+        name: Name
+  expenses:
+    form:
+      save_expense: Save Expense
+    index:
+      expense_categories: Expense Categories
+      filters:
+        all: All
+        this_week: This Week
+        this_year: This Year
+        today: Today
+      new_expense: New Expense
+      no_expenses:
+        add_an_expense: Add an Expense
+        body: Did you know that CorkCRM can keep track of your expenditures by job?  Click the button below to get started!
+        heading: Your organization is not currently tracking its expenses.
+      table_headings:
+        actions: Actions
+        amount: Amount
+        category: Category
+        date_of_expense: Date of Expense
+        description: Description
+        employee: Employee
+        job: Job
+  vendor_categories:
+    categories: Categories
+    index:
+      table_headings:
+        actions: Actions
+        vendors: Vendors
+        name: Name
+
+  job_feedback:
+    index:
+      no_feedback:
+        edit_email_templates: Edit Email Templates
+        email_templates_html: CorkCRM can also send an email to the job's
+          contact that includes this link. To use this feature, enable and
+          customize the <strong>Job Client Feedback Request</strong> email
+          template and click <strong>Request customer feedback</strong> on any
+          job.
+        feedback_portal_html: CorkCRM can help you collect job completion and
+          satisfaction feedback from your customers. To get started, visit the
+          Feedback Portal for a job by clicking <strong>Feedback
+          Portal</strong> under the job's "Action" dropdown.
+        go_to_jobs: Go to Jobs
+        heading: Your organization does not have any job feedback yet.
+      table_headings:
+        completion_status: Completion Status
+        created_at: Submitted At
+        feedback: Feedback
+        job: Job
+        name: Name
+    new:
+      instructions: We appreciate your feedback. In the fields below, please
+        enter your name, any comments/concerns, and the status of the work.
+      submit_feedback: Submit Feedback
+    thanks:
+      thank_you_text: Thanks for your feedback!
+  job_schedule_entries:
+    edit:
+      remove_from_schedule: Remove from schedule
+    modal_form:
+      save_job: Save Job
+      schedule_job: Schedule Job
+  jobs:
+    calendar_filters:
+      expected_dates_for_unscheduled: Expected dates for unscheduled jobs
+    crew_calendar:
+      today: Today
+    form:
+      save_job: Save Job
+    index:
+      search_jobs: Search jobs
+      actions:
+        feedback_portal: Feedback Portal
+        mark_as_completed: Mark as completed
+        request_customer_feedback: Request Customer Feedback
+        unmark_as_completed: Unmark as completed
+        view_proposal: View Proposal
+        view_proposals: View Proposals
+      filters:
+        all: All
+        completed: Completed
+        scheduled: Scheduled
+        unscheduled: Unscheduled
+      no_jobs:
+        add_a_lead: Add a Lead
+        body_html: "In CorkCRM, each contact can have multiple jobs, which in
+          turn can be assigned multiple proposals, appointments, timecards, and
+          more.  Newly created jobs are referred to throughout the system as
+          <b>leads</b>, and stay in this phase until a proposal is added.  When
+          the proposal's contract has been signed by both parties, the job can
+          be scheduled on the
+          <a href='%{schedule_jobs_path}'>Jobs Tab</a>."
+        heading: Your organization does not currently have any jobs.
+      table_headings:
+        actions: Actions
+        budget: Budget
+        crew: Crew
+        crews: Crew(s)
+        end: End
+        expected: Expected
+        job_contact: Job/Contact
+        next_communication: Next Communication
+        proposal_count: Proposal Count
+        schedule_entries: Schedule Entries
+        start: Start
+    job_details:
+      new_expense: New Expense
+      new_payment: New Payment
+      new_proposal: New Proposal
+      new_timecard: New Timecard
+    misc:
+      no_crew_assigned: No crew assigned
+      all_crews: All Crews
+    right_nav:
+      crew_calendar: Crew Calendar
+      list: List
+      schedule: Schedule
+    schedule:
+      schedule_a_job: Schedule Job
+    states:
+      accepted: Accepted
+      completed: Completed
+      lead: Lead
+      proposed: Proposed
+      scheduled: Scheduled
+  lead_sources:
+    index:
+      actions: Actions
+      add_lead_source: Add Lead Source
+      leads: Leads
+      name: Name
+      title: Lead Sources
+    web_form: Web Form
+  leads:
+    save_source: "Save Source"
+    embed_ask_questions:
+      details: Project details, questions, or comments
+      preferred_contact_date: Preferred Contact Date/Time
+      submit_inquiry_to: Submit Inquiry to %{organization}
+      verify_humanity: Verify Humanity
+    embed_schedule:
+      appointment_calendar: Appointment Calendar
+    embed_tab_nav:
+      have_a_question: Have a question or want us to call you?
+      schedule_appointment_time: Schedule Appointment Time
+    import:
+      directions: The import only accepts .csv files. If you are using Excel, just
+        save your file as a CSV file to import it into the system. The first row in
+        your CSV must be a header row with the column names describing the data.
+      title: Upload a Leads Spreadsheet
+    table:
+      actions:
+        confirm_delete_lead: Are you sure you want to delete this lead?
+    index:
+      actions:
+        add_proposal: Add Proposal
+        confirm_delete_lead: Are you sure you want to delete this lead?
+        delete_lead: Delete Lead
+        edit_lead: Edit Lead
+        mark_as_active_lead: Mark as Active Lead
+        mark_as_dead_lead: Mark as Dead Lead
+        schedule_appointment: Schedule Appointment
+        start_communication: Start Communication
+        view_lead: View Lead
+      search_leads: Search Leads...
+      active: Active
+      dead: Dead
+      embed: Embed
+      export: Export
+      filter_by_lead_source: Filter by Lead Source
+      import: Import
+      new: New Lead
+      no_leads:
+        add_a_lead: Add a Lead
+        body_html: A lead is anyone that requests an estimate from you. When the phone rings, or you get an email, add them in as a lead.
+        heading: Add your first Lead
+      print: Print
+      table_headings:
+        actions: Actions
+        address: Address
+        client_name: Client Name
+        contact: Contact
+        history: History
+        lead_details: Lead Details
+        next_appointment: Next Appointment
+        next_communication: Next Communication
+        phone: Phone
+      title: Leads
+  manage:
+    base:
+      index:
+        crews_description: Manage your organization's crews
+        email_templates_description: Customize your organization's emails
+        managed_organizations_description: Administer your organization's
+          managed organizations.
+        organization_info_description: Edit your organization's information
+        proposal_templates_description: Customize your organization's proposals
+        reports_description: View reports and statistics on leads, proposals and jobs
+        subscription_description: Update your organization's subscription
+        billing_info_description: Update your billing information
+        users_description: Manage your organization's users
+        website_embed_description: Embed the appointment calendar and contact form
+          into your website
+      website_embed:
+        embed_html_instructions: Have your webmaster include the following HTML
+          code on your website to allow visitors to submit a lead inquiry or
+          schedule appointments online.
+        embed_html_options: Embed HTML & Options
+        help_text: Help Text
+        help_text_description: This text will show above the appointment
+          scheduling form. We recommend you include information about your
+          service area or any specific information you would like the prospect
+          to include in their project details.
+        include_appointment_form: Show a calendar to allow prospects to set an appointment.
+        include_lead_form: Show a form to collect lead information.
+        preview: Preview
+        save_customizations: Save customizations
+        thank_you_message: Thank You Message
+        thank_you_message_description: This message will be shown to the user
+          after they have scheduled an appointment or filled in an online
+          contact form.
+    calendar_options:
+      index:
+        calendar_options: Calendar Options
+        employee: Employee
+        manager: Manager
+        organization_users: Organization Users
+        owner: Owner
+        can_be_assigned_appointments: Can be assigned appointments
+        table_headings:
+          actions: Actions
+          address: Address
+          name: Name
+          phone_number: Phone Number
+          role: Role
+          status: Status
+    crews:
+      form:
+        save_crew: Save Crew
+      index:
+        new_crew: New Crew
+        new_user: New User
+        table_headings:
+          actions: Actions
+          crew: Crew
+          number_of_members: Number of members
+          wage_rate: Wage Rate
+    email_templates:
+      hints:
+        mail_cc: Space or comma separated list of email addresses
+      descriptions:
+        appointment_2_day_follow_up: Sent to client 2 days after they are added
+          to the system if no appointment has been scheduled
+        appointment_7_day_follow_up: Sent to client 7 days after they are added
+          to the system if no appointment has been scheduled
+        appointment_confirmation: Sent to the assigned sales person and
+         the client when an appointment is scheduled (or rescheduled)
+        appointment_reminder: Sent to the assigned sales person
+          and to client 48 hours before a scheduled appointment
+        job_client_feedback_request: Sent to client when the job's 'Request
+          customer feedback' button is clicked.
+        job_complete: Sent to client when a job is marked as completed
+        job_complete_1_month_follow_up: Sent to client 1 month after a job is
+          marked as completed
+        job_scheduled_1_day_reminder: Sent to client 1 day before the scheduled
+          start time. Note that this is sent for each schedule entry.
+        job_scheduled_3_day_reminder: Sent to client 3 days before the
+          scheduled start time. Note that this is sent for each schedule entry.
+        job_scheduled_7_day_reminder: Sent to client 7 days before the
+          scheduled start time. Note that this is sent for each schedule entry.
+        job_scheduled_notification: Sent to client when a schedule entry is
+          added or the start date changes. This email is delayed and sent at
+          most once per hour.
+        lead_added_via_embed: Sent to organization owner after a lead is added
+          via the embeddable form
+        lead_welcome: Sent to lead contact after a lead is created
+        proposal_accepted: Sent to client, contractor and salesperson with PDF
+          attachment after a proposal is accepted
+        proposal_change_order_notification: Sent to client and sales person
+          after a change order is applied to a proposal
+        proposal_contract_signed_confirmation: Sent to client after he or she
+          has signed a proposal
+        proposal_contract_signed_notification: Sent to contractor after a
+          proposal is signed by the client
+        proposal_issued: Sent to client, contractor and salesperson with PDF
+          attachment when a proposal is issued
+        proposal_issued_1_month_reminder: Sent to client 1 month after a
+          proposal is created, if it is still active
+        proposal_issued_1_week_reminder: Sent to client 1 week after a proposal
+          is created, if it is still active
+        proposal_issued_2_day_reminder: Sent to client 2 days after a proposal
+          is created, if it is still active
+        proposal_issued_2_month_reminder: Sent to client 2 months after a
+          proposal is created, if it is still active
+        proposal_issued_3_month_reminder: Sent to client 3 months after a
+          proposal is created, if it is still active
+      form:
+        available_tokens: Available Tokens
+      index:
+        edit_this_template: Edit this template
+        table_headings:
+          action: Action
+          description: Description
+          email_name: Email Name
+          status: Status
+        test_this_template: Test this template
+      names:
+        appointment_2_day_follow_up: Appointment 2 Day Follow-Up
+        appointment_7_day_follow_up: Appointment 7 Day Follow-Up
+        appointment_confirmation: Appointment Confirmation
+        appointment_reminder: Appointment Reminder
+        job_client_feedback_request: Job Client Feedback Request
+        job_complete: Job Complete
+        job_complete_1_month_follow_up: Job Complete 1 Month Follow-Up
+        lead_added_via_embed: Lead Added via Embed
+        lead_welcome: Lead Welcome
+        proposal_accepted: Proposal Accepted
+        proposal_contract_signed_confirmation: Proposal Contract Signed Confirmation
+        proposal_contract_signed_notification: Proposal Contract Signed Notification
+        proposal_issued: Proposal Issued
+        proposal_issued_1_month_reminder: Proposal Issued 1 Month Reminder
+        proposal_issued_1_week_reminder: Proposal Issued 1 Week Reminder
+        proposal_issued_2_day_reminder: Proposal Issued 2 Day Reminder
+        proposal_issued_2_month_reminder: Proposal Issued 2 Month Reminder
+        proposal_issued_3_month_reminder: Proposal Issued 3 Month Reminder
+      tokens:
+        appointment_end_time: Appointment's end time.
+        appointment_holder: The user in your organization holding the appointment.
+        appointment_start_time: Appointment's start time.
+        charge_total: Total charge amount in dollars.
+        contract_portal_url: Proposal's contract portal url
+        contractor_name: Name of the proposal's contractor
+        contractor_phone_number: Phone number of the proposal's contractor
+        feedback_portal_url: The feedback portal url for this job
+        organization_name: Organization's name
+        owner_first_name: Organization owner's first name
+        owner_last_name: Organization owner's last name
+        plan_name: Organization's Stripe plan name
+        proposal_number: Proposal's number (e.g., 12345)
+        proposal_url: Proposal's url
+        prospect_first_name: Lead contact's first name
+        prospect_last_name: Lead contact's last name
+        user_first_name: User's first name
+        user_last_name: User's last name
+        your_billing_address: Your organization's billing address
+        your_billing_city: Your organization's billing city
+        your_billing_state: Your organization's billing state
+    organizations:
+      edit:
+        edit_organization: Edit Organization
+      form:
+        clear_signature: Clear Signature
+        crew_settings: Crew Settings
+        feedback_settings: Feedback Settings
+        quickbooks_settings: QuickBooks Settings
+        proposal_settings: Proposal Settings
+        save_organization: Save Organization
+        timecard_lock_period_help: When weekly timecard locks are enabled, timecards
+          for a given week cannot be entered or edited after the following
+          Sunday at 11:59 pm.
+        timecard_lock_period_options:
+          never: Never
+          weekly: Weekly
+        timecard_settings: Timecard Settings
+    proposal_template_items:
+      edit:
+        edit_item: Edit Section
+      form:
+        include_exclude_options: ['N/A', 'Include', 'Exclude']
+      new:
+        new_item: New Item
+      options:
+        exclude: Exclude
+        include: Include
+        n_a: N/A
+    proposal_template_sections:
+      edit:
+        edit_section: Edit Section
+      new:
+        new_section: New Section
+    proposal_templates:
+      edit:
+        delete_template: Delete Template
+        edit_contract: Edit Contract
+      edit_contract:
+        available_tokens: Available Tokens
+        edit_contract: Edit Contract
+        save_contract: Save Contract
+        token_instructions: When a proposal is generated, the tokens below are
+          replaced with their corresponding values. For example, if the
+          proposal's total is $500, that amount will be filled in for each
+        tokens:
+          contractor_first_name: Contractor's first name
+          contractor_last_name: Contractor's last name
+          contractor_phone_number: Contractor's phone number
+          customer_address: Customer's address
+          customer_first_name: Customer's first name
+          customer_last_name: Customer's last name
+          customer_phone_number: Customer's phone number
+          expected_end_date: Expected end date
+          expected_start_date: Expected start date
+          proposal_notes: Notes on the proposal
+          proposal_total: Total amount of the proposal
+          your_billing_address: Your organization's billing address
+          your_billing_city: Your organization's billing city
+          your_billing_state: Your organization's billing state
+        view_pdf:
+          View PDF
+      form:
+        add_section: Add Section
+        proposal_template_options: Proposal Template Options
+        proposal_template_sections: Proposal Template Sections
+        update_template: Update Template
+      index:
+        new_proposal_template: New Proposal Template
+        table_headings:
+          actions: Actions
+          name: Name
+          status: Status
+      new:
+        save_and_continue: Save and continue
+      template_section:
+        add_item: Add item
+        edit_section: Edit section
+    reports:
+      appointments:
+        appointments_by_employee: Appointments by Employee
+        appointments_by_month: Appointments by Month
+        employee: Employee
+        number_of_appointments: Number of Appointments
+        salesperson_assigned_to_customer: Salesperson Assigned to Customer
+      communications:
+        communication_by_day: Communication by Day
+        communication_by_employee: Communication by Employee
+        communication_by_job: Communication by Job
+      deposit_payment_tracking:
+        table_headings:
+          amount_received: Amount Received
+          job: Job
+          job_amount: Job Amount
+          outstanding_balance: Outstanding Balance
+          totals: Totals
+      estimates:
+        estimates_by_contact: Estimates by Contact
+        estimates_by_employee: Estimates by Employee
+        table_headings:
+          contact: Contact
+          employee: Employee
+          when: When
+      expenses:
+        expenses_by_category: Expenses by Category
+        expenses_by_employee: Expenses by Employee
+        expenses_by_job: Expenses by Job
+        expenses_vs_profit: Expenses vs. Profit
+        generated_expenses_info: "* Generated expenses (e.g., labor) do not have an employee."
+        major_expenses_info_html: "\"Major\" <a href='%{expense_categories_path}'>expense categories</a> are shown separately."
+        profit_absence_info: If no profit is displayed, the net profit for jobs
+          matching current filters is less than or equal to 0.
+        profit_calculation_info_html: "Profit is determined by subtracting <a href='%{expenses_path}'>expenses</a> and labor from
+          a job's <a href='%{payments_path}'>payments</a>."
+        table_headings:
+          amount: Amount
+          category: Category
+          date_of_expense: Date of Expense
+          description: Description
+          employee: Employee
+          job: Job
+      index:
+        appointments: Appointments
+        communications: Communications
+        expenses: Expenses
+        jobs: Jobs
+        leads: Leads
+        managed_organizations: Managed Orgs
+        payment_tracking: Payment Tracking
+        payroll: Payroll
+        profit: Profit
+        proposals: Proposals
+        report_list: Report List
+        sales_performance: Sales Performance
+        account_receivable: Accounts Receivable
+        weekly_booking: Weekly Booking
+        scheduled_estimates: Schedule Estimates
+        timesheets: Timesheets
+      jobs:
+        average_time_spent_in_lifecycle: Average Time Spent in Lifecycle
+        job_geographical_distribution: Job Geographical Distribution
+        job_state_distribution: Job State Distribution
+        table_headings:
+          contact: Contact
+          title: Title
+      leads:
+        active_leads: Active Leads
+        dead_leads: Dead Leads
+        lead_geographical_distribution: Lead Geographical Distribution
+        lead_source_distribution: Lead Source Distribution
+        lead_status_distribution: Lead Status Distribution
+        number_of_leads_created_by_day: Number of Leads Created by Day
+        transcended_leads: Transcended Leads
+      misc:
+        no_data: There is no data to display.
+        no_data_for_time_range: There is no data to display for the time range you've selected..
+      payroll:
+        number_of_hours_paid_out_by_day: Number of Hours Paid Out per Day
+        payroll_distribution_by_employee: Payroll Distribution by Employee
+        payroll_distribution_by_job: Payroll Distribution by Job
+      profit:
+        filters:
+          active: Active
+          all: All
+          completed: Completed
+          dollar_amount: $ Amount
+          percent_of_collected: "% of Collected"
+          percent_of_job_estimate: "% of Estimate"
+        table_headings:
+          collected: Collected
+          expenses: Expenses
+          job_estimate: Job Estimate
+          job_name: Job Name
+          job_total: Job Total
+          profit: Profit
+          total_payout: Labor
+          totals: Totals
+      proposals:
+        filter_by_salesperson: Filter by salesperson
+        proposal_geographical_distribution: Proposal Geographical Distribution
+        proposal_status_distribution: Proposal Status Distribution
+        proposal_template_distribution: Proposal Template Distribution
+        table_headings:
+          amount: Amount
+          budgeted_hours: Budgeted Hours
+          customer: Customer
+          date_created: Date Created
+          signatures: Signatures
+          status: Status
+          template: Template
+          totals: Totals
+      sales_performance:
+        table_headings:
+          appointments_booked: Appointments Booked
+          employee: Employee
+          jobs_completed: Jobs Completed
+          jobs_sold: Jobs Sold
+          proposals_accepted: Proposals Accepted
+          proposals_created: Proposals Created
+      timesheets:
+        filters:
+          approved: Approved
+          paid: Paid
+          unapproved: Unapproved
+        table_headings:
+          duration_amount: Duration/Amount
+          in_out: In/Out
+          status: Status
+          totals: Totals
+          user_job: User/Job
+    subscriptions:
+      edit:
+        edit_subscription: Edit Subscription
+    users:
+      edit_user: Edit User
+      form:
+        all_permissions: All Permissions
+        details: Details
+        no_permissions: No Permissions
+        painter: Painter
+        permission_profiles: Permission Profiles
+        permissions: Permissions
+        sales: Sales
+        save_user: Save User
+      index:
+        add_an_employee: Add an Employee
+        employee: Employee
+        manager: Manager
+        organization_users: Organization Users
+        owner: Owner
+        table_headings:
+          actions: Actions
+          address: Address
+          name: Name
+          phone_number: Phone Number
+          role: Role
+          status: Status
+  nav:
+    appointments:
+      main: Appointments
+      show_all: All Appointments
+      availability: Availability
+    contacts:
+      main: Contacts
+    dashboard:
+      main: Dashboard
+      my_subscription: My Subscription
+    jobs:
+      show_all: All Jobs
+      expenses: Expenses
+      feedback: Feedback
+      main: Jobs
+      payments: Payments
+      schedule: Schedule
+      timecards: Timecards
+    leads:
+      communication: Communication
+      import: Import
+      main: Leads
+      show_all: All Leads
+      new: New
+      sources: Sources
+    manage:
+      crews: Crews
+      email_templates: Email Templates
+      main: Manage
+      managed_organizations: Managed Organizations
+      organization_info: Organization Info
+      proposal_templates: Proposal Templates
+      reports: Reports
+      subscription: Subscription
+      users: Manage Users
+      website_embed: Website Embed
+    proposals:
+      show_all: All Proposals
+      main: Proposals
+      proposal_templates: Proposal Templates
+  payments:
+    payment_types: [
+      'Check', 'Credit Card', 'Cash', 'Money Order',
+      'Wire Transfer', 'Other'
+    ]
+    form:
+      save_payment: Save Payment
+    index:
+      filters:
+        all: All
+        this_week: This Week
+        this_year: This Year
+        today: Today
+      new_payment: New Payment
+      no_payments:
+        add_a_payment: Add a Payment
+        body: To begin taking advantage of CorkCRM's powerful payment-tracking features, click the button below!
+        heading: Your organization is not currently tracking payments from its jobs.
+      table_headings:
+        actions: Actions
+        amount: Amount
+        date_paid: Date Paid
+        job: Job
+        notes: Notes
+        payment_type: Payment Type
+  proposals:
+    agreement:
+      agreement: Agreement
+      proposal_notes: Project Notes
+      proposal_total: Project Total
+    contract:
+      contract: Contract
+      portal: Portal
+    contractor: Signing for Contractor
+    customer: Customer
+    form:
+      save_proposal: Save Proposal
+    header_table:
+      contact_address: Contact Address
+      contact_details: Contact Details
+      contact_phone: Contact Phone
+      contractor_address: Contractor Address
+      contractor_phone: Contractor Phone
+      expected_timeframe: Expected Timeframe
+      generated: Generated
+    table:
+      actions:
+        email_proposal: Email Proposal
+        confirm_email_proposal: "This will send a PDF of the proposal to %{to}"
+    index:
+      search_proposals: Search proposals
+      action: Action
+      actions:
+        confirm_delete_proposal: Are you sure you want to delete this proposal?
+        confirm_email_proposal: "This will send a PDF of the proposal to %{to}"
+        delete_proposal: Delete Proposal
+        email_proposal: Email Proposal
+        issue_proposal: Issue Proposal
+        mark_as_active: Mark as Active
+        mark_as_declined: Mark as Declined
+        change_order: Change Order
+        update_contact_details: Update Contact Details
+        view_contract: View Contract
+        view_contract_portal: View Contract Portal
+        void_contract: Void Contract
+      filters:
+        accepted: Accepted
+        all: All
+        declined: Declined
+      new_proposal: New Proposal
+      no_proposals:
+        add_a_proposal: Add a Proposal
+        body_html: "Proposals are an integral part of CorkCRM's job lifecycle
+          system, bridging the gap between prospective leads and contracted,
+          scheduled labor.  Adding a proposal to a job automatically generates
+          an online contract and notifies the customer via email.  Once both
+          parties have signed the contract, its corresponding job will be
+          available for scheduling under the
+          <a href='%{schedule_jobs_path}'>Jobs Tab</a>."
+        heading: Your organization does not currently have any proposals.
+      states:
+        accepted: Accepted
+        active: Active
+        declined: Declined
+        issued: Issued
+      table_headings:
+        actions: Actions
+        address: Address
+        assigned_to: Assigned To
+        budget: Budget
+        client_name: Client Name
+        contact: Contact
+        end: End
+        expected: Expected
+        next_communication: Next Communication
+        phone: Phone
+        proposal: Proposal
+        proposal_amount: Proposal Amount
+        start: Start
+        status: Status
+    print_header:
+      contact_details: Customer
+      contractor_details: Contractor
+      proposal_details: Proposal Details
+    salesperson: Salesperson
+    signature_form:
+      clear: Clear
+      clear_signature: Clear Signature
+      save_signature: Save Signature
+      terms_acceptance: I accept the terms of this agreement
+    widget_header:
+      return_to_site: Return to site
+      view_pdf: View PDF
+    widget_proposal_header:
+      return_to_site: Return to site
+      view_pdf: View PDF
+  shared:
+    active: Active
+    become: Become
+    cancel: Cancel
+    choose_file: Choose file
+    close: Close
+    collapse: Collapse
+    collapse_all: Collapse all
+    complete: Complete
+    confirm: Are you sure?
+    confirm_delete_resource: "Are you sure you want to delete this %{resource}"
+    delete: Delete
+    details: Details
+    disable: Disable
+    disabled: Disabled
+    drag: Drag
+    edit: Edit
+    enable: Enable
+    enabled: Enabled
+    expand_all: Expand all
+    filter_by_date: Filter by Date...
+    filter_by_employee: Filter by employee
+    filter_by_job: Filter by job
+    hour: hour
+    hours: hours
+    inactive: Inactive
+    move_down: Move down
+    move_up: Move up
+    new: New
+    ok: OK
+    revisions:
+      no_revisions: No revisions
+      restore_this_version: Restore this version
+      revision_history: Revision History
+    save: Save
+    sign_up_dependency:
+      no_jobs:
+        body_html: "You must create and <strong>sign</strong> your first proposal before a job is created. "
+      no_proposals:
+        heading: You haven't created any Proposals yet
+        body_html: You must create a lead before attempting to create any proposals.
+        go_to_proposals: Go To Proposals
+      no_appointments:
+        heading: You haven't created any Leads yet
+        body_html: You must create a lead before attempting to create an appointment.
+        go_to_leads: Go To Leads
+      no_leads:
+        heading: You haven't created any Leads yet
+        body_html: You must create a lead before attempting to create an appointment.
+        go_to_leads: Go To Leads
+
+    update: Update
+  simple_form:
+    hints:
+      appointment:
+        email_before_appointment: Email customer 48 hours before the appointment
+        job: Leave blank to create an availability
+      communication:
+        datetime_exact: Show this as an exact time rather than an approximate time.
+      contact:
+        jobs:
+          email_customer: When checked, an email is sent to contact after saving lead
+      crew:
+        users: Each employee you wish to add to a crew must have a user account
+          existing within your organization.
+      expense_category:
+        major_expense: This affects how the expense category is displayed in
+          certain reports.
+      job:
+        crew: Jobs can be assigned a default crew that will be pre-selected
+          when creating new schedule entries.
+        expected_end_date: If not provided, the expected start & end dates are
+          displayed based on the job's proposal(s).
+        users: Grant access to users not in the default crew.
+      job_schedule_entry:
+        job_id: Only jobs with signed contracts can be scheduled.
+      organization:
+        auto_sign_proposals: When selected, new proposals will be automatically
+          signed by your organization when they are created.
+        feedback_portal_text: Custom text to display at the top of the feedback
+          submission form. Leave this blank to show the default instructions.
+        logo: Your logo is used in proposals and emails. For best results,
+          choose one with a white or transparent background.
+        proposal_style: Changes the look and feel of the proposal and contract PDF
+        uses_crew_commissions: If your crews are paid a commission rather than
+          by hour, CorkCRM can help you track the commissions.
+      planned_communication:
+        datetime_exact: Show this as an exact time rather than an approximate time.
+      proposal:
+        notes: Include any payment plan, discounts or incentives to be included
+          on the contract.
+      timecard:
+        user: Notice&#58; your employees will be notified via email of any changes
+          you make to their timecards.
+      user:
+        active: User can login and is active in your system. Once created, the
+          user will be emailed a password to log in with.
+        role: Managers have all permissions and access to the "Manage" tab.
+    labels:
+      appointment:
+        email_before_appointment: Send reminder?
+        end_datetime: End Time
+        job: Active Lead
+        start_datetime: Start Time
+      communication:
+        action: Communication Method
+        datetime: Date & Time
+        datetime_exact: Exact Time?
+        details: Details
+      contact:
+        address: Address
+        address2: Address Line 2
+        jobs:
+          communications:
+            action: Method
+            datetime: Date & Time
+            datetime_exact: Exact Date & Time?
+            note: Note
+          email_customer: Send welcome email
+          lead_source_id: Lead Source
+        phone: Phone Number
+        region: State/Region
+        which: Which contact?
+      email_template:
+        enabled: Enabled?
+      expense:
+        expense_category: Category
+      expense_category:
+        major_expense: Major expense?
+      job:
+        crew: Default Crew
+        expected_end_date: Expected End Date
+        expected_start_date: Expected Start Date
+        lead_source: Lead Source
+        users: Additional Crew
+      job_feedback:
+        complete: Has the work been completed?
+        feedback: Feedback
+        name: Your Name
+      job_schedule_entry:
+        crew_id: Crew
+        end_datetime: End Time
+        is_touch_up: Touch Up?
+        notes: Notes
+        start_datetime: Start Time
+        users: Additional Crew
+      lead_source:
+        name: Name
+      organization:
+        auto_sign_proposals: Sign automatically?
+        feedback_portal_show_signature: Include a signature box?
+        feedback_portal_text: Feedback portal text
+        region: State/Region
+        uses_crew_commissions: Use crew commissions?
+      planned_communication:
+        action: Communication Method
+        datetime: Date & Time
+        datetime_exact: Exact Time?
+        details: Notes
+      proposal:
+        address: Address
+        address2: Address Line 2
+        amount: Total Amount
+        contractor: Contractor
+        contractor_sig_printed_name: Print your full name, then sign below
+        customer_sig_printed_name: Print your full name, then sign below
+        job: Active Lead
+        license_number: License Number
+        proposal_class: Proposal Class
+        region: State/Region
+        sales_person: Salesperson
+        speciality: Specialty
+      proposal_template:
+        active: Proposals can be created from this template
+        agreement: Contract Agreement
+        name: Template Name
+        proposal_class: Proposal Class
+        speciality: Specialty
+      proposal_template_item:
+        default_include_exclude_option: Default Option
+        default_note_text: Default text to be included in the notes text box
+        help_text: Help Text
+        name: Work Item Description
+      proposal_template_section:
+        foreground_color: Text color
+        show_include_exclude_options: Should this section contain an option to include or exclude specific items?
+      timecard:
+        end_datetime: End Date & Time
+        job: Job
+        start_datetime: Start Date & Time
+        user: User
+      user:
+        address: Address
+        address2: Address Line 2
+        can_be_assigned_appointments: Can be assigned appointments
+        can_be_assigned_jobs: Can be assigned jobs
+        can_make_timecards: Can make timecard entries
+        can_manage_all_contacts: Manage all contacts
+        can_manage_appointments: Manage appointments
+        can_manage_jobs: Manage jobs
+        can_manage_leads: Manage leads
+        can_manage_proposals: Manage proposals
+        can_view_all_contacts: View all contacts
+        can_view_all_jobs: View all jobs
+        can_view_all_proposals: View all proposals
+        can_view_appointments: View appointments
+        can_view_assigned_proposals: View assigned proposals
+        can_view_leads: View leads
+        can_view_own_jobs: View assigned jobs
+        created_at: Member since
+        pay_rate: Hourly Pay Rate
+        region: State/Region
+    placeholders:
+      contact:
+        first_name: First Name
+        last_name: Last Name
+  time:
+    formats:
+      default: ! '%-m/%-d/%Y %l:%M %P'
+      ondate: ! '%l:%M %P on %-m/%-d/%Y'
+  timecards:
+    form:
+      administrator: Administrator
+    index:
+      filter_by_staff_member: Filter by Staff Member
+      filters:
+        all: All
+        approved: Approved
+        paid: Paid
+        unapproved: Unapproved
+      nav:
+        list: List
+        schedule: Schedule
+      new_timecard: New Time Entry
+      table_headings:
+        actions: Actions
+        duration_amount: Duration/Amount
+        in_out: In/Out
+        job: Job
+        status: Status
+        user: User
+      total: Total
+    modal_form:
+      edit_timecard: Edit Timecard
+      new_timecard: New Timecard
+  users:
+    edit:
+      edit_profile: Edit Account
+    index:
+      your_account: Your Account

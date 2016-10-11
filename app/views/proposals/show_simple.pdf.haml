@@ -1,0 +1,42 @@
+.dashboard-wrapper.proposal-style-simple
+  .container-fluid
+    .row-fluid
+      .col-md-12= render 'proposals/print_header_simple.html.haml', pdf: true
+    .row-fluid
+      .proposal-report.col-md-12
+        %ul.proposal-section-list
+          - @proposal.section_responses.sort{|a,b| a.template_section.position <=> b.template_section.position}.each do |s|
+            %li.proposal-template-section.well{:style => "padding-bottom:9px;", :data => {:section => s.id}}
+              %h3.black-heading
+                .black-heading-title= s.template_section.name
+                .clearfix
+              .fr-view  
+                %p!= s.description
+              - if s.item_responses.any?
+                %ul
+                  - s.item_responses.each do |i|
+                    %li
+                      - unless i.include_exclude_option == 'N/A' || (i.name.blank? && i.notes.blank?)
+                        - if s.template_section.show_include_exclude_options
+                          = i.include_exclude_option
+                        #{i.name}
+                        - if i.notes.present?
+                          - if i.notes.match('\n')
+                            = simple_format "#{i.notes}"
+                          - else
+                            (#{i.notes})
+
+    - if defined?(@show_contract) && @show_contract
+      .row-fluid
+        = render :partial => 'proposals/agreement', :formats => [:html]
+        .row-fluid.proposal-signature-text{:style => 'page-break-before: always'}
+          .col-md-6
+            I/We have read the terms stated herein.
+            #{@proposal.organization.name} representative has explained all
+            above items to my/our satisfaction. I/We hereby accept them.
+          .col-md-6
+            I/We have examined the job stated herein and I/We find the job to
+            be satisfactory. I/We hereby accept the job as complete.
+        .row-fluid= render :partial => 'proposals/signatures', :formats => [:html]
+
+    = render 'proposals/proposal_footer_simple'

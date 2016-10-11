@@ -1,0 +1,77 @@
+.ibox
+  .ibox-title
+    %h3.inline-btn
+      Email Templates
+      .pull-right
+        .btn-group
+          - User::Language.collection.each do |tup|
+            = link_to tup[0], params.merge(lang: tup[1]), class: "btn btn-default #{@selected_lang == tup[1] ? 'active' : ''}"
+  .ibox-content
+    .well.well-small
+      %h5 About Email Templates in CorkCRM
+      %p.help-block
+        When an organization signs up for CorkCRM, email templates below
+        of the type "Organization" are copied to the organization.
+        Changes made to the "master" copies will only be reflected in
+        subsequent signups. This way, modifications made by the
+        organization are not overwritten. Email templates of the type
+        "CorkCRM" are used for CorkCRM subscriptions and are not
+        organization-visible.
+      %p.help-block
+        CorkCRM has a set of email templates for each supported language.
+        The organization owner's language setting (selected as part of
+        the signup process) is used to determine which set of email
+        templates is used. An organization owner will only see the set of
+        templates for his/her selected language. Note that when enabling
+        or disabling email templates, the action will need to be repeated
+        for each language. Template names are displayed below in English
+        for all languages for ease of management. An organization owner
+        will see the names and descriptions in his/her selected language
+        (if a translation is available).
+
+- @email_templates.each do |template|
+  - if template[1].present?
+    .ibox
+      .ibox-title
+        %h3= template[0] == "lead" ? "Leads & Appointments" : template[0].capitalize.pluralize
+      .ibox-content
+        %table.table.table-striped.footable
+          %thead
+            %tr
+              %th Email Name
+              %th Description
+              %th Status
+              %th Type
+              %th Action
+          %tbody{class: "sortable" ,data:{category: template[0]}}
+            - template[1].each do |t|
+              %tr{class: "temp_class", data: {template_id: t.id }}
+                %td.no-wrap= link_to "#{t.name.titleize} (#{t.lang})", edit_admin_email_template_path(t)
+                %td= t.description
+                %td
+                  - if t.enabled
+                    %label.label.label-success
+                      Enabled
+                  - else
+                    %label.label.label-important
+                      Disabled
+                %td
+                  - if t.master
+                    %label.label.label-info(data-toggle="tooltip" title="This template can be extended by organizations")
+                      Organization
+                  - else
+                    %label.label(data-toggle="tooltip" title="This template can only be viewed by CorkCRM admins")
+                      CorkCRM
+                %td{:style => 'width:140px'}
+                  .btn-group
+                    = link_to edit_admin_email_template_path(t), :class => "btn btn-sm btn-default",
+                        :data => {:toggle => 'tooltip', :title => 'Edit'} do
+                      %i.icon-pencil
+                    - unless t.master
+                      = link_to test_admin_email_template_path(t), :class => 'btn btn-sm btn-default',
+                          :method => :post, :data => {:toggle => 'tooltip', :title => 'Test this template'} do
+                        %i.icon-key
+                    = link_to toggle_admin_email_template_path(t), :class => "btn btn-sm btn-default",
+                        :method => :post, :data => {:toggle => 'tooltip', :title => t.enabled ? 'Disable' : 'Enable'} do
+                      %i.icon-switch
+        

@@ -1,0 +1,25 @@
+.widget{:data => {:template => @proposal_template.id}}
+  .widget-header
+    .title
+      = link_to 'Proposal Templates', admin_proposal_templates_path, :class => 'breadcrumb-link'
+      %span.breadcrumb-divider &raquo;
+      Edit
+    = link_to "#", :disable_with => 'Saving...', :class => 'btn btn-success pull-right', :style => "margin-left:10px;", :id => "save-proposal-header-btn" do
+      %i.icon-disk.hidden-desktop{:style => "display:block;margin-bottom:4px;"}
+      .visible-desktop
+        %i.icon-disk{:style => "margin-top:1px;margin-right:4px;"}
+        Save
+    = link_to admin_proposal_template_path(@proposal_template), :method => "delete", :class => "btn btn-danger pull-right", :confirm => "Are you sure you want to delete this template?" do
+      %i.icon-remove-2.hidden-desktop{:style => "display:block;margin-bottom:4px;"}
+      %span.visible-desktop
+        %i.icon-remove-2{:style => "margin-top:1px;margin-right:4px;"}
+        Delete Template
+    = link_to edit_contract_admin_proposal_template_path(@proposal_template), :class => 'btn pull-right', :style => "margin-right:10px;" do
+      %i.icon-quill.hidden-desktop{:style => "display:block;margin-bottom:4px;"}
+      %span.visible-desktop
+        %i.icon-quill{:style => "margin-top:1px;margin-right:2px;"}
+        Edit Contract
+
+  .widget-body
+    .row-fluid
+      = render :partial => 'admin/proposal_templates/form'

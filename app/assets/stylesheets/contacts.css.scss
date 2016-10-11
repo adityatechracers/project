@@ -1,0 +1,24 @@
+.contact-details-address {
+  p {margin:0px;}
+}
+
+.contact-job-table {
+  border:1px solid #aaa;
+  table-layout: fixed;
+  width:100%;
+  font-weight:bold;
+  td {padding:10px;}
+}
+
+.contact-job-info {
+  box-shadow:inset 0px 0px 5px rgba(0,0,0,0.5);
+  padding:15px;
+  hr {margin:0px 0px 10px;}
+}
+.contact_rating tr td:first-child{
+  padding-right:10px;
+}
+.contact_rating tr td a{
+  margin-left:10px;
+}
+

@@ -1,0 +1,10 @@
+-if f.object.errors.any?
+  #error_explanation.alert.alert-danger.alert-block
+    %h4 Please correct the errors below:
+    %ul
+      - f.object.errors.messages.each_pair do |attr, messages|
+        - messages.each do |message|
+          - if attr == :base
+            %li #{message}
+          - else
+            %li #{f.object.class.human_attribute_name(attr)} #{message}

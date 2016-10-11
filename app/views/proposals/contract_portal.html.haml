@@ -1,0 +1,17 @@
+.dashboard-wrapper
+  .gray-bg.row
+    = render "widget_header"
+    .row-fluid
+      .col-xs-12
+        = render "header_table"
+
+
+    .row-fluid.white-bg
+      .col-xs-12
+        .ibox
+          .ibox-content
+            = render 'agreement'
+            - if @proposal.accepted?
+              = render :partial => 'proposals/signatures'
+            - else
+              = render :partial => 'proposals/signature_form'

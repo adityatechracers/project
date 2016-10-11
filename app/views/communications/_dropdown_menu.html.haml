@@ -1,0 +1,8 @@
+%li.dropdown-submenu{:data => {:placement => "left"}}
+  = link_to t('communications.dropdown_menu.title'), communications_path
+  %ul.dropdown-menu
+    - if job.has_next_communication?
+      %li= link_to t('communications.dropdown_menu.start_next'), "#", {"data-commid" => job.next_communication.id, :class => 'start-planned-communication-link'}
+    - else
+      %li= link_to t('communications.dropdown_menu.start_new'), "#", {'data-job' => job.id, 'data-contact' => job.contact.name, :class => 'start-new-communication-link'}
+    %li= link_to t('communications.dropdown_menu.plan_future'), "#", {'data-toggle' => 'modal', 'data-job' => job.id, :class => 'plan-future-communication-link'}

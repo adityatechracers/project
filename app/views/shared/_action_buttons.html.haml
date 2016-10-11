@@ -1,0 +1,10 @@
+.btn-group
+  - if can?(:edit, resource)
+    = link_to url_for(:controller => resource.class.name.demodulize.underscore.pluralize, :action => 'edit', :id => resource.id), "data-toggle" => "tooltip", :title => t('shared.edit'), class: 'btn btn-default btn-sm' do
+      %i.icon-pencil
+
+  - if can?(:destroy, resource)
+    = destroy_link_to url_for(:controller => resource.class.name.demodulize.underscore.pluralize, :action => 'destroy', :id => resource.id),
+      confirm: t('shared.confirm_delete_resource', resource: resource.class.model_name.human.downcase),
+      "data-toggle" => "tooltip", :title => t('shared.delete'), class: 'btn btn-default btn-sm' do
+      %i.icon-remove-2

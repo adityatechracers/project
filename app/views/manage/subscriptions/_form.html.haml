@@ -1,0 +1,97 @@
+.row-fluid
+  - if user_signed_in? && current_user.organization.try(:is_trial_account?)
+    .alert.alert-info
+      %button.close{"data-dismiss" => "alert", :type => "button"} ×
+      %h4 You are currently on the Free Trial plan
+
+  %ul.thumbnails.plan-list.row
+    - Plan.each_plan do |p,index|
+      - unless p.name == 'Platinum'
+        %li.col-lg-3.col-md-6
+          .thumbnail
+            = image_tag("#{p.name.downcase}-trophy.png", :style => "height:120px;padding-top:10px;")
+            .caption
+              - unless p.is_enterprise?
+                %h3= p.name
+                %p.lead $#{p.monthly_cost}/mo
+                %p.description= p.description
+                %p
+                  - if respond_to? :plan_action_button
+                    = plan_action_button(p)
+                  - elsif user_signed_in? and current_user.can_manage?
+                    = link_to "Convert to #{p.name}", manage_subscription_path, :class => "btn btn-success btn-block"
+                  - else
+                    = link_to "Get Started", new_user_registration_path, :class => "btn btn-success btn-block"
+              - else # i.e. Enterprise
+                %h3{:style => 'margin: 11px 0 11px 0'}= p.name
+                %p.description= p.description
+                %p
+                  - if respond_to?(:plan_action_button) && current_tenant.present? && current_tenant.plan == p
+                    = plan_action_button(p)
+                  - else
+                    - if params[:controller] == "manage/subscriptions"
+                      %a.btn.btn-block.btn-success.contact-us-button{:data => {:plan => p.name }} Contact Us
+                    - else
+                      = link_to "Contact Us", page_path("home/contact"), :class => "btn btn-block btn-success contact-us-button"
+
+
+  .clearfix
+    #invalid_subscription
+      .alert.alert-info
+        - if @organization.number_of_active_users
+          = "You have #{@organization.number_of_active_users} active users, which is above the limit of active users for this plan." 
+        - else
+          = "You have more than allowed users signed into this account, for the active plan." 
+  #inquiry_form_wrapper.well
+    - @enterprise_inquiry ||= Inquiry.new
+    = simple_form_for @enterprise_inquiry, :html => { :class => 'form-horizontal' } do |f|
+      %h3 Contact Us
+      %h4 Need a custom plan? Have questions about CorkCRM?
+      %h5 Fill out the form below and we'll get back to you shortly.
+      %br
+      = f.input :name, :label => 'Your Name', :input_html => { :class => 'input-xlarge' }
+      = f.input :email, :label => 'Your Email', :input_html => { :class => 'input-xlarge' }
+      = f.input :message, :input_html => { :rows => 5, :class => 'input-xlarge' }
+      .form-actions
+        = f.submit 'Submit', :class => 'btn btn-info'
+
+  - if @organization.present?
+    #subscription_form_wrapper
+      = simple_form_for @organization, :url => manage_update_subscription_path, defaults: { wrapper: :simple, input_html: { class: "form-control" } } do |f|
+        .ibox
+          .ibox-title
+            %h3#upgrade-heading
+          .ibox-content
+            = f.hidden_field :stripe_card_token
+            .hidden
+              - Stripe::Plan.all.data.reverse.each_with_index do |plan, i|
+                - unless plan.name == 'Platinum'
+                  %label
+                    = f.radio_button :stripe_plan_id, plan.id , :checked => i == 0 || @organization.stripe_plan_id == plan.id
+                    #{plan.name} - #{number_to_currency(plan.amount / 100.00)}
+
+            #stripe-error.alert.alert-danger.hide
+
+            - if @organization.stripe_card_token.present?
+              Credit card is currently on file.
+            - else
+              = f.input :name_on_credit_card
+              .control-group.form-group
+                = label_tag :card_number, "Credit Card", :class => 'control-label'
+                .controls
+                  = text_field_tag :card_number, nil, :name => nil, :placeholder => 'Card Number',
+                      :type => 'tel', :pattern => '[\d ]*', class: 'form-control'
+                  = text_field_tag :card_code, nil, name: nil, :cols => 4, :class => 'input-mini form-control', :placeholder => 'CVV',
+                      :inputmode => 'numeric', :pattern => '\d*'
+              .control-group.form-group
+                = label_tag :card_month, "Card Expiration", :class => 'control-label'
+                .controls
+                  = select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month", class: 'input-medium'}
+                  = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15},
+                      {name: nil, id: "card_year", class: 'input-small'}
+              .form-actions.m-b.m-t-lg
+                =f.submit "Update Your Subscription", :class => "btn btn-success"
+
+            = content_for :additional_javascript do
+              :javascript
+                $(StripePayments.init);

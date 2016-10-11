@@ -1,0 +1,178 @@
+- @jobs.each do |job|
+  %tr.footable
+    %td.footable
+      %span.caret-right
+    %td.footable
+      = job_status_indicator job
+    %td.footable
+      = job.contact.name
+    %td.footable
+      = job.contact.phone
+    %td.footable{style: "max-width:300px;"}
+      - if job.proposal.proposal_address?
+        = job.proposal.proposal_address
+      - else
+        = job.contact.minimum_address
+    %td.footable
+      = format_amount(number_to_currency(job.approved_proposals_amount, precision: 2))
+    %td.footable
+      .crews.row
+        = raw display_crews job
+    %td.footable
+      .btn-group
+        - if can? :read, Proposal
+          - if job.proposals.count > 1
+            - @view_job_path = proposals_path(:job => job.id)
+          - elsif job.proposals.count == 1
+            - @view_job_path = proposal_path(job.proposals.first.guid)
+          = link_to @view_job_path, class: "btn btn-sm btn-default" do
+            %i.fa.fa-eye
+
+        %button.btn.btn-sm.btn-default.dropdown-toggle(data-toggle='dropdown'){ type: 'button' }
+          %i.fa.fa-ellipsis-h
+        %ul.dropdown-menu.pull-right
+          - if can? :manage, Job
+            - if job.organization.quick_books_session.present? and job.qb_remaining_balance > 0
+              %li= link_to t('.actions.new_invoice'), nil, class: "trigger", data:{url: new_invoice_modal_job_path(job) , action: :modal, target:'#new-invoice-modal'}
+            - if job.is_completed?
+              %li= link_to t('.actions.unmark_as_completed'), uncomplete_job_path(job)
+            - else
+              %li= link_to t('.actions.mark_as_completed'), complete_job_path(job)
+            %li= link_to t('.actions.new_expense'), new_job_expense_path(job)
+            %li= link_to t('.actions.new_payment'), new_job_payment_path(job)
+            %li= link_to t('.actions.schedule_this_job'), "/jobs/schedule?j_id=#{job.id}"
+            
+
+  %tr.footable-row-detail
+    %td.footable-row-detail-cell{colspan: '8'}
+      .row
+        .col-md-5
+          .footable-row-detail-row
+            %span.footable-row-detail-name
+              Proposal Title:
+            %span.footable-row-detail-value
+              = job.proposal.title
+          .footable-row-detail-row
+            %span.footable-row-detail-name
+              Email:
+            %span.footable-row-detail-value
+              = job.contact.try(:email) 
+          .footable-row-detail-row
+            %span.footable-row-detail-name
+              Proposal #:
+            %span.footable-row-detail-value
+              = Proposal.find(job.most_recent_proposal_id).proposal_number
+          .footable-row-detail-row
+            %span.footable-row-detail-name
+              Saleperson:
+            %span.footable-row-detail-value
+              = job.proposal.sales_person.try(:name)     
+          .footable-row-detail-row
+            %span.footable-row-detail-name
+              Budgeted Hours:
+            %span.footable-row-detail-value
+              = job.budgeted_hours
+          .footable-row-detail-row
+            %span.footable-row-detail-name
+              Expected Start Date:
+            %span.footable-row-detail-value
+              = job_expected_start_date job
+          .footable-row-detail-row
+            %span.footable-row-detail-name
+              Expected End Date:
+            %span.footable-row-detail-value
+              = job_expected_end_date job
+          .m-t-lg
+            %h3.font-normal Add Note
+          - @communication = Communication.new(:job_id => job.id, :user_id => current_user.id)
+          = simple_form_for @communication, remote:true, class:"form-inline", html: { type: 'json' }, defaults: { wrapper: :simple} do |form|
+            = form.input :job_id, value: job.id, as: :hidden
+            = form.input :action, as: :hidden, input_html: {value: 'Call'}
+            = form.input :type, as: :hidden, input_html: {value: 'CommunicationRecord'}
+            = form.input :details, label: false, required:true, minlength:1, input_html: { rows: 2, :style => 'width: 95%' }
+            .form-group.padding-top
+              %button.btn.btn-default{type: 'submit'} Save note
+
+
+
+        .col-md-7
+          - if job.job_schedule_entries.sent.length > 0
+            %h3.font-normal Schedule Entries
+            .schedule-entries
+              - job.job_schedule_entries.sent.order("start_datetime asc").each do |entry|
+                %div.schedule-entry
+                  %span
+                    = display_job_entry_start_end_datetime entry
+                  = raw dot_label entry.crew, wrap:false, class:"pull-right"
+                .clearfix
+          %h3.font-normal= t '.Notes'
+          #communication-history-table
+            = render partial: "shared/communications_table", locals: {communications: job.communications.past}
+          .div.propsal-change-log
+            - change_log_id = "change-log-#{job.id}"
+            %span.smaller
+              %a.trigger-popover{href:"##{change_log_id}", data:{toggle:"popover-x", placement: "right right-top", trigger:'hover'}} Proposal Change Log
+            %div.popover.index.popover-lg{id:"#{change_log_id}"}
+              .popover-title
+                %div.arrow
+                %div.pull-right.close{data:{dismiss:"popover-x"}}
+                  :plain
+                    &times;
+                Change Log
+              .popover-content
+                - job.activities.each do |activity|
+                  .activity
+                    = display_job_activity activity
+            %br
+            - payment_log_id = "payment-log-#{job.id}"
+            %span.smaller
+              %a.trigger-popover{href:"##{payment_log_id}", data:{toggle:"popover-x", placement: "right right-top", trigger:'hover'}} View Payments
+            %div.popover.index.popover-lg{id:"#{payment_log_id}"}
+              .popover-title
+                %div.arrow
+                %div.pull-right.close{data:{dismiss:"popover-x"}}
+                  :plain
+                    &times;
+                Payments
+              .popover-content
+                -if job.payments.all.count > 0
+                  - job.payments.each do |payment|
+                    .activity
+                      = display_payment_log payment
+                -else
+                  = 'No payments'
+                .payment-summary
+                  %span
+                    Total Payments:
+                    = number_to_currency(job.total_payments)
+                  %span
+                    Balance Due:
+                    = number_to_currency(job.estimated_outstanding_balance)
+            %br
+            - expense_log_id = "expense-log-#{job.id}"
+            %span.smaller
+              %a.trigger-popover{href:"##{expense_log_id}", data:{toggle:"popover-x", placement: "right right-top"}} View Expenses
+            %div.popover.index.popover-lg{id:"#{expense_log_id}"}
+              .popover-title
+                %div.arrow
+                %div.pull-right.close{data:{dismiss:"popover-x"}}
+                  :plain
+                    &times;
+                Expenses
+              .popover-content
+                -if job.expenses.all.count > 0
+                  - job.expenses.each do |expense|
+                    .activity
+                      = display_expense_log expense
+                -else
+                  = 'No expenses'
+                .expense-summary
+                  %span
+                    Total expenses:
+                    = number_to_currency(job.total_expenses)
+                 
+            
+- if can? :manage, Job
+  #new-invoice-modal.modal.modal-overflowed.fade
+    Manage Job
+

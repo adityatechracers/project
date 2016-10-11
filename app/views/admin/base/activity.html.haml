@@ -1,0 +1,15 @@
+.ibox
+  .ibox-title
+    %h3 Activity Logs
+  .ibox-content
+    %table.table.table-striped.footable
+      %tr
+        %th Event Type
+        %th Data
+        %th Timestamp
+      - @activity.each do |a|
+        %tr
+          %td= a.event_type
+          %td
+            %pre=a.yaml_data
+          %td= a.created_at

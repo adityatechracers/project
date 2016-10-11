@@ -1,0 +1,24 @@
+- unless crew.id == 'all-crews'
+  %tr{data: { id: crew.id }, id:"crew-#{crew.id}"}
+    %td.crew-name{style: "background-color: #{crew.color}"}= crew.name
+    - week.each do |date|
+      - entries = crew_entries.select { |e| e.crew_id == crew.id && e.start_datetime.to_date <= date && e.end_datetime.to_date >= date }
+      %td{class: "#{entries.empty? ? 'empty' : ''} #{date == Date.today ? 'today' : ''}"}
+        %span.date= date.strftime('%-d')
+        - entries.each do |entry, i|
+          %div{data: { entry: entry.id, crew:crew.id}, class: 'entry crew-cal-entry open-edit-modal', style: "background-color: #{crew.color}; cursor: pointer" }
+            = link_to entry.job.contact.name, contact_path(entry.job.contact), style: 'color: #000;'
+            %br
+            = entry.job.title
+            %br
+            = entry.job.contact.city
+            %br
+            = number_to_currency(entry.job.estimated_amount)
+            - if entry.is_touch_up
+              %span.label.touch-up-label Touch Up
+            - if entry.notes.present?
+              %span.label
+                Notes
+        - if entries.empty?
+          %button{class: 'btn btn-mini open-new-modal', data: {date: date, crew: crew.id}}
+            %i.icon-plus

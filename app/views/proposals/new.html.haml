@@ -1,0 +1,9 @@
+
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-m
+  .p-w-sm
+    %h1= t('nav.proposals.main')
+    .title
+      != breadcrumbs({t('nav.proposals.main') => proposals_path}, t('shared.new'))
+.widget-body
+  .row
+    = render :partial => "form"

@@ -1,0 +1,15 @@
+.well.well-white
+  %ul.calendar-filters.style-none
+    - crews.each do |c|
+      %li.pull-left
+        %label
+          %div.filter-color{:style => "background: #{c.color}", data: {color: c.color, id: c.id}, class: ('filter-color-crew' unless c.id == 0)}
+          %span= c.name
+          %input.crew-filter{:type => "checkbox", :checked => true, :data => {:id => c.id}}
+    - if unscheduled_filter
+      %li.pull-left
+        %label
+          %div.filter-color{:style => "background: #eee; border: 1px dashed #aaa;"}
+          = t '.expected_dates_for_unscheduled'
+          %input.unscheduled-filter{:type => "checkbox", :checked => true}
+  .clearfix

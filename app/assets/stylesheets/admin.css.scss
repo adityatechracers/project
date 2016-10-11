@@ -1,0 +1,33 @@
+.admin-overview {
+  width: 300px;
+  font-size: 15px;
+  tr td:nth-of-type(1) {
+    text-align: right;
+    font-weight: 700;
+    padding-right: 20px;
+  }
+}
+
+.billing-filters {
+  margin: 0;
+}
+
+.billing-table {
+  span.label-important:hover {
+    cursor: pointer;
+  }
+}
+
+.trial-update {
+  margin-left: 10px;
+  width: 300px;
+  display: inline-block;
+  margin-bottom: 0;
+  .form-inline {
+    margin-bottom: 0;
+  }
+}
+
+.org-status-btn {
+  margin-right: 10px;
+}

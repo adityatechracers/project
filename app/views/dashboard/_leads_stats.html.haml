@@ -1,0 +1,15 @@
+.dashboard-card
+  = render 'stat_card', name: "New Leads",
+    ytd: @leads_ytd, this_week: @leads_this_week,
+    units: 'Leads',
+    icon_class: 'fa fa-bars'
+.dashboard-card
+  = render 'stat_card', name: "Appointments Scheduled",
+    ytd: @appointments_ytd, this_week: @appointments_this_week,
+    units: 'Appointments',
+    icon_class: 'fa fa-calendar'
+.dashboard-card
+  = render 'stat_card', name: "Slippage",
+    ytd: @slippage_percent_ytd, this_week: @slippage_percent_this_week,
+    units: '%',
+    icon_class: 'fa fa-times-circle'

@@ -1,0 +1,20 @@
+.ibox
+  .ibox-content
+    = hform_for @expense, :html => {:class => 'form-horizontal'} do |f|
+      - if @job
+        = f.hidden_field :job_id, :value => @job.id
+      - else
+        - if @expense.job_id
+          = f.association :job, :input_html => {:class => 'chzn-select'}, :collection => Job.where(id: @expense.job_id).includes(:contact).active, :label_method => :full_title_with_address_and_phone
+        - else
+          = f.association :job, :input_html => {:class => 'chzn-select'}, :collection => Job.includes(:contact).active, :label_method => :full_title_with_address_and_phone
+      = f.input :amount, wrapper: 'prepend' do
+        %span.input-group-addon $
+        = f.input_field :amount, :placeholder => '50.00'
+      = f.association :expense_category, collection: @expense_categories, :input_html => {:class => 'chzn-select'}
+      = f.association :vendor_category, collection: @vendor_categories, :input_html => {:class => 'chzn-select'}
+      = f.input :date_of_expense, :as => :date_picker, input_html: { value: Time.now.strftime("%m/%d/%Y") }
+      = f.input :description, :input_html => {:rows => 3}
+      .row.m-t-md
+        .col-md-8.col-md-offset-4
+          = f.submit t('.save_expense'), :class => 'btn btn-success'

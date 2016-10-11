@@ -1,0 +1,23 @@
+- buttons.each do |b|
+  b[:path] ||= "#"
+  b[:options] ||= {:class => "btn btn-mini"}
+  b[:icon] ||= "question"
+  != link_to b[:path], b[:options] do
+    %i{:class => "icon-#{b[:icon]}"}
+
+!= link_to url_for(:controller => resource.class.name.demodulize.underscore.pluralize, :action => 'edit', :id => resource.id), {:class => "btn btn-mini", "data-toggle" => "tooltip", :title => "Edit"} do
+  %i.icon-pencil
+!= link_to url_for(:controller => resource.class.name.demodulize.underscore.pluralize, :action => 'destroy', :id => resource.id), {:class => "btn btn-mini", "data-toggle" => "tooltip", :title => "Delete", :method => "delete", :confirm => "Are you sure you want to delete this #{resource.class.name.demodulize.underscore.split("_").join(" ")}?"} do
+  %i.icon-remove-2
+
+- if actions.any?
+  .btn-group.pull-right
+    = link_to "#", :class => "btn btn-mini dropdown-toggle", :data => {:toggle => "dropdown"} do
+      Action
+      %i.caret
+    %ul.dropdown-menu
+      - actions.each do |a|
+        a[:name] ||= "Untitled action"
+        a[:path] ||= "#"
+        a[:options] ||= {}
+        %li= link_to a[:name], a[:path], a[:options]

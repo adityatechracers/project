@@ -1,0 +1,6 @@
+.row-fluid
+  .widget#timecard-form-widget
+    .widget-header
+      .title!= breadcrumbs({t('nav.jobs.timecards') => timecards_path}, t('shared.edit'))
+    .widget-body
+      = render "form"

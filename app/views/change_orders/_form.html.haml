@@ -1,0 +1,62 @@
+%div(ng-app="change-order" ng-cloak)
+  = simple_form_for [@proposal, @change_order], html: { 'ng-controller' => 'AppCtrl', 'data-proposal' => @proposal.to_json } do |f|
+    = render 'shared/form_errors', f: f
+
+    .help-block
+      By making changes to the proposal below and clicking "Apply Changes", the
+      changes will be applied to the proposal and a record of this change
+      will be visible when viewing the proposal.
+    .row
+      .col-xs-12
+        %table.table.table-condensed
+          %tr
+            %th Field
+            %th Current
+            %th New
+            %th Change
+          %tr
+            %td Proposal Amount
+            %td {{ proposal.amount | currency }}
+            %td {{ proposal.amount + proposalAmountChange | currency }}
+            %td
+              .control-group
+                .input-group
+                  %span.input-group-addon $
+                  = f.input_field :proposal_amount_change, type: 'number', class: 'input-mini form-control', 'ng-model' => 'proposalAmountChange'
+                %small Enter change (+/-)
+          %tr
+            %td Budgeted Hours
+            %td {{ proposal.budgeted_hours }}
+            %td {{ proposal.budgeted_hours + budgetedHoursChange }}
+            %td
+              .control-group
+                = f.input_field :budgeted_hours_change, type: 'number', class: 'input-small form-control', 'ng-model' => 'budgetedHoursChange'
+                %small Enter change (+/-)
+          %tr
+            %td Expected Start Date
+            %td {{ proposal.expected_start_date | date : 'M/d/yyyy' }}
+            %td {{ expectedStartDate || (proposal.expected_start_date | date : 'M/d/yyyy') }}
+            %td
+              .control-group
+                .input-group
+                  %span.input-group-addon
+                    %i.icon.icon-calendar
+                  = f.input_field :expected_start_date_new, as: :date_picker, class: 'input-small form-control', 'ng-model' => 'expectedStartDate'
+          %tr
+            %td Expected End Date
+            %td {{ proposal.expected_end_date | date : 'M/d/yyyy' }}
+            %td {{ expectedEndDate || (proposal.expected_end_date | date : 'M/d/yyyy') }}
+            %td
+              .input-group
+                %span.input-group-addon
+                  %i.icon.icon-calendar
+                = f.input_field :expected_end_date_new, as: :date_picker, class: 'input-small form-control', 'ng-model' => 'expectedEndDate'
+    .hr-line-dashed
+    #empty_description_error
+    = f.input :change_description, input_html: { class: 'input-block-level', rows: 3 }
+
+    .help-block
+      Changes to the proposal amount (+/-) will also be applied to the job amount.
+
+    - if include_submit
+      = f.submit 'Apply Changes', class: 'btn btn-success'

@@ -1,0 +1,5 @@
+- @country = Country.find_country_by_name(country)
+- @country = Country.find_country_by_name("US") if !@country.present?
+- if @country.present?
+  - @country.subdivisions.each do |k, v|
+    %option{:value => k}= v["name"]

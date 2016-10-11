@@ -1,0 +1,7 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1= t 'nav.manage.users'
+    .title!= breadcrumbs({'Users' => admin_users_path}, {@user.name => admin_user_path(@user)}, 'Edit')
+.ibox
+  .ibox-content.p-lg
+    = render "/admin/users/form"

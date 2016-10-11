@@ -1,0 +1,11 @@
+= content_for :home do
+  .container{:style => "padding-top:10px;padding-bottom:10px;"}
+    .row
+      .span12
+        != cb("About", "About Header")
+        %p= link_to "Get Started Today", new_user_registration_path, :class => "btn btn-large btn-success"
+  .container-light.container-padded
+    .container
+      .row.row-buffered
+        .span12!= cb("About","About Content")
+        .clearfix

@@ -1,0 +1,40 @@
+.widget
+  .widget-header
+    = render 'report_title', title: :estimates
+  .widget-body
+    .well
+      = split_button_filter t('shared.filter_by_employee'), :user, User.all
+      .pull-right= date_range_filter_button
+      .clearfix
+    .row-fluid
+      .span6
+        %h3.chart-heading
+          = t '.estimates_by_employee'
+          - if !@user.nil?
+            %small Organization
+        = pie_chart @estimates_by_user, :library => chartkick_opts({:is3D => true, :theme => "maximized"}), :height => "300px"
+      .span6
+        %h3.chart-heading
+          = t '.estimates_by_contact'
+          - if !@user.nil?
+            %small= @user.name
+        = pie_chart @estimates_by_contact, :library => chartkick_opts({:is3D => true, :theme => "maximized"}), :height => "300px"
+    %hr
+    .row-fluid
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th= t '.table_headings.employee'
+            %th= t '.table_headings.contact'
+            %th= t '.table_headings.when'
+        %tbody
+          - @results.each do |e|
+            %tr
+              %td= e.user.name
+              %td{:style => "line-height:14px;"}
+                %b= contact_link_with_popover(e.job.contact)
+                %br
+                = link_to e.job.contact.phone, "tel:#{e.job.contact.phone}"
+                %br
+                = link_to e.job.contact.condensed_address, e.job.contact.map_url, :target => "_blank"
+              %td= e.start_datetime.strftime("%B #{e.start_datetime.day.ordinalize}, %Y at %l:%M%P")

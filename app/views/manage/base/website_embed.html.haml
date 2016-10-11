@@ -1,0 +1,39 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1= t 'nav.manage.website_embed'
+    .title!= breadcrumbs({t('nav.manage.main') => manage_root_path}, t('nav.manage.website_embed'))
+.ibox
+  .ibox-content
+    = simple_form_for current_tenant, :url => url_for(:only_path => false), :method => 'put', :html => {:class => 'form'} do |f|
+      .row
+        .col-xs-12
+          %h4= t '.help_text'
+          %p= t '.help_text_description'
+        = f.input :embed_help_text, :label => false, :input_html => {:rows => 4, :class => 'span4'}
+        .col-xs-12
+          %h4= t '.thank_you_message'
+          %p= t '.thank_you_message_description'
+        = f.input :embed_thank_you, :label => false, :input_html => {:rows => 4, :class => 'span4'}
+        .col-xs-12
+          = f.submit t('.save_customizations'), :disable_with => 'Saving...', :class => 'btn btn-success'
+
+    %hr
+    %h4= t '.embed_html_options'
+
+    = t '.embed_html_instructions'
+    %br
+    %br
+    %label
+      %input{:type => 'checkbox', :checked => true, :id => 'include-lead-form'}
+      &nbsp;
+      = t '.include_lead_form'
+    %label
+      %input{:type => 'checkbox', :checked => true, :id => 'include-appointment-form'}
+      &nbsp;
+      = t '.include_appointment_form'
+    %br
+    %pre#website-embed
+      = "<iframe src='#{embed_leads_url(:org => current_tenant.guid, :lead_form => 1, :appointment_form => 1)}' style='width:600px;height:1000px;' frameBorder='0'></iframe>"
+
+    %h5= t '.preview'
+    %iframe#embed-preview{:src => embed_leads_url(:org => current_tenant.guid, :lead_form => 1, :appointment_form => 1)}

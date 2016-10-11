@@ -1,0 +1,7 @@
+= hform_for @vendor_category, :html => {:class => 'form-horizontal m-t'} do |f|
+  = f.input :name
+  .form-actions
+  .hr-line-dashed.m-t-lg.m-b-lg
+  .row
+    .col-md-offset-4.col-md-8
+      = f.submit t('shared.save') + " vendor", :class => 'btn btn-success'

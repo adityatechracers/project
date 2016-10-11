@@ -1,0 +1,17 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md.p-sm
+  .col-xs-12
+    .title-group
+      %h1= t '.availability'
+.ibox
+  .ibox-content.p-md
+    .ibox-content
+      %br
+      .row.availabilities-row#dates-row
+        .ibox.text-center
+          %h3= t '.select_a_day'
+          %br
+          %div.availability_days_wrapper
+            = render :partial => 'days', :locals => { :dates => @dates }
+      .row.availabilities-row#employees-row
+        .ibox.text-center.available_employees_wrapper
+

@@ -1,0 +1,33 @@
+.wrapper.border-bottom.page-heading.white-bg.m-b-md.m-t-md.overflow-content.p-lg
+  .title-group
+    - if current_user.present?
+      %h1.title!= breadcrumbs({t('nav.proposals.main') => proposals_path}, {"##{@proposal.proposal_number}" => proposal_path(@proposal.guid)})
+    - else
+      .title ##{@proposal.proposal_number}
+  .btn-group.pull-right.m-l
+    = link_to "Proposal", proposal_portal_path, :class => "btn btn-default active"
+    = link_to "Contract", contract_portal_path, :class => "btn btn-default"
+  .btn-group.pull-right
+    = link_to contract_proposal_path(@proposal.guid, :format => :pdf), :class => "btn btn-default" do
+      %i.icon-file-pdf
+      %span.hidden-phone= t '.view_pdf'
+    %button.btn.btn-default.dropdown-toggle{:data => {:toggle => 'dropdown'}}
+      %span.caret
+    %ul.dropdown-menu
+      %li= link_to t('proposals.show.proposal'), proposal_path(@proposal.guid, :format => :pdf) if !personal
+      %li= link_to t('proposals.show.contract'), contract_proposal_path(@proposal.guid, :format => :pdf)
+      %li= link_to t('proposals.show.proposal_with_contract'), proposal_path(@proposal.guid, :contract => 1, :format => :pdf) if !personal
+  / .btn-group.pull-right{:style => "margin-right:10px"}
+  /   = link_to print_contract_proposal_path(@proposal.guid), :class => "btn btn-default" do
+  /     %i.icon-print
+  /     %span.hidden-phone= t 'shared.print'
+  /   %button.btn.btn-default.dropdown-toggle{:data => {:toggle => 'dropdown'}}
+  /     %span.caret
+  /   %ul.dropdown-menu
+  /     %li= link_to t('proposals.show.proposal'), print_proposal_path(@proposal.guid) if !personal
+  /     %li= link_to t('proposals.show.contract'), print_contract_proposal_path(@proposal.guid)
+  /     %li= link_to t('proposals.show.proposal_with_contract'), print_proposal_path(@proposal.guid, :contract => 1) if !personal
+  - if current_user && current_page?(:action => :proposal_portal)
+    = link_to proposal_path(@proposal.guid), :class => "btn btn-default pull-right", :style => "margin-right:10px" do
+      %i.icon-home
+      %span.hidden-phone= t '.return_to_site'

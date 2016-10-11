@@ -1,0 +1,24 @@
+.ibox-content
+  - if record.versions.select { |v| v.whodunnit.present? && v.event != 'create' }.any?
+    %table.table.table-condensed
+      - record.versions.select { |v| v.whodunnit.present? && v.event != 'create' }.reverse.each do |v|
+        %tr
+          %td= l v.created_at
+          %td
+            - if v.whodunnit.present?
+              = User.find(v.whodunnit).name
+            - else
+              This version was created automatically.
+          %td
+            - if template_id.present? && section_id.present? 
+              = link_to send(restore_path, template_id, section_id, record.id, v.id), :method => :put, :class => 'btn btn-mini' do
+                %i.icon-undo
+                = t '.restore_this_version'
+            - elsif template_id.present? && section_id.blank?
+              = link_to send(restore_path,template_id, record.id, v.id), :method => :put, :class => 'btn btn-mini' do
+                %i.icon-undo
+                = t '.restore_this_version'
+            - else
+              = link_to send(restore_path, record.id, v.id), :method => :put, :class => 'btn btn-mini' do
+                %i.icon-undo
+                = t '.restore_this_version'        

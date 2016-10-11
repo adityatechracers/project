@@ -1,0 +1,154 @@
+.proposal-header {
+  padding-bottom:20px;
+
+  .proposal-organization-logo {
+    float:left;
+    margin-right:20px;
+  }
+  h2 a {
+    font-size:18px;
+    color:#0059B2;
+    text-decoration:underline;
+    position:relative;
+    top:-5px;
+  }
+  .proposal-header-logo {
+    background-position:100% 50%;
+    background-repeat:no-repeat;
+    background-size:92%;
+  }
+  .proposal-header-info {
+    position:relative;
+    table {width:100%;}
+  }
+  .border-left,
+  .border-right {
+    min-height: 172px;
+  }
+}
+
+.proposal-agreement {
+  clear:both;
+  border-top:1px solid #cccccc;
+}
+.proposal-customer-contractor-info {
+  border-bottom:1px solid #cccccc;
+  overflow:hidden;
+  padding-bottom:20px;
+
+  h3, p {margin:0px;}
+}
+.proposal-signatures {
+  overflow:hidden;
+
+  .span6 {
+    padding-right: 20px;
+    padding-top: 0px;
+    min-width: 500px;
+
+    .signature-readonly {
+      width: 500px;
+    }
+  }
+}
+
+.table .include_exclude_cell {
+  width:50px;
+  text-align:center;
+  cursor:pointer;
+}
+
+form.new_proposal,
+form.edit_proposal {
+  textarea {
+    margin-bottom: 0;
+  }
+}
+
+.signature {
+  border:1px solid #cccccc;
+  background:white;
+  border-radius:2px;
+  margin-bottom:20px;
+}
+
+.signature-svg {
+  display:none;
+}
+
+.proposal-help-text {
+  padding:0px;
+  color:#666666;
+  position:relative;
+  top:3px;
+  left:8px;
+}
+
+.proposal-organization-logo {
+  max-width: 150px;
+}
+
+.native-file-input{
+  box-shadow: none;
+}
+
+#proposal-changelog{
+  max-height: 260px;
+  overflow: scroll;
+  margin-bottom: 15px;
+}
+
+.widget-head-color-box {
+  padding-top: 5px;
+
+}
+
+.proposal-section-list {
+  table {
+    margin-top: 20px;
+    thead th, tbody td {
+      border-right: 1px solid #ddd;
+      &:last-child {
+        border-right: 0;
+      }
+    }
+  }
+}
+
+
+.proposal-section-list div.control-label{
+  width: 100%;
+  text-align: left;
+  label{
+    text-align: left;
+  }
+}
+.proposal-section-list li .controls{
+  width: 100%;
+}
+.sign_contract_alert {
+  background:rgba(255,255,255,0.9);
+  width:100%;
+  position:fixed;
+  width:100%;
+  bottom:0px;right:0px;left:0px;
+  padding: 45px;
+  padding-bottom: 50px;
+  border-top: 2px solid #aaa;
+}
+.sign_contract_alert a.btn-xl{
+  margin:auto;
+  display:block;
+  width:280px;
+  padding: 14px;
+  font-size: 1.4em;
+}
+
+.proposal-portal-spacing {
+  padding-bottom: 180px;
+}
+#ui-datepicker-div{z-index:2147483647 !important}
+
+#filter_proposals_by_sales_person {
+  margin-left: 10px !important;
+}

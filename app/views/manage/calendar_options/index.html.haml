@@ -1,0 +1,35 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md.p-sm
+  .col-xs-12
+    .title-group
+      %h1= t '.calendar_options'
+
+=form_tag manage_set_calendar_options_path do
+  .ibox
+    .ibox-content.p-md
+      %table.table.table-striped.footable
+        %thead
+          %tr
+            %th= t '.table_headings.name'
+            %th= t '.table_headings.phone_number'
+            %th= t '.table_headings.address'
+            %th= t '.table_headings.role'
+            %th= t '.table_headings.actions'
+        %tbody
+          - @users.each do |u|
+            %tr{:class => u.is_owner? ? "info" : ""}
+              %td= u.backwards_name
+              %td= u.phone
+              %td= u.condensed_address
+              %td
+                - if u.is_owner?
+                  %label.label.label-info= t '.owner'
+                - elsif u.is_manager?
+                  %label.label.label-warning= t '.manager'
+                - else
+                  %label.label.label= t '.employee'
+              %td
+                = check_box_tag 'user_ids[]', u.id, u.can_be_assigned_appointments
+                = t '.can_be_assigned_appointments'
+
+      = submit_tag t('shared.save'), :class => 'btn btn-success'
+      = paginate @users, :theme => 'bootstrap'

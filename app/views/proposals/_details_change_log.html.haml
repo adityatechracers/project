@@ -1,0 +1,29 @@
+- if proposal.versions.count > 1
+  %h3.font-normal Change Log
+  #proposal-changelog
+    - proposal.versions.reverse.each do |v|
+      - if v.event == "create"
+        %div.footable-row-detail-row
+          %span.footable-row-detail-value
+            = format_created_at(v)
+      -elsif v.event == "update"
+        -if check_issued(v)
+          %div.footable-row-detail-row
+            %span.footable-row-detail-value
+              = format_issued_at(v)
+        - elsif check_voided(v)
+          %div.footable-row-detail-row
+            %span.footable-row-detail-value
+              = format_voided_at(v)
+        - elsif check_accepted(v)
+          %div.footable-row-detail-row
+            %span.footable-row-detail-value
+              = format_accepted_at(v)
+        - elsif check_declined(v)
+          %div.footable-row-detail-row
+            %span.footable-row-detail-value
+              = format_declined_at(v)
+        - else
+          %div.footable-row-detail-row
+            %span.footable-row-detail-value
+              = format_updated_at(v)

@@ -1,0 +1,8 @@
+- if @job_nested
+  = render :partial => 'leads/new'
+- else
+  .nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+    .col-xs-12
+      %h1= t('nav.contacts.main')
+      .title!= breadcrumbs({t('nav.contacts.main') => contacts_path}, t('shared.new'))
+  = render "form"

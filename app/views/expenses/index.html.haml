@@ -1,0 +1,73 @@
+.row-fluid
+  .ibox.page-header
+    .ibox-title
+      %h1.title.pull-left= t 'nav.jobs.expenses'
+      .pull-right
+        = link_to t('.new_expense'), new_expense_path, :class => 'btn btn-success btn-spaced'
+        = link_to("Vendors", vendor_categories_path, :class => "btn btn-default")
+        = link_to t('.expense_categories'), expense_categories_path, :class => 'btn btn-default'
+
+        -# %a{data: {toggle: 'modal', target: '#new_expense_modal' }, class: 'btn btn-success btn-spaced' } New Expense
+        -# Toggle for Modal/new_expense when ready
+
+      .clearfix
+
+    .ibox-content
+      = left_date_range_filter_button
+      .btn-group.pull-left
+        = active_filter_for t('.filters.all'), expenses_path, :root => true, :class => 'btn btn-default'
+        = active_filter_for t('.filters.today'), :today, :class => 'btn btn-default'
+        = active_filter_for t('.filters.this_week'), :current_week, :class => 'btn btn-default'
+        = active_filter_for t('.filters.this_year'), :current_year, :class => 'btn btn-default'
+      
+      .clearfix
+
+  .row-fluid
+    .ibox
+      .ibox-content
+        - if Expense.any?
+          .scrolled
+            %table.table.table-striped.footable
+              %thead
+                %tr
+                  %th= t '.table_headings.job'
+                  %th= t '.table_headings.employee'
+                  %th= t '.table_headings.category'
+                  %th= t '.table_headings.vendor'
+                  %th= t '.table_headings.description'
+                  %th= t '.table_headings.date_of_expense'
+                  %th= t '.table_headings.amount'
+                  %th= t '.table_headings.actions'
+              %tbody
+                - @expenses.each do |e|
+                  %tr
+                    %td= link_to e.job.full_title, contact_path(e.job.contact)
+                    %td= e.user.try(:name)
+                    %td= e.expense_category.try(:name)
+                    %td= e.vendor_category.try(:name)
+                    %td= e.description
+                    %td= l e.date_of_expense
+                    %td= number_to_currency(e.amount)
+                    %td= render 'shared/action_buttons', resource: e
+          = paginate @expenses, :theme => "bootstrap"
+        - else
+          .hero-unit
+            %h3= t '.no_expenses.heading'
+            %p= t '.no_expenses.body'
+            = link_to t('.no_expenses.add_an_expense'), new_expense_path, :class => "btn btn-success btn-large" if can? :create, Expense
+
+-# Modal for new expense form
+
+#new_expense_modal.modal.fade{"aria-labelledby" => "Modal Title", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} &times;
+        %h4#myModalLabel.modal-title Modal title
+      .modal-body
+        -# Will render new expense form here
+
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-primary{:type => "button"} Save changes

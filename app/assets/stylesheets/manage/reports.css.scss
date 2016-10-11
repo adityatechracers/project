@@ -1,0 +1,75 @@
+// Place all the styles related to the owner/reports controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.report-list-widget {
+  text-align:center;
+}
+
+ul.thumbnails {
+  list-style: none;
+  text-align: center;
+  padding-left: 0;
+  li {
+  margin-bottom: 20px;
+
+    h4 {
+      overflow:hidden;
+      text-overflow:ellipsis;
+      white-space:nowrap;
+    }
+  }
+}
+
+ul.report-list {
+  @extend ul.thumbnails;
+  li {
+    margin-bottom: 10px;
+    text-align: left;
+    .icon-card {
+      background: #fff;
+      overflow: auto;
+      padding: 15px 15px;
+      border-left: 3px solid #ccc;
+    }
+    h4 {
+      color: #666;
+      line-height: 40px;
+      margin:10px;
+      font-size: 1.4em;
+    }
+  }
+  img {
+    height: 40px;
+    float: left;
+    width: auto;
+    margin:10px;
+    margin-right: 25px;
+    opacity:0.75;
+  }
+  li:hover {
+    img {
+      opacity: 0.9;
+    }
+    h4 {
+      color: #08c;
+    }
+  }
+}
+
+.widget-header {
+  ul.nav.nav-tabs {
+    position: relative;
+    bottom: 7px;
+    border: none;
+    background: none;
+
+    li.active a {
+      background: #fafafa;
+    }
+  }
+
+  #year-form {
+    margin-right: 20px;
+  }
+}

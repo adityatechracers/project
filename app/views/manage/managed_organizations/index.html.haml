@@ -1,0 +1,33 @@
+.row-fluid
+  .widget
+    .widget-header
+      .title Managed Organizations
+      = link_to managed_organizations_manage_reports_path, class: 'btn pull-right' do
+        %i.icon-bars
+        View Report
+
+    .widget-body
+      .row-fluid
+        .span12.scrolled
+          %table.table.table-striped.table-bordered
+            %thead
+              %tr
+                %th Name
+                %th Owner
+                %th Status
+                %th Actions
+            %tbody
+              - @managed_organizations.each do |o|
+                %tr
+                  %td= o.name
+                  %td= o.owner.try(:name)
+                  %td
+                    - if o.active
+                      %label.label.label-success= t 'shared.active'
+                    - else
+                      %label.label.label-important= t 'shared.inactive'
+                  %td
+                    - if can?(:become, o.owner)
+                      = link_to become_manage_user_path(o.owner), :class => 'btn btn-mini become-btn' do
+                        %i.icon-enter
+                        = t 'shared.become'

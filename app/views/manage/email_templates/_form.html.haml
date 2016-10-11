@@ -1,0 +1,29 @@
+.ibox
+  .ibox-content.p-md
+    = simple_form_for [:manage, @email_template], defaults: {wrapper: :simple } do |f|
+      = f.input :subject, :as => :string, :input_html => {:class => 'input-xxlarge'},
+          :hint => t("manage.email_templates.descriptions.#{@email_template.name.underscore}")
+      = f.input :mail_to_cc, :as => :string, :input_html => {:class => 'input-xxlarge'}, label: 'CC', :hint => t("manage.email_templates.hints.mail_cc")
+      .row
+        .col-sm-8
+          = f.input :body, :input_html => { class:'froala' }
+        .col-sm-4
+          - unless @email_template.email_template_token_set.try(:available_tokens).nil?
+            .control-group
+              .controls
+                .well
+                  %h4= t '.available_tokens'
+                  %p
+                    %dl
+                      - @email_template.email_template_token_set.available_tokens.each do |t|
+                        %dt
+                          %code {{#{t}}}
+                        %dd= t "manage.email_templates.tokens.#{t}"
+      = f.input :enabled
+      .hr-line-dashed
+      .form-actions
+        = submit_tag t('shared.save') + " Template", :disable_with => 'Saving...', :class => 'btn btn-success'
+
+- unless @email_template.new_record?
+  = render :partial => 'shared/revisions',
+      :locals => {:template_id => "", :section_id => "", :record => @email_template, :restore_path => :restore_manage_email_template_path}

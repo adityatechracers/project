@@ -1,0 +1,10 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-m
+  .p-w-sm
+    %h1= t('nav.proposals.main')
+    .title!= breadcrumbs({'Proposals' => proposals_path}, {"##{@proposal.proposal_number}" => proposal_path(@proposal.guid)}, 'Edit')
+    = destroy_link_to proposal_path(@proposal.guid), confirm: t('proposals.index.actions.confirm_delete_proposal'), class: 'btn btn-danger pull-right' do
+      %i.icon-remove-2
+      = t('shared.delete')
+.widget-body
+  .row
+    = render :partial => "form"

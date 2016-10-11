@@ -1,0 +1,90 @@
+.ibox
+  .ibox-title
+    %h3.title At a glance
+  .ibox-content
+    .row
+      .col-md-6.scrolled
+        %table.admin-overview
+          %tbody
+            %tr
+              %td Total Accounts:
+              %td= @num_accounts
+            %tr
+              %td Active Free Trials:
+              %td= @num_free_trials
+            %tr
+              %td Trials to buyers (last 30 days):
+              %td= @num_conversions
+            %tr
+              %td Unsubscribers (last 30 days):
+              %td= @num_unsubscribers
+            %tr
+              %td Failing Credit Cards:
+              %td= @num_failing_cards
+            %tr
+              %td Estimated Monthly Income:
+              %td= number_to_currency(@estimated_income)
+      .col-md-6
+        %h5 Organizations: Trials to Paid
+        = pie_chart [["Free",Organization.trials.count],["Paid",Organization.paid.count]], :library => chartkick_opts({:is3D => true}), :height => "100px"
+        .clearfix
+.ibox
+  .ibox-content
+    - if can? :manage, Organization
+      %h4
+        = link_to admin_organizations_path do
+          %i.icon-users-2
+          Organizations
+      Manage organization accounts within CorkCRM
+
+    - if can? :manage, User
+      %h4
+        = link_to admin_users_path do
+          %i.icon-user-2
+          Users
+      Manage user accounts within CorkCRM
+
+    - if can? :view_billing_history, :admin
+      %h4
+        = link_to admin_invoices_path do
+          %i.icon-drawer-3
+          Invoices
+      View invoices and charges for CorkCRM subscriptions
+
+    - if can? :view_failing_credit_cards, :admin
+      %h4
+        = link_to admin_failing_cards_path do
+          %i.icon-credit
+          Failing Credit Cards
+      View failing payments
+
+    - if can? :manage_cms, :admin
+      %h4
+        = link_to admin_posts_path do
+          %i.icon-bullhorn
+          Blog
+      Manage the CorkCRM blog
+
+      %h4
+        = link_to root_path do
+          %i.icon-pencil
+          CMS
+      Manage content on the CorkCRM homepage
+
+    %h4
+      = link_to admin_inquiries_path do
+        %i.icon-bubbles
+        Inquiries
+    View CorkCRM inquiries
+
+    %h4
+      = link_to admin_email_templates_path do
+        %i.icon-mail-2
+        Email Templates
+    Customize organization and subscription emails
+
+    %h4
+      = link_to admin_activity_path do
+        %i.icon-globe
+        Activity Logs
+    Display log of payment events.

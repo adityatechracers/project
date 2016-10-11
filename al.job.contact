@@ -1,0 +1,28 @@
+
+[1mFrom:[0m /home/rails-dev/projects/new/1/corkcrm/app/mailers/proposals_mailer.rb @ line 7 ProposalsMailer#proposal_contract:
+
+     [1;34m6[0m: [32mdef[0m [1;34mproposal_contract[0m(proposal)
+ =>  [1;34m7[0m:   binding.pry
+     [1;34m8[0m:   @proposal = proposal
+     [1;34m9[0m:   @contact = @proposal.job.contact
+    [1;34m10[0m:   @title = @proposal.title
+    [1;34m11[0m:   @proposal_options = { [35mlogo[0m: [1;36mtrue[0m }
+    [1;34m12[0m:   pdf_template = [32mcase[0m @proposal.organization.proposal_style
+    [1;34m13[0m:                  [32mwhen[0m [1;34;4mOrganization[0m::[1;34;4mProposalStyle[0m::[1;34;4mSIMPLE[0m [32mthen[0m [31m[1;31m'[0m[31mcontract_simple.pdf.haml[1;31m'[0m[31m[0m
+    [1;34m14[0m:                  [32mwhen[0m [1;34;4mOrganization[0m::[1;34;4mProposalStyle[0m::[1;34;4mCORKCRM[0m [32mthen[0m [31m[1;31m'[0m[31mcontract.pdf.haml[1;31m'[0m[31m[0m
+    [1;34m15[0m:                  [32melse[0m raise [31m[1;31m'[0m[31mInvalid or unsupported proposal style[1;31m'[0m[31m[0m
+    [1;34m16[0m:                  [32mend[0m
+    [1;34m17[0m:   attachments[[31m[1;31m"[0m[31m#{proposal.pdf_name}[0m[31m-contract.pdf[1;31m"[0m[31m[0m] = [1;34;4mWickedPdf[0m.new.pdf_from_string(
+    [1;34m18[0m:     render_to_string(
+    [1;34m19[0m:       [35mpdf[0m: proposal.pdf_name,
+    [1;34m20[0m:       [35mtemplate[0m: [31m[1;31m"[0m[31mproposals/#{pdf_template}[0m[31m[1;31m"[0m[31m[0m,
+    [1;34m21[0m:       [35mlayout[0m: [31m[1;31m'[0m[31mlayouts/pdf.html.haml[1;31m'[0m[31m[0m,
+    [1;34m22[0m:       [35mpage_size[0m: @proposal.organization.proposal_paper_size
+    [1;34m23[0m:     )
+    [1;34m24[0m:   )
+    [1;34m25[0m:   mail_templated([31m[1;31m'[0m[31mproposal-accepted[1;31m'[0m[31m[0m, tokens(proposal),
+    [1;34m26[0m:                  [35mto[0m: [1;36mself[0m.class.contacts(proposal),
+    [1;34m27[0m:                  [35mfrom[0m: [1;36mself[0m.class.organization_from_address,
+    [1;34m28[0m:                  [35mreply_to[0m: @proposal.sales_person.email)
+    [1;34m29[0m: [32mend[0m
+

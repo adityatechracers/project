@@ -1,0 +1,112 @@
+.dashboard-wrapper{:style => "background:transparent;padding-top:25px;"}
+  .row-fluid
+    .widget
+      .widget-header
+        .title= t('.your_account')
+        - if current_user.can_manage?
+          = link_to manage_subscription_path, :class => "btn hidden-phone pull-right" do
+            %i.icon-credit
+            %span.hidden-phone Manage
+            Subscription
+          = link_to manage_edit_organization_path, :class => "btn btn-spaced pull-right" do
+            %i.icon-pencil
+            %span.hidden-phone Edit
+            Organization
+        = link_to edit_user_registration_path, :class => "btn btn-spaced pull-right" do
+          %i.icon-pencil
+          %span.hidden-phone Edit
+          Account
+      .widget-body
+        %table.table.table-bordered.table-striped
+          %tbody.user-info-table
+            %tr
+              %td= t 'simple_form.labels.user.name'
+              %td= current_user.name
+            %tr
+              %td= t 'simple_form.labels.user.email'
+              %td= link_to current_user.email, "mailto:#{current_user.email}"
+            %tr
+              %td= t 'simple_form.labels.user.phone'
+              %td= current_user.phone
+            %tr
+              %td= t 'simple_form.labels.user.address'
+              %td= current_user.address
+            %tr
+              %td= t 'simple_form.labels.user.address2'
+              %td= current_user.address2
+            %tr
+              %td= t 'simple_form.labels.user.city'
+              %td= current_user.city
+            %tr
+              %td= t 'simple_form.labels.user.region'
+              %td= current_user.region
+            %tr
+              %td= t 'simple_form.labels.user.country'
+              %td= current_user.country
+            %tr
+              %td= t 'simple_form.labels.user.zip'
+              %td= current_user.zip
+            %tr
+              %td= t 'simple_form.labels.user.pay_rate'
+              %td= "#{number_to_currency(current_user.pay_rate)}/hour"
+            %tr
+              %td= t 'simple_form.labels.user.organization'
+              %td
+                - if current_user.organization_id.present?
+                  = current_user.organization.name
+                - else
+                  No Organization
+            %tr
+              %td= t 'simple_form.labels.user.created_at'
+              %td(data-livestamp="#{current_user.created_at.to_i}")
+            -# - if current_user.current_sign_in_at.present?
+            -#   %tr
+            -#     %td Online since:
+            -#     %td= "#{time_ago_in_words(current_user.current_sign_in_at)} ago"
+            -# - if current_user.current_sign_in_ip.present?
+            -#   %tr
+            -#     %td Current IP Address:
+            -#     %td= current_user.current_sign_in_ip
+            %tr
+              %td= t 'simple_form.labels.user.role'
+              %td= current_user.role
+            %tr
+              %td= t 'simple_form.labels.user.permissions'
+              %td
+                %ul
+                  %li.permissions-item
+                    Can view leads
+                    = bool_label(current_user.can_view_leads)
+                  %li.permissions-item
+                    Can manage leads:
+                    = bool_label(current_user.can_manage_leads)
+                  %li.permissions-item
+                    Can view appointments:
+                    = bool_label(current_user.can_view_appointments)
+                  %li.permissions-item
+                    Can manage appointments:
+                    = bool_label(current_user.can_manage_appointments)
+                  %li.permissions-item
+                    Can view all jobs:
+                    = bool_label(current_user.can_view_all_jobs)
+                  %li.permissions-item
+                    Can view own jobs:
+                    = bool_label(current_user.can_view_own_jobs)
+                  %li.permissions-item
+                    Can manage jobs:
+                    = bool_label(current_user.can_manage_jobs)
+                  %li.permissions-item
+                    Can view all proposals:
+                    = bool_label(current_user.can_view_all_proposals)
+                  %li.permissions-item
+                    Can view assigned proposals:
+                    = bool_label(current_user.can_view_assigned_proposals)
+                  %li.permissions-item
+                    Can manage proposals:
+                    = bool_label(current_user.can_manage_proposals)
+                  %li.permissions-item
+                    Can be assigned appointments:
+                    = bool_label(current_user.can_be_assigned_appointments)
+                  %li.permissions-item
+                    Can be assigned jobs:
+                    = bool_label(current_user.can_be_assigned_jobs)

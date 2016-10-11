@@ -1,0 +1,26 @@
+.ibox.float-e-margins.import-form-ibox
+  .ibox-title
+    %h4 Import Uploaded Leads
+  .ibox-content
+    %p We found the following columns. What is the best match in your system for that field?
+    = simple_form_for :leads_import,
+      :html => {:class => 'form-horizontal', :id => 'lead_import_matching_form'} do |f|
+      .form-heading.control-group.row.m-b-md
+        %label.control-label.col-md-3 CorkCRM Column
+        .controls
+          %label.control-label.text-left.col-md-9 Your File's Columns
+      = f.simple_fields_for :contact, defaults: {label_html: {class: 'col-md-3'}, input_html: {class: 'form-control'}, :wrapper => :flexible } do |cf|
+        = cf.input :first_name, :collection => columns, :selected => (columns.each_with_index.select {|c,i| c =~ /(first.name)/i}[0][0] rescue "")
+        = cf.input :last_name, :collection => columns, :selected => (columns.each_with_index.select {|c,i| c =~ /(last.name)/i}[0][0] rescue "")
+        = cf.input :company, :collection => columns, :required => false, :selected => (columns.each_with_index.select {|c,i| c =~ /(company)/i}[0][0] rescue "")
+        = cf.input :phone, :collection => columns, :selected => (columns.each_with_index.select {|c,i| c =~ /(phone)/i}[0][0] rescue "")
+        = cf.input :email, :collection => columns, :selected => (columns.each_with_index.select {|c,i| c =~ /(email)/i}[0][0] rescue "")
+        = cf.input :address, :collection => columns, :selected => (columns.each_with_index.select {|c,i| c =~ /(address)/i}[0][0] rescue "")
+        = cf.input :address2, :collection => columns, :required => false, :label => "Address 2", :selected => (columns.each_with_index.select {|c,i| c =~ /(address(.?)2)/i}[0][0] rescue "")
+        = cf.input :city, :collection => columns, :selected => (columns.each_with_index.select {|c,i| c =~ /(city)/i}[0][0] rescue "")
+        = cf.input :region, :collection => columns, :selected => (columns.each_with_index.select {|c,i| c =~ /(region)/i}[0][0] rescue "")
+        = cf.input :country, :collection => columns, :required => false, :selected => (columns.each_with_index.select {|c,i| c =~ /(country)/i}[0][0] rescue "")
+        = cf.input :zip, :collection => columns, :selected => (columns.each_with_index.select {|c,i| c =~ /(zip)/i}[0][0] rescue "")
+      %input{:type => "hidden", :name => "lead_upload", :value => lead_upload}
+      .row.m-t-lg
+        .form-actions.col-md-8.col-md-offset-3= f.submit 'Import Leads', :class => 'btn btn-success'

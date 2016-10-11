@@ -1,0 +1,14 @@
+.ibox
+  .ibox-content
+    .table-responsive
+      %table.table.table-striped
+        %thead
+          %tr
+            %th= 'Calendar'
+            %th= 'Shared'
+        %tbody
+          - @current_user_google_calendars.each do |c|
+            %tr
+              %td= c.title
+              %td= radio_button_tag 'shared_calendar', c.id, c.shared, disabled: !c.can_be_shared?
+

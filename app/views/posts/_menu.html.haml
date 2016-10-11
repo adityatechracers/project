@@ -1,0 +1,7 @@
+- posts ||= Post.active.order("updated_at DESC").limit(10)
+- if posts.any?
+  .well{:style => "padding:8px 0px;"}
+    %ul.nav.nav-list
+      %li.nav-header Recent Blog Posts
+      - posts.each do |post|
+        = active_link_to post.title, post_path(post.slug), :wrap_tag => :li

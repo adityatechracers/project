@@ -1,0 +1,39 @@
+= render "embed_tab_nav"
+.well.well-white
+  .row-fluid
+    .widget#appointments-embedded-calendar-widget{"data-org" => @org.guid}
+      .widget-header
+        .title #{@org.name} &mdash; #{t '.appointment_calendar'}
+      .widget-body
+        #embedded-thank-you.alert.alert-success.hide
+          %a.close(data-dismiss="alert") ×
+          - if @org.embed_thank_you.present?
+            = @org.embed_thank_you
+          - else
+            You have successfully scheduled an appointment.
+
+        .calendar
+
+        #embedded-new-appointment-form
+          = hform_for @contact, :remote => true, :method => "post", :html => {:id => "embed_schedule_form"}, :url => "/contacts/create_from_embedded_form" do |f|
+            %p= @org.embed_help_text
+            %input{:type => "hidden", :name => "appointment_id", :value => "", :id => "appointment_id_field"}
+            = f.hidden_field :organization_id, :value => @org.id
+            = f.input :first_name, :required => true
+            = f.input :last_name, :required => true
+            = f.input :phone, :required => true
+            = f.input :email, :required => true
+            = f.input :address, :required => true
+            = f.input :address2
+            = f.input :zip
+            = f.input :city
+            = f.input :region, :as => :select, :collection => ["Loading..."], :include_blank => false, :input_html => {:data => {:value => @contact.region}}
+            = f.input :country, :priority => ["United States"]
+            = f.simple_fields_for :jobs do |jf|
+              = jf.hidden_field :organization_id, :value => @org.id
+              = jf.hidden_field :lead_source_id, :value => @source.id
+              = jf.input :details, :label => t('leads.embed_ask_questions.details'), :required => false, :as => :text, :input_html => {:rows => 4}
+            .control-group
+              %label.control-label= t 'leads.embed_ask_questions.verify_humanity'
+              .controls= recaptcha_tags
+            = f.submit "Schedule Appointment"

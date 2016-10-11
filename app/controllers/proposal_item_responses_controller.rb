@@ -1,0 +1,2 @@
+class ProposalItemResponsesController < ApplicationController
+end

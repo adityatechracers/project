@@ -1,0 +1,18 @@
+= hform_for @payment, :html => {:class => 'form-horizontal'} do |f|
+  - if @job
+    = f.hidden_field :job_id, :value => @job.id
+    = f.input :amount, wrapper: :prepend do
+      %span.input-group-addon $
+      = f.input_field :amount, :placeholder => '50.00', :class => 'input-small'
+  - else
+    = f.association :job, :input_html => {:class => 'chzn-select'}, :collection => Job.includes(:contact).active, :label_method => :full_title_with_address_and_phone
+    = f.input :amount, wrapper: :prepend do
+      %span.input-group-addon $
+      = f.input_field :amount, :placeholder => '50.00', :class => 'input-small'
+  = f.input :date_paid, :as => :date_picker, input_html: { class: 'input-small form-control' }
+  = f.input :notes, as: :text, :input_html => {:rows => 3}
+  = f.input :payment_type, :as => :select, :collection => t('payments.payment_types')
+  .hr-line-dashed
+  .form-actions.row
+    .col-md-8.col-md-offset-4
+      = f.submit t('.save_payment'), :class => 'btn btn-success'

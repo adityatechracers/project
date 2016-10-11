@@ -1,0 +1,28 @@
+.ibox.session-form
+  .ibox-title
+    %h4.title= t '.create_account'
+  .ibox-content.p-md
+    = hform_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+      = f.error_notification
+      = f.input :first_name, required: true, autofocus: true
+      = f.input :last_name, required: true
+      = f.input :email, required: true, type: "email"
+      = f.input :phone
+      = f.input :password, required: true
+      = f.input :password_confirmation, required: true
+      = f.input :organization_name, required: true
+      = f.input :language, collection: User::Language.collection, selected: I18n.locale, required: true, include_blank: false
+      .control-group.row{:class => resource.errors[:terms_of_service].present? ? 'error' : ''}
+        .controls.col-md-8.col-md-offset-4
+          = f.check_box :terms_of_service, :as => :boolean
+          = f.label :terms_of_service, :class => 'terms-of-service' do
+            = t '.terms_of_service.affirmation'
+            = link_to t('.terms_of_service.link_name'), '/pages/home/termsofservice', :target => '_blank'
+          = f.full_error :terms_of_service
+      .hr-line-dashed
+      .actions.row
+        .col-md-8.col-md-offset-4
+          = f.button :submit, t('.start_free_trial'), :class => 'btn btn-success', disable_with: "Creating..."
+      .row.m-t
+        .col-md-8.col-md-offset-4
+          = render "devise/shared/links"

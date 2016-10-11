@@ -1,0 +1,7 @@
+.ibox
+  .ibox-content
+    = form_for [:manage, @user], html: {id: "cropbox_form" } do |f|
+      = f.cropbox :image
+      .hr-line-dashed
+      = f.previewbox :image
+      = submit_tag 'Crop', class: "btn btn-success"

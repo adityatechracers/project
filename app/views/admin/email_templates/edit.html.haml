@@ -1,0 +1,8 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1!= t('nav.admin.email_templates')
+    .title!= breadcrumbs({'Email Templates' => admin_email_templates_path}, "#{@email_template.name.titleize} (#{@email_template.lang})", 'Edit')
+
+.ibox
+  .ibox-content
+    = render 'admin/email_templates/form'

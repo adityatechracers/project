@@ -1,0 +1,6 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1!= t 'users.edit_user'
+    .title!= breadcrumbs({t('nav.manage.users') => manage_users_path}, t('shared.edit'))
+    
+= render "manage/users/form"

@@ -1,0 +1,10 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1= t('nav.jobs.payments')
+    .title
+      = link_to t('nav.jobs.payments'), payments_path, :class => 'breadcrumb-link'
+      %span.breadcrumb-divider /
+      = t 'shared.edit'
+.ibox
+  .ibox-content
+    = render "payments/form"

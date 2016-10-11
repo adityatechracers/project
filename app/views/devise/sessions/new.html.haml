@@ -1,0 +1,31 @@
+- if cookies.has_key? :become_last_email
+  .alert.alert-info{:style => "margin:20px 0px -10px;"}
+    %button.close{"data-dismiss" => "alert"} ×
+    You must sign back into your administrative account to prevent unauthorized access
+.ibox.session-form
+  .ibox-title
+    %h3{:style => "color:black;"}
+      = t '.login'
+    %p= t '.instructions'
+  .ibox-content
+    .sign-in-container
+      = hform_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => "login-wrapper"}) do |f|
+        .content
+          .row
+            .col-xs-12
+              - become_mode = cookies.has_key?(:become_last_email)
+              =f.input :email, :autofocus => !become_mode, :input_html => cookies.has_key?(:become_last_email) ? {:value => cookies[:become_last_email]} : {}
+              =f.input :password, :autofocus => become_mode
+              =f.input :remember_me, as: :boolean, wrapper: :checkbox
+          .hr-line-dashed
+          .actions.row
+            .col-md-8.col-md-offset-4
+              %div
+                %input.btn.btn-success{:name => "Login", :type => "submit", :value => "Login"}/
+              .m-t
+                = link_to t('.forgot_password'), new_user_password_path, :class => 'link'
+              %div
+                = link_to t('.sign_up'), new_user_registration_path, :class => 'link'
+          .clearfix
+
+- cookies.delete :become_last_email if cookies.has_key? :become_last_email

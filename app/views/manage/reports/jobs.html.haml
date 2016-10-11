@@ -1,0 +1,15 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md.overflow-content.inline-nav-heading.p-md
+  .title-group
+    %h1= t 'nav.manage.reports'
+    = render 'report_title', title: :jobs
+  %span.hidden-phone.pull-right.m-t-xl= date_range_filter_button
+
+- if @contact_coordinate_data.size > 2
+  .ibox
+    .ibox-title
+      %h3= t '.job_geographical_distribution'
+    .ibox-content
+      #contact-distribution-map.google-map{:style => 'height:500px', :data => {:contact_coordinates => @contact_coordinate_data}}
+- else
+  %p.lead{:style => "text-align:center;"}
+    = t "manage.reports.misc.#{params.has_key?(:custom_date_range) ? 'no_data_for_time_range' : 'no_data'}"

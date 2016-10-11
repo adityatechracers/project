@@ -1,0 +1,9 @@
+.row-fluid
+  .widget
+    .widget-header
+      .title!= breadcrumbs({t('nav.jobs.main') => jobs_path}, {t('nav.jobs.schedule') => schedule_jobs_path}, t('shared.edit'))
+      = link_to t('.remove_from_schedule'), job_schedule_entry_path(@job_schedule_entry),
+         method: :delete, class: 'btn btn-danger pull-right', confirm: 'Are you sure?'
+    .widget-body
+      .help-block
+      = render 'form'

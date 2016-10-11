@@ -1,0 +1,29 @@
+= simple_form_for [:admin, @proposal_template] do |f|
+  .row-fluid
+    .span6.well
+      %h4 Proposal Template Options
+      %hr
+      = f.input :name, :label => "Template Name"
+      .control-group
+        %label.control-label{:for => "proposal_template[active]"} Proposals can be created from this template
+        .controls
+          .switch
+            %input{:type => "checkbox", :name => "proposal_template[active]", :checked => @proposal_template.active == true ? "true" : nil}
+    - unless @proposal_template.new_record?
+      .span6.pull-right= render :partial => 'shared/revisions', :locals => {:template_id => "", :section_id => "", :record => @proposal_template, :restore_path => :restore_admin_proposal_template_path}
+
+  - if @proposal_template.new_record?
+    = f.submit 'Save and continue', :disable_with => 'Saving...', :class => 'btn btn-success'
+  - else
+    %h3
+      Proposal Template Sections
+      = link_to new_admin_proposal_template_section_path(@proposal_template), :class => 'btn btn-success btn-large pull-right', :id => 'add-proposal-section-btn' do
+        %i.icon-plus{:style => "margin:1px 10px 0px 0px;"}
+        Add Section
+      %button.btn.btn-large.pull-right#toggle-proposal-sections-btn{:style => "margin-right:10px;", :data => {:toggle => "tooltip", :placement => "bottom"}, :title => "Collapse all"}
+        %i.icon-contract-2{:style => "margin:3px 0px 0px -7px;transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);"}
+    %hr
+    %ul.proposal-section-list
+      - @sections.not_deleted.each do |s|
+        = render :partial => 'admin/proposal_templates/template_section', :locals => { :section => s }
+    = f.submit 'Update Template', :disable_with => 'Updating...', :class => 'btn btn-success btn-large'

@@ -1,0 +1,15 @@
+- if can? :manage, proposal
+  - if proposal.active?
+    %li= link_to t('proposals.index.actions.issue_proposal'), issue_proposal_path(proposal.guid), method: :put,
+      confirm: t('proposals.index.actions.confirm_email_proposal', to: proposal.contact_emails.to_sentence)
+  - if proposal.accepted?
+    %li= link_to t('proposals.index.actions.void_contract'), void_contract_proposal_path(proposal.guid)
+  - if proposal.declined?
+    %li= link_to t('proposals.index.actions.mark_as_active'),
+      proposal_path(proposal.guid, proposal: {proposal_state: 'Active'}), method: :put
+  - if !proposal.declined? && !proposal.accepted?
+    %li= link_to t('proposals.index.actions.mark_as_declined'),
+      proposal_path(proposal.guid, proposal: {proposal_state: 'Declined'}), method: :put
+  - unless proposal.accepted?
+    %li= link_to t('proposals.index.actions.delete_proposal'), proposal_path(proposal.guid), method: :delete,
+      confirm: t('proposals.index.actions.confirm_delete_proposal')

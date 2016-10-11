@@ -1,0 +1,33 @@
+.dashboard-wrapper
+  .row-fluid
+    .widget
+      .widget-header
+        = render 'header'
+      .widget-body
+        .row-fluid
+          = image_tag(@job.organization.logo, :style => 'max-height:70px')
+          %h3= @job.organization.name
+          %h5
+            - if @job.organization.feedback_portal_text.present?
+              = simple_format(@job.organization.feedback_portal_text)
+            - else
+              = t '.instructions'
+          %hr
+
+          = simple_form_for @job_feedback, url: feedback_portal_url(@job.guid) do |f|
+            = f.hidden_field :instructions_displayed, value: @job.organization.feedback_portal_text || t('.instructions')
+            = f.input :name, input_html: { class: 'input-xlarge' }
+            = f.input :feedback, input_html: { rows: 7, class: 'input-xlarge' }
+            = f.input :complete, as: :radio_buttons, collection: [[t('simple_form.yes'), true], [t('simple_form.no'), false]]
+
+            - if @job.organization.feedback_portal_show_signature
+              %br
+              .control-group.signature-wrapper
+                %label.control-label Signature
+                .controls
+                  #signature.job-feedback-signature{data: { svg: f.object.customer_sig } }
+                    %button.btn.btn-mini.clear-signature-btn.pull-right Clear Signature
+              = f.hidden_field :customer_sig
+
+            %br
+            = f.submit t('.submit_feedback'), class: 'btn btn-success'

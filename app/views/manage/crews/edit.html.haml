@@ -1,0 +1,9 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1= t('nav.manage.crews')
+    .title
+      = link_to t('nav.manage.crews'), manage_crews_path, :class => 'breadcrumb-link'
+      %span.breadcrumb-divider &raquo;
+      = t 'shared.edit'
+      
+= render "manage/crews/form"

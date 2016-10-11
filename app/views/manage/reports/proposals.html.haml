@@ -1,0 +1,10 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md.overflow-content.inline-nav-heading.p-md
+  .title-group
+    %h1= t 'nav.manage.reports'
+    = render 'report_title', title: :proposals
+  %span.hidden-phone.pull-right.m-t-xl= date_range_filter_button
+  %span.hidden-phone.pull-right.m-t-xl= split_button_filter t('.filter_by_salesperson'), :salesperson, User.order(:first_name).all
+.ibox
+  .ibox-content
+    %h3.chart-heading= t '.proposal_template_distribution'
+    = pie_chart @proposal_template_distribution, :library => chartkick_opts({:is3D => true,:theme => "maximized"})

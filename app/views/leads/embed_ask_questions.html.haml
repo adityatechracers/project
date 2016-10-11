@@ -1,0 +1,50 @@
+= render "embed_tab_nav"
+
+.well.well-white
+  .row-fluid
+    #embedded-thank-you.alert.alert-success.hide
+      %a.close(data-dismiss="alert") ×
+      - if @org.embed_thank_you.present?
+        = @org.embed_thank_you
+      - else
+        Thank You! Your submission has been saved.
+    
+    #embedded-danger-you.alert.alert-danger.hide
+      %a.close(data-dismiss="alert") ×
+      .content  
+
+    = hform_for @contact, :url => "/contacts/create_from_embedded_form",
+        :method => "post", :remote => true, :html => {:id => "embed_ask_questions_form"} do |f|
+
+      - if @org.embed_help_text.present?
+        .alert.alert-info{:style => "margin-left:20px;margin-right:20px;"}= @org.embed_help_text
+
+      = f.hidden_field :organization_id, :value => @org.id
+      = f.input :first_name, :required => true
+      = f.input :last_name, :required => true
+      = f.input :phone, :required => true
+      = f.input :email, :required => true
+      = f.input :address, :required => true
+      = f.input :address2
+      = f.input :zip
+      = f.input :city
+      = f.input :region, :as => :select, :collection => ["Loading..."], :include_blank => false, :input_html => {:data => {:value => @contact.region}}
+      = f.input :country, :priority => ["United States"]
+      = f.simple_fields_for :jobs do |jf|
+        = jf.hidden_field :organization_id, :value => @org.id
+        = jf.hidden_field :lead_source_id, :value => @source.id
+        = jf.hidden_field :email_customer, :value => true
+        = jf.simple_fields_for :communications do |cf|
+          = cf.hidden_field :organization_id, :value => @org.id
+          = cf.input :datetime_exact, :as => :hidden, :input_html => {:value => 1}
+          = cf.input :type, :as => :hidden, :input_html => {:value => "PlannedCommunication"}
+          = cf.input :action, :as => :hidden, :input_html => {:value => "Call"}
+          = cf.input :datetime, :as => :hidden, :input_html => {:value => DateTime.current.strftime("%Y-%m-%d %H:%M:%S")}
+          = cf.input :details, :as => :hidden, :input_html => {:value => "Embeded Lead"}
+        = jf.input :details, :as => :text, :label => t('.details'), :input_html => {:rows => 10}
+      .control-group.col-md-8.col-md-offset-4.m-b-sm
+        %label.control-label= t '.verify_humanity'
+        .controls= recaptcha_tags
+      .form-group
+        .controls.col-md-8.col-md-offset-4
+          = submit_tag t('.submit_inquiry_to', organization: @org.name), class: 'btn btn-success'

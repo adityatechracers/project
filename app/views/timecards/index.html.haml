@@ -1,0 +1,196 @@
+.row-fluid
+  .alert.alert-success.hide
+    %button.close{"data-dismiss" => "alert"} ×
+    Your changes have been saved successfully!
+  - if params.has_key? :view and params[:view] == "list"
+    .ibox{ id: 'timecards-list-ibox' }
+      .ibox-title
+        %h1.title.pull-left= t 'nav.jobs.timecards'
+        .pull-right
+          = link_to new_timecard_path, :class => 'btn btn-success', :style => 'margin-right: 10px' do
+            %span.visible-phone
+              %i.icon-plus
+            %span.hidden-phone= t '.new_timecard'
+          .btn-group(data-toggle="buttons-radio")
+            = active_link_to params.merge(:view => "list",
+                :custom_date_range => "#{(Time.zone.now-1.week).to_i * 1000},#{Time.zone.now.to_f * 1000}"),
+                :class => 'btn btn-default', :active => /view=list/ do
+              %i.icon-list
+              %span.hidden-phone= t '.nav.list'
+            = active_link_to params.except(:view), :class => 'btn btn-default', :active => /^(?!.*view=).*$/ do
+              %i.icon-calendar
+              %span.hidden-phone= t '.nav.schedule'
+
+        .clearfix
+      .ibox-content
+        #timecards-state-filter.btn-group.hidden-phone.pull-left{:data => {:toggle => "buttons-radio"}}
+          = active_link_to t('.filters.all'), params.except(:filter), :class => "btn btn-default", :active => /^(?!.*filter=).*$/
+          = active_link_to t('.filters.unapproved'), params.merge(:filter => "Entered"),
+              :class => "btn btn-default", :active => /filter=Entered/, :data => {:value => "Entered"}
+          = active_link_to t('.filters.approved'), params.merge(:filter => "Approved"),
+              :class => "btn btn-default", :active => /filter=Approved/, :data => {:value => "Approved"}
+          = active_link_to t('.filters.paid'), params.merge(:filter => "Paid"),
+              :class => "btn btn-default", :active => /filter=Paid/, :data => {:value => "Paid"}
+
+        - if params.has_key? :view
+          = date_range_filter_button
+
+        - if current_user.can_manage?
+          = split_button_filter(t('.filter_by_staff_member'),:staff,current_user.organization.users,{:id => "timecards-staff-filter", :style => "margin-left:10px;"})
+
+        - if can?(:approve, Timecard)
+          .btn-group.pull-right
+            %button.btn.mark-all-dropdown.dropdown-toggle{ 'data-toggle' => "dropdown", class: params[:view] == 'list' ? 'disabled' : '' }
+              - if params[:view] == 'list'
+                %span Mark selected as...
+              - else
+                %span Mark all as...
+              %span.caret
+            %ul.dropdown-menu.pull-right
+              %li
+                %a.mark-all-btn(href="#" data-state="Approved") Approved
+              %li
+                %a.mark-all-btn(href="#" data-state="Entered") Unapproved
+              %li
+                %a.mark-all-btn(href="#" data-state="Paid") Paid
+            = form_tag(update_state_timecards_path, method: 'post', id: 'mark-all-form', class: 'hide') do
+              %input(type="hidden" name="ids")
+              %input(type="hidden" name="state")
+          .clearfix
+
+
+    .row-fluid
+      .ibox
+        .ibox-content
+          - if Timecard.any?
+            .span12.scrolled
+              %table.table.table-bordered.table-striped
+                %thead
+                  %tr
+                    - if can?(:approve, Timecard) && @timecards.any?
+                      %th
+                        %input.timecard-select-all(type="checkbox")
+                    %th= t '.table_headings.user'
+                    %th= t '.table_headings.job'
+                    %th= t '.table_headings.in_out'
+                    %th= t '.table_headings.duration_amount'
+                    %th= t '.table_headings.status'
+                    %th= t '.table_headings.actions'
+                %tbody
+                  - @timecards.each do |t|
+                    %tr
+                      - if can?(:approve, Timecard)
+                        %td
+                          %input.timecard-selected(type="checkbox" data-id="#{t.id}")
+                      %td= t.user.name
+                      %td= link_to t.job.full_title, job_path(t.job)
+                      %td
+                        = l t.start_datetime, format: "%l:%M%P %A, %B #{t.start_datetime.day.ordinalize} %Y"
+                        %br
+                        = l t.end_datetime, format: "%l:%M%P %A, %B #{t.end_datetime.day.ordinalize} %Y"
+                      %td
+                        #{t.duration} #{t.duration == 1 ? t('shared.hour') : t('shared.hours')}
+                        %br
+                        = number_to_currency t.amount
+                      %td
+                        %span{:class => "label label-#{state_label_class(t)}"}= t.state
+                      %td
+                        - if can? :manage, t
+                          = link_to edit_timecard_path(t), :class => 'btn btn-mini' do
+                            %i.icon-pencil
+                          = link_to timecard_path(t), :method => :delete, :confirm => 'Are you sure you want to delete this timecard', :class => 'btn btn-mini' do
+                            %i.icon-remove-2
+                        - if can? :approve, Timecard
+                          .btn-group
+                            %button.btn.btn-mini.dropdown-toggle(data-toggle="dropdown")
+                              %span Action
+                              %span.caret
+                            %ul.dropdown-menu.pull-right
+                              - if t.state == 'Entered'
+                                %li= link_to 'Approve', approve_timecard_path(t)
+                              - elsif t.state == 'Approved'
+                                %li= link_to 'Unapprove', unapprove_timecard_path(t)
+                                %li= link_to 'Mark as paid', mark_paid_timecard_path(t)
+                              - elsif t.state == 'Paid'
+                                %li= link_to 'Unmark as paid', unmark_paid_timecard_path(t)
+                  %tr.info
+                    %td
+                    %td{:colspan => 3}= t '.total'
+                    %td{:colspan => 3}
+                      #{@total_hours} #{@total_hours == 1 ? t('shared.hour') : t('shared.hours')}
+                      %br
+                      = number_to_currency(@total_amount)
+          - else
+            .hero-unit
+              %h3 Your organization is not currently tracking its employees' timecards.
+              %p CorkCRM can handle your employees' timesheets with ease! Begin adding timecards below to <b>dramatically</b> simplify your life.
+              = link_to "Add a Timecard", new_timecard_path, :id => "add-timecard-btn", :class => "btn btn-success btn-large" if can? :create, Timecard
+          .clearfix
+  - else
+    .ibox{ id: 'timecards-calendar-ibox' }
+      .ibox-title
+        %h1.title.pull-left= t 'nav.jobs.timecards'
+        .pull-right
+          %a.btn.btn-success#add-timecard-btn{:style => 'margin-right: 10px'}
+            %span.visible-phone
+              %i.icon-plus
+            %span.hidden-phone= t '.new_timecard'
+          .btn-group(data-toggle="buttons-radio")
+            = active_link_to params.merge(:view => "list",
+                :custom_date_range => "#{(Time.zone.now-1.week).to_i * 1000},#{Time.zone.now.to_f * 1000}"),
+                :class => 'btn btn-default', :active => /view=list/ do
+              %i.icon-list
+              %span.hidden-phone= t '.nav.list'
+            = active_link_to params.except(:view), :class => 'btn btn-default', :active => /^(?!.*view=).*$/ do
+              %i.icon-calendar
+              %span.hidden-phone= t '.nav.schedule'
+
+        .clearfix
+      .ibox-content
+        .well
+          #timecards-state-filter.btn-group.hidden-phone.pull-left{:data => {:toggle => "buttons-radio"}}
+            = active_link_to t('.filters.all'), params.except(:filter), :class => "btn btn-default", :active => /^(?!.*filter=).*$/
+            = active_link_to t('.filters.unapproved'), params.merge(:filter => "Entered"),
+                :class => "btn btn-default", :active => /filter=Entered/, :data => {:value => "Entered"}
+            = active_link_to t('.filters.approved'), params.merge(:filter => "Approved"),
+                :class => "btn btn-default", :active => /filter=Approved/, :data => {:value => "Approved"}
+            = active_link_to t('.filters.paid'), params.merge(:filter => "Paid"),
+                :class => "btn btn-default", :active => /filter=Paid/, :data => {:value => "Paid"}
+
+          - if params.has_key? :view
+            = date_range_filter_button
+
+          - if current_user.can_manage?
+            = split_button_filter(t('.filter_by_staff_member'),:staff,current_user.organization.users,{:id => "timecards-staff-filter", :style => "margin-left:10px;"})
+
+          - if can?(:approve, Timecard)
+            .btn-group.pull-right
+              %button.btn.mark-all-dropdown.dropdown-toggle{ 'data-toggle' => "dropdown", class: params[:view] == 'list' ? 'disabled' : '' }
+                - if params[:view] == 'list'
+                  %span Mark selected as...
+                - else
+                  %span Mark all as...
+                %span.caret
+              %ul.dropdown-menu.pull-right
+                %li
+                  %a.mark-all-btn(href="#" data-state="Approved") Approved
+                %li
+                  %a.mark-all-btn(href="#" data-state="Entered") Unapproved
+                %li
+                  %a.mark-all-btn(href="#" data-state="Paid") Paid
+              = form_tag(update_state_timecards_path, method: 'post', id: 'mark-all-form', class: 'hide') do
+                %input(type="hidden" name="ids")
+                %input(type="hidden" name="state")
+            .clearfix
+
+        #timecard-calendar.calendar
+        %table.table.table-bordered
+          %tr.info
+            %td= t '.total'
+            %td
+              %span#total-hours 0
+              = t('shared.hours')
+              %br
+              %span#total-amount 0
+
+      #timecard-modal.modal.fade

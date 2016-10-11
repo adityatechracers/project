@@ -1,0 +1,9 @@
+= content_for :home do
+  .blog-container.container-light
+    = render 'posts/heading'
+
+    .row-fluid.blog-content
+      .blog
+        - @posts.each do |post|
+          = render :partial => "posts/post", :locals => {:post => post}
+        = paginate @posts, :theme => "bootstrap"

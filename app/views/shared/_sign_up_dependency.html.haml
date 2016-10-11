@@ -1,0 +1,7 @@
+.hero-unit
+  %div.text-center
+    %h2
+      %strong= t ".no_#{pre.to_s.downcase.pluralize}.heading"
+    .clearfix
+    %p= t ".no_#{post.downcase.to_s.pluralize}.body_html"
+    = link_to t(".no_#{pre.to_s.downcase.pluralize}.go_to_#{pre.to_s.downcase.pluralize}"), public_send("#{pre.to_s.downcase.pluralize}_path"), :class => "btn btn-success btn-large" if pre == 'Lead' || can?(:manage, pre.constantize)

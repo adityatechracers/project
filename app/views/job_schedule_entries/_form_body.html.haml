@@ -1,0 +1,20 @@
+.row-fluid
+  %input(type="hidden" name="redirect_to" value="#{params[:redirect_to]}")
+  = f.input :job_id do
+    = f.select :job_id, @jobs.push(f.object.job).compact.uniq.map { |j| [j.full_title_with_address, j.id, { 'data-crew-id' => j.crew_id, 'data-timeframe' => expected_timeframe(j) }] },
+        { include_blank: false }, class: 'chzn-select form-control'
+  = f.input :crew_id, collection: Crew.not_deleted, include_blank: true, selected: @crew.try(:id), input_html: { class: 'chzn-select form-control' }
+  -#.control-group.make-default-crew-wrapper
+    -#.controls
+      -#%label
+        -#= f.input_field :make_default_crew, as: :boolean, boolean_style: :inline, label: false
+        -#Make default crew for this job
+  = f.association :users, as: :select, :input_html => {:class => 'chzn-select form-control'}
+  .control-group.job-expected-timeframe-wrapper
+    %label.control-label Expected Timeframe
+    .controls
+      %h5#job-expected-timeframe
+  = f.input :start_datetime, as: :datetime_picker, input_html: {class: "start_datetime form-control", data: {iso: @job_schedule_entry.start_datetime.try(:utc).try(:iso8601)}}
+  = f.input :end_datetime, as: :datetime_picker, input_html: {class: "end_datetime form-control", data: {iso: @job_schedule_entry.end_datetime.try(:utc).try(:iso8601)}}
+  = f.input :notes, as: :text, input_html: {rows: 4}
+  = f.input :is_touch_up, wrapper: :checkbox

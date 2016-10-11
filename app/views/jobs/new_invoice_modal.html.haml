@@ -1,0 +1,41 @@
+.modal-dialog
+  .modal-content
+    .modal-header
+      %h3 Create a New Invoice
+    .modal-body
+      .messages
+      %dl
+        %dt Customer Name
+        %dd
+          = @contact.name
+        %dt Proposal #
+        %dd
+          = @proposal.proposal_number
+        %dt Proposal Amount
+        %dd
+          = number_to_currency @proposal.amount
+        %dt Previously Invoiced Amount
+        %dd
+          = number_to_currency @previously_invoiced
+        %dt Remaining Balance
+        %dd
+          = number_to_currency @remaining_balance
+      %hr
+      .row
+        %label Amount to invoice
+        .control-group
+          .input-group
+            %span.input-group-addon $
+            %input#amount.money.form-control.input-mini{type:"text"}(data-max-value="#{@remaining_balance}")
+          .has-error.pull-right#max-value-error{style:'display:none'}
+            .help-block
+              Value must not be greater than remaining balance
+      .row#invoice-description
+        %label Invoice description
+        .control-group
+          %input#description.form-control{type:"text"}
+          .help-block#invoice-description-help
+            This will appear on the customer's invoice.
+    .modal-footer
+      %button.btn(data-dismiss="modal") Cancel
+      %button#send-invoice.btn.btn-success(data-job-id="#{@job.id}") Send Invoice

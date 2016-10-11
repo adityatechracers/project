@@ -1,0 +1,31 @@
+.modal-header
+  %h3
+    - if @communication.new_record?
+      = t 'communications.index.schedule_communication'
+    - else
+      = t 'communications.index.edit_communication'
+    %button.close(data-dismiss='modal') &times;
+.modal-body
+  = simple_form_for @communication, :url => (@communication.new_record? ? "/communications" : communication_path(@communication)), :defaults => {:input_html => {:class => "span12"}} do |f|
+    .row-fluid
+      .span12
+        = f.association :job, :label_method => :full_title_with_address_and_phone, :include_blank => false, :input_html => {:class => 'chzn-select'}
+      .clearfix
+    %hr{:style => "margin-top:15px;"}
+    .row-fluid
+      .span6
+        .control-group
+          = f.label :datetime
+          = f.input_field :datetime, :as => :datetime_picker, :class => "span12"
+          %br
+          .switch{:data => {"on-label" => "Exact", "off-label" => "Relative"},:style => "width:100%;"}= f.check_box :datetime_exact, (@communication.new_record? ? {:checked => true} : {})
+          %br
+        = f.input :type, :collection => [["Planned Communication","PlannedCommunication"],["Communication Record","CommunicationRecord"]], :selected => "PlannedCommunication"
+        = f.input :action, :collection => Communication::ACTIONS, :selected => "Call"
+      .span6.pull-right
+        = f.input :note, :as => :text, :input_html => {:rows => 10}, :label => "Notes"
+        .clearfix
+      .clearfix
+.modal-footer
+  %a.btn(data-dismiss='modal')= t 'shared.cancel'
+  %button.btn.btn-success= t 'shared.update'

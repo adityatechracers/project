@@ -1,0 +1,21 @@
+-content_for :title do
+  = @post.meta_title
+
+-content_for :description do
+  = @post.meta_description
+
+= content_for :home do
+  .blog-container.container-light
+    %h1
+      = @post.title
+      - if can? :manage_cms, :admin
+        = link_to edit_admin_post_path(@post), :class => 'btn btn pull-right' do
+          %i.icon-pencil
+          Edit Post
+    .row-fluid.blog-content
+      .blog.span8
+        %p.blog-post-info
+          = l @post.published_date, format: "%A, %B %e, %Y"
+        != @post.description
+        #disqus_thread
+      .span4{:style => "padding-top:50px;"}= render "posts/menu"

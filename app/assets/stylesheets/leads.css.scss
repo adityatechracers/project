@@ -1,0 +1,23 @@
+// Place all the styles related to the leads controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.hidden-communication-inputs {display:none;}
+.outcome-buttons {margin-bottom:10px;}
+input[name='call_back_on_datetime'], input[name='call_back_around_datetime'] {
+  display:none;
+  margin-top:10px;
+}
+
+.import-form-ibox {display:none;}
+
+#existing-contact-form-well {
+  display:none;
+  overflow: visible;
+}
+
+.plan-next-comm-form {display:none;}
+
+#embedded-new-appointment-form {display:none;}
+
+

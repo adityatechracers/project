@@ -1,0 +1,58 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1= t 'nav.manage.invoices'
+    .title!= breadcrumbs({'Invoices' => admin_invoices_path}, @customer.description)
+
+.ibox
+  .ibox-title
+    %h4
+      %span #{@customer.description}
+      %span.m-l-sm.m-r-sm= '-'
+      %span #{@customer.email}
+  .ibox-content
+    %h4 Line Items
+    %table.table.table-striped.table-bordered.table-condensed
+      %thead
+        %tr
+          %th Amount
+          %th Prorated?
+          %th Description
+      %tbody
+        - @invoice.lines.all({:count => 100}).each do |l|
+          %tr
+            %td= number_to_currency(l.amount / 100)
+            %td
+              - if l.proration
+                %label.label.label-info Yes
+              - else
+                %label.label No
+            %td= l.description
+
+    %h4 Charge
+    - if @charge.present?
+      %table.table.table-bordered.table-striped.table-condensed
+        %thead
+          %tr
+            %th
+              %i.icon-credit
+              Card Number
+            %th Amount
+            %th Status
+        %tbody
+          %tr
+            %td
+              **** **** **** #{@charge.card.last4}
+            %td= number_to_currency(@charge.amount / 100)
+            %td
+              - if @charge.failure_code.present?
+                %span.label.label-important{:data => {:toggle => 'popover', :content => @charge.failure_message,
+                                            :placement => 'top', :title => 'Charge Failed', :trigger => 'hover'}}
+                  Failed
+              - elsif @charge.refunded
+                %span.label.label-warning
+                  Refunded
+              - else
+                %span.label.label-success
+                  Successful
+    - else
+      No Charge

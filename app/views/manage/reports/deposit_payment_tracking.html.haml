@@ -1,0 +1,36 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1= t 'nav.manage.reports'
+    = render 'report_title', title: :payment_tracking
+
+.ibox
+  .ibox-title
+    %h3.inline-btn.m-b-sm
+      Payments
+      .pull-right= date_range_filter_button
+  .ibox-content
+    .row-fluid
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th= t '.table_headings.job'
+            %th= t '.table_headings.date_received'
+            %th= t '.table_headings.amount_received'
+            %th= t '.table_headings.type'
+            %th= t '.table_headings.job_amount'
+            %th= t '.table_headings.outstanding_balance'
+        %tbody
+          - @payments.each do |payment|
+            %tr
+              %td= (link_to payment.job.contact.backwards_name, contact_path(payment.job.contact)) + " - " + payment.job.title
+              %td= l payment.date_paid
+              %td= number_to_currency payment.amount
+              %td= payment.payment_type
+              %td= number_to_currency payment.job.calculated_amount
+              %td= number_to_currency payment.job.outstanding_balance
+          %tr{id: 'deposit-payment-tracking-totals'}
+            %td
+              %strong #{t '.table_headings.totals'}:
+            %td{colspan: 5} Loading...
+
+    = paginate @payments, :theme => "bootstrap"

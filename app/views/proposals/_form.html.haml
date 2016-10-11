@@ -1,0 +1,98 @@
+= hform_for @proposal, url: @proposal.new_record? ? proposals_path : proposal_path(@proposal.guid),
+    html: {multipart: true} do |f|
+  = f.input :proposal_template_id, as: :hidden, input_html: {value: @template.id}
+  = hidden_field_tag :proposal_guid, @proposal.guid unless @proposal.new_record?
+  .col-xs-12
+    .ibox.m-t
+      .ibox-content
+        .row.m-t
+          .col-md-6
+            = render 'shared/form_errors', f: f
+            = f.association :job, collection: @active_leads,
+                label_method: :title_only, input_html: {class: 'chzn-select search-select-lg set-header-preview'}
+            = f.select :job_id, @active_leads.all.map{ |j| [j.title_only, j.contact_id, {'id'=>"#{j.id}_hidden_contact", 'data-contact'=>j.contact_id} ]},{}, {:style => "display:none", :name => "whatever", :id => ""}
+
+        .form-generated
+          .hr-line-dashed
+          .row
+            .col-md-6
+              = f.input :proposal_number, input_html: { value: @proposal.proposal_number }
+              = f.input :title
+            .col-md-6
+              = f.association :sales_person, collection: @active_users , selected: @proposal.sales_person_id.blank? ? current_user.id : @proposal.sales_person_id, input_html: {class: 'chzn-select'}
+              = f.input :proposal_date, as: :date_picker, input_html: {value: l(Time.zone.now.to_date), class: 'date_only form-control'}
+              .hidden_address{:style=>'display:none', :id => 'hidden_a_f'}
+                = f.input :proposal_address
+    .clearfix
+    .proposal-header-preview
+      - if @proposal.new_record?
+        .ibox.none-selected
+          .ibox-title
+            %h4 Select lead for proposal header preview
+      - else
+        = render "header_table"
+    - if @proposal.new_record?
+      = render partial: 'proposals/template_sections_form', locals: {form: f, template: @template}
+    - else
+      = render partial: 'proposals/section_responses_form', locals: {form: f, proposal: @proposal}
+
+    - if @template.is_upload_your_own?
+      .well
+        .row-fluid
+          %div
+            .offset4{style: 'padding-right: 20px;'}
+              *Upload the primary proposal file
+              = file_field_tag 'primary_proposal_file', class: 'native-file-input', style: 'padding-top: 10px'
+      .well
+        .row-fluid
+          %div
+            .offset4{style: 'padding-right: 20px;'}
+              Upload any secondary files (if any)
+              = file_field_tag 'secondary_proposal_files[]', class: 'native-file-input', style: 'padding-top: 10px', multiple: true
+      %hr
+
+    .ibox
+      .ibox-title
+        %h3 Time estimate and quote
+      .ibox-content
+        .row
+          .col-md-4
+            = f.input :budgeted_hours, wrapper: :prepend_simple do
+              %span.input-group-addon
+                %i.icon-clock
+              = f.input_field :budgeted_hours, class: "input-small form-control", type: "number", min: 0
+          - if current_user.organization.quick_books_session.present?
+            .col-md-4
+              = f.input :deposit_amount, wrapper: :prepend_simple do
+                %span.input-group-addon $
+                = f.input_field :deposit_amount, class: 'input-small form-control'
+          .col-md-4
+            = f.input :amount, wrapper: :prepend_simple do
+              %span.input-group-addon $
+              = f.input_field :amount, class: 'input-small form-control'
+        .row
+          .col-md-4
+            = f.input :expected_start_date, wrapper: :prepend_simple do
+              %span.input-group-addon
+                %i.icon-calendar
+              = f.input_field :expected_start_date, as: 'date_picker', class: 'input-small date_only form-control', style: "width: 60%"
+          .col-md-4
+            = f.input :expected_end_date, wrapper: :prepend_simple do
+              %span.input-group-addon
+                %i.icon-calendar
+              = f.input_field :expected_end_date, as: 'date_picker', class: 'input-small date_only form-control', style: "width: 60%"
+          .col-md-4
+            - if current_tenant.show_customer_rating
+              .customer_rating{ :style => "display:none" }
+                .control-group.form-group.clearfix.select.optional.appointment_job
+                  .col-xs-12
+                    %label.select.optional.control-label 
+                      %abbr{:title => "required"}*
+                      Contact Rating
+                  .controls.col-xs-12
+                    = fields_for @contact_rating do |r|
+                      = r.select :rating_id, Rating.all.map{ |rating| [rating.rating, rating.id]},:selected => 1
+                      = r.hidden_field :stage, value: 'Proposal'
+                      = r.hidden_field :contact_id, value: ''
+
+    = f.submit t('.save_proposal'), disable_with: 'Saving...', class: "btn btn-success btn-block btn-large"

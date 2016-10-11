@@ -1,0 +1,14 @@
+%body{:style => "padding:0px;margin:0px;font-family:helvetica, sans-serif;font-size:12px;line-height:1.5em;"}
+  %div{:style => "background-color: #eee; height: 100%;"}
+    %div{:style => "margin:0 auto; width: 500px; background-color: #fff;"}
+      %div{:style => "text-align: center; border-bottom: 2px solid #eee; padding: 15px;"}
+        = image_tag(@organization.logo, :style => 'max-height:70px')
+      %div{:style => "padding: 20px"}= yield
+      %div{:style => "padding: 20px; border-top: 2px solid #eee; color: #555; font-size: 15px;"}
+        %strong= @organization.name
+        %br
+        = link_to @organization.email, "mailto:#{@organization.email}", :style => 'color: #555'
+        %br
+        = @organization.phone
+    %div{:style => "margin:0 auto; width: 500px; text-align: center; font-size: 10px; color: #999;"}
+      This message was generated automatically. Please do not reply directly.

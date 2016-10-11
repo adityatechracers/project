@@ -1,0 +1,20 @@
+%p
+  This is a notification that your timecard for
+  %strong= @old_timecard.job.full_title
+  for #{l @old_timecard.start_datetime.to_date}
+  has been changed.
+
+%ul
+  %li
+    Job: #{@new_timecard.job.full_title}
+  %li
+    Start: #{l @new_timecard.start_datetime}
+  %li
+    End: #{l @new_timecard.end_datetime}
+  %li
+    Notes: #{@new_timecard.notes}
+
+%p
+  You can also view the timecard at:
+  %br
+  = link_to timecard_url(@new_timecard), timecard_url(@new_timecard)

@@ -1,0 +1,19 @@
+.row-fluid
+  .widget
+    .widget-header
+      .title!= breadcrumbs({'Inquiries' => admin_inquiries_path}, @inquiry.name)
+    .widget-body
+      .row-fluid
+        %table.table.table-bordered.table-striped.table-condensed
+          %tr
+            %td Name
+            %td= @inquiry.name
+          %tr
+            %td Email
+            %td= link_to @inquiry.email, "mailto:#{@inquiry.email}"
+          %tr
+            %td Message
+            %td= @inquiry.message
+          %tr
+            %td Date
+            %td= l @inquiry.created_at

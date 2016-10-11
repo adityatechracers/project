@@ -1,0 +1,12 @@
+.widget
+  .widget-header
+    .title
+      = link_to @template.name, edit_admin_proposal_template_path(@template),
+        :class => 'breadcrumb-link'
+      %span.breadcrumb-divider &raquo;
+      = link_to @section.name, edit_admin_proposal_template_section_path(@template, @section),
+        :class => 'breadcrumb-link'
+      %span.breadcrumb-divider &raquo;
+      New Item
+  .widget-body
+    = render "/admin/proposal_template_items/form"

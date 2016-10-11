@@ -1,0 +1,54 @@
+.row-fluid
+  .ibox#crew-calendar-ibox
+    .ibox-title
+      %h1.title.pull-left!= breadcrumbs({t('nav.proposals.main') => jobs_path}, t('proposals.right_nav.crew_calendar'))
+      .pull-right
+        - if can? :manage, Job
+          %button{class: 'btn btn-success btn-spaced open-new-blank-modal'}
+            %span.visible-phone
+              %i.fa.fa-plus
+            %span.hidden-phone= t('jobs.schedule.schedule_a_job')
+        .btn-group= render 'right_nav'
+      .clearfix
+    #filters.ibox-content
+      = render 'calendar_filters', crews: @crews, unscheduled_filter: false
+
+      .row-fluid
+        .pull-left
+          = link_to t('.today'), params.except(:week), class: 'btn btn-default'
+          .btn-group
+            = link_to params.merge(week: @week_offset - 1), class: 'btn btn-default' do
+              %i.fa.fa-arrow-left
+            = link_to params.merge(week: @week_offset + 1), class: 'btn btn-default' do
+              %i.fa.fa-arrow-right
+        %h4.pull-right
+          #{l @week.end, format: '%B %Y'}
+
+      .row-fluid
+        .span12.scrolled
+          - if @crews.any?
+            %table.table.table-bordered.crew-calendar
+              %tr
+                %th Crew
+                - @week.each do |date|
+                  %th= l date, format: '%a'
+              = render partial:"crew_calendar_rows"
+            .hero-unit
+              %h4 Total scheduled jobs that start this week: #{number_to_currency(@total_dollars)}
+              %span This is based on the first start date of the job.
+          - else
+            .hero-unit
+              %h3 Your organization does not currently have any crews.
+              %p
+                Organize your employees into crews to divide and conquer the
+                workplace!  Jobs can be assigned to crews as well as individual
+                employees, so if you're finding yourself adding the same group of
+                employees to your projects over and over, pay a visit to this page.
+              = link_to "Add a Crew", new_manage_crew_path, :class => "btn btn-success btn-large" if can? :create, Crew
+
+      = hidden_field_tag :week_start, @week_start
+      = hidden_field_tag :week_end, @week_end
+      = hidden_field_tag :week_offset, @week_offset
+      #job-calendar.calendar
+      - if can? :manage, Job
+        #job-calendar-modal.modal.modal-overflowed.fade

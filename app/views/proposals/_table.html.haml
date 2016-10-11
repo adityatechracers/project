@@ -1,0 +1,71 @@
+- @proposals.each do |p|
+  %tr.footable
+    %td.footable
+      %span.caret-right
+    %td.footable
+      = proposal_status_indicator(p)
+    %td.footable
+      = p.job.contact.name
+    %td.footable
+      = p.job.contact.phone
+    %td.footable{style: "max-width:300px;"}
+      - if p.proposal_address?
+        = p.proposal_address
+      - else
+        = p.job.contact.minimum_address
+    %td.footable
+      = format_amount(number_to_currency(p.amount, precision: 2))
+    != p.assigned_list_cell
+    %td
+      .btn-group
+        - if p.accepted?
+          %button.btn.btn-default.btn-sm.disabled{data: {toggle: 'tooltip', container: 'body', title: 'Accepted proposals cannot be edited'}}
+            %i.fa.fa-pencil
+        - else
+          = link_to edit_proposal_path(p.guid), class: "btn btn-default btn-sm" do
+            %i.fa.fa-pencil
+        = link_to proposal_path(p.guid), class: 'btn btn-default btn-sm' do
+          %i.fa.fa-eye
+        %button.btn.btn-default.btn-sm.dropdown-toggle(data-toggle='dropdown')
+          %i.fa.fa-ellipsis-h
+        %ul.dropdown-menu.pull-right
+          %li= link_to t('.actions.view_contract'), contract_proposal_path(p.guid)
+          %li= link_to t('.actions.email_proposal'), email_proposal_path(p.guid), method: :post,
+            confirm: t('.actions.confirm_email_proposal', to: p.contact_emails.to_sentence)
+          %li= link_to t('.actions.view_contract_portal'), contract_portal_path(p.guid)
+          %li= link_to t('.actions.update_contact_details'), edit_contact_path(p.job.contact)
+          = render 'proposals/dropdown_menu_management_items', proposal: p
+  %tr.footable-row-detail
+    %td.footable-row-detail-cell{colspan: '8'}
+      .col-md-6
+        %div.footable-row-detail-row
+          %span.footable-row-detail-name
+            Proposal Title:
+          %span.footable-row-detail-value
+            = p.title
+        %div.footable-row-detail-row
+          %span.footable-row-detail-name
+            Proposal #:
+          %span.footable-row-detail-value
+            = p.proposal_number
+        %div.footable-row-detail-row
+          %span.footable-row-detail-name
+            Budgeted Hours:
+          %span.footable-row-detail-value
+            = p.budgeted_hours
+        .m-t-lg
+          %h3.font-normal Add Note
+          -@job = Job.find p.job_id
+          -@communication = Communication.new(:job_id => @job.id, :user_id => current_user.id)
+          = simple_form_for @communication, remote:true, html: { type: 'json' }, defaults: { wrapper: :simple } do |form|
+            = form.input :job_id, value: @job.id, as: :hidden
+            = form.input :action, as: :hidden, input_html: {value: 'Call'}
+            = form.input :type, as: :hidden, input_html: {value: 'CommunicationRecord'}
+            = form.input :details, label: false, required: true, minlength:1, input_html: { rows: 2, :style => 'width: 95%' }
+            .form-group.padding-top
+              %button.btn.btn-default{type: 'submit'} Save note
+      .col-md-6
+        = render 'proposals/details_change_log', proposal: p
+        %h3.font-normal= t '.notes'
+        #communication-history-table
+          = render partial: "communications_table", locals: {communications: @communication.job.communications.past}

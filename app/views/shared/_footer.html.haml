@@ -1,0 +1,26 @@
+.footer-container
+  %footer
+    .footer-nav-wrapper
+      %a.brand{:href=>"/"}
+        %img{:src=>"/assets/logo.png"}
+      .navbar
+        %ul.nav
+          %li= link_to "Home", "http://corkcrm.com"
+          %li= link_to "About", "http://corkcrm.com/about"
+          %li= link_to "Features", "http://corkcrm.com/features"
+          %li= link_to "Pricing & Plans", "http://corkcrm.com/pricing"
+          %li= link_to "Blog", "http://corkcrm.com/blog"
+          %li= link_to "Contact", "http://corkcrm.com/contact"
+      .clear-fix
+    - if current_user.nil?
+      .getting-started-footer.pull-right.visible-desktop
+        %h3 Getting started is easy...
+        = link_to "Sign-in »", new_user_session_path
+        = link_to "Create an Account »", new_user_registration_path
+    - else
+      .user-info-footer.pull-right.visible-desktop
+        %h4= "Logged in as #{current_user.name}"
+        = link_to "Not you? »", destroy_user_session_path, :method => :delete
+        = link_to "Edit your Profile »", edit_user_registration_path
+    .clear-fix
+  .clear-fix

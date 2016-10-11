@@ -1,0 +1,13 @@
+%h3 Welcome to CorkCRM!
+
+%p An account has been created for you:
+
+%ul
+  %li
+    login: #{@user.email}
+  %li
+    password: #{@generated_password}
+
+%p
+  Sign in at
+  = link_to new_user_session_url, new_user_session_url

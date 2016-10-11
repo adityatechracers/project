@@ -1,0 +1,20 @@
+= hform_for @contact do |f|
+  .ibox
+    .ibox-content.p-md
+      = f.input :first_name
+      = f.input :last_name
+      = f.input :company
+      = f.input :phone
+      = f.input :email
+      = f.input :address
+      = f.input :address2
+      = f.input :zip
+      = f.input :city
+      = f.input :region, :as => :select, :collection => ["Loading..."], :required => true, :include_blank => false, :input_html => {:data => {:value => @contact.region}}
+      = f.input :country, :priority => ["United States"]
+      - if @show_time_zone_select
+        = f.input :time_zone, as: :select, collection: ActiveSupport::TimeZone.all, label_method: :to_s, value_method: :name, include_blank:false, selected: @contact.organization.time_zone
+      .hr-line-dashed
+      .row.m-b-sm
+        .col-md-8.col-md-offset-4
+          = submit_tag "Save contact", :class => "btn btn-success"

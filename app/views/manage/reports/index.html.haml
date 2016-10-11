@@ -1,0 +1,52 @@
+.nested-row.wrapper.border-bottom.white-bg.page-heading.m-b-md
+  .col-xs-12
+    %h1= t '.report_list'
+    .title!= breadcrumbs({t('nav.manage.main') => manage_root_path}, t('.report_list'))
+
+%ul.report-list.row
+  %li.col-lg-4.col-md-6
+    = link_to leads_manage_reports_path, :class => "" do
+      .icon-card
+        = image_tag "icons-large/menu.png"
+        %h4= t '.leads'
+  %li.col-lg-4.col-md-6
+    = link_to proposals_manage_reports_path, :class => "" do
+      .icon-card
+        = image_tag "icons-large/briefcase.png"
+        %h4= t '.proposals'
+  %li.col-lg-4.col-md-6
+    = link_to jobs_manage_reports_path, :class => "" do
+      .icon-card
+        = image_tag "icons-large/paint-format.png"
+        %h4= t '.jobs'
+  %li.col-lg-4.col-md-6
+    = link_to profit_manage_reports_path, :class => "" do
+      .icon-card
+        = image_tag "icons-large/stats.png"
+        %h4= t '.profit'
+  %li.col-lg-4.col-md-6
+    = link_to deposit_payment_tracking_manage_reports_path, :class => "" do
+      .icon-card
+        = image_tag "icons-large/bars.png"
+        %h4= t '.payment_tracking'
+  %li.col-lg-4.col-md-6
+    = link_to sales_performance_manage_reports_path, :class => '' do
+      .icon-card
+        = image_tag 'icons-large/bars2.png'
+        %h4= t '.sales_performance'
+  %li.col-lg-4.col-md-6
+    = link_to accounts_receivable_manage_reports_path(:custom_date_range => "#{(Time.now - 7.days).to_i * 1000},#{(Time.now).to_i * 1000}"), :class => "" do
+      .icon-card
+        = image_tag "icons-large/address-book.png"
+        %h4= t '.account_receivable'
+  %li.col-lg-4.col-md-6
+    = link_to weekly_booking_manage_reports_path(:custom_date_range => "#{(Time.now - 7.days).to_i * 1000},#{(Time.now).to_i * 1000}"), :class => "" do
+      .icon-card
+        = image_tag "icons-large/calendar2.png"
+        %h4= t '.weekly_booking'
+  - if current_tenant.child_organizations.any?
+    %li.col-lg-4.col-md-6
+      = link_to managed_organizations_manage_reports_path, :class => "" do
+        .icon-card
+          = image_tag "icons-large/users.png"
+          %h4= t '.managed_organizations'

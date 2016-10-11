@@ -1,0 +1,10 @@
+.row-fluid
+  - secondary_files, files = @proposal.proposal_files.partition { |f| f.is_secondary_proposal_file? }
+  - primary_file = files.detect { |f| f.is_primary_proposal_file? }
+  .span12.centered-text
+    %iframe{ src: primary_file.file_url, style: 'width: 100%; height: 500px;'}
+    - if secondary_files.any?
+      %h5 Secondary Files
+      - secondary_files.each do |f|
+        = link_to(f.original_file_name, f.file_url)
+

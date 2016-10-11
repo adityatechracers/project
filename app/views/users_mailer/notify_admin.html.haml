@@ -1,0 +1,15 @@
+%h3 CorkCRM: a new user has joined!
+
+%ul
+  %li
+    Name:
+    = @user.name
+  %li
+    Organization:
+    = @user.organization.name
+  %li
+    Email:
+    = link_to @user.email, "mailto:#{@user.email}"
+  %li
+    Phone Number:
+    = link_to @user.phone, "tel:#{@user.phone}"

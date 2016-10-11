@@ -1,0 +1,2 @@
+class ProposalSectionResponsesController < ApplicationController
+end

@@ -1,0 +1,6 @@
+= active_link_to jobs_path, active: :exclusive, class: 'btn btn-default' do
+  %span.hidden-phone= t '.list'
+= active_link_to schedule_jobs_path, active: :exclusive, class: 'btn btn-default' do
+  %span.hidden-phone= t '.schedule'
+= active_link_to crew_calendar_jobs_path, active: :exclusive, class: 'btn btn-default' do
+  %span.hidden-phone= t '.crew_calendar'

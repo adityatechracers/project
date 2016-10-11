@@ -1,0 +1,22 @@
+.widget
+  .widget-header
+    = render 'report_title', title: :communications
+  .widget-body
+    .well
+      = split_button_filter t('shared.filter_by_employee'), :user, User.all
+      .pull-right= date_range_filter_button
+      .clearfix
+    .row-fluid
+      .span6
+        %h3.chart-heading
+          = t '.communication_by_employee'
+          - if !@user.nil?
+            %small Organization
+        = pie_chart @communication_by_user, :library => chartkick_opts({:is3D => true, :theme => "maximized"}), :height => "300px"
+      .span6
+        %h3.chart-heading
+          = t '.communication_by_job'
+          - if !@user.nil?
+            %small= @user.name
+        = pie_chart @communication_by_job, :library => chartkick_opts({:is3D => true, :theme => "maximized"}), :height => "300px"
+    = line_chart @line_chart_data, :library => chartkick_opts({:title => t('.communication_by_day')}), :height => "200px"

@@ -1,0 +1,36 @@
+.proposal-signatures
+  = simple_form_for @proposal, :url => store_signatures_proposal_path(@proposal.guid),
+      :method => "post", :html => {:class => "contract-signature-form"}, :defaults => {:input_html => {:class => "form-control"}, wrapper: :simple} do |f|
+    .row
+      .col-md-6
+        .well
+          %h3 #{@proposal.job.contact.name} (#{t 'proposals.customer'})
+          = f.input :customer_sig_datetime, :as => :hidden, :input_html => {:value => Time.zone.now}
+          = f.input :customer_sig_printed_name, :input_html => {:class => "sig-printed-name-field form-control", :style => 'max-width: none; padding-left: 12px;', :placeholder => 'Customer Full Name'}
+          .signature{:data => {:svg => @proposal.customer_sig}}
+          = f.input_field :customer_sig, :class => "signature-svg"
+          .m-t-lg
+            = f.submit t('.terms_acceptance'), :disable_with => "Saving...", :class => "btn btn-success"
+            = link_to "#", :class => "btn btn-danger m-l-sm clear-sig-button" do
+              %span.visible-tablet.visible-phone= t('.clear')
+              %span.visible-desktop= t('.clear_signature')
+      - if current_user && (current_user.can_manage? or current_user.id == @proposal.contractor.id) && !@proposal.contractor_signed?
+        .col-md-6
+          .well
+            %h3 #{@proposal.contractor.name} (#{t 'proposals.contractor'})
+            = f.input :contractor_sig_datetime, :as => :hidden, :input_html => {:value => Time.zone.now}
+            = f.input :contractor_sig_printed_name, :input_html => {:class => "sig-printed-name-field form-control", :style => 'max-width: none; padding-left: 12px;', :placeholder => 'Contractor Full Name'}
+            .signature{:data => {:svg => @proposal.contractor_sig}}
+            = f.input_field :contractor_sig, :class => "signature-svg"
+            .m-t-lg
+              = f.submit t('.terms_acceptance'), :disable_with => "Saving...", :class => "btn btn-success"
+              = link_to "#", :class => "btn btn-danger m-l-sm clear-sig-button" do
+                %span.visible-tablet.visible-phone= t('.clear')
+                %span.visible-desktop= t('.clear_signature')
+      - else
+        .col-md-6
+          .ibox
+            .ibox-title
+              %h3 #{@proposal.signed_for_contractor.name} (#{t 'proposals.contractor'})
+            .ibox-content
+              .signature-readonly{:data => {:svg => @proposal.contractor_sig}}

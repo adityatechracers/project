@@ -1,0 +1,7 @@
+%table.table.table-condensed.table-striped
+  - unless communications.empty?
+    = render partial: "shared/communication_table_row", collection:communications, as: :c
+  - else
+    %tr.empty
+      %td
+        = t '.communications.no_previous_notes'

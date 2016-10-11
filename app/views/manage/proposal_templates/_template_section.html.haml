@@ -1,0 +1,44 @@
+%li.proposal-template-section{:style => "padding-bottom:9px;", :data => {:section => section.id}}
+
+  .widget.row
+    .widget-head-color-box{:style => "color: #{section.foreground_color}; background: #{section.background_color};"}
+      %h3.black-heading.user-color
+        %span.black-heading-title
+          %span.section-position= "##{section.position}"
+          = section.name
+        .proposal-section-header-controls.btn-group.pull-right
+          = link_to new_manage_proposal_template_section_item_path(@proposal_template, section),
+              :class => 'btn btn-small btn-default', :data => {:toggle => "tooltip", :placement => "bottom"}, :title => t('.add_item') do
+            %i.icon-plus
+          = link_to edit_manage_proposal_template_section_path(@proposal_template, section),
+            :class => 'btn btn-small btn-default ', :data => {:toggle => "tooltip", :placement => "bottom"}, :title => t('.edit_section') do
+            %i.icon-pencil
+          %button.btn.btn-small.toggle-section-btn{:data => {:action => 'collapse', :toggle => "tooltip", :placement => "bottom"}, :title => t("shared.collapse")}
+            %i.icon-contract-2{:style => "transform:rotate(-45deg);-webkit-transform:rotate(-45deg);-ms-transform:rotate(-45deg);"}
+          %button.btn.btn-small{:class => "load-version", :data => {:action => 'move-up', :toggle => "tooltip", :placement => "bottom"}, :title => t("shared.move_up")}
+            %i.icon-arrow-up
+          %button.btn.btn-small{:class => "load-version", :data => {:action => 'move-down', :toggle => "tooltip", :placement => "bottom"}, :title => t("shared.move_down")}
+            %i.icon-arrow-down
+          %button.btn.btn-small.section-drag-handle{:data => {:action => 'drag', :toggle => "tooltip", :placement => "bottom"}, :title => t("shared.drag")}
+            %i.icon-menu
+        .clearfix
+    .widget-text-box
+      .proposal-section-form-wrapper
+        - if section.default_description.present?
+          %label{:style => "font-weight:900;margin:20px 0px 0px;"} Description
+          %p.proposal-template-section-description{:style => "margin-bottom:0px;"}= section.default_description.html_safe
+          != "<hr />" unless section.items.empty?
+
+        - unless section.items.not_deleted.empty?
+          %table.table.table-condensed.proposal-item-table
+            %thead
+              %tr
+                - if section.show_include_exclude_options
+                  - t('manage.proposal_template_items.form.include_exclude_options').each do |option|
+                    %th{:style => "text-align:center;"}= option
+                %th Description
+                %th Notes
+                %th Actions
+            %tbody
+              - section.item_templates.each do |i|
+                = render :partial => 'manage/proposal_templates/template_item', :locals => {:item => i, :section => section} unless i.deleted?

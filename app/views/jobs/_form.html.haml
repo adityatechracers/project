@@ -1,0 +1,17 @@
+= hform_for @job do |f|
+  = f.input :title, :input_html => {:class => 'input-xlarge'}
+  = f.association :contact, :input_html => {:class => 'chzn-select-required'}, :include_blank => false
+  = f.association :lead_source, :input_html => {:class => 'chzn-select-required'}, :include_blank => false if @job.state == "Lead"
+  = f.input :expected_start_date, :as => :date_picker
+  = f.input :expected_end_date, :as => :date_picker
+  = f.association :crew, :input_html => {:class => 'chzn-select'}, :collection => Crew.not_deleted.order(:name).all
+  = f.association :users, :input_html => {:class => 'chzn-select'}
+  = f.input :details, :input_html => {:rows => 4}
+  .control-group
+    = f.label :estimated_amount
+    .controls
+      .input-prepend
+        %span.add-on $
+        = f.input_field :estimated_amount, :placeholder => '50.00', :class => 'input-small', :type => "number", :pattern => "\d*", :min => 0, :step => 0.01
+
+  = f.submit t('.save_job'), :class => "btn btn-success"

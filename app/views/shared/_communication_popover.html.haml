@@ -1,0 +1,15 @@
+.comm-popover-inner
+  - if c.planned?
+    %h4{:style => "margin:0px 0px 5px;"}
+      %i{:class => c.action=="Call" ? "icon-phone" : "icon-mail-2", :style => "margin-right:5px;"}
+      = job.contact.name
+    %p= c.action=="Call" ? job.contact.phone : job.contact.email
+    %p= c.datetime.strftime("%B #{c.datetime.day.ordinalize}, %Y at %l:%M%P")
+  - elsif c.record?
+    %h4{:style => "margin:0px 0px 5px;"}
+      %i{:class => c.action=="Call" ? "icon-phone" : "icon-mail-2", :style => "margin-right:5px;"}
+      = job.contact.name
+    %p= c.summary
+    %p= c.datetime.strftime("%B #{c.datetime.day.ordinalize}, %Y at %l:%M%P")
+    %p
+      %span.label= c.outcome

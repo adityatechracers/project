@@ -1,0 +1,38 @@
+.ibox
+  .ibox-title
+    %h3.inline-btn.m-b-sm
+      Users
+      - if can? :manage_admin, :admin
+        = link_to "New Admin", new_admin_user_path, :class => "btn btn-success pull-right"
+  .ibox-content
+    .btn-group.pull-right
+      = link_to '#export-modal', id: 'export-users', 'data-toggle' => 'modal', class: 'btn btn-default', style: 'margin-left: 16px;', data: {toggle: "tooltip", placement: "bottom", backdrop: 'static', keyboard: 'false', modal:'#export-modal'}, title: 'Export' do
+        %i.icon-download-2
+        %span.visible-desktop Export
+    .input-group.pull-right
+      %input.form-control{:type => "text", :id => "superadmin_user_search_field", :placeholder => "Search users by name/address..."}
+      %div.input-group-addon.btn.gray-bg
+        %i.icon-search
+    .btn-group
+      = active_filter_for 'All', admin_users_path, :root => true, :class => 'btn btn-default'
+      = active_filter_for 'Admins', :admin, :class => 'btn btn-default'
+      = active_filter_for 'Owners', :owner, :class => 'btn btn-default'
+      = active_filter_for 'Employees', :employee, :class => 'btn btn-default'
+
+.ibox
+  .ibox-content.p-md
+    .row-fluid
+      .span12.scrolled
+        %table.table.table-striped.footable#users_table
+          %thead
+            %tr
+              %th Name
+              %th Email
+              %th Organization
+              %th Role
+              %th Status
+              %th Actions
+          %tbody= render 'table'
+    = paginate @users, :theme => "bootstrap"
+
+  = render "shared/export"

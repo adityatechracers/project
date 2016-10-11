@@ -1,0 +1,13 @@
+.row-fluid
+  %h2 Edit Section
+
+  = simple_form_for 'proposal_template_section', :html => {:class => 'form form-horizontal'} do |f|
+    = f.input :section_name, :input_html => { :value => 'Preparation' }
+    = f.input :background_color, :input_html => { :value => '#CCCCCC' }
+    = f.input :section_description, :input_html => { :class => 'input-block-level', :rows => 8 }, :as => :text
+    = f.input :allow_include_exclude,
+      :label => 'Should this section contain an option to include or exclude specific items?',
+      :as => :radio_buttons
+    = f.input :position, :input_html => { :value => '1', :type => :number }
+    .form-actions
+      = f.submit 'Save', :class => 'btn btn-success'

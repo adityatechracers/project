@@ -1,0 +1,24 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %title Connect Quick Books
+    = stylesheet_link_tag "application", :media => "all"
+  %body
+    .header
+      .container-fluid
+        .logo
+          - if Rails.env.production?
+            %a.brand{:href=>"http://corkcrm.com"}
+              %img{:src=>"/assets/logo.png"}
+          - else
+            %a.brand{:href=>"/"}
+              %img{:src=>"/assets/logo.png"}
+    .container
+      .row
+        %center
+          %h2.text-success Your QuckBooks account has been successfully linked.
+
+    :javascript
+      window.opener.parent.location.reload(true)
+      setTimeout(function(){ window.close(); }, 2000);
+          

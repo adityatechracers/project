@@ -1,0 +1,29 @@
+.widget
+  .widget-header
+    = render 'report_title', title: :appointments
+  .widget-body
+    .well
+      = date_range_filter_button
+      = split_button_filter t('shared.filter_by_employee'), :user, User.all
+      = split_button_filter t('shared.filter_by_job'), :job, Job.active, :id, :full_title
+      .clearfix
+      .row-fluid= line_chart @users.map{|u| {:name => u.name, :data => u.appointments.group_by_day(:start_datetime).count}},
+        :library => chartkick_opts({:title => t(".appointments_by_month"), :vAxis => {:title => t('.number_of_appointments')}})
+    - unless params.has_key? :user
+      %hr
+      .row-fluid= column_chart @users.map{|u| [u.name, u.appointments.count]},
+        :library => chartkick_opts({:title => t(".appointments_by_employee"), :hAxis => {:title => t(".employee")}, :vAxis => {:title => t('.number_of_appointments')}})
+
+    %hr
+    .row-fluid
+      %table.table.table-bordered.table-striped
+        %thead
+          %tr
+            %th= t '.salesperson_assigned_to_customer'
+        %tbody
+          - @results.each do |a|
+            %tr
+              %td{:style => "line-height:14px;"}
+                = a.user.name
+                %br
+                = contact_link_with_popover(a.job.contact)

@@ -1,0 +1,20 @@
+.home-nav.navbar
+  .navbar-inner
+    %button.btn.btn-navbar{:data => {:target => ".nav-collapse", :toggle => "collapse"}, :style => "margin-bottom:5px;"}
+      %span.icon-bar
+      %span.icon-bar
+      %span.icon-bar
+    .nav-collapse
+      %ul.nav
+        %li= link_to "Home", root_path
+        %li= link_to "About", page_path("home/about")
+        %li= link_to "Features", page_path("home/features")
+        %li= link_to "Pricing & Plans", page_path("home/pricingandplans")
+        %li= link_to "Blog", blog_path
+        %li= link_to "Contact", page_path("home/contact")
+        %li
+          %hr
+        = render :partial => 'shared/account_nav', :locals => {:li_class => 'hidden-desktop'}
+
+      %ul.account-nav.pull-right.hidden-phone.visible-desktop
+        = render :partial => 'shared/account_nav', :locals => {:li_class => ''}

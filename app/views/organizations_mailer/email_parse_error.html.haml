@@ -1,0 +1,11 @@
+%h3 Email is not parsed succesfully
+
+%ul
+  %li
+    Organization Name:
+    <strong>
+    = @organization.name
+    </strong>
+  %li
+    %h3 Original Email
+    = @email_body.gsub(/\n/, '<br>').html_safe
